@@ -2,15 +2,12 @@ from __future__ import annotations
 
 from heiq.wp1.airside.legacy_v3 import legacy_v3_module
 
+from .local_state import solve_local_state
 from .targets import (
     build_targets,
     reduced_quick_config,
     validate_config,
 )
-
-
-def solve_local_state(*args, **kwargs):
-    return legacy_v3_module().solve_local_state(*args, **kwargs)
 
 
 def integrate_axial_case(*args, **kwargs):
