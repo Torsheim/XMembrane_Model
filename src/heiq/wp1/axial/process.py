@@ -1,7 +1,10 @@
 from __future__ import annotations
 
-from heiq.wp1.airside.legacy_v3 import legacy_v3_module
+from heiq.wp1.airside.legacy_v3 import (
+    legacy_v3_module,
+)
 
+from .integration import integrate_axial_case
 from .local_state import solve_local_state
 from .targets import (
     build_targets,
@@ -10,16 +13,18 @@ from .targets import (
 )
 
 
-def integrate_axial_case(*args, **kwargs):
-    return legacy_v3_module().integrate_axial_case(*args, **kwargs)
-
-
 def load_v2_module(*args, **kwargs):
-    return legacy_v3_module().load_v2_module(*args, **kwargs)
+    return legacy_v3_module().load_v2_module(
+        *args,
+        **kwargs,
+    )
 
 
 def load_json(*args, **kwargs):
-    return legacy_v3_module().load_json(*args, **kwargs)
+    return legacy_v3_module().load_json(
+        *args,
+        **kwargs,
+    )
 
 
 __all__ = [
