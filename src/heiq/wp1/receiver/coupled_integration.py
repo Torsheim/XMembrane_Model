@@ -54,6 +54,8 @@ def integrate_coupled_receiver_case(
     current_cap_a_m2: float,
     film_scale_factor: float,
     record_profile: bool,
+    process_film_scale_factor: float | None = None,
+    receiver_film_scale_factor: float | None = None,
 ) -> tuple[dict[str, Any], pd.DataFrame]:
     """Integrate a co- or counter-current two-stream membrane case.
 
@@ -182,6 +184,12 @@ def integrate_coupled_receiver_case(
             series_asr_ohm_m2=total_series_asr,
             film_scale_factor=film_scale_factor,
             config=local_config,
+            process_film_scale_factor=(
+                process_film_scale_factor
+            ),
+            receiver_film_scale_factor=(
+                receiver_film_scale_factor
+            ),
         )
 
     while cumulative_area < area_limit - 1.0e-12:

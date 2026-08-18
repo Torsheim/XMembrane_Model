@@ -76,10 +76,25 @@ def solve_local_state(
     series_asr_ohm_m2: float,
     film_scale_factor: float,
     config: dict[str, Any],
+    process_film_scale_factor: float | None = None,
+    receiver_film_scale_factor: float | None = None,
 ) -> dict[str, Any]:
     air = config["air"]
     channel = config["channel"]
     pressure_pa = float(air["absolute_pressure_pa"])
+
+    process_scale_factor = (
+        film_scale_factor
+        if process_film_scale_factor is None
+        else process_film_scale_factor
+    )
+
+    receiver_scale_factor = (
+        film_scale_factor
+        if receiver_film_scale_factor is None
+        else receiver_film_scale_factor
+    )
+
     source_activity = activity_from_t_w(
         source_temperature_c, source_humidity_ratio, pressure_pa
     )
@@ -96,7 +111,7 @@ def solve_local_state(
         velocity_m_s=float(channel["process_velocity_m_s"]),
         gap_m=float(channel["process_gap_m"]),
         pressure_pa=pressure_pa,
-        scale_factor=film_scale_factor,
+        scale_factor=process_scale_factor,
     )
     receiver_temperature_c = float(channel["receiver_temperature_c"])
     receiver_film = calculate_film_state(
@@ -105,7 +120,7 @@ def solve_local_state(
         velocity_m_s=float(channel["receiver_velocity_m_s"]),
         gap_m=float(channel["receiver_gap_m"]),
         pressure_pa=pressure_pa,
-        scale_factor=film_scale_factor,
+        scale_factor=receiver_scale_factor,
     )
     local_config = make_local_config(
         v2_config,
