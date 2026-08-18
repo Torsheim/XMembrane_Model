@@ -1,0 +1,249 @@
+{
+  "schema_version": 1,
+  "study_name": "Coupled process/receiver and declared-system analysis for selected V11 candidates",
+  "scope_note": "Selected hypothetical V11 property combinations are re-solved with evolving process and receiver humidity. Receiver bands, losses, regeneration, fans, pump, thermal management and stack limits are declared scenarios, not measured system properties. No total-system saving or material-validation claim is allowed.",
+  "candidate_material_ids": [
+    "M08666",
+    "M08786",
+    "M11675"
+  ],
+  "receiver_bands": {
+    "bridge_40_to_60": {
+      "inlet_activity": 0.4,
+      "maximum_outlet_activity": 0.6,
+      "interpretation": "Declared 32 C receiver-loop band centred on V11's fixed activity 0.50; not a measured receiver design."
+    },
+    "tight_45_to_55": {
+      "inlet_activity": 0.45,
+      "maximum_outlet_activity": 0.55,
+      "interpretation": "Tight receiver-control sensitivity; requires very high dry-air flow."
+    },
+    "broad_30_to_70": {
+      "inlet_activity": 0.3,
+      "maximum_outlet_activity": 0.7,
+      "interpretation": "Broad receiver-band sensitivity; changes local diffusion and reversible water-polarisation voltage substantially."
+    }
+  },
+  "voltage_grid": {
+    "maximum_cell_terminal_voltage_v": 1.0,
+    "required_exact_voltages_v": [
+      1.0
+    ],
+    "interpretation": "The hard cap applies per cell. Literal 1.0 is newly solved and is never interpolated from V11."
+  },
+  "operating": {
+    "power_electronics_efficiency": 0.9,
+    "current_density_cap_a_m2": 2000.0,
+    "film_scale_factor": 1.0,
+    "thermal_mode": "isothermal",
+    "legacy_series_asr_ohm_m2": 1e-05
+  },
+  "channel": {
+    "active_sides_per_process_channel": 1.0,
+    "process_fan_efficiency": 0.65,
+    "receiver_fan_efficiency": 0.65,
+    "receiver_geometry_mode": "aligned_equal_total_width",
+    "fixed_receiver_velocity_m_s": 1.0,
+    "interpretation": "The default explicitly aligns receiver and process total channel width, so receiver velocity changes with required airflow. Use fixed_receiver_velocity_resize_width to resize receiver width instead. One active side preserves the V11 geometry basis."
+  },
+  "integration": {
+    "mass_balance_relative_tolerance": 1e-08,
+    "step_halving_relative_tolerance": 0.005,
+    "maximum_step_halving_cases": 2000
+  },
+  "stack": {
+    "maximum_cell_active_area_m2": 0.25,
+    "maximum_cell_current_a": 500.0,
+    "minimum_converter_input_voltage_v": 48.0,
+    "maximum_dc_bus_voltage_v": 800.0,
+    "maximum_converter_current_a": 2000.0,
+    "maximum_converter_power_kw": 1000.0,
+    "maximum_series_cells": 800,
+    "evidence": "Illustrative engineering constraints only. Replace every value with supplier- or design-backed limits before using topology results for design."
+  },
+  "energy_scenarios": {
+    "process_external_pressure_drop_pa": 0.0,
+    "controls_and_instrumentation_power_kw": 0.0,
+    "product_water_pump_efficiency": 0.65,
+    "cell_power_to_managed_heat_fraction": 1.0,
+    "interpretation": "Zero external process loss and zero controls are explicit lower bounds. Thermal-management electricity is reported only where a finite COP is declared. Regeneration is entered only as electric-equivalent kWh_e/kg and excludes fans and product-water pumping; thermal SEC must first be converted with a declared technology efficiency or COP."
+  },
+  "regression_anchors": {
+    "actual_volume_flow_m3_s": 70.7921175,
+    "dry_air_mass_flow_kg_s": 78.81256451,
+    "water_load_kg_h": {
+      "O50": 2644.741744784359,
+      "O30": 4365.918299
+    },
+    "gross_hvac_electric_opportunity_kw": {
+      "O50": 462.44526487339937,
+      "O30": 756.1801721460658
+    }
+  },
+  "modes": {
+    "smoke": {
+      "candidate_material_ids": [
+        "M08786"
+      ],
+      "targets": [
+        "O50"
+      ],
+      "o30_include_o50_sized_receiver_flow": true,
+      "receiver_band_ids": [
+        "bridge_40_to_60"
+      ],
+      "flow_arrangements": [
+        "counter_current"
+      ],
+      "receiver_capacity_multipliers": [
+        1.25
+      ],
+      "electrode_pair_loss_voltages_v": [
+        0.0,
+        0.1
+      ],
+      "added_contact_asr_ohm_m2": [
+        0.0
+      ],
+      "voltage_source": "explicit",
+      "explicit_voltages_v": [
+        0.03,
+        0.05,
+        0.15,
+        1.0
+      ],
+      "regeneration_electric_equivalent_sec_kwh_e_per_kg": [
+        0.0,
+        0.1
+      ],
+      "receiver_external_pressure_drop_pa": [
+        0.0,
+        250.0
+      ],
+      "product_water_pump_head_m": [
+        0.0
+      ],
+      "thermal_management_cop": [
+        4.0
+      ],
+      "integration_overrides": {
+        "area_step_m2": 200.0,
+        "minimum_area_step_m2": 3.125
+      },
+      "fixed_receiver_compatibility_anchor_rows": 2,
+      "default_workers": 1,
+      "chunk_size": 2
+    },
+    "study": {
+      "candidate_material_ids": [
+        "M08666",
+        "M08786",
+        "M11675"
+      ],
+      "targets": [
+        "O50",
+        "O30"
+      ],
+      "o30_include_o50_sized_receiver_flow": true,
+      "receiver_band_ids": [
+        "bridge_40_to_60"
+      ],
+      "flow_arrangements": [
+        "counter_current"
+      ],
+      "receiver_capacity_multipliers": [
+        1.25
+      ],
+      "electrode_pair_loss_voltages_v": [
+        0.0,
+        0.1
+      ],
+      "added_contact_asr_ohm_m2": [
+        1e-05
+      ],
+      "voltage_source": "v11_below_cap_plus_exact",
+      "explicit_voltages_v": [],
+      "regeneration_electric_equivalent_sec_kwh_e_per_kg": [
+        0.0,
+        0.05,
+        0.1,
+        0.15,
+        0.2
+      ],
+      "receiver_external_pressure_drop_pa": [
+        0.0,
+        250.0
+      ],
+      "product_water_pump_head_m": [
+        0.0,
+        20.0
+      ],
+      "thermal_management_cop": [
+        null,
+        4.0
+      ],
+      "integration_overrides": {},
+      "fixed_receiver_compatibility_anchor_rows": 24,
+      "default_workers": 1,
+      "chunk_size": 2
+    },
+    "sensitivity": {
+      "candidate_material_ids": [
+        "M08666",
+        "M08786",
+        "M11675"
+      ],
+      "targets": [
+        "O50",
+        "O30"
+      ],
+      "o30_include_o50_sized_receiver_flow": true,
+      "receiver_band_ids": [
+        "bridge_40_to_60",
+        "tight_45_to_55",
+        "broad_30_to_70"
+      ],
+      "flow_arrangements": [
+        "counter_current",
+        "co_current"
+      ],
+      "receiver_capacity_multipliers": [
+        1.05,
+        1.5
+      ],
+      "electrode_pair_loss_voltages_v": [
+        0.1,
+        0.25
+      ],
+      "added_contact_asr_ohm_m2": [
+        0.0,
+        1e-05
+      ],
+      "voltage_source": "linear",
+      "linear_voltage_min_v": 0.1,
+      "linear_voltage_points": 19,
+      "explicit_voltages_v": [],
+      "regeneration_electric_equivalent_sec_kwh_e_per_kg": [
+        0.0,
+        0.1,
+        0.2
+      ],
+      "receiver_external_pressure_drop_pa": [
+        0.0,
+        250.0
+      ],
+      "product_water_pump_head_m": [
+        0.0,
+        20.0
+      ],
+      "thermal_management_cop": [
+        null,
+        4.0
+      ],
+      "integration_overrides": {},
+      "fixed_receiver_compatibility_anchor_rows": 24,
+      "default_workers": 1,
+      "chunk_size": 2
+    }
+  }
+}

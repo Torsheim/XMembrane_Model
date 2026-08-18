@@ -1,0 +1,13 @@
+material_id,water_drag,water_diffusivity_m2_s,conductivity_s_m,dry_thickness_um,water_capacity_mol_m3_activity,diffusivity_activity_exponent,conductivity_activity_exponent,capacity_activity_exponent,candidate_family_index,candidate_family,family_representative_material_id,family_interpretation,conductivity_variant_index
+M08658,10.923385218156485,1e-12,0.1,50.0,10000.0,2.0,0.0,0.0,0,o50_minimum_power_50um,M08786,Formal O50 minimum-power V8 vector; 50 micrometre dry thickness.,0
+M08722,10.923385218156485,1e-12,2.2360679774997894,50.0,10000.0,2.0,0.0,0.0,0,o50_minimum_power_50um,M08786,Formal O50 minimum-power V8 vector; 50 micrometre dry thickness.,1
+M08786,10.923385218156485,1e-12,50.0,50.0,10000.0,2.0,0.0,0.0,0,o50_minimum_power_50um,M08786,Formal O50 minimum-power V8 vector; 50 micrometre dry thickness.,2
+M08666,10.923385218156485,1e-12,0.1,100.0,10000.0,2.0,0.0,0.0,1,low_power_compact_100um,M08794,Shared O30 low-power and compact broad-screen vector; its sigma=0.1 member is M08666.,0
+M08730,10.923385218156485,1e-12,2.2360679774997894,100.0,10000.0,2.0,0.0,0.0,1,low_power_compact_100um,M08794,Shared O30 low-power and compact broad-screen vector; its sigma=0.1 member is M08666.,1
+M08794,10.923385218156485,1e-12,50.0,100.0,10000.0,2.0,0.0,0.0,1,low_power_compact_100um,M08794,Shared O30 low-power and compact broad-screen vector; its sigma=0.1 member is M08666.,2
+M06110,3.2956816299183544,1.5848931924611107e-11,0.1,100.0,100000.0,2.0,0.0,0.0,2,minimum_energy_positive_area,M06174,Formal V8 minimum-area vector inside the conditional positive-energy gate.,0
+M06174,3.2956816299183544,1.5848931924611107e-11,2.2360679774997894,100.0,100000.0,2.0,0.0,0.0,2,minimum_energy_positive_area,M06174,Formal V8 minimum-area vector inside the conditional positive-energy gate.,1
+M06238,3.2956816299183544,1.5848931924611107e-11,50.0,100.0,100000.0,2.0,0.0,0.0,2,minimum_energy_positive_area,M06174,Formal V8 minimum-area vector inside the conditional positive-energy gate.,2
+M11547,36.20505801927101,1e-12,0.1,100.0,10000.0,2.0,4.0,0.0,3,robust_numerical_high_drag,M11547,Numerical robust-ranking vector; high drag and outside the broad dense-ionomer range screen.,0
+M11611,36.20505801927101,1e-12,2.2360679774997894,100.0,10000.0,2.0,4.0,0.0,3,robust_numerical_high_drag,M11547,Numerical robust-ranking vector; high drag and outside the broad dense-ionomer range screen.,1
+M11675,36.20505801927101,1e-12,50.0,100.0,10000.0,2.0,4.0,0.0,3,robust_numerical_high_drag,M11547,Numerical robust-ranking vector; high drag and outside the broad dense-ionomer range screen.,2

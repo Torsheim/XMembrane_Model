@@ -1,0 +1,910 @@
+#!/usr/bin/env python3
+"""
+HeiQ WP1 continuation of the pre-architecture coupled axial EO analysis.
+
+Model boundary
+--------------
+Uses the reviewed V12.1 coupled two-stream core:
+- process and receiver humidity both march axially;
+- the unchanged V2/V3 local voltage-controlled membrane BVP is re-solved;
+- process and receiver gas films are retained;
+- receiver architecture/regeneration/ERV/HRV is NOT introduced.
+
+Stages
+------
+1) o50-edge:
+   Map the very-low-terminal-voltage operating edge for O50.
+   This is NOT called a passive/open-circuit reference because V12.1 is
+   voltage-controlled and its local gate requires positive current.
+
+2) o30-receiver:
+   Re-optimise receiver dry-air capacity multiplier and terminal voltage for
+   selected water-drag values at O30.
+
+3) material:
+   At the best O30 receiver-flow point, run a deterministic Latin-hypercube
+   screen over water drag, diffusivity, conductivity and dry thickness, with
+   voltage re-optimisation and finalist surface-activity audit.
+
+Default active-area gate: 9000 m2.
+"""
+
+from __future__ import annotations
+
+import argparse
+import copy
+import importlib.util
+import json
+import math
+import sys
+from pathlib import Path
+from types import ModuleType
+
+import numpy as np
+import pandas as pd
+
+ROOT = Path(__file__).resolve().parents[1]
+V11_DIR = ROOT / "outputs" / "axial_independent_material_sweep_v8" / "coarse" / "voltage_refinement_v11"
+V12_SCRIPT = ROOT / "scripts" / "make_wp1_closed_receiver_system_v12.py"
+AXIAL_SCRIPT = ROOT / "scripts" / "make_wp1_pre_receiver_axial_v3.py"
+V12_CONFIG = ROOT / "scripts" / "closed_receiver_system_v12_config.json"
+V2_ROOT = ROOT / "heiq_pre_receiver_material_analyses"
+
+O50_EDGE_DRAGS = [36.205058, 150.0, 600.0]
+O50_EDGE_VOLTAGES = [
+    1.0e-5, 2.0e-5, 5.0e-5,
+    1.0e-4, 2.0e-4, 5.0e-4,
+    1.0e-3, 1.5e-3, 2.0e-3, 3.0e-3, 4.0e-3,
+    5.0e-3, 7.5e-3, 1.0e-2, 1.5e-2, 2.0e-2,
+]
+
+O30_RECEIVER_DRAGS = [36.205058, 50.0, 75.0, 100.0, 150.0, 250.0]
+O30_RECEIVER_MULTIPLIERS = [
+    1.01, 1.025, 1.05, 1.075, 1.10, 1.15,
+    1.20, 1.25, 1.35, 1.50, 1.75, 2.00,
+]
+
+# Previous V12.1/M11675-family O30 screen showed roughly V/tw ~ 0.0106 V.
+# This is only a grid-centering heuristic; every case is re-solved.
+V_PER_DRAG_HEURISTIC = 0.0106
+
+MATERIAL_RANGES = {
+    "water_drag": (10.0, 600.0, "linear"),
+    "water_diffusivity_m2_s": (1.0e-14, 1.0e-10, "log"),
+    "conductivity_s_m": (0.1, 100.0, "log"),
+    "dry_thickness_um": (25.0, 200.0, "linear"),
+}
+
+SURFACE_AUDIT_TOP_N = 12
+
+
+def load_module(path: Path, name: str) -> ModuleType:
+    spec = importlib.util.spec_from_file_location(name, path)
+    if spec is None or spec.loader is None:
+        raise ImportError(path)
+    mod = importlib.util.module_from_spec(spec)
+    sys.modules[name] = mod
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def finite(value) -> float:
+    try:
+        x = float(value)
+    except Exception:
+        return math.nan
+    return x if math.isfinite(x) else math.nan
+
+
+def truth(value) -> bool:
+    if isinstance(value, (bool, np.bool_)):
+        return bool(value)
+    return str(value).strip().lower() in {"true", "1", "yes"}
+
+
+def unique_sorted(values, *, lo=0.0, hi=math.inf):
+    return sorted({
+        round(float(v), 10)
+        for v in values
+        if math.isfinite(float(v)) and lo <= float(v) <= hi
+    })
+
+
+def parse_args():
+    p = argparse.ArgumentParser()
+    p.add_argument(
+        "--stage",
+        choices=["o50-edge", "o30-receiver", "material", "all"],
+        default="all",
+    )
+    p.add_argument(
+        "--output-dir",
+        default="outputs/prearchitecture_continuation_v2",
+    )
+    p.add_argument("--area-max-m2", type=float, default=9000.0)
+    p.add_argument("--voltage-max-v", type=float, default=2.0)
+    p.add_argument("--receiver-band", default="bridge_40_to_60")
+    p.add_argument("--receiver-temperature-c", type=float, default=None)
+    p.add_argument("--lhs-samples", type=int, default=64)
+    p.add_argument("--seed", type=int, default=20260812)
+    p.add_argument("--smoke", action="store_true")
+    return p.parse_args()
+
+
+def setup(args):
+    v12 = load_module(V12_SCRIPT, "heiq_v12_continuation")
+    axial = load_module(AXIAL_SCRIPT, "heiq_axial_continuation")
+
+    v12.validate_unchanged_solver_sources(V11_DIR, AXIAL_SCRIPT, V2_ROOT)
+
+    v2 = axial.load_v2_module(V2_ROOT)
+    v2_config = v2.load_config(V2_ROOT / "config" / "default.json")
+    cfg12 = v12.load_json(V12_CONFIG)
+    base = v12.load_json(V11_DIR / "axial_base_config_used.json")
+    base = copy.deepcopy(base)
+
+    base["channel"]["active_sides_per_process_channel"] = float(
+        cfg12["channel"]["active_sides_per_process_channel"]
+    )
+    base["channel"]["process_fan_efficiency"] = float(
+        cfg12["channel"]["process_fan_efficiency"]
+    )
+    base["channel"]["receiver_geometry_mode"] = str(
+        cfg12["channel"]["receiver_geometry_mode"]
+    )
+    base["channel"]["fixed_receiver_velocity_m_s"] = float(
+        cfg12["channel"]["fixed_receiver_velocity_m_s"]
+    )
+    if args.receiver_temperature_c is not None:
+        base["channel"]["receiver_temperature_c"] = float(args.receiver_temperature_c)
+
+    base["integration"]["area_limit_m2"] = float(args.area_max_m2)
+    base["integration"]["mass_balance_relative_tolerance"] = float(
+        cfg12["integration"]["mass_balance_relative_tolerance"]
+    )
+    axial.validate_config(base)
+
+    process_basis = axial.dry_air_mass_flow(base)
+    targets_df = axial.build_targets(base, process_basis, v2_config)
+    targets = {str(row["target"]): row for _, row in targets_df.iterrows()}
+
+    candidates = pd.read_csv(V11_DIR / "candidate_materials.csv")
+    m11675 = candidates[candidates["material_id"].astype(str).eq("M11675")]
+    if len(m11675) != 1:
+        raise RuntimeError("Expected exactly one M11675 row.")
+    m11675 = m11675.iloc[0]
+
+    if args.receiver_band not in cfg12["receiver_bands"]:
+        raise KeyError(f"Unknown receiver band {args.receiver_band}")
+
+    return {
+        "v12": v12,
+        "axial": axial,
+        "v2": v2,
+        "v2_config": v2_config,
+        "cfg12": cfg12,
+        "base": base,
+        "process_basis": process_basis,
+        "targets": targets,
+        "m11675": m11675,
+        "args": args,
+    }
+
+
+def make_material(ctx, *, drag=None, diffusivity=None, conductivity=None, thickness=None):
+    v12 = ctx["v12"]
+    base = ctx["m11675"]
+    overrides = {
+        "water_drag": drag,
+        "water_diffusivity_m2_s": diffusivity,
+        "conductivity_s_m": conductivity,
+        "dry_thickness_um": thickness,
+    }
+    props = {}
+    for name in v12.MATERIAL_COLUMNS:
+        value = overrides.get(name, None)
+        props[name] = float(base[name] if value is None else value)
+    return {
+        "name": (
+            f"tw{props['water_drag']:.6g}_"
+            f"D{props['water_diffusivity_m2_s']:.3e}_"
+            f"sig{props['conductivity_s_m']:.6g}_"
+            f"L{props['dry_thickness_um']:.6g}"
+        ),
+        "model": "powerlaw",
+        **props,
+        "interpretation": "V12.1 pre-architecture material-screen property vector",
+    }
+
+
+def receiver_basis(ctx, target: str, multiplier: float):
+    v12 = ctx["v12"]
+    cfg12 = ctx["cfg12"]
+    args = ctx["args"]
+    return v12.make_receiver_basis(
+        axial=ctx["axial"],
+        process_basis=ctx["process_basis"],
+        target_row=ctx["targets"][target],
+        receiver_sizing_target_row=ctx["targets"][target],
+        band_id=str(args.receiver_band),
+        band=cfg12["receiver_bands"][str(args.receiver_band)],
+        capacity_multiplier=float(multiplier),
+        flow_arrangement="counter_current",
+        base_config=ctx["base"],
+    )
+
+
+def solve_case(
+    ctx,
+    *,
+    target: str,
+    material: dict,
+    voltage_v: float,
+    receiver_multiplier: float,
+    record_profile: bool = False,
+):
+    v12 = ctx["v12"]
+    cfg12 = ctx["cfg12"]
+
+    receiver = receiver_basis(ctx, target, receiver_multiplier)
+    row, profile = v12.integrate_coupled_receiver_case(
+        axial=ctx["axial"],
+        v2=ctx["v2"],
+        v2_config=ctx["v2_config"],
+        config=ctx["base"],
+        process_basis=ctx["process_basis"],
+        target_row=ctx["targets"][target],
+        material=material,
+        receiver=receiver,
+        terminal_voltage_v=float(voltage_v),
+        electrode_pair_loss_voltage_v=0.0,
+        legacy_series_asr_ohm_m2=float(
+            cfg12["operating"]["legacy_series_asr_ohm_m2"]
+        ),
+        added_contact_asr_ohm_m2=0.0,
+        power_electronics_efficiency=float(
+            cfg12["operating"]["power_electronics_efficiency"]
+        ),
+        current_cap_a_m2=float(
+            cfg12["operating"]["current_density_cap_a_m2"]
+        ),
+        film_scale_factor=float(
+            cfg12["operating"]["film_scale_factor"]
+        ),
+        record_profile=record_profile,
+    )
+    row = v12.add_geometry_and_stack(
+        row=row,
+        axial=ctx["axial"],
+        process_basis=ctx["process_basis"],
+        base_config=ctx["base"],
+        v12_config=cfg12,
+    )
+
+    water = finite(row.get("integrated_water_transfer_kg_h"))
+    eo = finite(row.get("eo_grid_power_kw"))
+    pfan = finite(row.get("process_channel_fan_power_kw"))
+    rfan = finite(row.get("receiver_channel_fan_power_kw"))
+    core = (
+        eo + pfan + rfan
+        if all(math.isfinite(x) for x in [eo, pfan, rfan])
+        else math.nan
+    )
+
+    min_flux = finite(row.get("minimum_local_flux_mol_m2_s"))
+    max_j = finite(row.get("maximum_local_current_density_a_m2"))
+    area = finite(row.get("required_active_area_m2"))
+    cap = float(cfg12["operating"]["current_density_cap_a_m2"])
+
+    row.update({
+        "analysis_receiver_capacity_multiplier": float(receiver_multiplier),
+        "analysis_receiver_to_process_dry_air_ratio": float(
+            receiver.receiver_to_process_dry_air_ratio
+        ),
+        "analysis_receiver_airflow_cfm": float(receiver.selected_actual_airflow_cfm),
+        "analysis_receiver_velocity_m_s": float(receiver.receiver_velocity_m_s),
+        "analysis_receiver_inlet_activity": float(receiver.inlet_activity),
+        "analysis_receiver_target_outlet_activity": float(
+            ctx["axial"].activity_from_t_w(
+                receiver.temperature_c,
+                receiver.target_outlet_humidity_ratio_kg_kg_da,
+                receiver.pressure_pa,
+            )
+        ),
+        "analysis_core_power_kw": core,
+        "analysis_core_sec_kwh_kg": (
+            core / water if math.isfinite(core) and water > 0 else math.nan
+        ),
+        # Correct physical gate for active EO:
+        # surface direction is diagnostic, not a hard pass condition.
+        "analysis_pass": bool(
+            truth(row.get("target_reached"))
+            and truth(row.get("water_balance_pass"))
+            and truth(row.get("target_capacity_sufficient"))
+            and math.isfinite(area)
+            and area <= float(ctx["args"].area_max_m2) + 1e-9
+            and math.isfinite(max_j)
+            and 0.0 < max_j <= cap + 1e-9
+            and math.isfinite(min_flux)
+            and min_flux > 0.0
+            and math.isfinite(core)
+        ),
+    })
+    return row, profile, receiver
+
+
+def audit_surfaces(ctx, row: pd.Series):
+    material = make_material(
+        ctx,
+        drag=float(row["water_drag"]),
+        diffusivity=float(row["water_diffusivity_m2_s"]),
+        conductivity=float(row["conductivity_s_m"]),
+        thickness=float(row["dry_thickness_um"]),
+    )
+    target = str(row["target"])
+    voltage = float(row["terminal_voltage_v"])
+    mult = float(row["analysis_receiver_capacity_multiplier"])
+
+    summary, profile, receiver = solve_case(
+        ctx,
+        target=target,
+        material=material,
+        voltage_v=voltage,
+        receiver_multiplier=mult,
+        record_profile=True,
+    )
+
+    if profile.empty:
+        return {
+            "surface_state_audit_complete": False,
+            "surface_state_physical": False,
+            "minimum_surface_activity_margin": math.nan,
+            "negative_surface_margin_fraction": math.nan,
+        }
+
+    local_cfg = copy.deepcopy(ctx["base"])
+    local_cfg["channel"]["receiver_velocity_m_s"] = receiver.receiver_velocity_m_s
+
+    margins = []
+    physical = True
+    for _, pr in profile.iterrows():
+        local = ctx["axial"].solve_local_state(
+            v2=ctx["v2"],
+            v2_config=ctx["v2_config"],
+            material=material,
+            source_temperature_c=float(ctx["process_basis"].inlet_temperature_c),
+            source_humidity_ratio=float(pr["process_humidity_ratio_kg_kg_da"]),
+            receiver_activity=float(pr["receiver_activity"]),
+            terminal_voltage_v=voltage,
+            fixed_loss_voltage_v=0.0,
+            series_asr_ohm_m2=float(
+                ctx["cfg12"]["operating"]["legacy_series_asr_ohm_m2"]
+            ),
+            film_scale_factor=float(
+                ctx["cfg12"]["operating"]["film_scale_factor"]
+            ),
+            config=local_cfg,
+        )
+        if not bool(local.get("solution_ok", False)):
+            physical = False
+            continue
+        ap = finite(local.get("source_surface_activity"))
+        ar = finite(local.get("receiver_surface_activity"))
+        if not (
+            math.isfinite(ap) and math.isfinite(ar)
+            and 0.0 < ap < 1.0 and 0.0 < ar < 1.0
+        ):
+            physical = False
+            continue
+        margins.append(ap - ar)
+
+    if not margins:
+        physical = False
+
+    neg_frac = (
+        float(np.mean(np.asarray(margins) < 0.0))
+        if margins else math.nan
+    )
+    return {
+        "surface_state_audit_complete": bool(margins),
+        "surface_state_physical": bool(physical),
+        "minimum_surface_activity_margin": (
+            float(min(margins)) if margins else math.nan
+        ),
+        "maximum_surface_activity_margin": (
+            float(max(margins)) if margins else math.nan
+        ),
+        "negative_surface_margin_fraction": neg_frac,
+        "positive_surface_direction_everywhere": bool(
+            margins and min(margins) > 0.0
+        ),
+        "robust_surface_margin_0p02_everywhere": bool(
+            margins and min(margins) >= 0.02
+        ),
+    }
+
+
+def checkpoint_append(path: Path, rows: list[dict], *, key_cols: list[str]):
+    new = pd.DataFrame(rows)
+    if path.exists():
+        old = pd.read_csv(path)
+        new = pd.concat([old, new], ignore_index=True)
+    new = new.drop_duplicates(subset=key_cols, keep="last")
+    new.to_csv(path, index=False)
+
+
+def existing_keys(path: Path, key_cols: list[str]):
+    if not path.exists():
+        return set()
+    df = pd.read_csv(path)
+    return {
+        tuple(str(row[c]) for c in key_cols)
+        for _, row in df.iterrows()
+    }
+
+
+def run_o50_edge(ctx, out: Path):
+    stage = out / "o50_edge"
+    stage.mkdir(parents=True, exist_ok=True)
+    path = stage / "all_cases.csv"
+    key_cols = ["water_drag", "terminal_voltage_v"]
+
+    drags = [36.205058, 600.0] if ctx["args"].smoke else O50_EDGE_DRAGS
+    voltages = [0.001, 0.005, 0.01] if ctx["args"].smoke else O50_EDGE_VOLTAGES
+    known = existing_keys(path, key_cols)
+    batch = []
+
+    total = len(drags) * len(voltages)
+    done = 0
+    for drag in drags:
+        material = make_material(ctx, drag=drag)
+        for voltage in voltages:
+            done += 1
+            key = (str(float(drag)), str(float(voltage)))
+            if key in known:
+                continue
+            row, _, _ = solve_case(
+                ctx,
+                target="O50",
+                material=material,
+                voltage_v=voltage,
+                receiver_multiplier=1.25,
+            )
+            row["stage"] = "o50_low_voltage_edge"
+            batch.append(row)
+            if len(batch) >= 20:
+                checkpoint_append(path, batch, key_cols=key_cols)
+                batch = []
+            print(f"O50 edge: {done}/{total}", flush=True)
+    if batch:
+        checkpoint_append(path, batch, key_cols=key_cols)
+
+    df = pd.read_csv(path)
+    passing = df[df["analysis_pass"].map(truth)].copy()
+    if passing.empty:
+        pd.DataFrame().to_csv(stage / "best_by_drag.csv", index=False)
+        return
+
+    best = (
+        passing.sort_values(
+            ["water_drag", "analysis_core_power_kw",
+             "required_active_area_m2", "terminal_voltage_v"],
+            kind="mergesort",
+        )
+        .drop_duplicates("water_drag", keep="first")
+        .reset_index(drop=True)
+    )
+    best.to_csv(stage / "best_by_drag.csv", index=False)
+
+    print("\n=== O50 LOW-VOLTAGE EDGE ===")
+    show = [
+        "water_drag", "terminal_voltage_v", "required_active_area_m2",
+        "maximum_local_current_density_a_m2", "eo_grid_power_kw",
+        "process_channel_fan_power_kw", "receiver_channel_fan_power_kw",
+        "analysis_core_power_kw", "analysis_core_sec_kwh_kg",
+    ]
+    print(best[[c for c in show if c in best.columns]].to_string(index=False))
+
+
+def receiver_voltage_grid(drag: float, vmax: float):
+    center = min(vmax, max(0.03, V_PER_DRAG_HEURISTIC * drag))
+    scales = [0.55, 0.70, 0.82, 0.90, 0.96, 1.00, 1.04, 1.10, 1.20, 1.35]
+    values = [center * s for s in scales]
+    values += [0.10, 0.25, 0.50, 0.75, 1.00, 1.25, 1.50, 1.75, vmax]
+    return unique_sorted(values, lo=0.001, hi=vmax)
+
+
+def run_o30_receiver(ctx, out: Path):
+    stage = out / "o30_receiver"
+    stage.mkdir(parents=True, exist_ok=True)
+    path = stage / "all_cases.csv"
+    key_cols = [
+        "water_drag", "terminal_voltage_v",
+        "analysis_receiver_capacity_multiplier",
+    ]
+
+    drags = (
+        [36.205058, 150.0]
+        if ctx["args"].smoke
+        else O30_RECEIVER_DRAGS
+    )
+    mults = (
+        [1.05, 1.25]
+        if ctx["args"].smoke
+        else O30_RECEIVER_MULTIPLIERS
+    )
+    known = existing_keys(path, key_cols)
+    batch = []
+
+    total = sum(
+        len(receiver_voltage_grid(drag, ctx["args"].voltage_max_v))
+        for drag in drags
+    ) * len(mults)
+    done = 0
+
+    for mult in mults:
+        for drag in drags:
+            material = make_material(ctx, drag=drag)
+            for voltage in receiver_voltage_grid(
+                drag, ctx["args"].voltage_max_v
+            ):
+                done += 1
+                key = (str(float(drag)), str(float(voltage)), str(float(mult)))
+                if key in known:
+                    continue
+                row, _, _ = solve_case(
+                    ctx,
+                    target="O30",
+                    material=material,
+                    voltage_v=voltage,
+                    receiver_multiplier=mult,
+                )
+                row["stage"] = "o30_receiver_flow"
+                batch.append(row)
+                if len(batch) >= 25:
+                    checkpoint_append(path, batch, key_cols=key_cols)
+                    batch = []
+                if done % 25 == 0 or done == total:
+                    print(f"O30 receiver: {done}/{total}", flush=True)
+    if batch:
+        checkpoint_append(path, batch, key_cols=key_cols)
+
+    df = pd.read_csv(path)
+    passing = df[df["analysis_pass"].map(truth)].copy()
+    if passing.empty:
+        pd.DataFrame().to_csv(stage / "best_by_multiplier_drag.csv", index=False)
+        pd.DataFrame().to_csv(stage / "overall_best.csv", index=False)
+        print("No passing O30 receiver-flow cases.")
+        return
+
+    best_md = (
+        passing.sort_values(
+            [
+                "analysis_receiver_capacity_multiplier",
+                "water_drag",
+                "analysis_core_power_kw",
+                "required_active_area_m2",
+                "terminal_voltage_v",
+            ],
+            kind="mergesort",
+        )
+        .drop_duplicates(
+            ["analysis_receiver_capacity_multiplier", "water_drag"],
+            keep="first",
+        )
+        .reset_index(drop=True)
+    )
+    best_md.to_csv(stage / "best_by_multiplier_drag.csv", index=False)
+
+    # Audit the globally lowest-power candidates. Surface direction is diagnostic.
+    finalists = passing.sort_values(
+        ["analysis_core_power_kw", "required_active_area_m2", "terminal_voltage_v"],
+        kind="mergesort",
+    ).head(SURFACE_AUDIT_TOP_N)
+
+    audited = []
+    for _, row in finalists.iterrows():
+        audited.append({**row.to_dict(), **audit_surfaces(ctx, row)})
+    audited = pd.DataFrame(audited)
+    audited.to_csv(stage / "surface_audited_finalists.csv", index=False)
+
+    physical = audited[
+        audited["surface_state_audit_complete"].map(truth)
+        & audited["surface_state_physical"].map(truth)
+    ].copy()
+    if physical.empty:
+        overall = finalists.head(1).copy()
+        overall["surface_state_audit_complete"] = False
+        overall["surface_state_physical"] = False
+    else:
+        overall = physical.sort_values(
+            ["analysis_core_power_kw", "required_active_area_m2"],
+            kind="mergesort",
+        ).head(1)
+
+    overall.to_csv(stage / "overall_best.csv", index=False)
+
+    print("\n=== BEST O30 RECEIVER-FLOW POINT ===")
+    show = [
+        "water_drag", "terminal_voltage_v",
+        "analysis_receiver_capacity_multiplier",
+        "analysis_receiver_to_process_dry_air_ratio",
+        "analysis_receiver_target_outlet_activity",
+        "required_active_area_m2",
+        "maximum_local_current_density_a_m2",
+        "eo_grid_power_kw",
+        "process_channel_fan_power_kw",
+        "receiver_channel_fan_power_kw",
+        "analysis_core_power_kw",
+        "analysis_core_sec_kwh_kg",
+        "minimum_surface_activity_margin",
+        "negative_surface_margin_fraction",
+    ]
+    print(overall[[c for c in show if c in overall.columns]].to_string(index=False))
+
+
+def latin_hypercube(n: int, d: int, seed: int):
+    # SciPy-free deterministic LHS.
+    rng = np.random.default_rng(seed)
+    x = np.empty((n, d), dtype=float)
+    for j in range(d):
+        perm = rng.permutation(n)
+        x[:, j] = (perm + rng.random(n)) / n
+    return x
+
+
+def map_sample(u: float, lo: float, hi: float, mode: str):
+    if mode == "linear":
+        return lo + u * (hi - lo)
+    if mode == "log":
+        return 10.0 ** (
+            math.log10(lo) + u * (math.log10(hi) - math.log10(lo))
+        )
+    raise ValueError(mode)
+
+
+def material_voltage_grid(drag: float, vmax: float):
+    center = min(vmax, max(0.03, V_PER_DRAG_HEURISTIC * drag))
+    scales = [0.35, 0.50, 0.65, 0.80, 0.90, 1.00, 1.10, 1.25, 1.45]
+    values = [center * s for s in scales]
+    values += [0.05, 0.10, 0.25, 0.50, 0.75, 1.00, 1.50, 2.00]
+    return unique_sorted(values, lo=0.001, hi=vmax)
+
+
+def best_receiver_multiplier(out: Path) -> float:
+    path = out / "o30_receiver" / "overall_best.csv"
+    if not path.exists():
+        return 1.25
+    df = pd.read_csv(path)
+    if df.empty:
+        return 1.25
+    return float(df.iloc[0]["analysis_receiver_capacity_multiplier"])
+
+
+def run_material(ctx, out: Path):
+    stage = out / "material_global"
+    stage.mkdir(parents=True, exist_ok=True)
+    path = stage / "all_cases.csv"
+    key_cols = ["sample_id", "terminal_voltage_v"]
+
+    n = 8 if ctx["args"].smoke else int(ctx["args"].lhs_samples)
+    receiver_mult = best_receiver_multiplier(out)
+
+    dims = list(MATERIAL_RANGES)
+    lhs = latin_hypercube(n, len(dims), ctx["args"].seed)
+
+    samples = []
+    for i in range(n):
+        vals = {}
+        for j, name in enumerate(dims):
+            lo, hi, mode = MATERIAL_RANGES[name]
+            vals[name] = map_sample(lhs[i, j], lo, hi, mode)
+        vals["sample_id"] = i
+        samples.append(vals)
+
+    samples_df = pd.DataFrame(samples)
+    samples_df.to_csv(stage / "lhs_material_samples.csv", index=False)
+
+    known = existing_keys(path, key_cols)
+    batch = []
+    total = sum(
+        len(material_voltage_grid(s["water_drag"], ctx["args"].voltage_max_v))
+        for s in samples
+    )
+    done = 0
+
+    for s in samples:
+        material = make_material(
+            ctx,
+            drag=s["water_drag"],
+            diffusivity=s["water_diffusivity_m2_s"],
+            conductivity=s["conductivity_s_m"],
+            thickness=s["dry_thickness_um"],
+        )
+        for voltage in material_voltage_grid(
+            s["water_drag"], ctx["args"].voltage_max_v
+        ):
+            done += 1
+            key = (str(int(s["sample_id"])), str(float(voltage)))
+            if key in known:
+                continue
+            row, _, _ = solve_case(
+                ctx,
+                target="O30",
+                material=material,
+                voltage_v=voltage,
+                receiver_multiplier=receiver_mult,
+            )
+            row["sample_id"] = int(s["sample_id"])
+            row["stage"] = "material_global_lhs"
+            batch.append(row)
+            if len(batch) >= 25:
+                checkpoint_append(path, batch, key_cols=key_cols)
+                batch = []
+            if done % 25 == 0 or done == total:
+                print(f"Material LHS: {done}/{total}", flush=True)
+    if batch:
+        checkpoint_append(path, batch, key_cols=key_cols)
+
+    df = pd.read_csv(path)
+    passing = df[df["analysis_pass"].map(truth)].copy()
+    if passing.empty:
+        pd.DataFrame().to_csv(stage / "best_by_sample.csv", index=False)
+        pd.DataFrame().to_csv(stage / "overall_best.csv", index=False)
+        print("No passing global material samples.")
+        return
+
+    best_sample = (
+        passing.sort_values(
+            ["sample_id", "analysis_core_power_kw",
+             "required_active_area_m2", "terminal_voltage_v"],
+            kind="mergesort",
+        )
+        .drop_duplicates("sample_id", keep="first")
+        .reset_index(drop=True)
+    )
+    best_sample.to_csv(stage / "best_by_sample.csv", index=False)
+
+    # Refine voltage for the best 12 samples.
+    top_ids = (
+        best_sample.sort_values("analysis_core_power_kw")
+        .head(min(12, len(best_sample)))["sample_id"]
+        .astype(int)
+        .tolist()
+    )
+
+    refine_rows = []
+    for sid in top_ids:
+        row0 = best_sample[best_sample["sample_id"].astype(int).eq(sid)].iloc[0]
+        vb = float(row0["terminal_voltage_v"])
+        lo = max(0.001, 0.82 * vb)
+        hi = min(ctx["args"].voltage_max_v, 1.18 * vb)
+        voltages = unique_sorted(
+            list(np.linspace(lo, hi, 19)) + [vb],
+            lo=0.001,
+            hi=ctx["args"].voltage_max_v,
+        )
+        material = make_material(
+            ctx,
+            drag=float(row0["water_drag"]),
+            diffusivity=float(row0["water_diffusivity_m2_s"]),
+            conductivity=float(row0["conductivity_s_m"]),
+            thickness=float(row0["dry_thickness_um"]),
+        )
+        for voltage in voltages:
+            row, _, _ = solve_case(
+                ctx,
+                target="O30",
+                material=material,
+                voltage_v=voltage,
+                receiver_multiplier=receiver_mult,
+            )
+            row["sample_id"] = sid
+            row["stage"] = "material_voltage_refined"
+            refine_rows.append(row)
+
+    refined = pd.DataFrame(refine_rows)
+    refined.to_csv(stage / "refined_finalist_cases.csv", index=False)
+
+    combined = pd.concat([passing, refined], ignore_index=True)
+    combined = combined[combined["analysis_pass"].map(truth)].copy()
+    best_refined = (
+        combined.sort_values(
+            ["sample_id", "analysis_core_power_kw",
+             "required_active_area_m2", "terminal_voltage_v"],
+            kind="mergesort",
+        )
+        .drop_duplicates("sample_id", keep="first")
+        .sort_values("analysis_core_power_kw")
+        .reset_index(drop=True)
+    )
+    best_refined.to_csv(stage / "best_refined_samples.csv", index=False)
+
+    # Surface-state audit top finalists. Negative surface margin is allowed;
+    # it is reported as uphill EO/back-diffusion diagnostic.
+    audited = []
+    for _, row in best_refined.head(SURFACE_AUDIT_TOP_N).iterrows():
+        audited.append({**row.to_dict(), **audit_surfaces(ctx, row)})
+    audited = pd.DataFrame(audited)
+    audited.to_csv(stage / "surface_audited_finalists.csv", index=False)
+
+    physical = audited[
+        audited["surface_state_audit_complete"].map(truth)
+        & audited["surface_state_physical"].map(truth)
+    ].copy()
+
+    if physical.empty:
+        overall = best_refined.head(1).copy()
+    else:
+        overall = physical.sort_values(
+            ["analysis_core_power_kw", "required_active_area_m2"],
+            kind="mergesort",
+        ).head(1)
+
+    overall.to_csv(stage / "overall_best.csv", index=False)
+
+    print("\n=== BEST GLOBAL MATERIAL POINT ===")
+    show = [
+        "sample_id", "water_drag", "water_diffusivity_m2_s",
+        "conductivity_s_m", "dry_thickness_um", "terminal_voltage_v",
+        "analysis_receiver_capacity_multiplier",
+        "required_active_area_m2",
+        "maximum_local_current_density_a_m2",
+        "eo_grid_power_kw",
+        "process_channel_fan_power_kw",
+        "receiver_channel_fan_power_kw",
+        "analysis_core_power_kw",
+        "analysis_core_sec_kwh_kg",
+        "minimum_surface_activity_margin",
+        "negative_surface_margin_fraction",
+    ]
+    print(overall[[c for c in show if c in overall.columns]].to_string(index=False))
+
+
+def write_metadata(ctx, out: Path):
+    args = ctx["args"]
+    data = {
+        "script": "make_wp1_prearchitecture_continuation_v2.py",
+        "model": "V12.1 coupled two-stream pre-architecture core",
+        "area_limit_m2": args.area_max_m2,
+        "voltage_max_v": args.voltage_max_v,
+        "receiver_band": args.receiver_band,
+        "receiver_temperature_c": float(
+            ctx["base"]["channel"]["receiver_temperature_c"]
+        ),
+        "flow_arrangement": "counter_current",
+        "surface_direction_is_hard_gate": False,
+        "hard_local_transport_gate": "positive net water flux",
+        "o50_zero_voltage_note": (
+            "Exact passive/open-circuit is not inferred from Vterm=0. "
+            "The existing V12.1 solver is voltage-controlled and requires "
+            "positive current; o50-edge only maps the low-positive-voltage edge."
+        ),
+        "material_ranges": MATERIAL_RANGES,
+        "receiver_architecture_included": False,
+    }
+    (out / "run_metadata.json").write_text(
+        json.dumps(data, indent=2) + "\n", encoding="utf-8"
+    )
+
+
+def main():
+    args = parse_args()
+    out = ROOT / args.output_dir
+    out.mkdir(parents=True, exist_ok=True)
+    ctx = setup(args)
+    write_metadata(ctx, out)
+
+    if args.stage in {"o50-edge", "all"}:
+        run_o50_edge(ctx, out)
+    if args.stage in {"o30-receiver", "all"}:
+        run_o30_receiver(ctx, out)
+    if args.stage in {"material", "all"}:
+        run_material(ctx, out)
+
+    print(f"\nDone. Outputs: {out}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
