@@ -4,35 +4,12 @@ from .basis import (
     ReceiverBasis,
     make_receiver_basis,
 )
-from .legacy_v12 import legacy_v12_module
-
-
-MATERIAL_COLUMNS = list(
-    legacy_v12_module().MATERIAL_COLUMNS
+from .coupled_integration import (
+    MATERIAL_COLUMNS,
+    coupled_local_gate,
+    integrate_coupled_receiver_case,
 )
-
-
-def integrate_coupled_receiver_case(
-    *args,
-    **kwargs,
-):
-    return (
-        legacy_v12_module()
-        .integrate_coupled_receiver_case(
-            *args,
-            **kwargs,
-        )
-    )
-
-
-def coupled_local_gate(*args, **kwargs):
-    return (
-        legacy_v12_module()
-        .coupled_local_gate(
-            *args,
-            **kwargs,
-        )
-    )
+from .legacy_v12 import legacy_v12_module
 
 
 def validate_unchanged_solver_sources(
