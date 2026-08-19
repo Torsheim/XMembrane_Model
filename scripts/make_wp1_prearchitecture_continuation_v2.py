@@ -33,22 +33,23 @@ from __future__ import annotations
 
 import argparse
 import copy
-import importlib.util
 import json
 import math
-import sys
 from pathlib import Path
-from types import ModuleType
 
 import numpy as np
 import pandas as pd
 
+from heiq.wp1.studies import build_repository_context as native_build_repository_context
+from heiq.wp1.studies.prearchitecture import (
+    audit_surfaces as native_audit_surfaces,
+    build_context as native_build_context,
+    make_material as native_make_material,
+    receiver_basis as native_receiver_basis,
+    solve_case as native_solve_case,
+)
+
 ROOT = Path(__file__).resolve().parents[1]
-V11_DIR = ROOT / "outputs" / "axial_independent_material_sweep_v8" / "coarse" / "voltage_refinement_v11"
-V12_SCRIPT = ROOT / "scripts" / "make_wp1_closed_receiver_system_v12.py"
-AXIAL_SCRIPT = ROOT / "scripts" / "make_wp1_pre_receiver_axial_v3.py"
-V12_CONFIG = ROOT / "scripts" / "closed_receiver_system_v12_config.json"
-V2_ROOT = ROOT / "heiq_pre_receiver_material_analyses"
 
 O50_EDGE_DRAGS = [36.205058, 150.0, 600.0]
 O50_EDGE_VOLTAGES = [
@@ -78,14 +79,7 @@ MATERIAL_RANGES = {
 SURFACE_AUDIT_TOP_N = 12
 
 
-def load_module(path: Path, name: str) -> ModuleType:
-    spec = importlib.util.spec_from_file_location(name, path)
-    if spec is None or spec.loader is None:
-        raise ImportError(path)
-    mod = importlib.util.module_from_spec(spec)
-    sys.modules[name] = mod
-    spec.loader.exec_module(mod)
-    return mod
+
 
 
 def finite(value) -> float:
@@ -132,106 +126,42 @@ def parse_args():
 
 
 def setup(args):
-    v12 = load_module(V12_SCRIPT, "heiq_v12_continuation")
-    axial = load_module(AXIAL_SCRIPT, "heiq_axial_continuation")
-
-    v12.validate_unchanged_solver_sources(V11_DIR, AXIAL_SCRIPT, V2_ROOT)
-
-    v2 = axial.load_v2_module(V2_ROOT)
-    v2_config = v2.load_config(V2_ROOT / "config" / "default.json")
-    cfg12 = v12.load_json(V12_CONFIG)
-    base = v12.load_json(V11_DIR / "axial_base_config_used.json")
-    base = copy.deepcopy(base)
-
-    base["channel"]["active_sides_per_process_channel"] = float(
-        cfg12["channel"]["active_sides_per_process_channel"]
+    return native_build_repository_context(
+        args,
+        root=ROOT,
     )
-    base["channel"]["process_fan_efficiency"] = float(
-        cfg12["channel"]["process_fan_efficiency"]
+
+
+
+def make_material(
+    ctx,
+    *,
+    drag=None,
+    diffusivity=None,
+    conductivity=None,
+    thickness=None,
+):
+    return native_make_material(
+        ctx,
+        drag=drag,
+        diffusivity=diffusivity,
+        conductivity=conductivity,
+        thickness=thickness,
     )
-    base["channel"]["receiver_geometry_mode"] = str(
-        cfg12["channel"]["receiver_geometry_mode"]
+
+
+
+def receiver_basis(
+    ctx,
+    target: str,
+    multiplier: float,
+):
+    return native_receiver_basis(
+        ctx,
+        target,
+        multiplier,
     )
-    base["channel"]["fixed_receiver_velocity_m_s"] = float(
-        cfg12["channel"]["fixed_receiver_velocity_m_s"]
-    )
-    if args.receiver_temperature_c is not None:
-        base["channel"]["receiver_temperature_c"] = float(args.receiver_temperature_c)
 
-    base["integration"]["area_limit_m2"] = float(args.area_max_m2)
-    base["integration"]["mass_balance_relative_tolerance"] = float(
-        cfg12["integration"]["mass_balance_relative_tolerance"]
-    )
-    axial.validate_config(base)
-
-    process_basis = axial.dry_air_mass_flow(base)
-    targets_df = axial.build_targets(base, process_basis, v2_config)
-    targets = {str(row["target"]): row for _, row in targets_df.iterrows()}
-
-    candidates = pd.read_csv(V11_DIR / "candidate_materials.csv")
-    m11675 = candidates[candidates["material_id"].astype(str).eq("M11675")]
-    if len(m11675) != 1:
-        raise RuntimeError("Expected exactly one M11675 row.")
-    m11675 = m11675.iloc[0]
-
-    if args.receiver_band not in cfg12["receiver_bands"]:
-        raise KeyError(f"Unknown receiver band {args.receiver_band}")
-
-    return {
-        "v12": v12,
-        "axial": axial,
-        "v2": v2,
-        "v2_config": v2_config,
-        "cfg12": cfg12,
-        "base": base,
-        "process_basis": process_basis,
-        "targets": targets,
-        "m11675": m11675,
-        "args": args,
-    }
-
-
-def make_material(ctx, *, drag=None, diffusivity=None, conductivity=None, thickness=None):
-    v12 = ctx["v12"]
-    base = ctx["m11675"]
-    overrides = {
-        "water_drag": drag,
-        "water_diffusivity_m2_s": diffusivity,
-        "conductivity_s_m": conductivity,
-        "dry_thickness_um": thickness,
-    }
-    props = {}
-    for name in v12.MATERIAL_COLUMNS:
-        value = overrides.get(name, None)
-        props[name] = float(base[name] if value is None else value)
-    return {
-        "name": (
-            f"tw{props['water_drag']:.6g}_"
-            f"D{props['water_diffusivity_m2_s']:.3e}_"
-            f"sig{props['conductivity_s_m']:.6g}_"
-            f"L{props['dry_thickness_um']:.6g}"
-        ),
-        "model": "powerlaw",
-        **props,
-        "interpretation": "V12.1 pre-architecture material-screen property vector",
-    }
-
-
-def receiver_basis(ctx, target: str, multiplier: float):
-    v12 = ctx["v12"]
-    cfg12 = ctx["cfg12"]
-    args = ctx["args"]
-    return v12.make_receiver_basis(
-        axial=ctx["axial"],
-        process_basis=ctx["process_basis"],
-        target_row=ctx["targets"][target],
-        receiver_sizing_target_row=ctx["targets"][target],
-        band_id=str(args.receiver_band),
-        band=cfg12["receiver_bands"][str(args.receiver_band)],
-        capacity_multiplier=float(multiplier),
-        flow_arrangement="counter_current",
-        base_config=ctx["base"],
-    )
 
 
 def solve_case(
@@ -243,185 +173,26 @@ def solve_case(
     receiver_multiplier: float,
     record_profile: bool = False,
 ):
-    v12 = ctx["v12"]
-    cfg12 = ctx["cfg12"]
-
-    receiver = receiver_basis(ctx, target, receiver_multiplier)
-    row, profile = v12.integrate_coupled_receiver_case(
-        axial=ctx["axial"],
-        v2=ctx["v2"],
-        v2_config=ctx["v2_config"],
-        config=ctx["base"],
-        process_basis=ctx["process_basis"],
-        target_row=ctx["targets"][target],
-        material=material,
-        receiver=receiver,
-        terminal_voltage_v=float(voltage_v),
-        electrode_pair_loss_voltage_v=0.0,
-        legacy_series_asr_ohm_m2=float(
-            cfg12["operating"]["legacy_series_asr_ohm_m2"]
-        ),
-        added_contact_asr_ohm_m2=0.0,
-        power_electronics_efficiency=float(
-            cfg12["operating"]["power_electronics_efficiency"]
-        ),
-        current_cap_a_m2=float(
-            cfg12["operating"]["current_density_cap_a_m2"]
-        ),
-        film_scale_factor=float(
-            cfg12["operating"]["film_scale_factor"]
-        ),
-        record_profile=record_profile,
-    )
-    row = v12.add_geometry_and_stack(
-        row=row,
-        axial=ctx["axial"],
-        process_basis=ctx["process_basis"],
-        base_config=ctx["base"],
-        v12_config=cfg12,
-    )
-
-    water = finite(row.get("integrated_water_transfer_kg_h"))
-    eo = finite(row.get("eo_grid_power_kw"))
-    pfan = finite(row.get("process_channel_fan_power_kw"))
-    rfan = finite(row.get("receiver_channel_fan_power_kw"))
-    core = (
-        eo + pfan + rfan
-        if all(math.isfinite(x) for x in [eo, pfan, rfan])
-        else math.nan
-    )
-
-    min_flux = finite(row.get("minimum_local_flux_mol_m2_s"))
-    max_j = finite(row.get("maximum_local_current_density_a_m2"))
-    area = finite(row.get("required_active_area_m2"))
-    cap = float(cfg12["operating"]["current_density_cap_a_m2"])
-
-    row.update({
-        "analysis_receiver_capacity_multiplier": float(receiver_multiplier),
-        "analysis_receiver_to_process_dry_air_ratio": float(
-            receiver.receiver_to_process_dry_air_ratio
-        ),
-        "analysis_receiver_airflow_cfm": float(receiver.selected_actual_airflow_cfm),
-        "analysis_receiver_velocity_m_s": float(receiver.receiver_velocity_m_s),
-        "analysis_receiver_inlet_activity": float(receiver.inlet_activity),
-        "analysis_receiver_target_outlet_activity": float(
-            ctx["axial"].activity_from_t_w(
-                receiver.temperature_c,
-                receiver.target_outlet_humidity_ratio_kg_kg_da,
-                receiver.pressure_pa,
-            )
-        ),
-        "analysis_core_power_kw": core,
-        "analysis_core_sec_kwh_kg": (
-            core / water if math.isfinite(core) and water > 0 else math.nan
-        ),
-        # Correct physical gate for active EO:
-        # surface direction is diagnostic, not a hard pass condition.
-        "analysis_pass": bool(
-            truth(row.get("target_reached"))
-            and truth(row.get("water_balance_pass"))
-            and truth(row.get("target_capacity_sufficient"))
-            and math.isfinite(area)
-            and area <= float(ctx["args"].area_max_m2) + 1e-9
-            and math.isfinite(max_j)
-            and 0.0 < max_j <= cap + 1e-9
-            and math.isfinite(min_flux)
-            and min_flux > 0.0
-            and math.isfinite(core)
-        ),
-    })
-    return row, profile, receiver
-
-
-def audit_surfaces(ctx, row: pd.Series):
-    material = make_material(
-        ctx,
-        drag=float(row["water_drag"]),
-        diffusivity=float(row["water_diffusivity_m2_s"]),
-        conductivity=float(row["conductivity_s_m"]),
-        thickness=float(row["dry_thickness_um"]),
-    )
-    target = str(row["target"])
-    voltage = float(row["terminal_voltage_v"])
-    mult = float(row["analysis_receiver_capacity_multiplier"])
-
-    summary, profile, receiver = solve_case(
+    return native_solve_case(
         ctx,
         target=target,
         material=material,
-        voltage_v=voltage,
-        receiver_multiplier=mult,
-        record_profile=True,
+        voltage_v=voltage_v,
+        receiver_multiplier=receiver_multiplier,
+        record_profile=record_profile,
     )
 
-    if profile.empty:
-        return {
-            "surface_state_audit_complete": False,
-            "surface_state_physical": False,
-            "minimum_surface_activity_margin": math.nan,
-            "negative_surface_margin_fraction": math.nan,
-        }
 
-    local_cfg = copy.deepcopy(ctx["base"])
-    local_cfg["channel"]["receiver_velocity_m_s"] = receiver.receiver_velocity_m_s
 
-    margins = []
-    physical = True
-    for _, pr in profile.iterrows():
-        local = ctx["axial"].solve_local_state(
-            v2=ctx["v2"],
-            v2_config=ctx["v2_config"],
-            material=material,
-            source_temperature_c=float(ctx["process_basis"].inlet_temperature_c),
-            source_humidity_ratio=float(pr["process_humidity_ratio_kg_kg_da"]),
-            receiver_activity=float(pr["receiver_activity"]),
-            terminal_voltage_v=voltage,
-            fixed_loss_voltage_v=0.0,
-            series_asr_ohm_m2=float(
-                ctx["cfg12"]["operating"]["legacy_series_asr_ohm_m2"]
-            ),
-            film_scale_factor=float(
-                ctx["cfg12"]["operating"]["film_scale_factor"]
-            ),
-            config=local_cfg,
-        )
-        if not bool(local.get("solution_ok", False)):
-            physical = False
-            continue
-        ap = finite(local.get("source_surface_activity"))
-        ar = finite(local.get("receiver_surface_activity"))
-        if not (
-            math.isfinite(ap) and math.isfinite(ar)
-            and 0.0 < ap < 1.0 and 0.0 < ar < 1.0
-        ):
-            physical = False
-            continue
-        margins.append(ap - ar)
-
-    if not margins:
-        physical = False
-
-    neg_frac = (
-        float(np.mean(np.asarray(margins) < 0.0))
-        if margins else math.nan
+def audit_surfaces(
+    ctx,
+    row: pd.Series,
+):
+    return native_audit_surfaces(
+        ctx,
+        row,
     )
-    return {
-        "surface_state_audit_complete": bool(margins),
-        "surface_state_physical": bool(physical),
-        "minimum_surface_activity_margin": (
-            float(min(margins)) if margins else math.nan
-        ),
-        "maximum_surface_activity_margin": (
-            float(max(margins)) if margins else math.nan
-        ),
-        "negative_surface_margin_fraction": neg_frac,
-        "positive_surface_direction_everywhere": bool(
-            margins and min(margins) > 0.0
-        ),
-        "robust_surface_margin_0p02_everywhere": bool(
-            margins and min(margins) >= 0.02
-        ),
-    }
+
 
 
 def checkpoint_append(path: Path, rows: list[dict], *, key_cols: list[str]):
