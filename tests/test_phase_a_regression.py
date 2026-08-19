@@ -17,6 +17,23 @@ def test_o30_terminal1_golden_point():
     assert np.isclose(float(r["dry_thickness_um"]), 36.913700, rtol=1e-6)
     assert np.isclose(float(r["terminal_voltage_v"]), 0.98, atol=1e-8)
     assert np.isclose(float(r["required_active_area_m2"]), 8922.21294, rtol=1e-6)
+    assert np.isclose(
+        float(
+            r[
+                "maximum_local_current_density_a_m2"
+            ]
+        ),
+        21.224,
+        rtol=2e-4,
+    )
+    assert (
+        float(
+            r[
+                "maximum_local_current_density_a_m2"
+            ]
+        )
+        > 21.0
+    )
     assert np.isclose(float(r["analysis_core_power_kw"]), 115.017720, rtol=1e-6)
     assert np.isclose(float(r["analysis_core_sec_kwh_kg"]), 0.026344, rtol=2e-5)
 

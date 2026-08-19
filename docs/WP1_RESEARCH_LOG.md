@@ -78,6 +78,12 @@ infeasible by 0.224 A/m². It must be reoptimized rather than
 rounded into compliance. The older material screen used a
 much looser 2000 A/m² screening gate.
 
+The active continuation, bottleneck and direct-liquid
+workflows now default to 21.0 A/m² and propagate that value
+into the local axial solver before integration and candidate
+selection. The retained 2000 A/m² configuration is historical
+reference data, not the active engineering design gate.
+
 ### Liquid receiver interpretation
 
 Pure liquid water has activity approximately one. It is not
@@ -182,6 +188,7 @@ EO power, complete incremental power and marginal Wh/L.
 | Date | Commit | Study | Result | Claim level |
 |---|---|---|---|---|
 | 2026-08-19 | this commit | Boundary contracts | Initial portfolio and gates encoded | Contract only |
+| 2026-08-19 | current commit | 21 A/m² workflow gate | 17/74 reduced-grid cases passed; cap propagated before candidate selection. Validation smoke only, not a feasibility conclusion. | Engineering-gate validation |
 
 ## Open questions
 

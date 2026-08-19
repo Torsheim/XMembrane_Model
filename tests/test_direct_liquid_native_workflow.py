@@ -51,6 +51,7 @@ def test_native_direct_liquid_context_builds():
         receiver_temperature_c=32.0,
         area_max_m2=9000.0,
         voltage_search_max_v=24.0,
+        current_cap_a_m2=21.0,
     )
 
     continuation, context = (
@@ -63,3 +64,9 @@ def test_native_direct_liquid_context_builds():
     assert "O30" in context["targets"]
     assert "O50" in context["targets"]
     assert context["v2"] is not None
+    assert (
+        context["cfg12"]["operating"][
+            "current_density_cap_a_m2"
+        ]
+        == 21.0
+    )

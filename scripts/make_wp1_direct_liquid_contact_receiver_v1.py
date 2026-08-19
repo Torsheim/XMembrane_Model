@@ -200,7 +200,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--area-max-m2", type=float, default=9000.0)
     parser.add_argument("--voltage-search-max-v", type=float, default=24.0)
     parser.add_argument("--design-voltage-caps-v", nargs="+", type=float, default=DEFAULT_DESIGN_CAPS_V)
-    parser.add_argument("--current-cap-a-m2", type=float, default=2000.0)
+    parser.add_argument("--current-cap-a-m2", type=float, default=21.0)
     parser.add_argument("--liquid-interface-factor", type=float, default=1.0e6)
     parser.add_argument(
         "--process-film-factors",
@@ -302,6 +302,9 @@ def setup_context(
         ),
         voltage_max_v=float(
             args.voltage_search_max_v
+        ),
+        current_cap_a_m2=float(
+            args.current_cap_a_m2
         ),
         lhs_samples=8,
         seed=20260812,

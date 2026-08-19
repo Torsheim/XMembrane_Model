@@ -166,6 +166,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--baseline-csv", type=Path)
     parser.add_argument("--area-max-m2", type=float, default=9000.0)
     parser.add_argument("--voltage-max-v", type=float, default=2.0)
+    parser.add_argument("--current-cap-a-m2", type=float, default=21.0)
     parser.add_argument("--receiver-band", default="bridge_40_to_60")
     parser.add_argument("--receiver-temperature-c", type=float, default=None)
     parser.add_argument("--receiver-band-span", type=float, default=0.20)
@@ -187,6 +188,9 @@ def setup_context(
         receiver_temperature_c=args.receiver_temperature_c,
         area_max_m2=float(args.area_max_m2),
         voltage_max_v=float(args.voltage_max_v),
+        current_cap_a_m2=float(
+            args.current_cap_a_m2
+        ),
         lhs_samples=8,
         seed=20260812,
         smoke=False,

@@ -71,6 +71,31 @@ def build_context(
     """
 
     base = copy.deepcopy(base_config)
+    cfg12 = copy.deepcopy(cfg12)
+
+    requested_current_cap = getattr(
+        args,
+        "current_cap_a_m2",
+        None,
+    )
+
+    if requested_current_cap is not None:
+        requested_current_cap = float(
+            requested_current_cap
+        )
+
+        if (
+            not math.isfinite(requested_current_cap)
+            or requested_current_cap <= 0.0
+        ):
+            raise ValueError(
+                "current_cap_a_m2 must be finite "
+                "and positive"
+            )
+
+        cfg12["operating"][
+            "current_density_cap_a_m2"
+        ] = requested_current_cap
 
     base["channel"][
         "active_sides_per_process_channel"

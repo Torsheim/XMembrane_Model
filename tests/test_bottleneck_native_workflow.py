@@ -60,12 +60,19 @@ def test_native_bottleneck_case_runs_with_independent_films():
         receiver_temperature_c=None,
         area_max_m2=500.0,
         voltage_max_v=2.0,
+        current_cap_a_m2=2000.0,
     )
 
     context = module.setup_context(args)
 
     assert "v12" not in context
     assert "axial" not in context
+    assert (
+        context["cfg12"]["operating"][
+            "current_density_cap_a_m2"
+        ]
+        == 2000.0
+    )
 
     material = (
         module.material_from_baseline(
