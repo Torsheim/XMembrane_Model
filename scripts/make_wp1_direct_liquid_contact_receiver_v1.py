@@ -51,9 +51,7 @@ Run from the HeiQ_V2 repository root.
 from __future__ import annotations
 
 import argparse
-import contextlib
 import copy
-import importlib.util
 import json
 import math
 import os
@@ -70,9 +68,21 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
+from heiq.wp1.axial import (
+    load_v2_module,
+    solve_local_state,
+)
+from heiq.wp1.engineering import (
+    channel_pressure_drop_and_fan,
+    stack_topology,
+)
+from heiq.wp1.receiver import MATERIAL_COLUMNS
+from heiq.wp1.studies.prearchitecture import (
+    build_context as build_native_context,
+)
+
 
 ROOT = Path(__file__).resolve().parents[1]
-CONTINUATION_SCRIPT = ROOT / "scripts" / "make_wp1_prearchitecture_continuation_v2.py"
 
 FARADAY_C_MOL = 96485.33212
 R_UNIVERSAL_J_MOL_K = 8.314462618
@@ -117,15 +127,6 @@ ABSOLUTE_VOLTAGES_V = [
 ]
 
 
-def load_module(path: Path, name: str) -> ModuleType:
-    spec = importlib.util.spec_from_file_location(name, path)
-    if spec is None or spec.loader is None:
-        raise ImportError(f"Could not import {path}")
-    module = importlib.util.module_from_spec(spec)
-    import sys
-    sys.modules[name] = module
-    spec.loader.exec_module(module)
-    return module
 
 
 def finite(value: Any) -> float:
@@ -248,41 +249,122 @@ def validate_args(args: argparse.Namespace) -> None:
         raise SystemExit("All design voltage caps must be positive")
 
 
-def setup_context(args: argparse.Namespace) -> tuple[ModuleType, dict[str, Any]]:
-    if not CONTINUATION_SCRIPT.is_file():
-        raise FileNotFoundError(
-            f"Missing {CONTINUATION_SCRIPT}. Copy make_wp1_prearchitecture_continuation_v2.py "
-            "into scripts/ first."
-        )
-    continuation = load_module(CONTINUATION_SCRIPT, "heiq_direct_liquid_continuation")
+def setup_context(
+    args: argparse.Namespace,
+) -> tuple[None, dict[str, Any]]:
+    cfg12 = json.loads(
+        (
+            ROOT
+            / "config"
+            / "closed_receiver_system_v12_config.json"
+        ).read_text()
+    )
+
+    base = json.loads(
+        (
+            ROOT
+            / "data"
+            / "reference"
+            / "v11_compat"
+            / "axial_base_config_used.json"
+        ).read_text()
+    )
+
+    candidates = pd.read_csv(
+        ROOT
+        / "data"
+        / "reference"
+        / "v11_compat"
+        / "candidate_materials.csv"
+    )
+
+    v2_root = (
+        ROOT
+        / "heiq_pre_receiver_material_analyses"
+    )
+
+    v2 = load_v2_module(
+        v2_root
+    )
+
+    v2_config = v2.load_config(
+        v2_root
+        / "config"
+        / "default.json"
+    )
+
     setup_args = SimpleNamespace(
         receiver_band="bridge_40_to_60",
-        receiver_temperature_c=float(args.receiver_temperature_c),
-        area_max_m2=float(args.area_max_m2),
-        voltage_max_v=float(args.voltage_search_max_v),
+        receiver_temperature_c=float(
+            args.receiver_temperature_c
+        ),
+        area_max_m2=float(
+            args.area_max_m2
+        ),
+        voltage_max_v=float(
+            args.voltage_search_max_v
+        ),
         lhs_samples=8,
         seed=20260812,
         smoke=False,
     )
-    context = continuation.setup(setup_args)
-    context["base"]["channel"]["receiver_temperature_c"] = float(args.receiver_temperature_c)
-    context["base"]["integration"]["area_limit_m2"] = float(args.area_max_m2)
-    return continuation, context
+
+    context = build_native_context(
+        setup_args,
+        cfg12=cfg12,
+        base_config=base,
+        candidates=candidates,
+        v2=v2,
+        v2_config=v2_config,
+    )
+
+    context["base"]["channel"][
+        "receiver_temperature_c"
+    ] = float(
+        args.receiver_temperature_c
+    )
+
+    context["base"]["integration"][
+        "area_limit_m2"
+    ] = float(
+        args.area_max_m2
+    )
+
+    return None, context
 
 
-def row_to_material(context: Mapping[str, Any], row: Mapping[str, Any], basis_id: str, drag: float) -> dict[str, Any]:
-    v12 = context["v12"]
+
+def row_to_material(
+    context: Mapping[str, Any],
+    row: Mapping[str, Any],
+    basis_id: str,
+    drag: float,
+) -> dict[str, Any]:
     base = context["m11675"]
     props: dict[str, float] = {}
-    for name in v12.MATERIAL_COLUMNS:
+
+    for name in MATERIAL_COLUMNS:
         if name == "water_drag":
             props[name] = float(drag)
             continue
-        value = finite(row.get(name, math.nan))
-        props[name] = value if math.isfinite(value) else float(base[name])
+
+        value = finite(
+            row.get(
+                name,
+                math.nan,
+            )
+        )
+
+        props[name] = (
+            value
+            if math.isfinite(value)
+            else float(base[name])
+        )
+
     return {
         "name": (
-            f"{basis_id}_tw{props['water_drag']:.8g}_"
+            f"{basis_id}_"
+            f"tw{props['water_drag']:.8g}_"
             f"D{props['water_diffusivity_m2_s']:.3e}_"
             f"sig{props['conductivity_s_m']:.8g}_"
             f"L{props['dry_thickness_um']:.8g}"
@@ -290,10 +372,12 @@ def row_to_material(context: Mapping[str, Any], row: Mapping[str, Any], basis_id
         "model": "powerlaw",
         **props,
         "interpretation": (
-            f"{basis_id} property basis with swept water drag; hypothetical inverse-design "
+            f"{basis_id} property basis with swept "
+            "water drag; hypothetical inverse-design "
             "coordinate, not measured material validation"
         ),
     }
+
 
 
 def material_bases(context: Mapping[str, Any], args: argparse.Namespace) -> dict[str, Mapping[str, Any]]:
@@ -313,22 +397,6 @@ def material_bases(context: Mapping[str, Any], args: argparse.Namespace) -> dict
     return bases
 
 
-@contextlib.contextmanager
-def patched_film_coefficients(axial: ModuleType, *, process_factor: float, receiver_factor: float):
-    original = axial.calculate_film_state
-
-    def patched(**kwargs):
-        copied = dict(kwargs)
-        side = str(copied.get("side", "")).strip().lower()
-        factor = process_factor if side in {"source", "process", "process_side"} else receiver_factor
-        copied["scale_factor"] = float(copied["scale_factor"]) * float(factor)
-        return original(**copied)
-
-    axial.calculate_film_state = patched
-    try:
-        yield
-    finally:
-        axial.calculate_film_state = original
 
 
 def local_gate(local: Mapping[str, Any], current_cap_a_m2: float) -> str:
@@ -381,41 +449,102 @@ def liquid_pump_power_kw(liquid_kg_h: float, pressure_rise_pa: float, efficiency
     )
 
 
-def process_geometry_and_fan(context: Mapping[str, Any], active_area_m2: float) -> dict[str, float]:
-    v12 = context["v12"]
-    axial = context["axial"]
+def process_geometry_and_fan(
+    context: Mapping[str, Any],
+    active_area_m2: float,
+) -> dict[str, float]:
     base = context["base"]
     process = context["process_basis"]
     channel = base["channel"]
-    velocity = float(channel["process_velocity_m_s"])
-    gap = float(channel["process_gap_m"])
-    active_sides = float(channel["active_sides_per_process_channel"])
-    open_area = float(process.volume_flow_m3_s) / velocity
-    total_width = open_area / (gap * active_sides)
-    hydro = v12.channel_pressure_drop_and_fan(
-        axial=axial,
-        active_area_m2=float(active_area_m2),
+
+    velocity = float(
+        channel["process_velocity_m_s"]
+    )
+
+    gap = float(
+        channel["process_gap_m"]
+    )
+
+    active_sides = float(
+        channel[
+            "active_sides_per_process_channel"
+        ]
+    )
+
+    open_area = (
+        float(process.volume_flow_m3_s)
+        / velocity
+    )
+
+    total_width = (
+        open_area
+        / (gap * active_sides)
+    )
+
+    hydro = channel_pressure_drop_and_fan(
+        axial=None,
+        active_area_m2=float(
+            active_area_m2
+        ),
         total_channel_width_m=total_width,
         active_sides=active_sides,
         gap_m=gap,
         velocity_m_s=velocity,
-        volume_flow_m3_s=float(process.volume_flow_m3_s),
-        temperature_c=float(process.inlet_temperature_c),
-        pressure_pa=float(process.absolute_pressure_pa),
-        humidity_ratio_kg_kg_da=float(process.inlet_humidity_ratio_kg_kg_da),
-        fan_efficiency=float(channel["process_fan_efficiency"]),
+        volume_flow_m3_s=float(
+            process.volume_flow_m3_s
+        ),
+        temperature_c=float(
+            process.inlet_temperature_c
+        ),
+        pressure_pa=float(
+            process.absolute_pressure_pa
+        ),
+        humidity_ratio_kg_kg_da=float(
+            process
+            .inlet_humidity_ratio_kg_kg_da
+        ),
+        fan_efficiency=float(
+            channel[
+                "process_fan_efficiency"
+            ]
+        ),
     )
+
     return {
-        "process_gap_m": gap,
-        "process_velocity_m_s": velocity,
-        "process_active_sides": active_sides,
-        "process_open_flow_area_m2": open_area,
-        "process_total_channel_width_m": total_width,
-        "process_channel_length_m": hydro["channel_length_m"],
-        "process_channel_reynolds_number": hydro["channel_reynolds_number"],
-        "process_pressure_drop_pa": hydro["channel_pressure_drop_pa"],
-        "process_channel_fan_power_kw": hydro["channel_fan_power_kw"],
+        "process_gap_m":
+            gap,
+
+        "process_velocity_m_s":
+            velocity,
+
+        "process_active_sides":
+            active_sides,
+
+        "process_open_flow_area_m2":
+            open_area,
+
+        "process_total_channel_width_m":
+            total_width,
+
+        "process_channel_length_m":
+            hydro["channel_length_m"],
+
+        "process_channel_reynolds_number":
+            hydro[
+                "channel_reynolds_number"
+            ],
+
+        "process_pressure_drop_pa":
+            hydro[
+                "channel_pressure_drop_pa"
+            ],
+
+        "process_channel_fan_power_kw":
+            hydro[
+                "channel_fan_power_kw"
+            ],
     }
+
 
 
 def integrate_direct_liquid_case(
@@ -430,7 +559,6 @@ def integrate_direct_liquid_case(
     args: argparse.Namespace,
     record_profile: bool,
 ) -> tuple[dict[str, Any], pd.DataFrame]:
-    axial = context["axial"]
     v2 = context["v2"]
     v2_config = context["v2_config"]
     base = context["base"]
@@ -485,24 +613,7 @@ def integrate_direct_liquid_case(
     shortened_endpoint_resolved = False
 
     def solve_at(water_ratio: float) -> dict[str, Any]:
-        with patched_film_coefficients(
-            axial,
-            process_factor=float(process_film_factor),
-            receiver_factor=float(args.liquid_interface_factor),
-        ):
-            return axial.solve_local_state(
-                v2=v2,
-                v2_config=v2_config,
-                material=dict(material),
-                source_temperature_c=process_temperature_c,
-                source_humidity_ratio=float(water_ratio),
-                receiver_activity=float(liquid_activity),
-                terminal_voltage_v=float(terminal_voltage_v),
-                fixed_loss_voltage_v=0.0,
-                series_asr_ohm_m2=legacy_asr,
-                film_scale_factor=base_film_scale,
-                config=local_config,
-            )
+        return solve_local_state(v2=v2, v2_config=v2_config, material=dict(material), source_temperature_c=process_temperature_c, source_humidity_ratio=float(water_ratio), receiver_activity=float(liquid_activity), terminal_voltage_v=float(terminal_voltage_v), fixed_loss_voltage_v=0.0, series_asr_ohm_m2=legacy_asr, film_scale_factor=base_film_scale, config=local_config, process_film_scale_factor=base_film_scale * float(process_film_factor), receiver_film_scale_factor=base_film_scale * float(args.liquid_interface_factor))
 
     def accumulate_segment(
         local_start: Mapping[str, Any],
@@ -743,7 +854,7 @@ def integrate_direct_liquid_case(
         * latent_heat_vaporisation_kj_kg(float(args.receiver_temperature_c))
     )
     stack = (
-        context["v12"].stack_topology(
+        stack_topology(
             required_area_m2=cumulative_area,
             integrated_current_a=integrated_current_a,
             maximum_current_density_a_m2=(maximum_current if maximum_current > -math.inf else math.nan),
@@ -758,7 +869,7 @@ def integrate_direct_liquid_case(
         "target": target,
         "material_basis_id": material_basis_id,
         "material_id": str(material["name"]),
-        **{name: float(material[name]) for name in context["v12"].MATERIAL_COLUMNS},
+        **{name: float(material[name]) for name in MATERIAL_COLUMNS},
         "receiver_boundary_model": "direct_liquid_contact_from_first_area_step",
         "receiver_gas_flow_present": False,
         "receiver_channel_fan_power_kw": 0.0,
@@ -1083,7 +1194,6 @@ def build_system_foms(energy: pd.DataFrame, context: Mapping[str, Any], args: ar
     if energy.empty:
         return pd.DataFrame()
     process = context["process_basis"]
-    axial = context["axial"]
     supply_w = float(axial.humidity_ratio_from_t_rh(20.0, 0.50, float(process.absolute_pressure_pa)))
     total_system_water_kg_h = (
         float(process.dry_air_mass_flow_kg_s)
@@ -1280,24 +1390,7 @@ def rerun_selected_profiles(
             for position in PROFILE_POSITIONS:
                 idx = (profile["x_over_L"] - position).abs().idxmin()
                 point = profile.loc[idx]
-                with patched_film_coefficients(
-                    context["axial"],
-                    process_factor=float(row["process_film_factor"]),
-                    receiver_factor=float(args.liquid_interface_factor),
-                ):
-                    local = context["axial"].solve_local_state(
-                        v2=context["v2"],
-                        v2_config=context["v2_config"],
-                        material=material,
-                        source_temperature_c=float(context["process_basis"].inlet_temperature_c),
-                        source_humidity_ratio=float(point["process_humidity_ratio_kg_kg_da"]),
-                        receiver_activity=float(row["liquid_activity"]),
-                        terminal_voltage_v=float(row["terminal_voltage_v"]),
-                        fixed_loss_voltage_v=0.0,
-                        series_asr_ohm_m2=float(context["cfg12"]["operating"]["legacy_series_asr_ohm_m2"]),
-                        film_scale_factor=float(context["cfg12"]["operating"]["film_scale_factor"]),
-                        config=local_config,
-                    )
+                local = solve_local_state(v2=context['v2'], v2_config=context['v2_config'], material=material, source_temperature_c=float(context['process_basis'].inlet_temperature_c), source_humidity_ratio=float(point['process_humidity_ratio_kg_kg_da']), receiver_activity=float(row['liquid_activity']), terminal_voltage_v=float(row['terminal_voltage_v']), fixed_loss_voltage_v=0.0, series_asr_ohm_m2=float(context['cfg12']['operating']['legacy_series_asr_ohm_m2']), film_scale_factor=float(context['cfg12']['operating']['film_scale_factor']), config=local_config, process_film_scale_factor=float(context['cfg12']['operating']['film_scale_factor']) * float(row['process_film_factor']), receiver_film_scale_factor=float(context['cfg12']['operating']['film_scale_factor']) * float(args.liquid_interface_factor))
                 if not bool(local.get("solution_ok", False)):
                     continue
                 source_surface = first_finite(local, ["source_surface_activity", "source_membrane_surface_activity"])
