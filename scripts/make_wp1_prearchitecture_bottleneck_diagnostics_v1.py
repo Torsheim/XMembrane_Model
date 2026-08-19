@@ -7,8 +7,8 @@ Purpose
 Quantify what limits the O30/O50 coupled axial EO core before any receiver-side
 ERV, HRV, regeneration, condensation or other architecture is introduced.
 
-The script uses the reviewed V12.1 coupled two-stream core through the helper
-`make_wp1_prearchitecture_continuation_v2.py`:
+The script uses the reviewed coupled two-stream core through the canonical
+`heiq.wp1` package:
 
 - process and receiver humidity both march axially;
 - the unchanged V2/V3 local voltage-controlled membrane BVP is re-solved;
@@ -63,13 +63,11 @@ from __future__ import annotations
 import argparse
 import contextlib
 import copy
-import importlib.util
 import json
 import math
-import sys
 from dataclasses import asdict
 from pathlib import Path
-from types import ModuleType, SimpleNamespace
+from types import SimpleNamespace
 from typing import Any, Iterable, Mapping, Sequence
 
 import matplotlib
@@ -87,8 +85,9 @@ from heiq.wp1.receiver import (
     make_receiver_basis,
 )
 
+from heiq.wp1.studies import build_repository_context
+
 ROOT = Path(__file__).resolve().parents[1]
-CONTINUATION_SCRIPT = ROOT / "scripts" / "make_wp1_prearchitecture_continuation_v2.py"
 
 WATER_MOLAR_MASS_KG_MOL = 0.01801528
 NEAR_IDEAL_FILM_FACTOR = 1.0e4
@@ -109,14 +108,7 @@ DEFAULT_BASELINE_PATHS = [
 NUMERIC_EPS = 1.0e-12
 
 
-def load_module(path: Path, name: str) -> ModuleType:
-    spec = importlib.util.spec_from_file_location(name, path)
-    if spec is None or spec.loader is None:
-        raise ImportError(f"Could not import {path}")
-    module = importlib.util.module_from_spec(spec)
-    sys.modules[name] = module
-    spec.loader.exec_module(module)
-    return module
+
 
 
 def finite(value: Any) -> float:
@@ -187,13 +179,9 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def setup_context(args: argparse.Namespace) -> tuple[ModuleType, dict[str, Any]]:
-    if not CONTINUATION_SCRIPT.is_file():
-        raise FileNotFoundError(
-            f"Missing {CONTINUATION_SCRIPT}. Copy "
-            "make_wp1_prearchitecture_continuation_v2.py into scripts/ first."
-        )
-    continuation = load_module(CONTINUATION_SCRIPT, "heiq_prearchitecture_continuation_for_diagnostics")
+def setup_context(
+    args: argparse.Namespace,
+) -> dict[str, Any]:
     setup_args = SimpleNamespace(
         receiver_band=str(args.receiver_band),
         receiver_temperature_c=args.receiver_temperature_c,
@@ -203,8 +191,11 @@ def setup_context(args: argparse.Namespace) -> tuple[ModuleType, dict[str, Any]]
         seed=20260812,
         smoke=False,
     )
-    context = continuation.setup(setup_args)
-    return continuation, context
+
+    return build_repository_context(
+        setup_args,
+        root=ROOT,
+    )
 
 
 def select_baseline_row(args: argparse.Namespace) -> tuple[pd.Series, str]:
@@ -277,11 +268,9 @@ def select_baseline_row(args: argparse.Namespace) -> tuple[pd.Series, str]:
 
 
 def material_from_baseline(
-    continuation: ModuleType,
     context: dict[str, Any],
     baseline: Mapping[str, Any],
 ) -> dict[str, Any]:
-    _ = continuation
     base = context["m11675"]
 
     properties: dict[str, float] = {}
@@ -1015,7 +1004,6 @@ def run_area_study(
 
 
 def run_diffusion_study(
-    continuation: ModuleType,
     context: dict[str, Any],
     material: Mapping[str, Any],
     baseline_v: float,
@@ -1898,9 +1886,9 @@ def main() -> int:
         self_test()
         return 0
 
-    continuation, context = setup_context(args)
+    context = setup_context(args)
     baseline, baseline_source = select_baseline_row(args)
-    material = material_from_baseline(continuation, context, baseline)
+    material = material_from_baseline(context, baseline)
     voltage = baseline_voltage(baseline, args)
     receiver_mult = baseline_receiver_multiplier(baseline, args)
 
@@ -1954,7 +1942,12 @@ def main() -> int:
             run_area_study(context, material, voltage, receiver_mult, args, out)
         elif stage == "diffusion":
             run_diffusion_study(
-                continuation, context, material, voltage, receiver_mult, args, out
+                context,
+                material,
+                voltage,
+                receiver_mult,
+                args,
+                out,
             )
         elif stage == "budget":
             run_budget_study(context, material, voltage, receiver_mult, args, out)

@@ -11,9 +11,8 @@ the first axial position, rather than first entering a receiver gas stream and
 waiting for that gas stream to become saturated.
 
 The script reuses the reviewed V2/V3 local voltage-controlled membrane BVP and
-the V3 process-air axial marching basis through
-``make_wp1_prearchitecture_continuation_v2.py``.  Only the receiver boundary is
-changed:
+the native process-air axial marching basis through the canonical ``heiq.wp1``
+package. Only the receiver boundary is changed:
 
     process gas -> process gas film -> EO membrane -> liquid-contact sink
 

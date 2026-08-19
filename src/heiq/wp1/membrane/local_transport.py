@@ -39,6 +39,13 @@ def _legacy_v2_module():
     return module
 
 
+
+def legacy_v2_module():
+    """Return the cached reviewed V2 implementation module."""
+
+    return _legacy_v2_module()
+
+
 def load_config(*args, **kwargs):
     return _legacy_v2_module().load_config(*args, **kwargs)
 
@@ -58,6 +65,7 @@ def solve_nafion_voltage_state(*args, **kwargs):
 
 
 __all__ = [
+    "legacy_v2_module",
     "load_config",
     "solve_powerlaw_voltage_control",
     "solve_nafion_voltage_state",

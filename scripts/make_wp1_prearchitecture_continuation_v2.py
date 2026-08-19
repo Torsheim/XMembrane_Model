@@ -33,16 +33,14 @@ from __future__ import annotations
 
 import argparse
 import copy
-import importlib.util
 import json
 import math
-import sys
 from pathlib import Path
-from types import ModuleType
 
 import numpy as np
 import pandas as pd
 
+from heiq.wp1.studies import build_repository_context as native_build_repository_context
 from heiq.wp1.studies.prearchitecture import (
     audit_surfaces as native_audit_surfaces,
     build_context as native_build_context,
@@ -86,14 +84,7 @@ MATERIAL_RANGES = {
 SURFACE_AUDIT_TOP_N = 12
 
 
-def load_module(path: Path, name: str) -> ModuleType:
-    spec = importlib.util.spec_from_file_location(name, path)
-    if spec is None or spec.loader is None:
-        raise ImportError(path)
-    mod = importlib.util.module_from_spec(spec)
-    sys.modules[name] = mod
-    spec.loader.exec_module(mod)
-    return mod
+
 
 
 def finite(value) -> float:
@@ -140,63 +131,10 @@ def parse_args():
 
 
 def setup(args):
-    # Temporary C6 compatibility loads.  Bottleneck and
-    # direct-liquid still expect these module objects.
-    v12 = load_module(
-        V12_SCRIPT,
-        "heiq_v12_continuation",
-    )
-
-    axial = load_module(
-        AXIAL_SCRIPT,
-        "heiq_axial_continuation",
-    )
-
-    v12.validate_unchanged_solver_sources(
-        V11_DIR,
-        AXIAL_SCRIPT,
-        V2_ROOT,
-    )
-
-    v2 = axial.load_v2_module(
-        V2_ROOT
-    )
-
-    v2_config = v2.load_config(
-        V2_ROOT
-        / "config"
-        / "default.json"
-    )
-
-    cfg12 = v12.load_json(
-        V12_CONFIG
-    )
-
-    base = v12.load_json(
-        V11_DIR
-        / "axial_base_config_used.json"
-    )
-
-    candidates = pd.read_csv(
-        V11_DIR
-        / "candidate_materials.csv"
-    )
-
-    ctx = native_build_context(
+    return native_build_repository_context(
         args,
-        cfg12=cfg12,
-        base_config=base,
-        candidates=candidates,
-        v2=v2,
-        v2_config=v2_config,
+        root=ROOT,
     )
-
-    # Compatibility only. These are no longer the
-    # continuation workflow's calculation engine.
-    ctx["v12"] = v12
-    ctx["axial"] = axial
-
-    return ctx
 
 
 
