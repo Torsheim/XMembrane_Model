@@ -18,7 +18,7 @@ material and operating-point optimisation
 bottleneck diagnostics and alternative receiver boundaries
 ```
 
-See `docs/MODEL_CHAIN.md` for the numerical hierarchy and `docs/CLAIM_BOUNDARY.md` for interpretation limits.
+See `docs/MODEL_CHAIN.md` for the numerical hierarchy, `docs/CLAIM_BOUNDARY.md` for interpretation limits, and `docs/PACKAGE_BOUNDARIES.md` for the boundary between native package code and retained reference implementations.
 
 ## Installation
 
@@ -38,4 +38,4 @@ The test suite contains local-transport unit tests and golden regression checks 
 
 ## Repository philosophy
 
-Only the current canonical model chain is retained here. Historical development generations remain in the original HeiQ_V2 research repository.
+The repository exposes one canonical model chain. Historical development generations remain in the original HeiQ_V2 research repository, while three reviewed source implementations are retained here behind explicit compatibility adapters.

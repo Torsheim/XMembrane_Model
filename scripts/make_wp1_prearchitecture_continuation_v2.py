@@ -50,11 +50,6 @@ from heiq.wp1.studies.prearchitecture import (
 )
 
 ROOT = Path(__file__).resolve().parents[1]
-V11_DIR = ROOT / "outputs" / "axial_independent_material_sweep_v8" / "coarse" / "voltage_refinement_v11"
-V12_SCRIPT = ROOT / "scripts" / "make_wp1_closed_receiver_system_v12.py"
-AXIAL_SCRIPT = ROOT / "scripts" / "make_wp1_pre_receiver_axial_v3.py"
-V12_CONFIG = ROOT / "scripts" / "closed_receiver_system_v12_config.json"
-V2_ROOT = ROOT / "heiq_pre_receiver_material_analyses"
 
 O50_EDGE_DRAGS = [36.205058, 150.0, 600.0]
 O50_EDGE_VOLTAGES = [
