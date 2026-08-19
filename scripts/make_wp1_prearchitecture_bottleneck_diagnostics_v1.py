@@ -79,6 +79,14 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
+from heiq.wp1.axial import solve_local_state
+from heiq.wp1.engineering import add_geometry_and_stack
+from heiq.wp1.receiver import (
+    MATERIAL_COLUMNS,
+    integrate_coupled_receiver_case,
+    make_receiver_basis,
+)
+
 ROOT = Path(__file__).resolve().parents[1]
 CONTINUATION_SCRIPT = ROOT / "scripts" / "make_wp1_prearchitecture_continuation_v2.py"
 
@@ -268,13 +276,27 @@ def select_baseline_row(args: argparse.Namespace) -> tuple[pd.Series, str]:
     return fallback, "declared_fallback"
 
 
-def material_from_baseline(continuation: ModuleType, context: dict[str, Any], baseline: Mapping[str, Any]) -> dict[str, Any]:
-    v12 = context["v12"]
+def material_from_baseline(
+    continuation: ModuleType,
+    context: dict[str, Any],
+    baseline: Mapping[str, Any],
+) -> dict[str, Any]:
+    _ = continuation
     base = context["m11675"]
+
     properties: dict[str, float] = {}
-    for name in v12.MATERIAL_COLUMNS:
-        value = finite(baseline.get(name, math.nan))
-        properties[name] = value if math.isfinite(value) else float(base[name])
+
+    for name in MATERIAL_COLUMNS:
+        value = finite(
+            baseline.get(name, math.nan)
+        )
+
+        properties[name] = (
+            value
+            if math.isfinite(value)
+            else float(base[name])
+        )
+
     return {
         "name": (
             f"diagnostic_tw{properties['water_drag']:.6g}_"
@@ -284,8 +306,10 @@ def material_from_baseline(continuation: ModuleType, context: dict[str, Any], ba
         ),
         "model": "powerlaw",
         **properties,
-        "interpretation": "Selected pre-architecture baseline property vector",
+        "interpretation":
+            "Selected pre-architecture baseline property vector",
     }
+
 
 
 def baseline_voltage(baseline: Mapping[str, Any], args: argparse.Namespace) -> float:
@@ -325,8 +349,8 @@ def make_receiver(
     band: Mapping[str, float],
     band_id: str,
 ) -> Any:
-    return context["v12"].make_receiver_basis(
-        axial=context["axial"],
+    return make_receiver_basis(
+        axial=None,
         process_basis=context["process_basis"],
         target_row=context["targets"][target],
         receiver_sizing_target_row=context["targets"][target],
@@ -338,30 +362,7 @@ def make_receiver(
     )
 
 
-@contextlib.contextmanager
-def patched_film_coefficients(
-    axial: ModuleType,
-    *,
-    process_factor: float,
-    receiver_factor: float,
-):
-    if process_factor <= 0.0 or receiver_factor <= 0.0:
-        raise ValueError("Film factors must be positive")
 
-    original = axial.calculate_film_state
-
-    def patched(**kwargs):
-        side = str(kwargs.get("side", "")).strip().lower()
-        factor = process_factor if side in {"source", "process", "process_side"} else receiver_factor
-        copied = dict(kwargs)
-        copied["scale_factor"] = float(copied["scale_factor"]) * float(factor)
-        return original(**copied)
-
-    axial.calculate_film_state = patched
-    try:
-        yield
-    finally:
-        axial.calculate_film_state = original
 
 
 @contextlib.contextmanager
@@ -390,8 +391,14 @@ def solve_full_case(
 ) -> tuple[dict[str, Any], pd.DataFrame, Any]:
     base = context["base"]
     cfg12 = context["cfg12"]
-    v12 = context["v12"]
-    axial = context["axial"]
+
+    if (
+        process_film_factor <= 0.0
+        or receiver_film_factor <= 0.0
+    ):
+        raise ValueError(
+            "Film factors must be positive"
+        )
 
     receiver = make_receiver(
         context,
@@ -404,17 +411,22 @@ def solve_full_case(
     selected_area_limit = (
         float(area_limit_m2)
         if area_limit_m2 is not None
-        else float(base["integration"]["area_limit_m2"])
+        else float(
+            base["integration"]["area_limit_m2"]
+        )
     )
 
-    with temporary_area_limit(context, selected_area_limit):
-        with patched_film_coefficients(
-            axial,
-            process_factor=process_film_factor,
-            receiver_factor=receiver_film_factor,
-        ):
-            row, profile = v12.integrate_coupled_receiver_case(
-                axial=axial,
+    base_film_scale = float(
+        cfg12["operating"]["film_scale_factor"]
+    )
+
+    with temporary_area_limit(
+        context,
+        selected_area_limit,
+    ):
+        row, profile = (
+            integrate_coupled_receiver_case(
+                axial=None,
                 v2=context["v2"],
                 v2_config=context["v2_config"],
                 config=base,
@@ -422,52 +434,125 @@ def solve_full_case(
                 target_row=context["targets"][target],
                 material=dict(material),
                 receiver=receiver,
-                terminal_voltage_v=float(terminal_voltage_v),
+                terminal_voltage_v=float(
+                    terminal_voltage_v
+                ),
                 electrode_pair_loss_voltage_v=0.0,
                 legacy_series_asr_ohm_m2=float(
-                    cfg12["operating"]["legacy_series_asr_ohm_m2"]
+                    cfg12["operating"][
+                        "legacy_series_asr_ohm_m2"
+                    ]
                 ),
                 added_contact_asr_ohm_m2=0.0,
                 power_electronics_efficiency=float(
-                    cfg12["operating"]["power_electronics_efficiency"]
+                    cfg12["operating"][
+                        "power_electronics_efficiency"
+                    ]
                 ),
                 current_cap_a_m2=float(
-                    cfg12["operating"]["current_density_cap_a_m2"]
+                    cfg12["operating"][
+                        "current_density_cap_a_m2"
+                    ]
                 ),
-                film_scale_factor=float(cfg12["operating"]["film_scale_factor"]),
+                film_scale_factor=base_film_scale,
+                process_film_scale_factor=(
+                    base_film_scale
+                    * float(process_film_factor)
+                ),
+                receiver_film_scale_factor=(
+                    base_film_scale
+                    * float(receiver_film_factor)
+                ),
                 record_profile=record_profile,
             )
+        )
 
-    row = v12.add_geometry_and_stack(
+    row = add_geometry_and_stack(
         row=row,
-        axial=axial,
+        axial=None,
         process_basis=context["process_basis"],
         base_config=base,
         v12_config=cfg12,
     )
 
-    eo = finite(row.get("eo_grid_power_kw"))
-    process_fan = finite(row.get("process_channel_fan_power_kw"))
-    receiver_fan = finite(row.get("receiver_channel_fan_power_kw"))
+    eo = finite(
+        row.get("eo_grid_power_kw")
+    )
+
+    process_fan = finite(
+        row.get(
+            "process_channel_fan_power_kw"
+        )
+    )
+
+    receiver_fan = finite(
+        row.get(
+            "receiver_channel_fan_power_kw"
+        )
+    )
+
     core_power = (
         eo + process_fan + receiver_fan
-        if all(math.isfinite(value) for value in [eo, process_fan, receiver_fan])
+        if all(
+            math.isfinite(value)
+            for value in (
+                eo,
+                process_fan,
+                receiver_fan,
+            )
+        )
         else math.nan
     )
-    water = finite(row.get("integrated_water_transfer_kg_h"))
-    area = finite(row.get("required_active_area_m2"))
-    max_current = finite(row.get("maximum_local_current_density_a_m2"))
-    min_flux = finite(row.get("minimum_local_flux_mol_m2_s"))
-    current_cap = float(cfg12["operating"]["current_density_cap_a_m2"])
+
+    water = finite(
+        row.get(
+            "integrated_water_transfer_kg_h"
+        )
+    )
+
+    area = finite(
+        row.get(
+            "required_active_area_m2"
+        )
+    )
+
+    max_current = finite(
+        row.get(
+            "maximum_local_current_density_a_m2"
+        )
+    )
+
+    min_flux = finite(
+        row.get(
+            "minimum_local_flux_mol_m2_s"
+        )
+    )
+
+    current_cap = float(
+        cfg12["operating"][
+            "current_density_cap_a_m2"
+        ]
+    )
 
     analysis_pass = bool(
-        truth(row.get("target_reached"))
-        and truth(row.get("water_balance_pass"))
-        and truth(row.get("target_capacity_sufficient"))
+        truth(
+            row.get("target_reached")
+        )
+        and truth(
+            row.get("water_balance_pass")
+        )
+        and truth(
+            row.get(
+                "target_capacity_sufficient"
+            )
+        )
         and math.isfinite(area)
-        and area <= selected_area_limit + 1.0e-9
+        and area
+        <= selected_area_limit + 1.0e-9
         and math.isfinite(max_current)
-        and 0.0 < max_current <= current_cap + 1.0e-9
+        and 0.0
+        < max_current
+        <= current_cap + 1.0e-9
         and math.isfinite(min_flux)
         and min_flux > 0.0
         and math.isfinite(core_power)
@@ -475,30 +560,67 @@ def solve_full_case(
 
     row.update(
         {
-            "diagnostic_target": target,
-            "diagnostic_terminal_voltage_v": float(terminal_voltage_v),
-            "diagnostic_process_film_factor": float(process_film_factor),
-            "diagnostic_receiver_film_factor": float(receiver_film_factor),
-            "diagnostic_area_limit_m2": selected_area_limit,
-            "diagnostic_receiver_band_id": receiver_band_id,
-            "diagnostic_receiver_inlet_activity": float(receiver_band["inlet_activity"]),
-            "diagnostic_receiver_maximum_activity": float(
-                receiver_band["maximum_outlet_activity"]
-            ),
-            "diagnostic_receiver_capacity_multiplier": float(receiver_multiplier),
-            "diagnostic_receiver_to_process_flow_ratio": float(
-                receiver.receiver_to_process_dry_air_ratio
-            ),
-            "diagnostic_core_power_kw": core_power,
-            "diagnostic_core_sec_kwh_kg": (
-                core_power / water
-                if math.isfinite(core_power) and water > 0.0
-                else math.nan
-            ),
-            "diagnostic_analysis_pass": analysis_pass,
+            "diagnostic_target":
+                target,
+
+            "diagnostic_terminal_voltage_v":
+                float(terminal_voltage_v),
+
+            "diagnostic_process_film_factor":
+                float(process_film_factor),
+
+            "diagnostic_receiver_film_factor":
+                float(receiver_film_factor),
+
+            "diagnostic_area_limit_m2":
+                selected_area_limit,
+
+            "diagnostic_receiver_band_id":
+                receiver_band_id,
+
+            "diagnostic_receiver_inlet_activity":
+                float(
+                    receiver_band[
+                        "inlet_activity"
+                    ]
+                ),
+
+            "diagnostic_receiver_maximum_activity":
+                float(
+                    receiver_band[
+                        "maximum_outlet_activity"
+                    ]
+                ),
+
+            "diagnostic_receiver_capacity_multiplier":
+                float(receiver_multiplier),
+
+            "diagnostic_receiver_to_process_flow_ratio":
+                float(
+                    receiver
+                    .receiver_to_process_dry_air_ratio
+                ),
+
+            "diagnostic_core_power_kw":
+                core_power,
+
+            "diagnostic_core_sec_kwh_kg":
+                (
+                    core_power / water
+                    if (
+                        math.isfinite(core_power)
+                        and water > 0.0
+                    )
+                    else math.nan
+                ),
+
+            "diagnostic_analysis_pass":
+                analysis_pass,
         }
     )
+
     return row, profile, receiver
+
 
 
 def voltage_grid(center_v: float, max_v: float, smoke: bool = False) -> list[float]:
@@ -983,110 +1105,268 @@ def reconstruct_local_profile(
     process_film_factor: float = 1.0,
     receiver_film_factor: float = 1.0,
 ) -> pd.DataFrame:
-    axial = context["axial"]
     cfg12 = context["cfg12"]
-    local_config = copy.deepcopy(context["base"])
-    local_config["channel"] = copy.deepcopy(context["base"]["channel"])
-    local_config["channel"]["receiver_velocity_m_s"] = receiver.receiver_velocity_m_s
+
+    local_config = copy.deepcopy(
+        context["base"]
+    )
+
+    local_config["channel"] = copy.deepcopy(
+        context["base"]["channel"]
+    )
+
+    local_config["channel"][
+        "receiver_velocity_m_s"
+    ] = receiver.receiver_velocity_m_s
 
     rows: list[dict[str, Any]] = []
-    total_area = max(float(profile["cumulative_area_m2"].max()), NUMERIC_EPS)
 
-    with patched_film_coefficients(
-        axial,
-        process_factor=process_film_factor,
-        receiver_factor=receiver_film_factor,
-    ):
-        for _, point in profile.iterrows():
-            process_w = first_finite(
-                point,
-                ["process_humidity_ratio_kg_kg_da", "humidity_ratio_kg_kg_da"],
+    total_area = max(
+        float(
+            profile[
+                "cumulative_area_m2"
+            ].max()
+        ),
+        NUMERIC_EPS,
+    )
+
+    base_film_scale = float(
+        cfg12["operating"][
+            "film_scale_factor"
+        ]
+    )
+
+    for _, point in profile.iterrows():
+        process_w = first_finite(
+            point,
+            [
+                "process_humidity_ratio_kg_kg_da",
+                "humidity_ratio_kg_kg_da",
+            ],
+        )
+
+        receiver_activity = first_finite(
+            point,
+            [
+                "receiver_activity",
+                "receiver_bulk_activity",
+            ],
+        )
+
+        if not (
+            math.isfinite(process_w)
+            and math.isfinite(
+                receiver_activity
             )
-            receiver_activity = first_finite(
-                point,
-                ["receiver_activity", "receiver_bulk_activity"],
+        ):
+            continue
+
+        local = solve_local_state(
+            v2=context["v2"],
+            v2_config=context[
+                "v2_config"
+            ],
+            material=dict(material),
+            source_temperature_c=float(
+                context[
+                    "process_basis"
+                ].inlet_temperature_c
+            ),
+            source_humidity_ratio=process_w,
+            receiver_activity=receiver_activity,
+            terminal_voltage_v=float(
+                terminal_voltage_v
+            ),
+            fixed_loss_voltage_v=0.0,
+            series_asr_ohm_m2=float(
+                cfg12["operating"][
+                    "legacy_series_asr_ohm_m2"
+                ]
+            ),
+            film_scale_factor=(
+                base_film_scale
+            ),
+            process_film_scale_factor=(
+                base_film_scale
+                * float(
+                    process_film_factor
+                )
+            ),
+            receiver_film_scale_factor=(
+                base_film_scale
+                * float(
+                    receiver_film_factor
+                )
+            ),
+            config=local_config,
+        )
+
+        if not bool(
+            local.get(
+                "solution_ok",
+                False,
             )
-            if not (math.isfinite(process_w) and math.isfinite(receiver_activity)):
-                continue
+        ):
+            continue
 
-            local = axial.solve_local_state(
-                v2=context["v2"],
-                v2_config=context["v2_config"],
-                material=dict(material),
-                source_temperature_c=float(context["process_basis"].inlet_temperature_c),
-                source_humidity_ratio=process_w,
-                receiver_activity=receiver_activity,
-                terminal_voltage_v=float(terminal_voltage_v),
-                fixed_loss_voltage_v=0.0,
-                series_asr_ohm_m2=float(
-                    cfg12["operating"]["legacy_series_asr_ohm_m2"]
-                ),
-                film_scale_factor=float(cfg12["operating"]["film_scale_factor"]),
-                config=local_config,
+        current = finite(
+            local.get(
+                "current_density_a_m2"
             )
-            if not bool(local.get("solution_ok", False)):
-                continue
+        )
 
-            current = finite(local.get("current_density_a_m2"))
-            ohmic = finite(local.get("ohmic_voltage_v"))
-            water_voltage = finite(local.get("water_polarisation_voltage_v"))
-            series_voltage = finite(local.get("series_loss_voltage_v"))
-            fixed_voltage = finite(local.get("fixed_loss_voltage_v"))
+        ohmic = finite(
+            local.get(
+                "ohmic_voltage_v"
+            )
+        )
 
-            cumulative_area = float(point["cumulative_area_m2"])
-            rows.append(
-                {
-                    "cumulative_area_m2": cumulative_area,
-                    "x_over_L": cumulative_area / total_area,
-                    "step_area_m2": finite(point.get("step_area_m2")),
-                    "process_bulk_activity": first_finite(
-                        point, ["process_activity", "source_bulk_activity"]
+        water_voltage = finite(
+            local.get(
+                "water_polarisation_voltage_v"
+            )
+        )
+
+        series_voltage = finite(
+            local.get(
+                "series_loss_voltage_v"
+            )
+        )
+
+        fixed_voltage = finite(
+            local.get(
+                "fixed_loss_voltage_v"
+            )
+        )
+
+        cumulative_area = float(
+            point["cumulative_area_m2"]
+        )
+
+        rows.append(
+            {
+                "cumulative_area_m2":
+                    cumulative_area,
+
+                "x_over_L":
+                    cumulative_area
+                    / total_area,
+
+                "step_area_m2":
+                    finite(
+                        point.get(
+                            "step_area_m2"
+                        )
                     ),
-                    "receiver_bulk_activity": receiver_activity,
-                    "process_surface_activity": local_field(
+
+                "process_bulk_activity":
+                    first_finite(
+                        point,
+                        [
+                            "process_activity",
+                            "source_bulk_activity",
+                        ],
+                    ),
+
+                "receiver_bulk_activity":
+                    receiver_activity,
+
+                "process_surface_activity":
+                    local_field(
                         local,
                         [
                             "source_surface_activity",
                             "source_membrane_surface_activity",
                         ],
                     ),
-                    "receiver_surface_activity": local_field(
+
+                "receiver_surface_activity":
+                    local_field(
                         local,
                         [
                             "receiver_surface_activity",
                             "receiver_membrane_surface_activity",
                         ],
                     ),
-                    "current_density_a_m2": current,
-                    "ohmic_voltage_v": ohmic,
-                    "water_polarisation_voltage_v": water_voltage,
-                    "series_loss_voltage_v": series_voltage,
-                    "fixed_loss_voltage_v": fixed_voltage,
-                    "reconstructed_terminal_voltage_v": (
-                        ohmic + water_voltage + series_voltage + fixed_voltage
+
+                "current_density_a_m2":
+                    current,
+
+                "ohmic_voltage_v":
+                    ohmic,
+
+                "water_polarisation_voltage_v":
+                    water_voltage,
+
+                "series_loss_voltage_v":
+                    series_voltage,
+
+                "fixed_loss_voltage_v":
+                    fixed_voltage,
+
+                "reconstructed_terminal_voltage_v":
+                    (
+                        ohmic
+                        + water_voltage
+                        + series_voltage
+                        + fixed_voltage
                     ),
-                    "eo_flux_mol_m2_s": local_field(
-                        local, ["eo_flux_mol_m2_s"]
+
+                "eo_flux_mol_m2_s":
+                    local_field(
+                        local,
+                        [
+                            "eo_flux_mol_m2_s"
+                        ],
                     ),
-                    "diffusion_flux_mol_m2_s": local_field(
-                        local, ["diffusion_flux_mol_m2_s"]
+
+                "diffusion_flux_mol_m2_s":
+                    local_field(
+                        local,
+                        [
+                            "diffusion_flux_mol_m2_s"
+                        ],
                     ),
-                    "net_flux_mol_m2_s": finite(local.get("net_flux_mol_m2_s")),
-                    "source_film_coefficient": finite(
-                        local.get("source_film_coefficient_mol_m2_s_activity")
+
+                "net_flux_mol_m2_s":
+                    finite(
+                        local.get(
+                            "net_flux_mol_m2_s"
+                        )
                     ),
-                    "receiver_film_coefficient": finite(
-                        local.get("receiver_film_coefficient_mol_m2_s_activity")
+
+                "source_film_coefficient":
+                    finite(
+                        local.get(
+                            "source_film_coefficient_mol_m2_s_activity"
+                        )
                     ),
-                }
-            )
+
+                "receiver_film_coefficient":
+                    finite(
+                        local.get(
+                            "receiver_film_coefficient_mol_m2_s_activity"
+                        )
+                    ),
+            }
+        )
 
     frame = pd.DataFrame(rows)
+
     if not frame.empty:
-        frame["surface_activity_margin"] = (
-            frame["process_surface_activity"] - frame["receiver_surface_activity"]
+        frame[
+            "surface_activity_margin"
+        ] = (
+            frame[
+                "process_surface_activity"
+            ]
+            - frame[
+                "receiver_surface_activity"
+            ]
         )
+
     return frame
+
 
 
 def run_budget_study(
@@ -1191,86 +1471,247 @@ def replay_schedule(
     voltage_scale_v: float,
     voltage_max_v: float,
 ) -> dict[str, Any]:
-    axial = context["axial"]
     cfg12 = context["cfg12"]
-    local_config = copy.deepcopy(context["base"])
-    local_config["channel"] = copy.deepcopy(context["base"]["channel"])
-    local_config["channel"]["receiver_velocity_m_s"] = receiver.receiver_velocity_m_s
-    efficiency = float(cfg12["operating"]["power_electronics_efficiency"])
 
-    total_area = max(float(profile["cumulative_area_m2"].max()), NUMERIC_EPS)
-    x = profile["cumulative_area_m2"].to_numpy(float) / total_area
-    multipliers = voltage_schedule_multipliers(schedule_kind, x)
-    local_voltages = voltage_scale_v * multipliers
+    local_config = copy.deepcopy(
+        context["base"]
+    )
 
-    if np.max(local_voltages) > voltage_max_v + 1.0e-12:
-        return {"schedule_solution_ok": False}
+    local_config["channel"] = copy.deepcopy(
+        context["base"]["channel"]
+    )
+
+    local_config["channel"][
+        "receiver_velocity_m_s"
+    ] = receiver.receiver_velocity_m_s
+
+    efficiency = float(
+        cfg12["operating"][
+            "power_electronics_efficiency"
+        ]
+    )
+
+    base_film_scale = float(
+        cfg12["operating"][
+            "film_scale_factor"
+        ]
+    )
+
+    total_area = max(
+        float(
+            profile[
+                "cumulative_area_m2"
+            ].max()
+        ),
+        NUMERIC_EPS,
+    )
+
+    x = (
+        profile[
+            "cumulative_area_m2"
+        ].to_numpy(float)
+        / total_area
+    )
+
+    multipliers = (
+        voltage_schedule_multipliers(
+            schedule_kind,
+            x,
+        )
+    )
+
+    local_voltages = (
+        voltage_scale_v
+        * multipliers
+    )
+
+    if (
+        np.max(local_voltages)
+        > voltage_max_v + 1.0e-12
+    ):
+        return {
+            "schedule_solution_ok":
+                False
+        }
 
     transfer_mol_s = 0.0
     grid_power_w = 0.0
-    local_rows: list[dict[str, Any]] = []
 
-    for (_, point), x_value, multiplier, local_voltage in zip(
-        profile.iterrows(), x, multipliers, local_voltages
+    local_rows: list[
+        dict[str, Any]
+    ] = []
+
+    for (
+        (_, point),
+        x_value,
+        multiplier,
+        local_voltage,
+    ) in zip(
+        profile.iterrows(),
+        x,
+        multipliers,
+        local_voltages,
     ):
         process_w = first_finite(
             point,
-            ["process_humidity_ratio_kg_kg_da", "humidity_ratio_kg_kg_da"],
+            [
+                "process_humidity_ratio_kg_kg_da",
+                "humidity_ratio_kg_kg_da",
+            ],
         )
+
         receiver_activity = first_finite(
             point,
-            ["receiver_activity", "receiver_bulk_activity"],
+            [
+                "receiver_activity",
+                "receiver_bulk_activity",
+            ],
         )
-        step_area = finite(point.get("step_area_m2"))
-        if not all(math.isfinite(value) for value in [process_w, receiver_activity, step_area]):
-            return {"schedule_solution_ok": False}
 
-        local = axial.solve_local_state(
+        step_area = finite(
+            point.get(
+                "step_area_m2"
+            )
+        )
+
+        if not all(
+            math.isfinite(value)
+            for value in (
+                process_w,
+                receiver_activity,
+                step_area,
+            )
+        ):
+            return {
+                "schedule_solution_ok":
+                    False
+            }
+
+        local = solve_local_state(
             v2=context["v2"],
-            v2_config=context["v2_config"],
+            v2_config=context[
+                "v2_config"
+            ],
             material=dict(material),
-            source_temperature_c=float(context["process_basis"].inlet_temperature_c),
+            source_temperature_c=float(
+                context[
+                    "process_basis"
+                ].inlet_temperature_c
+            ),
             source_humidity_ratio=process_w,
             receiver_activity=receiver_activity,
-            terminal_voltage_v=float(local_voltage),
+            terminal_voltage_v=float(
+                local_voltage
+            ),
             fixed_loss_voltage_v=0.0,
             series_asr_ohm_m2=float(
-                cfg12["operating"]["legacy_series_asr_ohm_m2"]
+                cfg12["operating"][
+                    "legacy_series_asr_ohm_m2"
+                ]
             ),
-            film_scale_factor=float(cfg12["operating"]["film_scale_factor"]),
+            film_scale_factor=(
+                base_film_scale
+            ),
             config=local_config,
         )
-        if not bool(local.get("solution_ok", False)):
-            return {"schedule_solution_ok": False}
 
-        flux = finite(local.get("net_flux_mol_m2_s"))
-        current = finite(local.get("current_density_a_m2"))
-        if not (math.isfinite(flux) and math.isfinite(current) and flux > 0.0 and current > 0.0):
-            return {"schedule_solution_ok": False}
+        if not bool(
+            local.get(
+                "solution_ok",
+                False,
+            )
+        ):
+            return {
+                "schedule_solution_ok":
+                    False
+            }
 
-        transfer_mol_s += flux * step_area
-        grid_power_w += local_voltage * current * step_area / efficiency
+        flux = finite(
+            local.get(
+                "net_flux_mol_m2_s"
+            )
+        )
+
+        current = finite(
+            local.get(
+                "current_density_a_m2"
+            )
+        )
+
+        if not (
+            math.isfinite(flux)
+            and math.isfinite(current)
+            and flux > 0.0
+            and current > 0.0
+        ):
+            return {
+                "schedule_solution_ok":
+                    False
+            }
+
+        transfer_mol_s += (
+            flux
+            * step_area
+        )
+
+        grid_power_w += (
+            local_voltage
+            * current
+            * step_area
+            / efficiency
+        )
+
         local_rows.append(
             {
-                "x_over_L": x_value,
-                "voltage_multiplier": multiplier,
-                "local_voltage_v": local_voltage,
-                "net_flux_mol_m2_s": flux,
-                "current_density_a_m2": current,
+                "x_over_L":
+                    x_value,
+
+                "voltage_multiplier":
+                    multiplier,
+
+                "local_voltage_v":
+                    local_voltage,
+
+                "net_flux_mol_m2_s":
+                    flux,
+
+                "current_density_a_m2":
+                    current,
             }
         )
 
     return {
-        "schedule_solution_ok": True,
-        "schedule_kind": schedule_kind,
-        "voltage_scale_v": voltage_scale_v,
-        "maximum_local_voltage_v": float(np.max(local_voltages)),
-        "replayed_water_transfer_kg_h": (
-            transfer_mol_s * WATER_MOLAR_MASS_KG_MOL * 3600.0
-        ),
-        "replayed_eo_grid_power_kw": grid_power_w / 1000.0,
-        "profile_rows": local_rows,
+        "schedule_solution_ok":
+            True,
+
+        "schedule_kind":
+            schedule_kind,
+
+        "voltage_scale_v":
+            voltage_scale_v,
+
+        "maximum_local_voltage_v":
+            float(
+                np.max(
+                    local_voltages
+                )
+            ),
+
+        "replayed_water_transfer_kg_h":
+            (
+                transfer_mol_s
+                * WATER_MOLAR_MASS_KG_MOL
+                * 3600.0
+            ),
+
+        "replayed_eo_grid_power_kw":
+            grid_power_w
+            / 1000.0,
+
+        "profile_rows":
+            local_rows,
     }
+
 
 
 def run_zoned_study(
@@ -1472,7 +1913,7 @@ def main() -> int:
         "target": args.target,
         "baseline_source": baseline_source,
         "baseline_material": {
-            name: material[name] for name in context["v12"].MATERIAL_COLUMNS
+            name: material[name] for name in MATERIAL_COLUMNS
         },
         "baseline_terminal_voltage_v": voltage,
         "baseline_receiver_capacity_multiplier": receiver_mult,
