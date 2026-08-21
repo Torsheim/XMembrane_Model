@@ -202,3 +202,58 @@ EO power, complete incremental power and marginal Wh/L.
   gas receiver?
 - Which ERV product class and certified operating point
   should define the industry comparison?
+
+## 2026-08-21 — Canonical replay of legacy geometry finalists
+
+The two post-filtered legacy geometry candidates were replayed
+through the native canonical transport, receiver, engineering and
+stack calculation path.
+
+### Numerical equivalence
+
+Both candidate-geometry rows reproduce their corresponding legacy
+rows within a relative tolerance of 1e-6. The observed maximum
+relative errors were approximately 1.5e-16 for O30 case 94 and
+1.7e-16 for O50 case 310. The legacy-to-canonical migration is
+therefore not the source of the reported performance differences.
+
+### Gate decisions
+
+- O30 case 94 passes the native analysis, stack, 9000 m2 area and
+  21 A/m2 current-density gates. It requires 1.26356 V and therefore
+  fails the declared 1.0 V per-cell limit. It is not an accepted
+  all-gates design.
+- The zero and NaN fields from the O30 default-geometry replay
+  represent a failed solve, not a physical zero-power solution.
+- O50 case 310 passes all currently declared model gates at
+  0.343 V, 7757.25 m2 and 6.768 A/m2.
+
+### Controlled O50 geometry comparison
+
+At identical material, voltage and receiver operating state, moving
+from the canonical default geometry to legacy case 310 changes:
+
+- active area by +99.98 percent;
+- maximum current density by -50.00 percent;
+- combined process and receiver fan power from
+  8.768 to 0.715 kW
+  (-91.84 percent);
+- analysis core power from
+  23.755 to
+  15.702 kW
+  (-33.90 percent);
+- EO grid power remains approximately 14.99 kW.
+
+This demonstrates a geometry trade-off: additional active area and
+parallel flow capacity reduce current loading and auxiliary fan
+power, while the EO transport work remains nearly unchanged at the
+fixed operating point.
+
+### Decision
+
+O50 case 310 is retained as a valid geometry hypothesis, not as a
+hardware-validated optimum. O30 case 94 must not be used as an
+accepted design or system-savings case unless the 1.0 V contract is
+explicitly changed. The next calculation task is a new constrained
+canonical O30 search with voltage <= 1.0 V, current density
+<= 21 A/m2 and active area <= 9000 m2.
