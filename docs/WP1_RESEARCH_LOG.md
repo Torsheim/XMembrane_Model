@@ -257,3 +257,69 @@ accepted design or system-savings case unless the 1.0 V contract is
 explicitly changed. The next calculation task is a new constrained
 canonical O30 search with voltage <= 1.0 V, current density
 <= 21 A/m2 and active area <= 9000 m2.
+
+## 2026-08-21 — O30 one-volt receiver-capacity boundary
+
+A local canonical gas-receiver scan tested the legacy O30 case-94
+material and geometry at 0.8, 0.9 and 1.0 V and eight receiver
+capacity multipliers from 1.01 to 3.0. The hard limits were 1.0 V,
+21 A/m2 and 9000 m2.
+
+### Result
+
+No point passed all declared gates. All 24 points ended with
+`area_limit_before_target`: the integration reached 9000 m2 before
+the O30 process-air target was reached. The stored `area_gate_pass`
+value only confirms that the recorded area does not exceed the cap;
+it does not imply that the target was achieved.
+
+The corrected nearest point was 1.0 V and receiver multiplier 3.0.
+It achieved 97.0337 percent of the required
+water removal, transferring
+4236.411 kg/h and
+leaving 129.507 kg/h unresolved. Maximum current
+density was
+18.758 A/m2,
+so the 21 A/m2 gate was not the active limitation.
+
+The nearest point required a receiver/process dry-air ratio of
+7.537
+and approximately
+1108927 cfm receiver
+air. Analysis core power was
+73.420 kW.
+
+At 1.0 V, increasing the receiver multiplier from 1.01 to 3.0
+improved achieved removal from
+92.7313 to
+97.0337 percent, while increasing the
+receiver/process dry-air ratio from
+2.537
+to
+7.537
+and core power from
+67.964 to
+73.420 kW.
+
+A proportional area diagnostic gives approximately
+9275.1 m2 for the nearest point. This is not an exact
+required area and must not be reported as a solved design because
+the coupled transport problem is nonlinear.
+
+### Interpretation and decision
+
+Brute-force receiver-air scaling gives diminishing returns and
+worsens the previously identified receiver-air bottleneck. It does
+not recover a valid O30 design inside the current limits. The next
+gas-receiver calculation should therefore investigate geometry or
+material improvements at no more than 1.0 V before considering a
+larger area contract.
+
+The first postprocessor version ranked failed points by core power
+after the formal gate checks and therefore selected 0.8 V / 1.01.
+Version 1.1 corrects failed-point ranking by normalized target
+shortfall. Raw solver rows were unchanged.
+
+This result applies only to the fixed hypothetical case-94 material
+and geometry. It is not a global O30 infeasibility result, a material
+validation, a hardware validation or a liquid-receiver result.
