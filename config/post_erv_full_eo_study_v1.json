@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "study_id": "post-erv-full-remaining-eo-v1-2026-08-27",
+  "purpose": "Test ERV first, followed by EO carrying the full remaining dehumidification duty to the supply humidity ratio.",
+  "interpretation": "The energy window is an all-in EO SEC budget. The membrane sweep is a conditional finite-film transport calculation. Neither is a validated full-system saving claim.",
+  "source_operating_region_config": "config/membrane_operating_region_study_v1.json",
+  "targets": [
+    {
+      "target_id": "o50_reference",
+      "label": "O50 reference at 32 C",
+      "humidity_ratio_kg_kg_da": 0.0149522480769927,
+      "run_transport": false,
+      "interpretation": "The passive ERV outlet is already drier than O50 in absolute humidity, so EO has no post-ERV O50 duty."
+    },
+    {
+      "target_id": "post_erv_10pct",
+      "label": "10 percent post-ERV reduction",
+      "humidity_ratio_kg_kg_da": 0.011893491452408739,
+      "run_transport": true,
+      "interpretation": "Regression bridge to the released 10 percent post-ERV study."
+    },
+    {
+      "target_id": "o30",
+      "label": "O30 humidity ratio at 32 C",
+      "humidity_ratio_kg_kg_da": 0.0088858981051461,
+      "run_transport": true,
+      "interpretation": "EO polishing from the passive ERV outlet to the O30 absolute-humidity coordinate."
+    },
+    {
+      "target_id": "full_remaining_latent",
+      "label": "Full remaining latent duty",
+      "humidity_ratio_kg_kg_da": 0.00726028059345441,
+      "run_transport": true,
+      "interpretation": "EO removes all remaining moisture down to the 20 C and 50 percent RH supply humidity ratio; the downstream coil is sensible-only in the screening model."
+    }
+  ],
+  "energy_window": {
+    "all_in_eo_sec_kwh_per_kg": [
+      0.0,
+      0.02,
+      0.05,
+      0.1,
+      0.15,
+      0.2,
+      0.25,
+      0.3,
+      0.35,
+      0.4
+    ],
+    "process_heat_leak_fractions": [0.0, 0.5, 1.0],
+    "break_even_search_max_kwh_per_kg": 1.0
+  },
+  "endpoint_control_audit": {
+    "humidity_offsets_above_supply_g_kg_da": [0.0, 1e-8, 1e-6, 0.001, 0.01],
+    "process_heat_leak_fraction": 0.0,
+    "interpretation": "Tests the saturated-coil to sensible-only control-regime discontinuity at the exact supply humidity coordinate."
+  },
+  "transport_sweep": {
+    "area_observation_cap_m2": 40000.0,
+    "area_step_m2": 10.0,
+    "step_halving_relative_area_tolerance": 0.001,
+    "maximum_receiver_surface_activity": 0.99,
+    "terminal_voltage_cap_sensitivity_v": [1.0, 2.0, 3.0, 5.0],
+    "uniform_current_density_a_m2": [1.0, 1.5, 2.0, 2.5, 3.0, 4.0, 5.0, 7.5, 10.0, 15.0, 20.0, 25.0, 30.0, 45.0, 60.0],
+    "smoke_uniform_current_density_a_m2": [1.5, 5.0, 15.0],
+    "receiver_to_process_dry_air_ratio": [1.0, 1.1, 1.25, 1.5, 2.0, 3.0],
+    "smoke_receiver_to_process_dry_air_ratio": [1.0, 3.0],
+    "receiver_capacity_sweep_target_ids": ["full_remaining_latent"],
+    "receiver_capacity_axis_interpretation": "Capacity-only sensitivity. Receiver film coefficients and the released area-based fan law remain frozen; extra receiver-flow fan/manifold energy is not modelled and cases are not rankable across this axis.",
+    "available_post_erv_exhaust_to_process_ratio": 1.0,
+    "external_receiver_source_interpretation": "Ratios above one require an additional declared receiver-air source beyond the balanced ERV exhaust. Its conditioning, fan and disposal energy are not modelled.",
+    "water_diffusivity_m2_s": [
+      1.597880133581376e-14,
+      1e-12,
+      1e-10,
+      1e-9
+    ],
+    "receiver_and_sink_sec_kwh_per_kg": [0.0, 0.025, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3],
+    "current_density_policy": "sampling coordinate only; no acceptance cap"
+  },
+  "claim_policy": {
+    "full_system_claim_allowed": false,
+    "missing_or_parameterized_terms": [
+      "receiver regeneration or disposal",
+      "receiver heat rejection",
+      "conjugate membrane and air thermal feedback",
+      "rankable module and manifold pressure drop",
+      "electrodes, durability and manufacturability"
+    ]
+  },
+  "reference_audit": {
+    "relative_tolerance": 1e-8,
+    "expected_post_erv_temperature_c": 23.0,
+    "expected_post_erv_humidity_ratio_kg_kg_da": 0.013214990502676377,
+    "expected_supply_humidity_ratio_kg_kg_da": 0.00726028059345441,
+    "expected_process_dry_air_mass_flow_kg_s": 78.81256451,
+    "expected_passive_erv_power_kw": 34.359224411468865,
+    "expected_remaining_ac_power_kw": 509.3813397763205,
+    "expected_passive_erv_plus_ac_power_kw": 543.7405641877893,
+    "expected_full_remaining_water_duty_kg_h": 1689.5014518920134,
+    "expected_full_remaining_zero_heat_break_even_sec_kwh_per_kg": 0.2751956966376383,
+    "expected_near_endpoint_break_even_sec_kwh_per_kg": 0.15670080744075676
+  }
+}

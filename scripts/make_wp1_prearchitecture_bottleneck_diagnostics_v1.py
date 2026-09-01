@@ -55,7 +55,8 @@ Important
 ---------
 A negative membrane-surface activity margin is diagnostic, not an automatic
 failure in this active-EO pre-architecture model. The hard local transport gate
-is positive net water flux with physical local states and current below cap.
+is positive net water flux with physical local states. Current density is a
+diagnostic coordinate unless an engineering sensitivity cap is supplied.
 """
 
 from __future__ import annotations
@@ -166,7 +167,15 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--baseline-csv", type=Path)
     parser.add_argument("--area-max-m2", type=float, default=9000.0)
     parser.add_argument("--voltage-max-v", type=float, default=2.0)
-    parser.add_argument("--current-cap-a-m2", type=float, default=21.0)
+    parser.add_argument(
+        "--current-cap-a-m2",
+        type=float,
+        default=None,
+        help=(
+            "Optional engineering current-density sensitivity limit. "
+            "No current-density acceptance gate is applied by default."
+        ),
+    )
     parser.add_argument("--receiver-band", default="bridge_40_to_60")
     parser.add_argument("--receiver-temperature-c", type=float, default=None)
     parser.add_argument("--receiver-band-span", type=float, default=0.20)
@@ -188,8 +197,10 @@ def setup_context(
         receiver_temperature_c=args.receiver_temperature_c,
         area_max_m2=float(args.area_max_m2),
         voltage_max_v=float(args.voltage_max_v),
-        current_cap_a_m2=float(
-            args.current_cap_a_m2
+        current_cap_a_m2=(
+            float(args.current_cap_a_m2)
+            if args.current_cap_a_m2 is not None
+            else None
         ),
         lhs_samples=8,
         seed=20260812,
@@ -521,10 +532,31 @@ def solve_full_case(
         )
     )
 
-    current_cap = float(
+    solver_current_ceiling = float(
         cfg12["operating"][
             "current_density_cap_a_m2"
         ]
+    )
+
+    engineering_current_limit = getattr(
+        context["args"],
+        "current_cap_a_m2",
+        None,
+    )
+    current_density_gate_applied = (
+        engineering_current_limit is not None
+    )
+    if current_density_gate_applied:
+        engineering_current_limit = float(
+            engineering_current_limit
+        )
+    current_density_gate_pass = bool(
+        not current_density_gate_applied
+        or (
+            math.isfinite(max_current)
+            and 0.0 < max_current
+            <= engineering_current_limit + 1.0e-9
+        )
     )
 
     analysis_pass = bool(
@@ -543,9 +575,8 @@ def solve_full_case(
         and area
         <= selected_area_limit + 1.0e-9
         and math.isfinite(max_current)
-        and 0.0
-        < max_current
-        <= current_cap + 1.0e-9
+        and 0.0 < max_current
+        and current_density_gate_pass
         and math.isfinite(min_flux)
         and min_flux > 0.0
         and math.isfinite(core_power)
@@ -609,6 +640,18 @@ def solve_full_case(
 
             "diagnostic_analysis_pass":
                 analysis_pass,
+
+            "current_density_acceptance_gate_applied":
+                current_density_gate_applied,
+
+            "current_density_acceptance_gate_pass":
+                current_density_gate_pass,
+
+            "engineering_current_density_limit_a_m2":
+                engineering_current_limit,
+
+            "solver_current_density_ceiling_a_m2":
+                solver_current_ceiling,
         }
     )
 
@@ -1855,6 +1898,15 @@ def write_summary(
         f"- Uniform terminal voltage: {baseline_v:.8g} V",
         f"- Receiver capacity multiplier: {receiver_mult:.6g}",
         f"- Area gate: {args.area_max_m2:.6g} m2",
+        (
+            "- Current-density acceptance gate: not applied; current is "
+            "reported as a diagnostic coordinate"
+            if args.current_cap_a_m2 is None
+            else (
+                "- Explicit current-density sensitivity gate: "
+                f"{float(args.current_cap_a_m2):.6g} A/m2"
+            )
+        ),
         "",
         "## Interpretation limits",
         "",
@@ -1911,6 +1963,24 @@ def main() -> int:
         "baseline_receiver_capacity_multiplier": receiver_mult,
         "area_gate_m2": args.area_max_m2,
         "voltage_cap_v": args.voltage_max_v,
+        "engineering_current_density_limit_a_m2": (
+            float(args.current_cap_a_m2)
+            if args.current_cap_a_m2 is not None
+            else None
+        ),
+        "current_density_acceptance_gate_applied": (
+            args.current_cap_a_m2 is not None
+        ),
+        "solver_current_density_ceiling_a_m2": float(
+            context["cfg12"]["operating"][
+                "current_density_cap_a_m2"
+            ]
+        ),
+        "current_density_policy": (
+            "explicit engineering sensitivity gate"
+            if args.current_cap_a_m2 is not None
+            else "diagnostic operating coordinate; no acceptance gate"
+        ),
         "receiver_architecture_included": False,
         "zoned_voltage_is_profile_replay_only": True,
     }

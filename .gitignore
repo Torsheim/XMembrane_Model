@@ -41,3 +41,6 @@ outputs/*
 *.log
 *.out
 *.synctex.gz
+*.toc
+*.nav
+*.snm

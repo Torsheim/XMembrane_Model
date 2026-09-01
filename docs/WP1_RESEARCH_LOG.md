@@ -73,16 +73,11 @@ The selected point reports:
 - process fan: 6.16 kW;
 - receiver fan: 38.17 kW.
 
-A new hard limit of 21.0 A/m² makes this selected point
-infeasible by 0.224 A/m². It must be reoptimized rather than
-rounded into compliance. The older material screen used a
-much looser 2000 A/m² screening gate.
-
-The active continuation, bottleneck and direct-liquid
-workflows now default to 21.0 A/m² and propagate that value
-into the local axial solver before integration and candidate
-selection. The retained 2000 A/m² configuration is historical
-reference data, not the active engineering design gate.
+The 21.224 A/m² value is a reported operating diagnostic. The
+temporary 21.0 A/m² workflow gate was subsequently withdrawn after
+confirmation that no such design limit applies to this study. Current
+density must remain visible for electrode, bus and durability design, but it
+is not an acceptance ceiling in the present exploratory phase.
 
 ### Liquid receiver interpretation
 
@@ -171,7 +166,8 @@ EO power, complete incremental power and marginal Wh/L.
 
 ## Planned sequence
 
-1. Enforce the 21 A/m² gate and rerun feasible O30 designs.
+1. Establish the nonlinear O30 required-area curve at 1.0 V with no
+   current-density acceptance limit; retain 9000 m² only as a comparison.
 2. Preserve a true passive or zero-current O50 reference.
 3. Compare coupled gas, saturation-drain and direct-liquid
    receiver boundaries.
@@ -189,11 +185,15 @@ EO power, complete incremental power and marginal Wh/L.
 |---|---|---|---|---|
 | 2026-08-19 | this commit | Boundary contracts | Initial portfolio and gates encoded | Contract only |
 | 2026-08-19 | current commit | 21 A/m² workflow gate | 17/74 reduced-grid cases passed; cap propagated before candidate selection. Validation smoke only, not a feasibility conclusion. | Engineering-gate validation |
+| 2026-08-26 | pending commit | System-closure gate audit | Superseded after confirmation that 21 A/m2 is not a design limit; closure outputs require regeneration without that gate. | Superseded contract audit |
+| 2026-08-26 | pending commit | O30 nonlinear required area at 1.0 V | All eight fixed-basis receiver points reached target at 10499.7-12139.9 m2; R=3 step-halving result 10499.6770 m2. | Local model-conditioned area curve |
+| 2026-08-31 | pending commit | Direct-ERV gradient and signed-triplet closure | O30 bulk driving is favourable but finite films reverse the selected surface gradient; 1.137x common film/area factor restores zero margin. Full duty is pinched at zero bulk margin. Matched +J/0/-J gives only 0.348 ppm incremental O30 rectification and zero at full duty. | Final steady-model closure; transient AC remains experimental |
 
 ## Open questions
 
-- Is 21.0 A/m² a hard local limit for every architecture or
-  only the selected prearchitecture design?
+- No 21.0 A/m² design limit applies to the current study. Local current
+  density remains a reported diagnostic; finite solver ceilings are numerical
+  guards only.
 - Which measured Nafion diffusivity dataset and hydration
   condition should define the reference case?
 - Where does phase change occur in a direct-liquid design?
@@ -323,3 +323,256 @@ shortfall. Raw solver rows were unchanged.
 This result applies only to the fixed hypothetical case-94 material
 and geometry. It is not a global O30 infeasibility result, a material
 validation, a hardware validation or a liquid-receiver result.
+
+## 2026-08-26 — Fail-closed system-closure audit
+
+The Trond system-closure workflow was audited against the active O30
+engineering contract. Historical `analysis_pass` is no longer accepted
+as sufficient evidence for a current system claim. Reference selection
+now separately requires the requested target, target attainment, water
+balance, stack feasibility, terminal voltage <= 1.0 V, maximum local
+current density <= 21.0 A/m2 and active area <= 9000 m2.
+
+### Gas-reference decision
+
+The retained O30 regression row passes every listed gate except current
+density:
+
+- terminal voltage: 0.98 V;
+- active area: 8922.21 m2;
+- maximum local current density: 21.2238 A/m2;
+- current-density excess: 0.2238 A/m2.
+
+It remains available as a diagnostic and numerical regression fixture,
+but it is not an accepted system reference. No alternative all-gates O30
+gas row is present in the current repository inputs.
+
+Consequently, the workflow now reports the following as not available:
+
+- gas-receiver EO/core SEC;
+- incremental ERV+EO water and power requirements;
+- combined EO-system power and savings;
+- gas-derived annual energy and cost FOMs;
+- enclosure capacity claims based on that module.
+
+The conditional gross no-ERV arithmetic remains 180.32 Wh/L because it
+depends only on the declared compressor anchors and water duty. The
+remaining allowance after an EO core is not reported until a valid core
+exists. Missing component values remain missing and are not replaced by
+the historical 70.69, 6.16 or 38.17 kW values.
+
+### Liquid local screen
+
+Applying the same 1.0 V, 21.0 A/m2 and 9000 m2 local engineering screen
+changes the best full-grid gravity/free-heat-sink point from the earlier
+over-current result to:
+
+- liquid activity: 0.60;
+- terminal voltage: 0.05 V;
+- maximum local current density: 19.521 A/m2;
+- uniform-flux area estimate: 3325.21 m2;
+- EO plus process-fan power: 5.713 kW.
+
+This is still only a uniform-inlet local screen. Activity 0.60 requires a
+regeneration ledger, and the 5.713 kW subtotal assumes a free heat sink.
+At the configured heat-rejection COP of 6, the separate modeled heat-
+rejection electricity is approximately 490.36 kW. Neither liquid result
+is a closed system total or a validated saving.
+
+### Decision
+
+The next gas calculation remains a constrained canonical O30 search over
+material and geometry at no more than 1.0 V, 21.0 A/m2 and 9000 m2.
+System-level EO and ERV+EO claims stay unavailable until that search finds
+an all-gates row. The liquid path requires finite film, phase-change,
+drainage, heat-rejection and regeneration closure before promotion beyond
+screening level.
+
+## 2026-08-26 — Contract correction and nonlinear O30 required area
+
+The 21 A/m2 value is not a design constraint for this study. The immediately
+preceding fail-closed decision is therefore superseded: its rejection of the
+historical O30 reference on current density alone must not be used in the final
+system conclusion. Current density remains visible as a diagnostic, while any
+large finite value passed into the legacy integration API is only a numerical
+solver guard.
+
+The earlier 9000 m2 receiver scan was then continued to the actual O30 target
+at exactly 1.0 V for the same hypothetical case-94 material and fixed legacy
+geometry. The numerical integration ceiling was 15000 m2; it was not a design
+cap. The 9000 m2 value was retained only as a comparison line.
+
+### Result
+
+All eight receiver-capacity points from 1.01 through 3.0 reached target and
+passed an independent required-area validity contract covering the local
+solve, target endpoint, counter-current boundary, water balances, transport
+direction, voltage reconstruction, finite power terms and worker status.
+
+Required area decreased monotonically across the tested points from
+12139.863 m2 at receiver multiplier 1.01 to 10499.717 m2 at multiplier 3.0.
+The latter is 1499.717 m2, or 16.66%, above the 9000 m2 comparison line.
+Maximum local current density ranged from 15.264 to 18.758 A/m2 and was not
+used for acceptance or ranking.
+
+At multiplier 3.0, step halving from 20 to 10 m2 changed the required area
+from 10499.7174 to 10499.6770 m2: 0.0405 m2, or 0.000385%. The practical
+fixed-basis result is therefore approximately 10500 m2.
+
+The old proportional indicator of approximately 9275.1 m2 was 13.2% below
+the nonlinear target-reaching result. It was optimistic because the final
+coupled-transport tail is nonlinear.
+
+### Decision
+
+The curve is an area-airflow-power trade-off, not a single optimum. Moving
+from receiver multiplier 1.01 to 3.0 reduces area by 13.51%, but increases
+receiver airflow by 197% to approximately 1.109 million cfm and increases
+core power by about 3.46% to 76.13 kW. Multiplier 3.0 is the minimum-area
+tested point; multiplier 1.01 is the minimum-core-power tested point.
+
+This closes the exact-area question for the fixed local basis. It does not
+validate the hypothetical material, close receiver manifolding or identify a
+global material/geometry optimum. The next finalization task is to remove the
+superseded 21 A/m2 acceptance gate from system-closure selection and regenerate
+dependent gas/liquid/system outputs before freezing the final conclusion.
+
+## 2026-08-26 — Cross-workspace evidence integration and full report
+
+The WSL source trees, downloaded HeiQ code archives, audited output packages and six
+shared work-chat histories were reviewed together. Chat text was used only to recover
+requirements and corrections; numerical claims were tied to named local output files.
+
+### Integrated findings
+
+- The post-ERV additional-10% full study is the primary conditional energy result:
+  53.0666 kW / 9.7595% for the best real-film row at 5 A/m2, with 1115.07 m2
+  required area and 5.6873 kW bounded add-on power. Full-system claims remain disabled
+  and the minimum surface-activity margin is negative.
+- The 12-case diffusivity study remains positive in 11 cases. The best margin falls
+  from 9.76% at the Terminal-1 diffusivity to 6.11% at 1e-9 m2/s while best-case area
+  rises to 4901.68 m2. This is a one-parameter sensitivity, not a candidate-material
+  validation.
+- Detailed-HVAC/thermal smoke gives 47.9679 kW in the isothermal base row, but the
+  deterministic scenario envelope spans -131.957 to +146.387 kW. Five of eight
+  scenario corners are positive; this is not a probability model.
+- The coupled condensation smoke has one passing counter-current row and no crossflow.
+  It produces zero condensate, 441.525 kW sensible condenser duty and -32.779 kW
+  coupled saving even with condenser electricity assumed zero.
+- The Nafion vapor reference has 8 numerical target rows but 0 rows that both reach
+  target and remain within the declared property-correlation domain.
+- Historical receiver-regeneration v39 gives -91.579 kW in its 30000-cfm stress row.
+  It uses an older hypothetical material/boundary and is retained only as evidence
+  that receiver regeneration can erase a gross EO margin.
+
+### Code and system-closure decision
+
+The default `PrearchitectureGates` current-density limit is now `None`. An explicit
+current cap remains available only as a named sensitivity. The regenerated
+`outputs/trond_system_closure_v2_no_current_gate` package reports a known gas-core
+site subtotal of 118.385 kW but holds system saving and FOMs unavailable because heat
+rejection and receiver regeneration remain missing.
+
+The canonical `PowerLedger` is now used in the Trond closure workflow. A new
+`outputs/integrated_evidence_v1` register records nine studies, modes, audits,
+source hashes, headline metrics, the next-study matrix and a nine-row
+`material_data_requirements.csv` working template. Smoke outputs remain smoke,
+historical current-gated results remain historical, and missing power is never treated
+as zero.
+
+### Finalization decision
+
+The recommended primary architecture for the remaining study time is passive ERV plus
+EO polishing. The next numerical work should be one full detailed-HVAC/thermal run with
+an explicit receiver-sink ledger and at least one rankable module/pressure-drop bracket,
+not another broad sweep. Structured material scouting can begin in parallel as a data-
+gap matrix covering sorption, D(a,T), conductivity/ASR, drag, thickness/swelling,
+durability, ion form and receiver compatibility. No candidate should be ranked from a
+single datasheet property.
+
+## 2026-08-27 — ERV først, EO for hele den resterende latentlasten
+
+En egen fail-closed studie ble etablert for arkitekturen passiv ERV, deretter
+EO helt ned til tilluftens absolutte fuktighet. Den bruker samme post-ERV
+motstrømsintegrator som den tidligere 10 %-studien, men med eget mål, egne
+akser, eget outputområde og eksplisitt receiver/prosess-luftforhold.
+
+ERV-utløpet er 23,00 °C og 13,215 g/kg. Fullt EO-mål er 7,260 g/kg og
+vannplikten er 1689,50 kg/h. O50 er allerede passert av ERV alene; O30 er
+beholdt som et mellompunkt. Den eksakte sensible coil-grenen gir et all-in
+break-even-budsjett på 0,27520 kWh/kg, mens et epsilon over målet gir
+0,15670 kWh/kg. Begge kontrollregimer rapporteres, og den lavere verdien er
+konservativ beslutningsgrense inntil coilkontrollen er validert.
+
+Den fulle sweepen evaluerte 480 membrancaser. 195 nådde målet, 185 bestod
+transport- og receiver-overflategatene, ingen beholdt positiv lokal
+overflatedrivretning over hele modulen, og 7/7 utvalgte caser bestod
+step-halvering. Den balanserte primærcasen ved 3,0 A/m² krever 8376,25 m²,
+0,881–1,895 V og 47,94 kW kjent EO-grid- og vifteffekt. Dens betingede
+gevinst før receiver/sluk er 417,00 kW på eksakt endepunkt og 216,80 kW på
+den konservative grenen. Receiver/sluk, varmeavvisning, termisk kobling og
+rankbart manifoldtrykkfall er fortsatt ukjent; fullsystemstatus forblir
+`UNKNOWN`.
+
+## 2026-08-27 — EO-prosentsweep etter ERV
+
+Det neste sweepet undersøkte gradvis hvor mye av den endelige
+ERV-til-tilluft-fuktighetsdifferansen EO skal lukke. Den primære aksen er
+derfor prosent av den *gjenværende* latentplikten etter ERV, ikke en relativ
+reduksjon i ERV-utløpets fuktighetsforhold. Med denne definisjonen tilsvarer
+den historiske «10 %»-casen 22,1925 % fullføring, O30 tilsvarer 72,7003 %, og
+full EO-avfukting tilsvarer 100 % fullføring, men bare 45,0603 % relativ
+reduksjon fra ERV-utløpet. Begge prosentdefinisjonene beholdes i output slik
+at eldre resultater ikke ometiketteres.
+
+Ved null EO-prosessvarmelekkasje gir den konservative kontrollgrenen følgende
+betingede energigevinst før receiver/sluk:
+
+| All-in EO-SEC | Historisk «10 %» | O30 | Fullt endepunkt, konservativt |
+|---:|---:|---:|---:|
+| 0,050 kWh/kg | 40,01 kW | 131,06 kW | 180,27 kW |
+| 0,100 kWh/kg | 21,26 kW | 69,64 kW | 95,80 kW |
+| 0,150 kWh/kg | 2,51 kW | 8,23 kW | 11,32 kW |
+
+Under 100 % forblir screening-HVAC på den mettede coil-grenen, og gevinsten
+øker omtrent lineært med behandlet vann når all-in EO-SEC er under
+0,15670 kWh/kg. Nøyaktig 100 % skifter derimot til en sensible-only
+coil-gren. Dette gir et kontrollregimesprang på 200,1973 kW mellom den
+ensidige konservative grensen og det eksakte endepunktet; spranget er et
+modell-/kontrollregimeskifte og skal ikke tolkes som en kontinuerlig fysisk
+membrangevinst.
+
+På den faste Terminal-1 D/j/R-koordinaten, der aktivt membranareal dimensjoneres
+på nytt ved hvert mål, utvikler de valgte ankerpunktene seg slik:
+
+| Punkt | Aktivt areal | Maks. terminalspenning | Maks. receiver-overflateaktivitet | Konservativt receiver/sluk-SEC-budsjett |
+|---|---:|---:|---:|---:|
+| Historisk «10 %» / 22,1925 % fullføring | 1858,5 m² | 0,503 V | 0,8056 | 0,1427 kWh/kg |
+| O30 / 72,7003 % fullføring | 6089,1 m² | 1,314 V | 0,9189 | 0,1337 kWh/kg |
+| Full EO / 100 % fullføring | 8376,2 m² | 1,895 V | 0,9797 | 0,1283 kWh/kg |
+
+Det økende arealet, spenningen og receiver-overflateaktiviteten, sammen med et
+fallende gjenstående SEC-budsjett, viser at den siste delen av plikten blir
+stadig mer krevende. Dette er en dimensjoneringstrajektorie, ikke responsen til
+én fast installert modul.
+
+Den fulle transportkjøringen omfattet 720 caser: 306 nådde målet, 289 bestod
+den deklarerte transport-/receiver-gaten, og 0 beholdt positiv lokal
+overflatedrivretning over hele modulen. Step-halvering bestod for 12/12 unike
+best-envelope-/fast-koordinatcaser. Receiverregenerering eller -disponering,
+sluk, varmeavvisning og termisk tilbakekobling er fortsatt uløst; derfor er
+energigevinstene betingede og ingen EO-prosent er ennå et validert
+fullsystemoptimum.
+
+## 2026-08-27 — 1 V-designfront og receiverdiagnostikk etter ERV
+
+Den samplede 1 V-fronten er 76,328125–76,406250 %. O30s beste ≤1 V-case
+bruker `D=1,597880e-14`, `j=0,75`, 24 369,97 m² og 0,985815 V; gevinsten før
+receiver/sluk er 144,90 kW, men lokal minimumsmargin er -0,232696.
+Ved SEC 0/0,05/0,10/0,125/0,13/0,135/0,14/0,15 kWh/kg er beste ≤1 V-andel
+67,5/67,5/62,5/55/50/50/50/50 % og gevinst 148,60/91,58/36,14/11,12/
+6,64/2,42/-1,81/-10,25 kW. RH-tersklene ved 50/60/70 %/O30 er
+0,489133/0,455651/0,422106/0,413122. Auditen ga 1250/1005/1002/0
+primærcaser/mål/gate/positiv retning og 384 receivercaser; alle 160 med
+positiv margin var `negative_voltage_everywhere`, urankbare og uten
+fullsystempåstand. Step-halvering bestod 5/5.

@@ -200,7 +200,15 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--area-max-m2", type=float, default=9000.0)
     parser.add_argument("--voltage-search-max-v", type=float, default=24.0)
     parser.add_argument("--design-voltage-caps-v", nargs="+", type=float, default=DEFAULT_DESIGN_CAPS_V)
-    parser.add_argument("--current-cap-a-m2", type=float, default=21.0)
+    parser.add_argument(
+        "--current-cap-a-m2",
+        type=float,
+        default=None,
+        help=(
+            "Optional engineering current-density sensitivity limit. "
+            "No current-density acceptance gate is applied by default."
+        ),
+    )
     parser.add_argument("--liquid-interface-factor", type=float, default=1.0e6)
     parser.add_argument(
         "--process-film-factors",
@@ -230,7 +238,10 @@ def validate_args(args: argparse.Namespace) -> None:
         raise SystemExit("--area-max-m2 must be positive")
     if args.voltage_search_max_v <= 0.0:
         raise SystemExit("--voltage-search-max-v must be positive")
-    if args.current_cap_a_m2 <= 0.0:
+    if (
+        args.current_cap_a_m2 is not None
+        and args.current_cap_a_m2 <= 0.0
+    ):
         raise SystemExit("--current-cap-a-m2 must be positive")
     if args.liquid_interface_factor <= 0.0:
         raise SystemExit("--liquid-interface-factor must be positive")
@@ -303,8 +314,10 @@ def setup_context(
         voltage_max_v=float(
             args.voltage_search_max_v
         ),
-        current_cap_a_m2=float(
-            args.current_cap_a_m2
+        current_cap_a_m2=(
+            float(args.current_cap_a_m2)
+            if args.current_cap_a_m2 is not None
+            else None
         ),
         lhs_samples=8,
         seed=20260812,
@@ -401,7 +414,10 @@ def material_bases(context: Mapping[str, Any], args: argparse.Namespace) -> dict
 
 
 
-def local_gate(local: Mapping[str, Any], current_cap_a_m2: float) -> str:
+def local_gate(
+    local: Mapping[str, Any],
+    current_cap_a_m2: float | None,
+) -> str:
     if not bool(local.get("solution_ok", False)):
         return str(local.get("solution_status", "unknown_local_failure"))
     flux = finite(local.get("net_flux_mol_m2_s"))
@@ -410,8 +426,11 @@ def local_gate(local: Mapping[str, Any], current_cap_a_m2: float) -> str:
         return "nonpositive_net_water_flux"
     if not math.isfinite(current) or current <= 0.0:
         return "nonpositive_current_density"
-    if current > current_cap_a_m2:
-        return "operating_current_density_limit"
+    if (
+        current_cap_a_m2 is not None
+        and current > current_cap_a_m2
+    ):
+        return "explicit_current_density_sensitivity_limit"
     source_surface = first_finite(local, ["source_surface_activity", "source_membrane_surface_activity"])
     receiver_surface = first_finite(local, ["receiver_surface_activity", "receiver_membrane_surface_activity"])
     if not (0.0 < source_surface <= 1.0 and 0.0 < receiver_surface <= 1.0):
@@ -747,7 +766,7 @@ def integrate_direct_liquid_case(
 
         step = min(nominal_step, area_limit - cumulative_area)
         local_start = solve_at(process_w)
-        start_gate = local_gate(local_start, float(args.current_cap_a_m2))
+        start_gate = local_gate(local_start, args.current_cap_a_m2)
         if start_gate != "local_gates_pass":
             status = start_gate
             last_local = local_start
@@ -763,7 +782,7 @@ def integrate_direct_liquid_case(
                 end_gate = "predictor_negative_humidity_ratio"
             else:
                 local_end = solve_at(predicted_w)
-                end_gate = local_gate(local_end, float(args.current_cap_a_m2))
+                end_gate = local_gate(local_end, args.current_cap_a_m2)
             if end_gate == "local_gates_pass":
                 break
             if step <= minimum_step + 1.0e-12:
@@ -786,7 +805,7 @@ def integrate_direct_liquid_case(
         if full_transfer_kg_s >= process_needed_kg_s - 1.0e-15:
             next_process_w = target_w
             event_end = solve_at(next_process_w)
-            event_gate = local_gate(event_end, float(args.current_cap_a_m2))
+            event_gate = local_gate(event_end, args.current_cap_a_m2)
             if event_gate != "local_gates_pass":
                 status = f"shortened_endpoint_failure:{event_gate}"
                 last_local = event_end
@@ -867,6 +886,23 @@ def integrate_direct_liquid_case(
         else {"stack_feasible": False, "stack_infeasibility_reason": "case did not integrate positive area/current"}
     )
 
+    maximum_current_value = (
+        maximum_current
+        if maximum_current > -math.inf
+        else math.nan
+    )
+    current_density_gate_applied = (
+        args.current_cap_a_m2 is not None
+    )
+    current_density_gate_pass = bool(
+        not current_density_gate_applied
+        or (
+            math.isfinite(maximum_current_value)
+            and 0.0 < maximum_current_value
+            <= float(args.current_cap_a_m2) + 1.0e-9
+        )
+    )
+
     summary = {
         "target": target,
         "material_basis_id": material_basis_id,
@@ -895,7 +931,17 @@ def integrate_direct_liquid_case(
         "process_mass_balance_water_removal_kg_h": process_balance_kg_h,
         "water_mass_balance_relative_error": mass_balance_error,
         "water_balance_pass": water_balance_pass,
-        "maximum_local_current_density_a_m2": maximum_current if maximum_current > -math.inf else math.nan,
+        "maximum_local_current_density_a_m2": maximum_current_value,
+        "current_density_acceptance_gate_applied": current_density_gate_applied,
+        "current_density_acceptance_gate_pass": current_density_gate_pass,
+        "engineering_current_density_limit_a_m2": (
+            float(args.current_cap_a_m2)
+            if current_density_gate_applied
+            else None
+        ),
+        "solver_current_search_upper_bound_a_m2": float(
+            v2_config["model"]["current_solver_upper_bound_a_m2"]
+        ),
         "minimum_local_flux_mol_m2_s": minimum_net_flux if minimum_net_flux < math.inf else math.nan,
         "integrated_current_a": integrated_current_a,
         "cell_power_kw": cell_power_w / 1000.0,
@@ -950,11 +996,24 @@ def integrate_direct_liquid_case(
 
 
 def case_pass(row: Mapping[str, Any], args: argparse.Namespace) -> bool:
+    maximum_current = finite(
+        row.get("maximum_local_current_density_a_m2")
+    )
+    current_density_gate_pass = bool(
+        args.current_cap_a_m2 is None
+        or (
+            math.isfinite(maximum_current)
+            and 0.0 < maximum_current
+            <= float(args.current_cap_a_m2) + 1.0e-9
+        )
+    )
     return bool(
         truth(row.get("target_reached"))
         and truth(row.get("water_balance_pass"))
         and finite(row.get("required_active_area_m2")) <= float(args.area_max_m2) + 1.0e-9
-        and 0.0 < finite(row.get("maximum_local_current_density_a_m2")) <= float(args.current_cap_a_m2) + 1.0e-9
+        and math.isfinite(maximum_current)
+        and 0.0 < maximum_current
+        and current_density_gate_pass
         and finite(row.get("minimum_local_flux_mol_m2_s")) > 0.0
         and finite(row.get("maximum_receiver_surface_activity")) <= 1.0 + 1.0e-9
         and math.isfinite(finite(row.get("predryer_core_power_kw")))
@@ -1580,6 +1639,15 @@ def write_summary(
         "- All transferred water is counted as liquid product immediately.",
         "- The full thermal rejection duty is reported explicitly.",
         "- Values below liquid activity one are solution/desiccant sensitivities, not pure water.",
+        (
+            "- Current density is reported as a diagnostic coordinate; no "
+            "acceptance gate is applied."
+            if args.current_cap_a_m2 is None
+            else (
+                "- An explicit current-density sensitivity gate of "
+                f"{float(args.current_cap_a_m2):.6g} A/m2 is applied."
+            )
+        ),
         "",
         "## Scope limits",
         "",
@@ -1683,6 +1751,24 @@ def main() -> int:
         "area_limit_m2": args.area_max_m2,
         "voltage_search_cap_v": args.voltage_search_max_v,
         "design_voltage_caps_v": args.design_voltage_caps_v,
+        "engineering_current_density_limit_a_m2": (
+            float(args.current_cap_a_m2)
+            if args.current_cap_a_m2 is not None
+            else None
+        ),
+        "current_density_acceptance_gate_applied": (
+            args.current_cap_a_m2 is not None
+        ),
+        "solver_current_search_upper_bound_a_m2": float(
+            context["v2_config"]["model"][
+                "current_solver_upper_bound_a_m2"
+            ]
+        ),
+        "current_density_policy": (
+            "explicit engineering sensitivity gate"
+            if args.current_cap_a_m2 is not None
+            else "diagnostic operating coordinate; no acceptance gate"
+        ),
         "liquid_interface_factor": args.liquid_interface_factor,
         "process_film_factors": args.process_film_factors,
         "limitations": [

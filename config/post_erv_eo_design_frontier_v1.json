@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "study_id": "post-erv-eo-design-frontier-v1-2026-08-27",
+  "purpose": "Resolve the 1 V completion frontier between 50 percent and O30 and diagnose whether receiver airflow, inlet drying or film improvement can restore positive local surface direction.",
+  "base_study_config": "config/post_erv_full_eo_study_v1.json",
+  "parent_percentage_config": "config/post_erv_eo_percentage_sweep_v1.json",
+  "parent_percentage_output": "outputs/post_erv_eo_percentage_sweep_v1",
+  "coarse_remaining_duty_completion_pct": [
+    50.0,
+    52.5,
+    55.0,
+    57.5,
+    60.0,
+    62.5,
+    65.0,
+    67.5,
+    70.0,
+    72.5,
+    72.70030721103439,
+    75.0,
+    77.5,
+    80.0,
+    82.5,
+    85.0,
+    87.5,
+    90.0,
+    92.5,
+    95.0
+  ],
+  "special_completion_coordinates": [
+    {
+      "target_id": "o30",
+      "label": "O30 humidity coordinate",
+      "remaining_duty_completion_pct": 72.70030721103439,
+      "humidity_ratio_kg_kg_da": 0.0088858981051461
+    }
+  ],
+  "primary_transport": {
+    "water_diffusivity_m2_s": [
+      1.597880133581376e-14,
+      1e-13,
+      1e-12,
+      1e-11,
+      1e-10
+    ],
+    "uniform_current_density_a_m2": [
+      0.5,
+      0.75,
+      1.0,
+      1.25,
+      1.5,
+      2.0,
+      2.5,
+      3.0,
+      4.0,
+      5.0
+    ],
+    "receiver_to_process_dry_air_ratio": 1.0,
+    "area_observation_cap_m2": 60000.0,
+    "area_step_m2": 10.0,
+    "maximum_receiver_surface_activity": 0.99,
+    "terminal_voltage_limit_v": 1.0,
+    "interpretation": "Rankable primary screen using only balanced post-ERV exhaust. Current density is a sampled control coordinate, not a material acceptance limit."
+  },
+  "adaptive_one_volt_frontier": {
+    "completion_tolerance_percentage_point": 0.1,
+    "maximum_iterations": 6,
+    "require_declared_transport_gate": true,
+    "interpretation": "Bisection brackets the largest remaining-duty completion for which at least one balanced declared-gate case stays at or below the terminal-voltage limit."
+  },
+  "receiver_intervention": {
+    "target_completion_pct": [50.0, 60.0, 70.0, 72.70030721103439],
+    "water_diffusivity_m2_s": 1.597880133581376e-14,
+    "uniform_current_density_a_m2": 3.0,
+    "receiver_to_process_dry_air_ratio": [1.0, 1.5, 2.0, 3.0],
+    "receiver_inlet_rh": [0.2, 0.4, 0.45, 0.5, 0.6],
+    "include_baseline_receiver_inlet_rh": true,
+    "receiver_film_multiplier": [0.5, 1.0, 2.0, 5.0],
+    "interpretation": "Diagnostic factorial screen. Ratios above one require external receiver air; inlet RH below baseline requires conditioning; film multipliers above one require unmodelled channel or pressure-drop changes. No intervention row is energy-rankable as a complete system."
+  },
+  "receiver_and_sink_sec_scenarios_kwh_per_kg": [0.0, 0.05, 0.1, 0.125, 0.13, 0.135, 0.14, 0.15],
+  "terminal_voltage_scenarios_v": [0.8, 0.9, 1.0, 1.1, 1.2, 1.5, 2.0],
+  "convergence": {
+    "area_step_halving_relative_tolerance": 0.001,
+    "representative_completion_pct": [50.0, 60.0, 72.70030721103439]
+  },
+  "smoke": {
+    "coarse_remaining_duty_completion_pct": [50.0, 60.0, 70.0, 72.70030721103439, 80.0, 90.0, 95.0],
+    "water_diffusivity_m2_s": [1.597880133581376e-14],
+    "uniform_current_density_a_m2": [0.5, 1.0, 2.0, 3.0, 5.0],
+    "adaptive_maximum_iterations": 2,
+    "receiver_target_completion_pct": [50.0, 72.70030721103439],
+    "receiver_to_process_dry_air_ratio": [1.0, 3.0],
+    "receiver_inlet_rh": [0.4],
+    "include_baseline_receiver_inlet_rh": true,
+    "receiver_film_multiplier": [1.0, 5.0]
+  },
+  "audit_tolerances": {
+    "percentage_absolute": 1e-9,
+    "identity_absolute_kw": 1e-8,
+    "balance_relative": 1e-8,
+    "receiver_baseline_reproduction_relative": 1e-10
+  },
+  "claim_policy": {
+    "full_system_claim_allowed": false,
+    "receiver_interventions_energy_rankable": false,
+    "interpretation": "Receiver conditioning, extra airflow, film/channel changes, regeneration or disposal, heat rejection and manifold power remain unclosed."
+  }
+}

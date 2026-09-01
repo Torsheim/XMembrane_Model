@@ -117,7 +117,15 @@ def parse_args():
     )
     p.add_argument("--area-max-m2", type=float, default=9000.0)
     p.add_argument("--voltage-max-v", type=float, default=2.0)
-    p.add_argument("--current-cap-a-m2", type=float, default=21.0)
+    p.add_argument(
+        "--current-cap-a-m2",
+        type=float,
+        default=None,
+        help=(
+            "Optional engineering current-density sensitivity limit. "
+            "No current-density acceptance gate is applied by default."
+        ),
+    )
     p.add_argument("--receiver-band", default="bridge_40_to_60")
     p.add_argument("--receiver-temperature-c", type=float, default=None)
     p.add_argument("--lhs-samples", type=int, default=64)
@@ -640,10 +648,23 @@ def write_metadata(ctx, out: Path):
         "model": "V12.1 coupled two-stream pre-architecture core",
         "area_limit_m2": args.area_max_m2,
         "voltage_max_v": args.voltage_max_v,
-        "current_density_cap_a_m2": float(
+        "engineering_current_density_limit_a_m2": (
+            float(args.current_cap_a_m2)
+            if args.current_cap_a_m2 is not None
+            else None
+        ),
+        "current_density_acceptance_gate_applied": (
+            args.current_cap_a_m2 is not None
+        ),
+        "solver_current_density_ceiling_a_m2": float(
             ctx["cfg12"]["operating"][
                 "current_density_cap_a_m2"
             ]
+        ),
+        "current_density_policy": (
+            "explicit engineering sensitivity gate"
+            if args.current_cap_a_m2 is not None
+            else "diagnostic operating coordinate; no acceptance gate"
         ),
         "receiver_band": args.receiver_band,
         "receiver_temperature_c": float(

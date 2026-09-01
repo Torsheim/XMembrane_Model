@@ -1,4 +1,4 @@
-# HeiQ Trond System Closure Study v1
+# HeiQ system energy-closure study
 
 This package adds one study script that addresses the next questions:
 
@@ -23,14 +23,28 @@ full finite liquid-film, drainage, flooding, wet-electrode or conjugate thermal 
 ERV comparison uses official exchanger-level effectiveness and pressure-drop envelopes,
 not generic annual whole-building savings claims.
 
+The earlier 21 A/m2 acceptance gate has been superseded: current density is a
+reported diagnostic, not a design limit. Any system-closure output generated with
+that gate is superseded. The active `v2_no_current_gate` package has now been
+regenerated. Gas-derived
+claims should remain fail-closed against target attainment, solver and water-balance
+validity, the declared voltage/area contract and complete power components, but not
+against 21 A/m2.
+
+The retained O30 regression row reaches the target at 0.98 V and 8922.21 m2. Its
+21.2238 A/m2 maximum local current density does not disqualify it. The current
+required-area study separately shows that the fixed legacy case-94 basis requires
+10499.7-12139.9 m2 at exactly 1.0 V, depending on receiver airflow. These are
+different fixed geometry/operating bases and must not be interchanged.
+
 ## Install
 
-Copy the package into the XMembrane repository and run:
+From a complete editable repository checkout, run:
 
 ```bash
-python scripts/make_wp1_trond_system_closure_v1.py \
-  --source-root "$HOME/HeiQ/XMembrane_Model" \
-  --output-dir outputs/trond_system_closure_v1
+PYTHONPATH=src python3 scripts/run_system_energy_closure_study.py \
+  --source-root . \
+  --output-dir outputs/system_energy_closure_study
 ```
 
 Use `--smoke` for a faster first run.
@@ -52,5 +66,30 @@ The workflow writes:
 - `industry_benchmarks.csv` — official ERV ranges plus the AirJoule company-reported <160 Wh/L water-harvesting benchmark, with boundary caveats;
 - `grid_loss_sensitivity.csv` — 95–100% grid-to-device efficiency sensitivity;
 - `conditions.csv` and `terminology.csv` — one-place design basis and controlled nomenclature.
+
+`selected_reference_case.csv` records every individual reference gate and the failure
+reason. `power_ledger.csv`, `complete_system_power_ledger.csv`,
+`figures_of_merit.csv`, `all_requested_foms.csv` and `enclosure_foms.csv` retain their
+audit rows but leave claim-dependent values missing when the reference fails.
+
+The legacy `trond_system_closure_v1` output was produced under the
+superseded current gate and must not be reused. The current package performs no
+current-density acceptance test unless `--current-cap-a-m2` is supplied explicitly
+as a named sensitivity. Regardless of selection, the liquid calculation remains
+only a local screen: it excludes a closed regeneration and heat-sink ledger and must
+not be reported as a full-system total or saving.
+
+## Active no-current-gate status (2026-08-26)
+
+The regenerated gas reference passes the active target, balance, stack, voltage and
+area gates. The known gas-core subtotal is 118.39 kW at the site plane. This is not a
+complete system total: `heat_rejection` and `receiver_regeneration` remain unresolved,
+so system saving and system FOMs are deliberately unavailable. Missing components are
+not interpreted as zero.
+
+The primary post-ERV energy evidence is the separate audited
+`terminal1_post_erv_10pct_incremental_v2_study` output, not the linearized 2.9 kW
+screen in this integration package. It reports a 53.07 kW / 9.76% conditional margin
+for the best real-film row, while still disabling full-system claims.
 
 The `--grid-to-device-efficiency` default is a screening assumption. It is not a universal transformer efficiency. Replace it with selected transformer, converter, cable and part-load data when the electrical architecture is known.

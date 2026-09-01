@@ -108,7 +108,22 @@ def test_conditional_no_erv_break_even_numbers():
     )
 
 
-def test_selected_o30_case_fails_new_current_gate():
+def test_current_density_is_diagnostic_by_default():
+    gates = PrearchitectureGates(
+        max_active_area_m2=9000.0,
+        max_terminal_voltage_v=2.0,
+    )
+
+    violations = gates.violations(
+        maximum_local_current_density_a_m2=21.224,
+        required_active_area_m2=8922.21,
+        terminal_voltage_v=0.98,
+    )
+
+    assert violations == ()
+
+
+def test_explicit_current_density_sensitivity_gate_is_supported():
     gates = PrearchitectureGates(
         max_current_density_a_m2=21.0,
         max_active_area_m2=9000.0,

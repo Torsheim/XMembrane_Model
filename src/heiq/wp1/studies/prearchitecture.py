@@ -411,10 +411,32 @@ def solve_case(
         )
     )
 
-    current_cap = float(
+    solver_current_ceiling = float(
         cfg12["operating"][
             "current_density_cap_a_m2"
         ]
+    )
+
+    engineering_current_limit = getattr(
+        ctx["args"],
+        "current_cap_a_m2",
+        None,
+    )
+    current_density_gate_applied = (
+        engineering_current_limit is not None
+    )
+    if current_density_gate_applied:
+        engineering_current_limit = float(
+            engineering_current_limit
+        )
+
+    current_density_gate_pass = bool(
+        not current_density_gate_applied
+        or (
+            math.isfinite(max_j)
+            and 0.0 < max_j
+            <= engineering_current_limit + 1.0e-9
+        )
     )
 
     target_activity = (
@@ -504,10 +526,8 @@ def solve_case(
                     and math.isfinite(
                         max_j
                     )
-                    and 0.0
-                    < max_j
-                    <= current_cap
-                    + 1.0e-9
+                    and 0.0 < max_j
+                    and current_density_gate_pass
                     and math.isfinite(
                         min_flux
                     )
@@ -516,6 +536,18 @@ def solve_case(
                         core
                     )
                 ),
+
+            "current_density_acceptance_gate_applied":
+                current_density_gate_applied,
+
+            "current_density_acceptance_gate_pass":
+                current_density_gate_pass,
+
+            "engineering_current_density_limit_a_m2":
+                engineering_current_limit,
+
+            "solver_current_density_ceiling_a_m2":
+                solver_current_ceiling,
         }
     )
 

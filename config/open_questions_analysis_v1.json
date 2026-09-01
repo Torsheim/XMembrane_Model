@@ -1,0 +1,287 @@
+{
+  "schema_version": 1,
+  "study_id": "open-questions-analysis-v1-2026-08-26",
+  "output_directory": "outputs/open_questions_analysis_v1_candidate_20260826",
+  "claim_boundary": {
+    "full_system_claim_allowed": false,
+    "deterministic_scenarios_are_probabilities": false,
+    "ordinal_categories_are_numeric_scores": false,
+    "note": "This analysis registers evidence and decision boundaries. It does not promote conditional model results to demonstrated system savings."
+  },
+  "ordinal_categories": {
+    "decision_impact_high_to_low": [
+      {
+        "id": "I_SIGN_OR_GO_NO_GO_CAN_CHANGE",
+        "definition": "Existing registered calculations cross zero, switch pass/fail, or contain a quantified omitted load large enough to consume the current margin."
+      },
+      {
+        "id": "II_CURRENT_EVIDENCE_GATE_BLOCKED",
+        "definition": "All current registered evidence fails a named physical or diagnostic gate, so the present candidate set cannot be promoted without resolving that gate. This does not mean a current-density acceptance limit."
+      },
+      {
+        "id": "III_MATERIAL_REALITY_UNVALIDATED",
+        "definition": "The inverse-design coordinates are not yet constrained to a simultaneously measured, correlated material vector, so positive coordinate combinations cannot be treated as a purchasable material population."
+      },
+      {
+        "id": "IV_DESIGN_SPACE_COVERAGE_INCOMPLETE",
+        "definition": "Numerical failures or right-censored rows leave a material part of the sampled design space unresolved; those rows are neither demonstrated passes nor physical no-go results."
+      },
+      {
+        "id": "V_FULL_SYSTEM_CLAIM_BLOCKED",
+        "definition": "The subsystem is not evaluated or validated and therefore blocks a full-system claim, but no current evidence quantifies a sign reversal by itself."
+      },
+      {
+        "id": "VI_DECISION_COMMUNICATION_OR_QUALIFICATION",
+        "definition": "The item governs correct interpretation, product qualification, or annual durability after the immediate physical and energy gates survive."
+      }
+    ],
+    "closure_effort_low_to_high": [
+      {
+        "id": "I_EXISTING_DATA_REPLAY",
+        "definition": "Can be resolved from existing registered data or a bounded solver replay without new hardware measurements."
+      },
+      {
+        "id": "II_BENCH_OR_SITE_MEASUREMENT_PLUS_REPLAY",
+        "definition": "Needs a bounded coupon, side-stream, calorimetric, electrical, or site measurement followed by a registered model replay."
+      },
+      {
+        "id": "III_MODULE_HARDWARE_PROGRAM",
+        "definition": "Needs module-scale channels, headers, manifolds, electrodes, or packaging hardware before the model can be closed."
+      },
+      {
+        "id": "IV_LIFETIME_AND_MANUFACTURING_PROGRAM",
+        "definition": "Needs cyclic ageing, production variation, or end-of-life evidence across a sustained test programme."
+      }
+    ]
+  },
+  "analysis_settings": {
+    "direct_voltage_cap_v": 2.0,
+    "direct_incremental_fixed_loss_step_v": 0.1,
+    "receiver_sec_scenarios_kwh_kg": [0.1, 0.15],
+    "low_voltage_continuous_receiver_sec_boundaries_kwh_kg": [0.0, 0.003, 0.005, 0.01],
+    "low_voltage_fixed_loss_receiver_break_even_scenario_v": 0.2,
+    "v39_primary_airflow_cfm": 30000.0,
+    "modern_comparator_candidate_id": "O30_final_material",
+    "thermal_joule_fraction_for_boundary": 0.0,
+    "expected_current_uncertainty_scenario_count": 27,
+    "expected_current_uncertainty_positive_count": 16,
+    "report_correction": {
+      "source_report": "reports/trond_full_results_atlas_v4/sections/erv_receiver_current.tex",
+      "stale_wording": "eight deterministic scenario corners; five positive",
+      "registered_current_result": "27 deterministic scenarios; 16 positive",
+      "v4_must_remain_untouched": true
+    }
+  },
+  "sources": [
+    {
+      "source_id": "current_study_audit",
+      "root": "study",
+      "path": "outputs/membrane_operating_region_study_v1/study_audit.json",
+      "required": true,
+      "sha256": "6a0cce4a73acf7af42a0d1a5e58c73fb083dafa98915a22364a599bc924d5e9f"
+    },
+    {
+      "source_id": "current_study_summary",
+      "root": "study",
+      "path": "outputs/membrane_operating_region_study_v1/STUDY_SUMMARY.md",
+      "required": true,
+      "sha256": "9a3bc8ff8ab740a13c7ab7d83fc5209e4b49bde1f1b587767864a8801070abd4"
+    },
+    {
+      "source_id": "direct_per_cap_register",
+      "root": "study",
+      "path": "outputs/membrane_operating_region_study_v1/direct_eo_analysis/per_cap_robust_register.csv",
+      "required": true,
+      "sha256": "b59790c15e5533a7dd7648c6a2d46ff66b3efa74a64ea1b811abc022503593de"
+    },
+    {
+      "source_id": "direct_analysis_audit",
+      "root": "study",
+      "path": "outputs/membrane_operating_region_study_v1/direct_eo_analysis/audit.json",
+      "required": true,
+      "sha256": "1547982ed30ac3258ecf460cf018330319cfb8df5dfb815ebcedad84e162b4ab"
+    },
+    {
+      "source_id": "direct_receiver_summary",
+      "root": "study",
+      "path": "outputs/membrane_operating_region_study_v1/direct_eo_analysis/receiver_sec_cap_summary.csv",
+      "required": true,
+      "sha256": "b2a5b9399656bdf467e7c0a676cdf9f4d0dc2d87da674530c711e8301addac7d"
+    },
+    {
+      "source_id": "direct_voltage_assumptions",
+      "root": "heiq_v2",
+      "path": "outputs/EO_symmetric_wet_receiver_sink_v52/_v50_full_grid/assumptions.csv",
+      "required": true,
+      "sha256": "17b79233bb79453b9b57e74cad5df4d3e142b269e55eb20723ccd1c6fcf37ddf"
+    },
+    {
+      "source_id": "post_erv_decision",
+      "root": "study",
+      "path": "outputs/membrane_operating_region_study_v1/post_erv/DECISION_SUMMARY.json",
+      "required": true,
+      "sha256": "fb6fa1296500da224e377e6bf8ba6b3af45983acda3f0428b6b4a8cffcc463ff"
+    },
+    {
+      "source_id": "post_erv_dense_cases",
+      "root": "study",
+      "path": "outputs/membrane_operating_region_study_v1/post_erv/post_erv_dense_dj_cases.csv",
+      "required": true,
+      "sha256": "d74e39cc4dad3b322f1f53439efcb59f6e51f00c8e94481441ba9e00a2ec0978"
+    },
+    {
+      "source_id": "post_erv_global_cases",
+      "root": "study",
+      "path": "outputs/membrane_operating_region_study_v1/post_erv/post_erv_global_inverse_design_cases.csv",
+      "required": true,
+      "sha256": "d54e46fbc88ca0eb47c933ec2b8390b42b75a51c92ff055c178434dbb87cef31"
+    },
+    {
+      "source_id": "post_erv_global_prcc",
+      "root": "study",
+      "path": "outputs/membrane_operating_region_study_v1/post_erv/post_erv_global_prcc.csv",
+      "required": true,
+      "sha256": "62fa1b3d9e0d908e0d0c758b2ff265f6f23247480b3b110159309c0f0a63c269"
+    },
+    {
+      "source_id": "post_erv_audit",
+      "root": "study",
+      "path": "outputs/membrane_operating_region_study_v1/post_erv/audit.json",
+      "required": true,
+      "sha256": "1b8b5f620b31ea1e479e0d3bc37c2290c0c9aeae5f162a6c7938b4d7711692f3"
+    },
+    {
+      "source_id": "post_erv_summary",
+      "root": "study",
+      "path": "outputs/membrane_operating_region_study_v1/post_erv/SUMMARY.md",
+      "required": true,
+      "sha256": "2f8baf969de15fd96a85d5caaac477f24e6640d241cb0f72ee635688af4f2a51"
+    },
+    {
+      "source_id": "post_erv_config",
+      "root": "study",
+      "path": "outputs/membrane_operating_region_study_v1/post_erv/config_used.json",
+      "required": true,
+      "sha256": "c4bd5eb57d0ef10ed1926e3d8237e12a1749f36db131082e61c168cede7f8248"
+    },
+    {
+      "source_id": "detailed_decision",
+      "root": "study",
+      "path": "outputs/membrane_operating_region_study_v1/post_erv_detailed_hvac/DECISION_SUMMARY.json",
+      "required": true,
+      "sha256": "856e398c4531e18784719fec0b856f0dcd9a59cad8474dd3e03ed140fe17d86e"
+    },
+    {
+      "source_id": "detailed_audit",
+      "root": "study",
+      "path": "outputs/membrane_operating_region_study_v1/post_erv_detailed_hvac/audit.json",
+      "required": true,
+      "sha256": "72abe1965ea2232613bc3f61693c9fa55f6fc1fa4d2c60a5ddf23ab976c000ef"
+    },
+    {
+      "source_id": "detailed_base_cases",
+      "root": "study",
+      "path": "outputs/membrane_operating_region_study_v1/post_erv_detailed_hvac/detailed_hvac_base_cases_with_pareto_flag.csv",
+      "required": true,
+      "sha256": "9af9aebba09d02858e22db1bc8007287158f4194cf5232e82941805c330288ad"
+    },
+    {
+      "source_id": "detailed_summary",
+      "root": "study",
+      "path": "outputs/membrane_operating_region_study_v1/post_erv_detailed_hvac/SUMMARY.md",
+      "required": true,
+      "sha256": "3f9391ef5beb401374c8b8f5292336a16c93a478b78681161362a9983afdb236"
+    },
+    {
+      "source_id": "detailed_uncertainty_scenarios",
+      "root": "study",
+      "path": "outputs/membrane_operating_region_study_v1/post_erv_detailed_hvac/conditional_uncertainty_scenarios.csv",
+      "required": true,
+      "sha256": "e2f116d2e82ab6ad56e21475d52e36303e3727797ea74da49618f946a084cb23"
+    },
+    {
+      "source_id": "detailed_thermal_break_even",
+      "root": "study",
+      "path": "outputs/membrane_operating_region_study_v1/post_erv_detailed_hvac/thermal_break_even_by_case.csv",
+      "required": true,
+      "sha256": "58d9d2ef243833448fce64f4fa03e13c9c10a9d769f6f06d116ce2f57767844e"
+    },
+    {
+      "source_id": "sorption_scope",
+      "root": "study",
+      "path": "outputs/membrane_operating_region_study_v1/post_erv_detailed_hvac/SORPTION_MODEL_SCOPE.md",
+      "required": true,
+      "sha256": "5951a89d6404a4eb5516a823e7f4a5cda0509e77a6bdedcd5cf9fd56273bcda0"
+    },
+    {
+      "source_id": "modern_reference_cases",
+      "root": "heiq_v2",
+      "path": "outputs/final_prearchitecture_closure_v1/modern_ac_erv_comparison/reference_modern_erv_cases.csv",
+      "required": true,
+      "sha256": "0356b4dbedf765c0de38e907a5f47562192b3e55f3d711e5398fb87fd31f3805"
+    },
+    {
+      "source_id": "modern_baseline_audit",
+      "root": "heiq_v2",
+      "path": "outputs/active_eo_erv_direct_v1_full/baseline_reproduction_audit.json",
+      "required": true,
+      "sha256": "b3dab59208aebbeca5ec13e3c0af0dd6e5b74367abc5eaa8c88bde441c25f8cf"
+    },
+    {
+      "source_id": "modern_comparator_summary",
+      "root": "heiq_v2",
+      "path": "outputs/final_prearchitecture_closure_v1/modern_ac_erv_comparison/system_comparison_summary.csv",
+      "required": true,
+      "sha256": "5582e17892ac27e498b99197aed519a9af4cbafab1d061e0ad9389dcc55b4188"
+    },
+    {
+      "source_id": "receiver_v39_selected",
+      "root": "heiq_v2",
+      "path": "outputs/EO_receiver_regeneration_reality_gate_v39/selected_designs.csv",
+      "required": true,
+      "sha256": "7ca789c6d918723c3ba83968a7e5ca19e7ac53488c3f483c91982682c9ca87e5"
+    },
+    {
+      "source_id": "receiver_v39_all_cases",
+      "root": "heiq_v2",
+      "path": "outputs/EO_receiver_regeneration_reality_gate_v39/all_membrane_receiver_cases.csv",
+      "required": true,
+      "sha256": "02972d9b410254576f46c0a4167fa503096d17da3821f3a0ff9b4579fe5aeac1"
+    },
+    {
+      "source_id": "receiver_v39_summary",
+      "root": "heiq_v2",
+      "path": "outputs/EO_receiver_regeneration_reality_gate_v39/summary.md",
+      "required": true,
+      "sha256": "5ad61d41d4344597f383fb87a8c3cb4416b99cf6f6036e0949b8f194dfad38e7"
+    },
+    {
+      "source_id": "historical_packaging",
+      "root": "heiq_v2",
+      "path": "outputs/final_prearchitecture_closure_v1/engineering_closure/selected_module_packaging.csv",
+      "required": true,
+      "sha256": "43fe69edce61d4d30c9d3e03027b692b873802fd0bb51be92eac367258eda07e"
+    },
+    {
+      "source_id": "historical_stage_gate",
+      "root": "heiq_v2",
+      "path": "outputs/final_prearchitecture_closure_v1/stage_gates/FINAL_DECISION_SUMMARY.md",
+      "required": true,
+      "sha256": "11dd1d269b980ca561c0250da3a6c0412378c5574b73bdf95be9f9f98446dedd"
+    }
+  ],
+  "optional_source_groups": [
+    {
+      "group_id": "direct_eo_low_voltage_study_v1",
+      "root": "study",
+      "directory": "outputs/direct_eo_low_voltage_study_v1",
+      "files": [
+        "source_generator_provenance.json",
+        "study_audit.json",
+        "analysis/analysis_audit.json",
+        "analysis/low_voltage_cap_register.csv"
+      ],
+      "rule": "If the canonical directory exists, every listed file is required and hash-bound at runtime; candidate directories are not silently substituted."
+    }
+  ]
+}

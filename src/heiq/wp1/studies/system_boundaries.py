@@ -469,7 +469,13 @@ class ConditionalBreakEven:
 
 @dataclass(frozen=True)
 class PrearchitectureGates:
-    max_current_density_a_m2: float = 21.0
+    """Optional engineering screens for a pre-architecture result.
+
+    Current density is diagnostic in the active system study. A current-density
+    limit is therefore applied only when a caller supplies one explicitly.
+    """
+
+    max_current_density_a_m2: float | None = None
     max_active_area_m2: float = 9000.0
     max_terminal_voltage_v: float = 2.0
 
@@ -496,11 +502,7 @@ class PrearchitectureGates:
 
         violations: list[str] = []
 
-        comparisons = (
-            (
-                "maximum_local_current_density_a_m2",
-                self.max_current_density_a_m2,
-            ),
+        comparisons: list[tuple[str, float]] = [
             (
                 "required_active_area_m2",
                 self.max_active_area_m2,
@@ -509,7 +511,16 @@ class PrearchitectureGates:
                 "terminal_voltage_v",
                 self.max_terminal_voltage_v,
             ),
-        )
+        ]
+
+        if self.max_current_density_a_m2 is not None:
+            comparisons.insert(
+                0,
+                (
+                    "maximum_local_current_density_a_m2",
+                    self.max_current_density_a_m2,
+                ),
+            )
 
         for name, limit in comparisons:
             value = cleaned[name]
