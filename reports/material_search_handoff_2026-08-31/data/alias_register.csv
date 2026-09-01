@@ -1,0 +1,9 @@
+canonical_id,alias,record_type,status,treatment,sources
+TERMINAL1_ANCHOR,terminal1_anchor,inverse_design_scenario,resolved,same exact vector,CUR-06
+TERMINAL1_ANCHOR,terminal1_post_erv_anchor,inverse_design_scenario,resolved,same exact vector,ARCH-01
+TERMINAL1_ANCHOR,legacy_O30_case_94_material,inverse_design_scenario,resolved,same exact vector,CUR-06
+TERMINAL1_ANCHOR,Terminal1_optimum,inverse_design_scenario,resolved,same exact vector,ARCH-01
+TERMINAL1_ANCHOR,tw100.061_D1.598e-14_sig23.1719_L36.9137,inverse_design_scenario,resolved,rounded encoded ID,ARCH-01
+UNRESOLVED_O30_FINAL,O30_final_material,historical_comparator,unresolved,do not map to Terminal-1 without source row,ARCH-01
+UNRESOLVED_V8_EXTREME,M14424,synthetic_scenario,unresolved_pair,preserve alongside M14425,ARCH-01
+UNRESOLVED_V8_EXTREME,M14425,synthetic_scenario,unresolved_pair,preserve alongside M14424,ARCH-01

@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "study_id": "workshop-common-voltage-diffusivity-v1-2026-08-30",
+  "purpose": "Small common-voltage cross-check of the frozen Terminal-1 inverse-design membrane with only water diffusivity varied.",
+  "interpretation": "Post-ERV screening calculation. Material properties are hypothetical, receiver/sink energy and EO thermal coupling are excluded, and no row is a validated full-system saving.",
+  "source_v2_root": "/home/torsheim/HeiQ/HeiQ_V2",
+  "source_project_closure_config": "config/project_closure_check_v1.json",
+  "source_percentage_summary": "outputs/post_erv_eo_percentage_sweep_v1/percentage_summary.csv",
+  "targets": [
+    {
+      "target_id": "o30",
+      "remaining_duty_completion_pct": 72.70030721103439,
+      "target_humidity_ratio_kg_kg_da": 0.0088858981051461
+    },
+    {
+      "target_id": "full_remaining_latent",
+      "remaining_duty_completion_pct": 100.0,
+      "target_humidity_ratio_kg_kg_da": 0.00726028059345441
+    }
+  ],
+  "water_diffusivity_m2_s": [
+    1e-14,
+    1.597880133581376e-14,
+    1e-13,
+    1e-12,
+    1e-11,
+    1e-10,
+    1e-9
+  ],
+  "terminal_voltages_v": [0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0],
+  "segment_counts": [8, 16],
+  "selected_segment_count": 16,
+  "transport": {
+    "fixed_loss_voltage_v": 0.0,
+    "series_asr_ohm_m2": 1e-05,
+    "film_scale_factor": 1.0,
+    "area_observation_cap_m2": 250000.0,
+    "area_is_acceptance_gate": false,
+    "engineering_current_density_limit_a_m2": null,
+    "surface_direction_is_acceptance_gate": false
+  },
+  "numerical_convergence": {
+    "maximum_area_relative_change": 0.02,
+    "maximum_known_power_relative_change": 0.02
+  },
+  "local_bracket_probe": {
+    "numeric_ceiling_multiplier": 100.0,
+    "coverage": "all_flagged_cases_at_or_below_2v"
+  },
+  "energy_boundary": {
+    "process_heat_leak_fraction": 0.0,
+    "receiver_and_sink_energy_modelled": false,
+    "full_system_claim_allowed": false,
+    "primary_energy_interpretation": "Control-conservative avoided AC power minus EO grid power and the frozen area-based module-fan term. Receiver/sink and EO thermal-rejection energy are excluded."
+  }
+}

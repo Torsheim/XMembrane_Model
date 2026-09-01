@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "study_id": "direct-erv-gradient-closure-v1-2026-08-31",
+  "script_version": "direct-erv-gradient-closure-v1.0-2026-08-31",
+  "generated_utc": "2026-08-31T10:16:58.567900+00:00",
+  "status": "PASS",
+  "checks": [
+    {
+      "check": "surface_film_identity",
+      "passed": true
+    },
+    {
+      "check": "all_signed_states_solved_and_thermodynamic",
+      "passed": true
+    },
+    {
+      "check": "o30_finite_film_or_area_crossover",
+      "passed": true
+    },
+    {
+      "check": "full_duty_pinched_bulk_gradient",
+      "passed": true
+    },
+    {
+      "check": "quasistatic_rectification_below_closure_tolerance",
+      "passed": true
+    },
+    {
+      "check": "area_is_diagnostic_only",
+      "passed": true
+    }
+  ],
+  "claim_boundary": {
+    "quasistatic_only": true,
+    "zero_mean_current_not_zero_mean_voltage": true,
+    "transient_ac_predicted": false,
+    "material_gradient_modelled": false,
+    "area_is_acceptance_gate": false,
+    "full_system_claim_allowed": false
+  },
+  "case_count": 2,
+  "segment_count": 16,
+  "maximum_surface_identity_error": 2.9837243786801082e-15,
+  "maximum_absolute_rectification_fraction": 3.476535222233499e-07
+}

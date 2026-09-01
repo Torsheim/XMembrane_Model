@@ -1,0 +1,6 @@
+membrane_thickness_um,water_diffusivity_m2_s,l2_over_d_seconds,l2_over_d_hours,declared_preconditioning_multiple,multiple_l2_over_d_hours,interpretation
+36.91369958200169,1.597880133581376e-14,85276.81070645695,23.68800297401582,4.0,94.75201189606328,"Hypothetical project anchor thickness and diffusivity sweep. L2/D is a characteristic scale, not a guaranteed equilibration time."
+36.91369958200169,1e-13,13626.212168302714,3.785058935639643,4.0,15.140235742558572,"Hypothetical project anchor thickness and diffusivity sweep. L2/D is a characteristic scale, not a guaranteed equilibration time."
+36.91369958200169,1e-12,1362.6212168302716,0.3785058935639643,4.0,1.5140235742558572,"Hypothetical project anchor thickness and diffusivity sweep. L2/D is a characteristic scale, not a guaranteed equilibration time."
+36.91369958200169,1e-11,136.26212168302715,0.03785058935639643,4.0,0.15140235742558572,"Hypothetical project anchor thickness and diffusivity sweep. L2/D is a characteristic scale, not a guaranteed equilibration time."
+36.91369958200169,1e-10,13.626212168302715,0.003785058935639643,4.0,0.015140235742558572,"Hypothetical project anchor thickness and diffusivity sweep. L2/D is a characteristic scale, not a guaranteed equilibration time."

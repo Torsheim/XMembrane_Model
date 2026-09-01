@@ -1,0 +1,239 @@
+{
+  "schema_version": 1,
+  "study_id": "direct-active-eo-erv-study-v1-2026-08-27",
+  "title": "Direct active EO-assisted ERV with shared return/exhaust receiver",
+  "model_boundary": "humid outdoor air -> segmented active EO/sensible ERV core -> remaining AC; balanced building return air -> same core -> wetter exhaust outdoors",
+  "architecture": {
+    "id": "shared_core_same_stream",
+    "same_exhaust_stream_used_once": true,
+    "separate_receiver_loop": false,
+    "receiver_regeneration_required": false,
+    "external_receiver_mass_flow_kg_s": 0.0
+  },
+  "boundary": {
+    "pressure_pa": 101325.0,
+    "process_outdoor_dry_air_kg_s": 78.81256451,
+    "available_exhaust_to_process_ratio": 1.0,
+    "outdoor_temperature_c": 32.0,
+    "outdoor_rh": 0.8,
+    "return_temperature_c": 20.0,
+    "return_rh": 0.5,
+    "supply_temperature_c": 20.0,
+    "supply_rh": 0.5
+  },
+  "passive_baseline_erv": {
+    "sensible_effectiveness": 0.75,
+    "latent_effectiveness": 0.65,
+    "pressure_drop_each_side_pa": 150.0,
+    "fan_efficiency": 0.7,
+    "motor_power_kw": 5.0
+  },
+  "active_core": {
+    "motor_power_kw": 0.0,
+    "controls_power_kw": 0.0
+  },
+  "electric_heat_scenarios": {
+    "external_rejection": {
+      "process_fraction": 0.0,
+      "exhaust_fraction": 0.0,
+      "interpretation": "Electrical heat is rejected outside both air streams; idealized lower-bound air-stream heat coupling and optimistic upper-bound conditional electrical saving."
+    },
+    "symmetric_split": {
+      "process_fraction": 0.5,
+      "exhaust_fraction": 0.5,
+      "interpretation": "All active-core electric power becomes sensible heat split equally between both streams."
+    }
+  },
+  "solver": {
+    "membrane_temperature_mode": "local_stream_mean",
+    "activity_temperature_basis": "membrane_isothermal",
+    "area_observation_cap_m2": 60000.0,
+    "area_is_acceptance_gate": false,
+    "maximum_thermal_iterations": 8,
+    "thermal_temperature_tolerance_k": 0.05,
+    "thermal_power_relative_tolerance": 0.005,
+    "terminal_voltage_absolute_tolerance_v": 2e-06
+  },
+  "electrical": {
+    "maximum_terminal_voltage_v": 2.0,
+    "preferred_terminal_voltage_v": 1.8,
+    "power_electronics_efficiency": 0.9,
+    "engineering_current_density_limit_a_m2": null,
+    "current_density_is_diagnostic_only": true,
+    "default_fixed_loss_voltage_v": 0.0,
+    "default_series_asr_ohm_m2": 1e-05
+  },
+  "channel": {
+    "process_velocity_m_s": 2.0,
+    "receiver_velocity_m_s": 2.0,
+    "process_gap_m": 0.002,
+    "receiver_gap_m": 0.002,
+    "active_sides_per_channel": 1.0,
+    "fan_efficiency": 0.7,
+    "declared_pressure_drop_each_side_pa": 150.0,
+    "interpretation": "Ideal parallel-channel hydraulic screen with the declared 150 Pa per-side fan power retained as a floor; not a rankable manufactured core."
+  },
+  "stack": {
+    "maximum_cell_active_area_m2": 0.25,
+    "maximum_cell_current_a": 500.0,
+    "minimum_converter_input_voltage_v": 48.0,
+    "maximum_dc_bus_voltage_v": 800.0,
+    "maximum_converter_current_a": 2000.0,
+    "maximum_converter_power_kw": 1000.0,
+    "maximum_series_cells": 800,
+    "evidence": "Illustrative screening limits inherited from the reviewed V12 engineering configuration."
+  },
+  "gates": {
+    "minimum_positive_surface_activity_margin": 0.0,
+    "robust_surface_activity_margin": 0.02,
+    "water_balance_relative_tolerance": 0.005,
+    "maximum_exhaust_outlet_rh": 0.98,
+    "maximum_channel_pressure_drop_each_side_pa": 500.0,
+    "segment_convergence": {
+      "coarse_segment_count": 4,
+      "refined_segment_count": 8,
+      "maximum_area_relative_change": 0.02,
+      "maximum_surface_margin_absolute_change": 0.005,
+      "maximum_saving_absolute_change_kw": 1.0
+    }
+  },
+  "ac_model": {
+    "coil_bypass_factor": 0.0,
+    "evaporator_approach_k": 5.0,
+    "condensing_temperature_c": 45.0,
+    "rated_evaporating_temperature_c": 5.0,
+    "conservative_cop_eta": 0.5,
+    "reheat_mode": "hot_gas_recovery",
+    "hot_gas_reheat_electric_fraction": 0.0,
+    "reheat_heat_pump_cop": 4.0,
+    "legacy_no_erv_ac_power_anchor_kw": 1166.4
+  },
+  "common_components": {
+    "common_electric_power_kw_each_system": 0.0
+  },
+  "reference_audit": {
+    "expected_modern_ac_erv_total_power_kw": 543.740590648886,
+    "absolute_tolerance_kw": 0.0005,
+    "expected_passive_erv_oa_out_temperature_c": 23.0,
+    "expected_passive_erv_oa_out_w_kg_kg_da": 0.013214990502676377
+  },
+  "materials": {
+    "terminal1_anchor": {
+      "name": "terminal1_anchor",
+      "model": "powerlaw",
+      "water_drag": 100.06078708377692,
+      "water_diffusivity_m2_s": 1.597880133581376e-14,
+      "conductivity_s_m": 23.171886845550485,
+      "dry_thickness_um": 36.91369958200169,
+      "water_capacity_mol_m3_activity": 10000.0,
+      "diffusivity_activity_exponent": 2.0,
+      "conductivity_activity_exponent": 4.0,
+      "capacity_activity_exponent": 0.0,
+      "validated_material": false,
+      "interpretation": "Hypothetical inverse-design anchor, not a measured membrane."
+    },
+    "nafion_nr211_nominal_reference": {
+      "name": "nafion_nr211_nominal_reference",
+      "model": "nafion",
+      "dry_thickness_um": 25.0,
+      "drag_scale_factor": 1.0,
+      "validated_material": false,
+      "interpretation": "Native literature-correlation Nafion reference; not a HeiQ-device validation or supplier guarantee."
+    }
+  },
+  "modes": {
+    "smoke": {
+      "material_ids": [
+        "terminal1_anchor",
+        "nafion_nr211_nominal_reference"
+      ],
+      "process_outlet_w_g_kg_da": [
+        13.214990502676377,
+        10.0,
+        7.26028059345441
+      ],
+      "terminal_voltages_v": [0.01, 0.1, 1.8],
+      "segment_counts": [4],
+      "sensible_effectiveness_values": [0.75],
+      "film_scale_factors": [1.0],
+      "electric_heat_scenario_ids": ["external_rejection"]
+    },
+    "study": {
+      "material_ids": [
+        "terminal1_anchor",
+        "nafion_nr211_nominal_reference"
+      ],
+      "process_outlet_w_g_kg_da": [
+        13.214990502676377,
+        12.0,
+        11.0,
+        10.0,
+        9.0,
+        8.8858981051461,
+        8.0,
+        7.26028059345441
+      ],
+      "terminal_voltages_v": [
+        0.01,
+        0.025,
+        0.05,
+        0.1,
+        0.25,
+        0.5,
+        1.0,
+        1.5,
+        1.8,
+        2.0
+      ],
+      "segment_counts": [4, 8],
+      "sensible_effectiveness_values": [0.75],
+      "film_scale_factors": [1.0],
+      "electric_heat_scenario_ids": ["external_rejection"]
+    },
+    "sensitivity": {
+      "material_ids": ["terminal1_anchor"],
+      "process_outlet_w_g_kg_da": [13.214990502676377, 12.0, 11.0, 10.0, 9.0],
+      "terminal_voltages_v": [0.01, 0.05, 0.1, 0.25, 0.5, 1.0, 1.8, 2.0],
+      "segment_counts": [4, 8],
+      "sensible_effectiveness_values": [0.6, 0.75, 0.85],
+      "film_scale_factors": [0.5, 1.0, 2.0],
+      "electric_heat_scenario_ids": ["external_rejection", "symmetric_split"]
+    },
+    "nafion_sensitivity": {
+      "material_ids": ["nafion_nr211_nominal_reference"],
+      "process_outlet_w_g_kg_da": [
+        13.214990502676377,
+        12.5,
+        12.0,
+        11.0,
+        10.0,
+        9.5,
+        9.0
+      ],
+      "terminal_voltages_v": [0.0005, 0.0025, 0.005, 0.01, 0.06],
+      "segment_counts": [4, 8],
+      "sensible_effectiveness_values": [0.6, 0.75, 0.85],
+      "film_scale_factors": [0.5, 1.0, 2.0],
+      "electric_heat_scenario_ids": ["external_rejection", "symmetric_split"]
+    }
+  },
+  "claim_boundary": {
+    "claim_level": "conditional_system",
+    "full_system_claim_allowed": false,
+    "commercial_claim_allowed": false,
+    "omitted_or_unvalidated": [
+      "conjugate local sensible and latent heat-transfer solution",
+      "measured active-membrane material data",
+      "manufacturable electrode and current-collector geometry",
+      "leakage and cross-contamination",
+      "condensation and liquid-film dynamics",
+      "fouling, ageing, safety and lifetime"
+    ]
+  },
+  "historical_provenance": {
+    "source_package": "/home/torsheim/HeiQ/HeiQ_V2/tools/HeiQ_active_eo_erv_terminal1_v2",
+    "source_version": "active-eo-erv-terminal1-v2.2.2-2026-08-23",
+    "source_result_directory": "/home/torsheim/HeiQ/HeiQ_V2/outputs/active_eo_erv_terminal1_v2_study",
+    "fixed_loss_reconciliation": "The historical material override reported 0.0 V in candidate.physical, but the V14 solver consumed the inherited 0.1 V candidate.boundary value. This v1 study passes and records an effective 0.0 V fixed loss explicitly; historical positive surface margins are therefore not directly comparable."
+  }
+}

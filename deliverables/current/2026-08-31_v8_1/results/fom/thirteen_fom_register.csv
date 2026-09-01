@@ -1,0 +1,27 @@
+architecture_id,fom_id,name,formula,numeric_value,unit,status,boundary_note
+post_erv_o30_common_voltage,FOM-01,Water-removal capacity,m_dot_w = m_dot_da (w_in - w_out),1228.27274586038,kg/h,conditional_known_core,29567.25 L/day at the declared water density
+post_erv_o30_common_voltage,FOM-02,Humidity reduction,Delta w = w_in - w_out,4.329092397530277,g/kg dry air,conditional_known_core,Increment across the active device boundary
+post_erv_o30_common_voltage,FOM-03,Pre-dryer SEC,SEC_PD = P_PD / m_dot_w,0.024471345158534625,kWh/kg water,conditional_known_core,Known EO/core power only; receiver/sink and omitted hardware remain open
+post_erv_o30_common_voltage,FOM-04,AC COP improvement,"100 (COP_AC,new - COP_AC,base) / COP_AC,base",0.0,%,conditional_reduced_order_coil_model,Relative to AC-only at the fixed O80 duty
+post_erv_o30_common_voltage,FOM-05,AC COP,COP_AC = Q_cooling / P_AC,4.509265568538504,-,conditional_reduced_order_coil_model,Remaining-coil COP
+post_erv_o30_common_voltage,FOM-06,Latent-load reduction,"100 (Q_lat,base - Q_lat,new) / Q_lat,base",90.44510752386203,%,conditional_water_load_proxy,Calculated from remaining AC water removal at common h_fg
+post_erv_o30_common_voltage,FOM-07,Evaporating-temperature increase,"T_evap,new - T_evap,base",0.0,degC,conditional_reduced_order_coil_model,Frozen 5 K evaporator-approach model
+post_erv_o30_common_voltage,FOM-08,AC peak-power reduction,"P_AC,base - P_AC,new",849.4899912576859,kW,conditional_reduced_order_coil_model,AC compressor branch only; pre-dryer power excluded
+post_erv_o30_common_voltage,FOM-09,Combined-system COP,"Q_useful,fixed / (P_AC + P_PD)",13.792915866218591,-,conditional_equal_service_index,Fixed AC-only useful cooling numerator for like-for-like comparison
+post_erv_o30_common_voltage,FOM-10,Combined-system COP improvement,"100 (COP_sys - COP_AC,base) / COP_AC,base",205.87943106418118,%,conditional_equal_service_index,Not a refrigerant-cycle COP
+post_erv_o30_common_voltage,FOM-11,Combined-system peak-power reduction,"P_AC,base - (P_AC,new + P_PD)",785.0732805334466,kW,conditional_incomplete_system_ledger,162.414 kW versus passive ERV+AC
+post_erv_o30_common_voltage,FOM-12,Annual energy-cost saving,Delta P_sys * h_year * electricity_price,785073.2805334466,CHF/year,illustrative_parameterized,Illustrative only: 4000 equivalent full-load h/year and 0.25 CHF/kWh; maintenance excluded
+post_erv_o30_common_voltage,FOM-13,Payback period,CAPEX_PD / annual net saving,,years,not_available,CAPEX and incremental annual maintenance are not supplied
+direct_eo_erv_full,FOM-01,Water-removal capacity,m_dot_w = m_dot_da (w_in - w_out),4827.147005405751,kg/h,conditional_known_core,116200.13 L/day at the declared water density
+direct_eo_erv_full,FOM-02,Humidity reduction,Delta w = w_in - w_out,17.013456883491333,g/kg dry air,conditional_known_core,Increment across the active device boundary
+direct_eo_erv_full,FOM-03,Pre-dryer SEC,SEC_PD = P_PD / m_dot_w,0.013137885622550286,kWh/kg water,conditional_known_core,Known EO/core power only; receiver/sink and omitted hardware remain open
+direct_eo_erv_full,FOM-04,AC COP improvement,"100 (COP_AC,new - COP_AC,base) / COP_AC,base",20.294904476547316,%,conditional_reduced_order_coil_model,Relative to AC-only at the fixed O80 duty
+direct_eo_erv_full,FOM-05,AC COP,COP_AC = Q_cooling / P_AC,5.424416708267232,-,conditional_reduced_order_coil_model,Remaining-coil COP
+direct_eo_erv_full,FOM-06,Latent-load reduction,"100 (Q_lat,base - Q_lat,new) / Q_lat,base",100.0,%,conditional_water_load_proxy,Calculated from remaining AC water removal at common h_fg
+direct_eo_erv_full,FOM-07,Evaporating-temperature increase,"T_evap,new - T_evap,base",10.729038848150143,degC,conditional_reduced_order_coil_model,Frozen 5 K evaporator-approach model
+direct_eo_erv_full,FOM-08,AC peak-power reduction,"P_AC,base - P_AC,new",1121.9621892470225,kW,conditional_reduced_order_coil_model,AC compressor branch only; pre-dryer power excluded
+direct_eo_erv_full,FOM-09,Combined-system COP,"Q_useful,fixed / (P_AC + P_PD)",48.76494538783648,-,conditional_equal_service_index,Fixed AC-only useful cooling numerator for like-for-like comparison
+direct_eo_erv_full,FOM-10,Combined-system COP improvement,"100 (COP_sys - COP_AC,base) / COP_AC,base",981.4387541969868,%,conditional_equal_service_index,Not a refrigerant-cycle COP
+direct_eo_erv_full,FOM-11,Combined-system peak-power reduction,"P_AC,base - (P_AC,new + P_PD)",1058.5436840067657,kW,conditional_incomplete_system_ledger,435.884 kW versus passive ERV+AC
+direct_eo_erv_full,FOM-12,Annual energy-cost saving,Delta P_sys * h_year * electricity_price,1058543.6840067657,CHF/year,illustrative_parameterized,Illustrative only: 4000 equivalent full-load h/year and 0.25 CHF/kWh; maintenance excluded
+direct_eo_erv_full,FOM-13,Payback period,CAPEX_PD / annual net saving,,years,not_available,CAPEX and incremental annual maintenance are not supplied

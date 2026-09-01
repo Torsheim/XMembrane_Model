@@ -1,0 +1,246 @@
+{
+  "acceptance_screens": {
+    "maximum_absolute_odd_estimator_error_percent": 5.0,
+    "maximum_blank_fraction_of_nominal_odd_signal": 0.1,
+    "maximum_flow_or_gap_dependence_percent": 5.0,
+    "maximum_pressure_difference_pa": 5.0,
+    "maximum_single_direction_apparent_error_percent": 10.0
+  },
+  "cell": {
+    "absolute_pressure_pa": 101325.0,
+    "active_area_cm2": 25.0,
+    "axial_mean_state_iterations": 24,
+    "common_inlet_water_activity": 0.5,
+    "material_reference_water_activity": 0.8,
+    "nominal_gap_mm_each_side": 2.0,
+    "nominal_velocity_m_s_each_side": 1.0,
+    "square_width_mm": 50.0,
+    "temperature_c": 32.0
+  },
+  "claim_boundary": "Screening and experiment-design model. Material coordinates and nuisance ranges are declared scenarios, not fitted probability distributions or validated hardware uncertainties.",
+  "closed_loop_screen": {
+    "effective_wall_plus_membrane_capacity_multiple_of_gas": [
+      0.0,
+      1.0,
+      10.0,
+      100.0
+    ],
+    "gas_volume_l_per_side": [
+      0.005,
+      1.0,
+      5.0,
+      20.0
+    ],
+    "interpretation": "Linearized symmetric rigid-chamber transient. Capacity multipliers are stress coordinates until foil and membrane RH-step data identify them.",
+    "target_one_side_rh_change_percentage_points": 1.0,
+    "temperature_mismatch_k_for_pressure_screen": [
+      0.0,
+      0.05,
+      0.1
+    ]
+  },
+  "combined_scenario_space": {
+    "active_area_error_fraction": {
+      "max": 0.005,
+      "min": -0.005
+    },
+    "actual_convective_leak_sccm_at_50_pa": {
+      "max": 0.5,
+      "min": 0.0
+    },
+    "current_error_fraction": {
+      "max": 0.002,
+      "min": -0.002
+    },
+    "edge_conductance_fraction_of_membrane": {
+      "max": 0.1,
+      "min": 0.0
+    },
+    "film_multiplier": {
+      "max": 2.0,
+      "min": 0.5,
+      "scale": "log"
+    },
+    "gap_error_fraction": {
+      "max": 0.02,
+      "min": -0.02
+    },
+    "humidity_drift_between_polarities_rh_percentage_points": {
+      "max": 0.02,
+      "min": -0.02
+    },
+    "humidity_static_difference_bias_rh_percentage_points": {
+      "max": 0.1,
+      "min": -0.1
+    },
+    "inlet_activity_mismatch_rh_percentage_points": {
+      "max": 0.1,
+      "min": -0.1
+    },
+    "interpretation": "Space-filling stress envelope. Quantiles are conditional on these ranges and must not be reported as calibrated confidence intervals.",
+    "pressure_difference_pa": {
+      "max": 5.0,
+      "min": -5.0
+    },
+    "samples": 8192,
+    "seed": 20260828,
+    "temperature_mismatch_k": {
+      "max": 0.1,
+      "min": -0.1
+    },
+    "velocity_error_fraction": {
+      "max": 0.02,
+      "min": -0.02
+    },
+    "wall_and_sensor_rate_drift_between_polarities_mg_h": {
+      "max": 0.5,
+      "min": -0.5
+    }
+  },
+  "film_model": {
+    "interpretation": "The project correlation is velocity-independent while Re is laminar. Velocity affects bulk depletion in this study; an explicit multiplier represents unresolved entrance, spacer and mixing effects.",
+    "laminar_parallel_plate_sherwood": 7.54,
+    "nominal_multiplier": 1.0
+  },
+  "material_scenarios": [
+    {
+      "capacity_activity_exponent": 0.0,
+      "current_density_a_m2": 10.0,
+      "diffusivity_activity_exponent": 2.0,
+      "dry_thickness_um": 36.91369958200169,
+      "interpretation": "Low-drag, low-diffusion signal-floor screen; not a named real material.",
+      "scenario_id": "low_drag_slow_diffusion",
+      "water_capacity_mol_m3_activity": 10000.0,
+      "water_diffusivity_m2_s": 1.597880133581376e-14,
+      "water_drag": 0.3
+    },
+    {
+      "capacity_activity_exponent": 0.0,
+      "current_density_a_m2": 10.0,
+      "diffusivity_activity_exponent": 2.0,
+      "dry_thickness_um": 36.91369958200169,
+      "interpretation": "Order-unity drag with the slow project-anchor diffusivity.",
+      "scenario_id": "order_unity_slow_diffusion",
+      "water_capacity_mol_m3_activity": 10000.0,
+      "water_diffusivity_m2_s": 1.597880133581376e-14,
+      "water_drag": 1.0
+    },
+    {
+      "capacity_activity_exponent": 0.0,
+      "current_density_a_m2": 10.0,
+      "diffusivity_activity_exponent": 2.0,
+      "dry_thickness_um": 36.91369958200169,
+      "interpretation": "Boundary-sensitive high-diffusivity stress case; not a fitted material.",
+      "scenario_id": "order_unity_fast_diffusion",
+      "water_capacity_mol_m3_activity": 10000.0,
+      "water_diffusivity_m2_s": 1e-10,
+      "water_drag": 1.0
+    },
+    {
+      "capacity_activity_exponent": 0.0,
+      "current_density_a_m2": 1.0,
+      "diffusivity_activity_exponent": 2.0,
+      "dry_thickness_um": 36.91369958200169,
+      "interpretation": "Hypothetical project inverse-design anchor, not a measured material.",
+      "scenario_id": "inverse_design_anchor",
+      "water_capacity_mol_m3_activity": 10000.0,
+      "water_diffusivity_m2_s": 1.597880133581376e-14,
+      "water_drag": 100.06078708377692
+    }
+  ],
+  "measurement_sequence_interpretation": "Ideal ABBA ordering cancels static and linear time drift. The sampled between-polarity humidity and rate-drift coordinates represent the non-cancelling residual from curvature, hysteresis, polarity-linked settling or imperfect block execution; replace their ranges with measured ABBA residuals.",
+  "one_factor_sweeps": {
+    "actual_convective_leak_sccm_at_50_pa": [
+      0.0,
+      0.01,
+      0.1,
+      0.5,
+      1.0
+    ],
+    "edge_conductance_fraction_of_membrane": [
+      0.0,
+      0.01,
+      0.05,
+      0.1,
+      0.2
+    ],
+    "film_multiplier": [
+      0.25,
+      0.5,
+      1.0,
+      2.0,
+      4.0
+    ],
+    "gap_mm": [
+      1.0,
+      1.5,
+      2.0,
+      3.0,
+      4.0
+    ],
+    "humidity_difference_bias_rh_percentage_points": [
+      -0.2,
+      -0.1,
+      -0.05,
+      0.0,
+      0.05,
+      0.1,
+      0.2
+    ],
+    "inlet_activity_mismatch_rh_percentage_points": [
+      -0.5,
+      -0.2,
+      -0.1,
+      -0.05,
+      0.0,
+      0.05,
+      0.1,
+      0.2,
+      0.5
+    ],
+    "polarity_drift_mg_h": [
+      -2.0,
+      -1.0,
+      -0.5,
+      0.0,
+      0.5,
+      1.0,
+      2.0
+    ],
+    "pressure_difference_pa": [
+      -50.0,
+      -20.0,
+      -5.0,
+      0.0,
+      5.0,
+      20.0,
+      50.0
+    ],
+    "temperature_mismatch_k": [
+      -0.5,
+      -0.2,
+      -0.1,
+      -0.05,
+      0.0,
+      0.05,
+      0.1,
+      0.2,
+      0.5
+    ],
+    "velocity_m_s": [
+      0.25,
+      0.5,
+      1.0,
+      2.0,
+      4.0
+    ]
+  },
+  "purpose": "Quantify how controlled and uncontrolled boundary conditions bias EO water-vapour coupon-cell measurements.",
+  "schema_version": 1,
+  "source_provenance": {
+    "film_correlation": "/home/torsheim/HeiQ/HeiQ_V2/scripts/make_wp1_pre_receiver_axial_v3.py::calculate_film_state",
+    "finite_film_solver": "heiq_pre_receiver_material_analyses/heiq_pre_receiver_model.py::solve_powerlaw_at_current",
+    "parent_sizing_config": "config/eo_vapor_cell_sizing_v1.json"
+  },
+  "study_id": "eo-vapor-boundary-analysis-v1-2026-08-28"
+}

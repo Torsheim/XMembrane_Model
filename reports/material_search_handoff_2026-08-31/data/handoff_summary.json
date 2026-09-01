@@ -1,0 +1,88 @@
+{
+  "availability_search_row_count": 9,
+  "current_release_status": {
+    "canonical_coupon_report": "reports/eo_vapor_boundary_analysis_v2_en/HeiQ_EO_Vapour_Cell_Boundary_Conditions_and_Sizing_2026-08-31_v2.pdf",
+    "direct_active_erv_status": "open secondary architecture pending measured passive transfer and film behaviour",
+    "first_system_relevant_coupon_target": "post-ERV O30 in the 25-cm2 controlled-flow fixture",
+    "governing_scientific_report": "reports/team_result_atlas_v8/HeiQ_XMembrane_Current_Result_and_Decision_Report_2026-08-31_v8.pdf",
+    "latest_controlled_delivery": "deliverables/current/2026-08-31_v8_1",
+    "material_handoff_release_status": "internal_post_release_addendum_not_in_v8_1_allowlist",
+    "supporting_model_closure": "reports/model_closure_2026-08-31/HeiQ_XMembrane_Model_Closure_and_Material_Handoff_2026-08-31.pdf",
+    "v8_1_checksum_verification": {
+      "checked_file_count": 107,
+      "failure_count": 0,
+      "failures": [],
+      "pass": true
+    },
+    "v8_1_immutable_repository_archival_release": false,
+    "v8_1_live_test_passed_count": 300,
+    "v8_1_live_tests_pass": true,
+    "v8_1_manifest_sha256": "6b83c446fc44f109790a043063d39012df54eb7c3d64c50e53de9c4552ca76a1",
+    "v8_1_parent_manifest_sha256": "51f8ba4742af613a7b24d4d94062d4ad4b6a5440ed83149015c07afb9cf234fd",
+    "v8_1_release_class": "hash_frozen_controlled_deliverable",
+    "v8_1_release_id": "XMEMBRANE-2026-08-31-V8.1",
+    "v8_1_release_scope": "translation_and_English_delivery_only",
+    "v8_1_release_snapshot_ready": false,
+    "v8_1_scientific_delta_from_parent": false,
+    "v8_1_state": "controlled_release",
+    "v8_1_translation_only_no_scientific_delta": true,
+    "v8_checksum_verification": {
+      "checked_file_count": 106,
+      "failure_count": 0,
+      "failures": [],
+      "pass": true
+    },
+    "v8_manifest_sha256": "51f8ba4742af613a7b24d4d94062d4ad4b6a5440ed83149015c07afb9cf234fd",
+    "v8_release_class": "hash_frozen_controlled_deliverable",
+    "v8_release_id": "XMEMBRANE-2026-08-31-V8"
+  },
+  "decision": {
+    "availability_and_procurement_inquiry_ready": true,
+    "candidate_ranking_ready": false,
+    "consolidated_material_search_input_ready": true,
+    "direct_active_erv_status": "open secondary architecture pending measured passive transfer and film behaviour",
+    "exploratory_chemistry_leads": [
+      "intrinsically microporous polyamine membranes",
+      "BPSH/non-PFSA sulfonated aromatic ionomers",
+      "graded/adsorbing composite architectures"
+    ],
+    "first_system_relevant_coupon_target": "post-ERV O30 in the 25-cm2 controlled-flow fixture",
+    "post_release_direct_active_weather_extension": "reviewed; O80/O50 engineering passes, O30 stack/engineering failure, all full-system claims false; not in V8.1 and not material evidence",
+    "primary_development_route": "thin supported Li+-form cation-exchange membrane with measured two-sided vapour interfaces",
+    "primary_real_material_evidence_anchor": "Selemion CMVN in Li+ form; test priority only, not performance ranking",
+    "procurement_shortlist_ready": false,
+    "reason": "No named material has a complete MAT-01 to MAT-09 same-sample data bundle under the intended vapour conditions.",
+    "reference_controls": [
+      "Nafion NR211",
+      "Nafion NR212"
+    ],
+    "start_from_zero": false
+  },
+  "development_route_count": 7,
+  "downloaded_pdf_manifest": {
+    "duplicate_rows": 14,
+    "manifest_rows": 45,
+    "unique_documents": 31
+  },
+  "heiq_root": "/home/torsheim/HeiQ",
+  "historical_milestone_count": 17,
+  "literature_lead_count": 4,
+  "model_conflict_count": 10,
+  "named_material_count": 10,
+  "named_materials_same_sample_complete": 0,
+  "output_dir": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/material_search_handoff_2026-08-31/data",
+  "qualification_row_count": 90,
+  "script_version": "material-search-handoff-v1-2026-08-31",
+  "source_record_count": 75,
+  "synthetic_target_count": 10,
+  "validation": {
+    "failure_count": 0,
+    "failures": [],
+    "pass": true
+  },
+  "workspace_file_count": 39284,
+  "workspace_inventory_group_count": 6,
+  "workspace_pdf_count": 1039,
+  "workspace_root_count": 5,
+  "workspace_top_level_file_count": 1
+}
