@@ -1,0 +1,514 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{tgtermes,tgheros,microtype}
+\usepackage[a4paper,margin=18mm,headheight=19pt]{geometry}
+\usepackage{xcolor,graphicx,booktabs,tabularx,array,enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr,lastpage,titlesec}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl,caption,placeins,textcomp,amsmath}
+
+\definecolor{Navy}{HTML}{173753}
+\definecolor{Teal}{HTML}{008F8C}
+\definecolor{PaleTeal}{HTML}{E5F4F3}
+\definecolor{Orange}{HTML}{F08A24}
+\definecolor{PaleOrange}{HTML}{FFF1E2}
+\definecolor{Red}{HTML}{BB3E35}
+\definecolor{PaleRed}{HTML}{F9E9E7}
+\definecolor{Slate}{HTML}{5B7083}
+\definecolor{Light}{HTML}{F3F6F8}
+\definecolor{Line}{HTML}{D7E0E7}
+\definecolor{Green}{HTML}{2E8B57}
+\definecolor{PaleGreen}{HTML}{EAF5EE}
+
+\newcommand{\sans}{\fontfamily{qhv}\selectfont}
+\newcommand{\reportdate}{1 September 2026}
+\newcommand{\reportversion}{Version 1}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+\hypersetup{
+  pdftitle={HeiQ XMembrane EO Vapour Experiment Design -- Moisture Target and Cell Scaling},
+  pdfauthor={HeiQ XMembrane project team},
+  pdfsubject={Coupon-cell sizing, moisture transport target, sensitivity and reversible cycling},
+  pdfkeywords={XMembrane, electro-osmosis, ERV, vapour cell, moisture flux, transport number}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\sans\footnotesize\color{Slate}HEIQ MATERIALS AG · XMEMBRANE}
+\fancyhead[R]{\sans\footnotesize\color{Slate}EO VAPOUR EXPERIMENT · V1}
+\fancyfoot[L]{\sans\scriptsize\color{Slate}Experiment-design basis · conditional model evidence, not material validation}
+\fancyfoot[R]{\sans\scriptsize\color{Slate}Page \thepage\ of \pageref*{LastPage}}
+\renewcommand{\headrulewidth}{0.45pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{Navy}\leaders\hrule height \headrulewidth\hfill}}
+\renewcommand{\footrulewidth}{0pt}
+
+\titleformat{\section}{\sans\bfseries\color{Navy}\fontsize{19}{22}\selectfont}{\thesection}{0.65em}{}
+\titleformat{\subsection}{\sans\bfseries\color{Navy}\fontsize{13}{16}\selectfont}{\thesubsection}{0.55em}{}
+\titlespacing*{\section}{0pt}{7mm}{3mm}
+\titlespacing*{\subsection}{0pt}{5mm}{2mm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1.6mm}
+\setlist[itemize,enumerate]{leftmargin=5mm,itemsep=1mm,topsep=1mm}
+\captionsetup{font=small,labelfont={bf,color=Navy}}
+\renewcommand{\arraystretch}{1.18}
+
+\newtcolorbox{mainbox}{enhanced,breakable,colback=PaleTeal,colframe=Teal,boxrule=0.7pt,arc=2mm,left=4mm,right=4mm,top=3mm,bottom=3mm}
+\newtcolorbox{warningbox}{enhanced,breakable,colback=PaleOrange,colframe=Orange,boxrule=0.7pt,arc=2mm,left=4mm,right=4mm,top=3mm,bottom=3mm}
+\newtcolorbox{stopbox}{enhanced,breakable,colback=PaleRed,colframe=Red,boxrule=0.7pt,arc=2mm,left=4mm,right=4mm,top=3mm,bottom=3mm}
+\newtcolorbox{gobox}{enhanced,breakable,colback=PaleGreen,colframe=Green,boxrule=0.7pt,arc=2mm,left=4mm,right=4mm,top=3mm,bottom=3mm}
+\newtcolorbox{plainbox}{enhanced,breakable,colback=Light,colframe=Line,boxrule=0.5pt,arc=2mm,left=4mm,right=4mm,top=3mm,bottom=3mm}
+\newcommand{\eyebrow}[1]{{\sans\bfseries\color{Teal}\MakeUppercase{#1}}\par\vspace{1.5mm}}
+\newcommand{\metric}[3]{\begin{minipage}[t]{0.30\textwidth}{\sans\bfseries\fontsize{18}{20}\selectfont\color{Navy}#1}\par{\sans\bfseries\small #2}\par{\scriptsize\color{Slate}#3}\end{minipage}}
+
+\begin{document}
+\thispagestyle{empty}
+\vspace*{7mm}
+\begin{tcolorbox}[enhanced,colback=Navy,colframe=Navy,boxrule=0pt,arc=0mm,left=12mm,right=12mm,top=12mm,bottom=12mm]
+{\sans\bfseries\large\color{white}HEIQ XMEMBRANE PROJECT TEAM}\par
+\vspace{8mm}
+{\sans\bfseries\fontsize{27}{31}\selectfont\color{white}EO vapour experiment design}\par
+\vspace{2mm}
+{\sans\fontsize{17}{20}\selectfont\color{white}Moisture target, coupon-cell scaling and reversible cycling}\par
+\vspace{7mm}
+{\sans\large\color{white}\reportdate\quad · \quad\reportversion}
+\end{tcolorbox}
+
+\vspace{10mm}
+{\sans\bfseries\Large\color{Navy}Experiment context}\par
+\vspace{4mm}
+This report translates the selected O30 building-scale ERV+EO result into a
+measurable coupon experiment. EO is located inside the ERV membrane/core. The
+report explains the moisture-rate target, active-area selection, channel and
+fixture dimensions, detectability basis, transient closed-cell response and
+the limitations of symmetric water shuttling without through-flow.
+
+\begin{mainbox}
+\textbf{Primary decision.} Build one modular fixture around a 50~$\times$~50~mm
+maximum active aperture (25~cm\textsuperscript{2}). Use controlled once-through
+gas to determine sustained polarity-dependent EO transport. Use a sealed or
+recirculating configuration only as a separate transient experiment: symmetric
+polarity cycling moves water in both directions but gives zero net EO transport
+over a complete cycle unless a rectifying or water-removal mechanism is added.
+\end{mainbox}
+
+\vfill
+\begin{tabularx}{\textwidth}{@{}lY@{}}
+\textbf{System-derived net EO target} & 200--250~g/m\textsuperscript{2}/h below 1~V \\
+\textbf{Maximum active aperture} & 25~cm\textsuperscript{2}; physical coupon approximately 80~$\times$~80~mm \\
+\textbf{Nominal gas state} & 32~$^\circ$C, 101,325~Pa, water activity 0.50 \\
+\textbf{Nominal channel} & 2~mm gap per side; 1/2/4-mm validation sweep \\
+\textbf{Nominal gas flow} & 6~L/min per side for the declared detectability screen \\
+\textbf{Claim status} & Experiment-design target; no measured membrane or commercial-system validation \\
+\end{tabularx}
+
+\clearpage
+\section*{Executive summary}
+\addcontentsline{toc}{section}{Executive summary}
+
+The O30 system coordinate requires 4,365.9~kg/h total water transfer through
+the active ERV membrane. The matched passive ERV provides approximately
+3,137.6~kg/h, leaving 1,228.3~kg/h as the additional duty associated with EO.
+Dividing that incremental duty by the selected 5,899~m\textsuperscript{2}
+active area gives 208~g/m\textsuperscript{2}/h. This is a system-equivalent
+average, not an intrinsic membrane constant or a uniform local flux.
+
+For the 25-cm\textsuperscript{2} coupon, 208~g/m\textsuperscript{2}/h equals
+0.520~g/h or 0.144~mg/s. The ideal gross mapping at transport number
+$t_w=50$ and current density $j=10$~A/m\textsuperscript{2} gives
+336~g/m\textsuperscript{2}/h, corresponding to 0.840~g/h or 0.233~mg/s on
+the same coupon. Gross flux is not net flux: passive back-diffusion, gas films,
+storage, leakage and electrode chemistry must be resolved experimentally.
+
+The 25-cm\textsuperscript{2} aperture is retained because it gives the largest
+absolute signal and lowest perimeter-to-area ratio in the existing fixture.
+At 6~L/min per side, the ideal inverse-design anchor needs 13.09~cm\textsuperscript{2}
+at 0.5~A/m\textsuperscript{2} and 6.55~cm\textsuperscript{2} at
+1~A/m\textsuperscript{2} to exceed the declared five-to-one humidity-signal
+criterion. Order-unity transport numbers require lower flow or an integrating
+water-rate measurement rather than a larger permanent fixture.
+
+\begin{center}
+\metric{208 g/m\textsuperscript{2}/h}{System-equivalent EO increment}{Use 200--250 as the coupon target}\hfill
+\metric{0.520 g/h}{25-cm\textsuperscript{2} target rate}{0.144 mg/s at 208 g/m\textsuperscript{2}/h}\hfill
+\metric{0 net/cycle}{Symmetric sealed cycling}{Water shuttles, then returns}
+\end{center}
+
+\begin{warningbox}
+\textbf{Interpretation boundary.} A closed-cell oscillation can demonstrate
+directionality, reversibility and finite water displacement. It cannot by
+itself demonstrate sustained ERV dehumidification. The internal gas inventory
+is small, the humidity gradient develops rapidly, blocking electrodes charge,
+and a symmetric full cycle returns the EO-displaced water.
+\end{warningbox}
+
+\clearpage
+\tableofcontents
+\clearpage
+
+\section{From building moisture duty to a coupon target}
+
+For dry-air mass flow $\dot m_{da}$ and humidity ratios $w$, the required water
+rate is
+\[
+\dot m_w=\dot m_{da}(w_{\mathrm{in}}-w_{\mathrm{target}})3600.
+\]
+
+\begin{table}[htbp]
+\centering
+\caption{O30 moisture balance used to define the experimental target.}
+\begin{tabularx}{\textwidth}{@{}Y R Y@{}}
+\toprule
+Quantity & Value & Meaning \\
+\midrule
+Total active-ERV membrane transport & 4,365.9 kg/h & Passive plus electrically enhanced transfer \\
+Matched passive-ERV transport & $\approx$3,137.6 kg/h & Same ERV with EO switched off \\
+Additional duty associated with EO & 1,228.3 kg/h & Difference between total and passive cases \\
+Selected active membrane area & 5,899 m\textsuperscript{2} & Coupled system-sweep result \\
+Average total membrane flux & 740 g/m\textsuperscript{2}/h & Total transport divided by area \\
+Area-normalised EO increment & 208 g/m\textsuperscript{2}/h & Additional EO duty divided by area \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\[
+J_{\mathrm{total}}=\frac{4{,}365.9}{5{,}899}
+=0.740~\mathrm{kg\,m^{-2}\,h^{-1}},
+\qquad
+J_{\mathrm{EO,eq}}=\frac{1{,}228.3}{5{,}899}
+=0.208~\mathrm{kg\,m^{-2}\,h^{-1}}.
+\]
+
+The 5,899-m\textsuperscript{2} area is generated by a coupled ERV model with
+axially varying activity, temperature, current, conductivity, gas films and
+back-diffusion. It is not obtained by dividing the water duty by a single
+measured membrane flux. Consequently, the experimental requirement is stated
+as a band: demonstrate 200--250~g/m\textsuperscript{2}/h of repeatable net
+polarity-odd transport below 1~V under representative gas--gas conditions.
+
+\section{Transport number, current and sensitivity}
+
+The ideal gross EO relationship is
+\[
+J_{\mathrm{EO,gross}}=t_w\frac{j}{F}M_w
+\approx0.672\,t_wj\quad\mathrm{g\,m^{-2}\,h^{-1}},
+\]
+where $t_w$ is mol water per mol elementary charge and $j$ is in
+A/m\textsuperscript{2}. This is a gross Faradaic mapping; it does not subtract
+passive diffusion, films, leakage, water storage or reaction water.
+
+\begin{table}[htbp]
+\centering
+\caption{Gross EO sensitivity at 10 A/m\textsuperscript{2}.}
+\begin{tabular}{@{}rr@{}}
+\toprule
+$t_w$ & Gross EO flux [g/m\textsuperscript{2}/h] \\
+\midrule
+10 & 67 \\
+20 & 134 \\
+30 & 202 \\
+50 & 336 \\
+75 & 504 \\
+100 & 672 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The ideal 208-g/m\textsuperscript{2}/h target corresponds to $t_wj\approx310$.
+Examples are $t_w=50$ at 6.2~A/m\textsuperscript{2}, $t_w=30$ at
+10.3~A/m\textsuperscript{2}, and $t_w=20$ at 15.5~A/m\textsuperscript{2}.
+A real experiment can require a higher product because the observable net flux
+is the gross EO contribution minus opposing transport.
+
+\begin{plainbox}
+\textbf{First-order sensitivities.} Gross flux scales linearly with $t_w$ and
+$j$. Total rate scales linearly with active area at unchanged local conditions.
+Voltage, heating, concentration polarisation, conductivity and back-diffusion
+need not scale linearly. A high liquid-state $t_w$ is therefore a screening
+lead, not a validated vapour-state coefficient.
+\end{plainbox}
+
+\section{Cell area and measurable water rate}
+
+For uniform flux $J$ and active area $A$, $\dot m=JA$. Table~\ref{tab:rates}
+compares the system-equivalent target with the ideal $t_w=50$, $j=10$ gross
+reference.
+
+\begin{table}[htbp]
+\centering
+\caption{Coupon rate as a function of active aperture.\label{tab:rates}}
+\begin{tabularx}{\textwidth}{@{}Y R R R@{}}
+\toprule
+Aperture & Area & Rate at 208 g/m\textsuperscript{2}/h & Rate at 336 g/m\textsuperscript{2}/h \\
+\midrule
+20 $\times$ 20 mm & 4 cm\textsuperscript{2} & 0.083 g/h; 0.023 mg/s & 0.134 g/h; 0.037 mg/s \\
+30 $\times$ 30 mm & 9 cm\textsuperscript{2} & 0.187 g/h; 0.052 mg/s & 0.302 g/h; 0.084 mg/s \\
+40 $\times$ 40 mm & 16 cm\textsuperscript{2} & 0.333 g/h; 0.092 mg/s & 0.538 g/h; 0.149 mg/s \\
+50 $\times$ 50 mm & 25 cm\textsuperscript{2} & 0.520 g/h; 0.144 mg/s & 0.840 g/h; 0.233 mg/s \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The aperture sweep should be fitted to
+\[
+\dot m_{\mathrm{measured}}=J_AA+k_PP+\dot m_{\mathrm{blank}},
+\]
+where $P$ is perimeter. The 4-cm\textsuperscript{2} square and 8~$\times$~50-mm
+rectangle have equal area but different perimeter and flow orientation. They
+help distinguish membrane-area transport from seal, edge and distribution
+artefacts.
+
+\section{Detectability basis for the 25-cm\textsuperscript{2} fixture}
+
+The declared sizing state is 32~$^\circ$C, 101,325~Pa, inlet water activity
+0.50 and 6~L/min per side. Each humidity channel has 0.1 RH percentage point
+expanded uncertainty. For two independent channels,
+\[
+u_{\Delta RH}=\sqrt{0.1^2+0.1^2}=0.141,
+\qquad
+\Delta RH_{\mathrm{required}}=5u_{\Delta RH}=0.707
+\text{ percentage point}.
+\]
+
+At fixed flow, the ideal outlet signal scales approximately as
+$t_wjA/\dot V$. The sizing calculation converts gross water rate to humidity
+ratio and RH at the declared state, then solves for the area that reaches the
+0.707-point threshold.
+
+\begin{table}[htbp]
+\centering
+\caption{Minimum ideal active area at 6 L/min per side.}
+\begin{tabularx}{\textwidth}{@{}Y R Y@{}}
+\toprule
+Gross-signal case & Minimum area & Smallest insert \\
+\midrule
+Inverse-design anchor, 0.5 A/m\textsuperscript{2} & 13.09 cm\textsuperscript{2} & 16 cm\textsuperscript{2} \\
+Inverse-design anchor, 1.0 A/m\textsuperscript{2} & 6.55 cm\textsuperscript{2} & 9 cm\textsuperscript{2} \\
+Selected ERV profile minimum, 1.242 A/m\textsuperscript{2} & 5.27 cm\textsuperscript{2} & 9 cm\textsuperscript{2} \\
+Selected ERV profile maximum, 3.366 A/m\textsuperscript{2} & 1.94 cm\textsuperscript{2} & 4 cm\textsuperscript{2} \\
+Order-unity $t_w=1$, 10 A/m\textsuperscript{2} & 65.5 cm\textsuperscript{2} & Does not fit \\
+Low-drag $t_w=0.3$, 10 A/m\textsuperscript{2} & 218 cm\textsuperscript{2} & Does not fit \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+These are ideal signal floors, not net-flux predictions. With the 25-cm\textsuperscript{2}
+aperture, the maximum ideal flows are approximately 2.29~L/min for $t_w=1$
+and 0.69~L/min for $t_w=0.3$ at 10~A/m\textsuperscript{2}. Low-flow signal
+acquisition and high-flow film characterisation should be separate modes.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.94\textwidth]{../../outputs/eo_vapor_cell_sizing_v1/cell_dimension_tradeoffs.png}
+\caption{Existing project calculation of cell dimensions and measurement trade-offs. Values are experiment-design sensitivities, not validated material performance.}
+\end{figure}
+\FloatBarrier
+
+\section{Mechanical and fluidic starting point}
+
+\begin{table}[htbp]
+\centering
+\caption{Fixture dimensions and their calculation basis.}
+\begin{tabularx}{\textwidth}{@{}Y R Y@{}}
+\toprule
+Item & Starting value & Basis \\
+\midrule
+Maximum active aperture & 50 $\times$ 50 mm & Signal margin; low perimeter/area ratio \\
+Physical membrane coupon & $\approx$80 $\times$ 80 mm & Double seals, guard groove and clamp land \\
+Outer fixture & $\approx$110 $\times$ 110 mm & Ports, bolts and electrical isolation \\
+Nominal gap per side & 2 mm & Local match to declared ERV channel \\
+Gap validation & 1, 2 and 4 mm & Gas-film and pressure-drop sensitivity \\
+Active volume per side & 5.00 mL & 25 cm\textsuperscript{2} $\times$ 0.2 cm \\
+Headers, ports and taps & 1.222 mL & Proposed geometric allowance \\
+Total swept volume & 6.222 mL/side & Active channel plus internal dead volume \\
+Ideal residence at 6 L/min & 62 ms & 6.222 mL / 100 mL/s \\
+Main pressure difference & within $\pm$5 Pa & Limit hydraulic transport artefacts \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Hard stops, not gasket compression, must define the gas gap. For the 1-mm gap,
+the plate-bow target is below 20~$\mu$m or the measured nonuniformity must be
+included in analysis. The stiffness screen gives 15.35~mm PEEK, 5.81~mm
+Al~6061-T6 and 4.16~mm 316L at a deliberately conservative 1-MPa equivalent
+uniform load. These are screening values, not gasket-contact calculations;
+final acceptance requires measured flatness under the real assembly load.
+
+\section{Closed-cell fluctuation without through-flow}
+
+At constant flux, the water shifted during one half-cycle is
+\[
+\Delta m_{\mathrm{half}}=JA\Delta t=\frac{JA}{2f},
+\]
+where $f$ is the full-cycle frequency. For 25~cm\textsuperscript{2} at the
+208-g/m\textsuperscript{2}/h target, $JA=0.520$~g/h = 0.144~mg/s.
+
+\begin{table}[htbp]
+\centering
+\caption{Ideal one-direction displacement for the 25-cm\textsuperscript{2} coupon.}
+\begin{tabular}{@{}rrr@{}}
+\toprule
+Frequency & Half-cycle & Water shifted \\
+\midrule
+0.1 Hz & 5 s & 0.72 mg \\
+0.01 Hz & 50 s & 7.2 mg \\
+0.001 Hz & 500 s & 72 mg \\
+0.0001 Hz & 5,000 s & 722 mg \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Multiply these values by 1.615 for the 336-g/m\textsuperscript{2}/h gross
+reference. These linear values apply only while current and boundary states
+remain available. They are initial command-rate calculations, not guaranteed
+cycle amplitudes.
+
+The 6.222-mL internal gas volume contains only about 0.1--0.2~mg water vapour
+over the full 0--100\% RH span at 25--32~$^\circ$C. At 0.144~mg/s, the chamber
+humidity can therefore change materially in roughly one second without an
+external reservoir, sorbent or condensate capacity. The resulting activity
+difference drives back-diffusion. Tubing, sensors, electrodes, supports and
+walls must be included in the transient water inventory.
+
+\begin{stopbox}
+\textbf{Full-cycle result.} In the current constant-drag model, symmetric
+charge-balanced polarity cycling gives
+\[
+\boxed{\text{net EO water transport over one complete cycle}=0.}
+\]
+Absolute shuttled water is nonzero, but the second half-cycle returns the EO
+displacement. Continuous dehumidification requires a validated mechanism that
+breaks this symmetry, such as flow switching, condensation, rectification,
+asymmetric regeneration, pseudocapacitance or a defined Faradaic pathway.
+\end{stopbox}
+
+\section{Blocking-electrode capacity}
+
+For purely blocking electrodes, the ideal finite displacement is
+\[
+m_{\max}=t_w\frac{M_w}{F}C_{\mathrm{pair},A}A\Delta V.
+\]
+The reference sensitivity uses 10,000~F/m\textsuperscript{2} for each identical
+electrode, or 5,000~F/m\textsuperscript{2} for the series pair. For 25~cm\textsuperscript{2},
+$t_w\approx100$ and a 1.8-V terminal limit, the transient model gives about
+420~mg EO displacement before current collapses. The same ideal scaling at
+$t_w=50$ gives approximately 210~mg. These capacitances and transport numbers
+are unmeasured sensitivity coordinates.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.88\textwidth]{../../outputs/capacitive_electrode_study_v1/figures/03_symmetric_ac_cycle.pdf}
+\caption{Reference symmetric cycle from the existing transient study. Charge-balanced reversal closes the EO water balance over a full cycle.}
+\end{figure}
+\FloatBarrier
+
+\section{Sensitivity map and experimental meaning}
+
+\begin{table}[htbp]
+\centering
+\caption{First-order sensitivity and validity limits.}
+\begin{tabularx}{\textwidth}{@{}Y Y Y@{}}
+\toprule
+Variable increased & First-order effect & Principal limitation \\
+\midrule
+Active area & Rate and capacitive inventory rise linearly & Edge leakage and current uniformity \\
+Transport number & Gross flux per charge rises linearly & Must be measured in vapour \\
+Current density & Initial gross flux rises linearly & Voltage, heating, polarisation, reactions \\
+Half-cycle time & Ideal displacement rises linearly & Chamber/electrode saturation \\
+Frequency & Displacement per half-cycle falls as $1/f$ & Fast cycling may probe electrodes, not membrane \\
+Pair capacitance & Blocking-electrode inventory rises linearly & Still zero net in a symmetric full cycle \\
+Gas flow & RH signal decreases at fixed water rate & Films and boundary control may improve \\
+Channel gap & Changes volume, velocity, films and pressure drop & Must be measured in the 1/2/4-mm sweep \\
+Diffusivity & Faster redistribution and passive flux & Back-diffusion can reduce net EO signal \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The membrane redistribution scale is approximately $L^2/D$. For the
+36.9-$\mu$m reference membrane, the present diffusivity screen spans seconds to
+roughly one day. Steady state must therefore be defined by stable voltage and
+closed donor/receiver water balances, not by one fixed elapsed time.
+
+\section{Recommended test programme}
+
+\begin{enumerate}
+\item Run impermeable-foil, zero-current and passive-gradient blanks.
+\item Use once-through gas at equal inlet activity and low current to locate a
+measurable signal safely.
+\item Apply both polarities in an ABBA sequence and calculate
+$J_{\mathrm{odd}}=[J(+I)-J(-I)]/2$.
+\item Require donor loss and receiver gain to close independently.
+\item Repeat the 4/9/16/25-cm\textsuperscript{2} aperture sweep and fit area,
+perimeter and blank terms.
+\item Sweep flow separately from the 1/2/4-mm gap sweep to expose gas-film
+limitations.
+\item After sustained polarity-dependent transport is established, connect two
+measured, well-mixed reservoirs and test reversible half-cycles.
+\item Report initial rate, half-cycle displacement, peak-to-peak inventory,
+full-cycle water closure, charge closure, voltage and energy.
+\end{enumerate}
+
+\begin{gobox}
+\textbf{Proposed first success criterion.} Demonstrate repeatable
+polarity-odd net transport of at least 200--250~g/m\textsuperscript{2}/h below
+1~V under representative gas--gas conditions; show matching donor loss and
+receiver gain; and show that the rate is dominated by active area rather than
+perimeter or blank terms.
+\end{gobox}
+
+The resulting report should also give effective
+$t_w=FJ_{\mathrm{odd}}/(jM_w)$, conductivity or area-specific resistance,
+passive water flux, temperature, activity, pressure, flow, gap, electrode
+state and measurement uncertainty for the same specimen.
+
+\section{Conclusions and claim boundary}
+
+The system model supplies a clear experimental scale: approximately
+208~g/m\textsuperscript{2}/h additional EO-equivalent transport at O30, rounded
+to a practical 200--250-g/m\textsuperscript{2}/h target. The 25-cm\textsuperscript{2}
+coupon converts this into a measurable target rate of 0.520~g/h while retaining
+smaller apertures for area/perimeter validation.
+
+The fixture dimensions are driven by signal, boundary control, seal land,
+channel similarity and artefact separation. They do not validate the assumed
+high transport number. The decisive evidence must be a vapour-state,
+polarity-dependent donor/receiver water balance under measured voltage and
+current.
+
+Closed-cell oscillation is useful but answers a different question. It measures
+finite displacement, reversal and storage. Without through-flow or another
+asymmetry, it cannot provide sustained net dehumidification. Absolute water
+shuttled per half-cycle must never be reported as continuous moisture-removal
+capacity.
+
+\begin{warningbox}
+All numerical material coordinates in this report remain conditional until
+measured on the same membrane under representative vapour activity,
+temperature, current density and interface conditions. The report defines an
+experiment and falsifiable targets; it does not claim a validated membrane,
+electrode, receiver or commercial ERV system.
+\end{warningbox}
+
+\section*{Reproduction and source documents}
+\addcontentsline{toc}{section}{Reproduction and source documents}
+
+The calculations are reproduced with:
+\begin{verbatim}
+python3 scripts/design_eo_vapor_test_cell.py
+PYTHONPATH=src python3 scripts/run_capacitive_electrode_study_v1.py --overwrite
+pytest -q -s tests/test_eo_vapor_test_cell_design.py
+pytest -q -s tests/test_capacitive_electrode_study_v1.py
+\end{verbatim}
+
+The detailed bases are:
+\begin{itemize}
+\item \path{docs/EO_VAPOR_TEST_CELL_DESIGN.md};
+\item \path{docs/TEST_CELL_AND_ERV_SCALE_CHECK_2026-09-01.md};
+\item \path{docs/CAPACITIVE_ELECTRODE_TRANSIENT_STUDY_2026-09-01.md}; and
+\item \path{docs/O30_REQUIRED_AREA_1V_v1.md}.
+\end{itemize}
+
+\end{document}
