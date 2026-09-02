@@ -36,31 +36,34 @@ pytest -q
 
 The test suite contains local-transport unit tests and golden regression checks against retained reference calculations.
 
-## Current model closure and material handoff (2026-08-31)
+## Final model-phase closeout (2026-09-02)
 
-The hash-frozen English V8.1 package is the controlled delivery. Its current
-result and decision report governs wherever wording or status differs from a
-supporting note:
+The hash-frozen English V10 package is the governing delivery. Its final
+project closeout report governs wherever wording or status differs from an
+earlier report or supporting note:
 
-- `deliverables/current/2026-08-31_v8_1/`
-- `deliverables/current/2026-08-31_v8_1/reports/current_result/HeiQ_XMembrane_Current_Result_and_Decision_Report_2026-08-31_v8.pdf`
+- `deliverables/current/2026-09-02_v10/`
+- `reports/final_project_closeout_2026-09-02/HeiQ_XMembrane_Final_Project_Closeout_2026-09-02_v10.pdf`
 
-The model-closure report is supporting provenance, while the 1 September
-test-cell note records the later minimum-area and ERV scale check. See
+V8/V8.1, V9 and the model-closure report remain historical provenance. See
 `reports/README.md` for the short report map and `docs/REPOSITORY_LAYOUT.md` for
 the source-file naming policy.
 
-The current decision is to stop broad unfocused modelling and move the existing
-material search into availability/procurement enquiries plus controlled-flow
-same-sample coupon qualification. Candidate ranking is not yet justified, and neither a selected module
-architecture nor a net full-system energy saving has been demonstrated. Two
-important interpretation rules are now frozen:
+The model phase is complete; the technology is not validated. Direct EO inside
+the ERV membrane/core is the selected modelling architecture. Post-ERV O30 is
+retained only as a controlled coupon-test boundary and historical comparator.
+No real membrane, sustainable electrode mechanism, module performance or net
+full-system energy saving has been demonstrated. The successor phase, if
+started, is measured same-sample material, electrode and controlled-flow coupon
+qualification. Three important interpretation rules are now frozen:
 
 - current density and membrane area are reported design coordinates, not
   acceptance limits in the exploratory screen;
 - a positive passive surface-gradient direction is not required for actively
   driven EO transport, but bulk-to-surface film losses remain an engineering
-  diagnostic that the coupon experiment must measure.
+  diagnostic that the coupon experiment must measure;
+- purely blocking capacitive electrodes provide finite startup displacement,
+  not demonstrated continuous EO duty.
 
 Water diffusivity is therefore not a universal stand-alone procurement gate.
 The passive transport identifiable by the model is the coupled chemical-water-
@@ -82,18 +85,39 @@ The final gradient/film and signed-polarity evidence is written to
 `outputs/direct_erv_gradient_closure_v1`; the project-level readiness decision
 is written to `outputs/project_closure_check_v1`.
 
-Run the fail-closed final delivery check with live tests using:
+The later reduced-order capacitive-electrode screen is run with:
 
 ```bash
-python3 -B scripts/run_final_delivery_check_v1.py \
-  --run-tests --overwrite
+PYTHONPATH=src python3 scripts/run_capacitive_electrode_study_v1.py --overwrite
 ```
 
-The result is written to `outputs/final_delivery_check_v1`. It reports model
-delivery, release-snapshot readiness and next-phase empirical readiness as
-three separate decisions. Open material/receiver/practical gates do not reopen
-the completed model study; stale hashes, failed audits, missing runtime
-dependencies, report damage or failed tests do block delivery.
+It replaces the steady electrode assumption with a signed transient RC state,
+checks blocking DC, symmetric cycling, diagnostic leakage and a dual frozen
+replay of the stored direct-ERV cases. The original stored terminal-voltage
+limit is the primary duration diagnostic; a separate 1.8 V replay is retained
+only as an optimistic capacity upper bound. Neither is an electrode
+electrochemical-window constraint. See
+`docs/CAPACITIVE_ELECTRODE_TRANSIENT_STUDY_2026-09-01.md`. The capacitance is an
+unmeasured sensitivity coordinate and the result is not a dynamic full-core or
+full-system claim.
+
+Build the current fail-closed V10 closeout package from the curated source
+revision with:
+
+```bash
+python3 scripts/package_final_closeout_v10.py \
+  --expected-source-revision "$(git rev-parse HEAD)"
+```
+
+The package is written atomically to `deliverables/current/2026-09-02_v10`.
+Its verification authority is `verification/V10_STATUS.json`; the packager
+checks the report and evidence bindings, scientific audits, complete source and
+result archives, checksums and the live full test suite before publication.
+
+`scripts/run_final_delivery_check_v1.py` is retained only as the historical
+31 August checker. Its report/nested-manifest configuration predates the
+September electrode and combined-sensitivity evidence and is not the V10
+release gate.
 
 ## Earlier integrated decision package (2026-08-26; retained for provenance)
 

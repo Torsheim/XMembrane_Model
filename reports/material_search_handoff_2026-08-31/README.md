@@ -4,6 +4,14 @@ This directory consolidates the material work already present under
 `/home/torsheim/HeiQ`. It is an internal evidence handoff, not a claim that the
 material search started from zero and not a procurement ranking.
 
+## Current status note (2 September 2026)
+
+The V10 final project closeout release is governing. Direct EO integrated in
+the ERV membrane/core is the selected modelling architecture. The post-ERV O30
+case in this 31 August handoff is retained as a controlled coupon-test boundary
+and historical comparator, not as a second selected product architecture. The
+tables below remain dated provenance and have not been retroactively rewritten.
+
 ## Main report
 
 - `HeiQ_XMembrane_Prior_Material_Search_Consolidation_2026-08-31.pdf`
@@ -28,10 +36,10 @@ The report's phase conclusion is:
 - the next task is a traceable supplier/availability sheet and controlled
   same-sample coupon qualification, not another broad hypothetical sweep.
 
-V8.1 is the latest hash-frozen English delivery layer and has no scientific
-delta from V8. The V8 Current Result and Decision Report remains governing;
-the model-closure report is supporting provenance. This directory is an
-internal post-release addendum and does not modify V8 or V8.1.
+V8.1 was the hash-frozen English delivery layer when this handoff was issued
+and had no scientific delta from V8. The model-closure report is supporting
+provenance. This directory is a dated post-release addendum; V10 now governs
+the final model-phase interpretation.
 
 ## Machine-readable handoff
 
@@ -75,7 +83,8 @@ latexmk -pdf -interaction=nonstopmode -halt-on-error \
 The `-s` pytest option avoids an unrelated temporary-file failure in the local
 pytest capture layer. The targeted suite passes 8/8 tests.
 
-The current energy, gradient and claim-boundary interpretation remains in the
-governing V8 Current Result and Decision Report under
-`reports/team_result_atlas_v8/`. The model-closure report under
-`reports/model_closure_2026-08-31/` is supporting provenance.
+The current energy, gradient and claim-boundary interpretation is in the V10
+final project closeout report under
+`reports/final_project_closeout_2026-09-02/`. The V8 result atlas and the
+model-closure report under `reports/model_closure_2026-08-31/` remain supporting
+historical provenance.
