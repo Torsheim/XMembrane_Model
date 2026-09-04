@@ -1,0 +1,52 @@
+{
+  "document_id": "eo-vapour-test-cell-selected-design-basis-2026-09-04",
+  "generated_outputs": [
+    {
+      "path": "calculation_basis.json",
+      "sha256": "c686ce0d347b516ffb48fd8577d69a1b2cbac860e28e77b218bf15b77223c298",
+      "size_bytes": 1691
+    },
+    {
+      "path": "HeiQ_EO_Vapour_Test_Cell_Selected_Design_Basis_2026-09-04.md",
+      "sha256": "11deccfb1b8ce6dc2c297227952073555840e8fcc501033f27d0e6fe21715521",
+      "size_bytes": 3835
+    },
+    {
+      "path": "HeiQ_EO_Vapour_Test_Cell_Selected_Design_Basis_2026-09-04.docx",
+      "sha256": "daa67d53fa54f859b68fb0394b9e7235c7e75f1cd6f72935266b50d93072c7cc",
+      "size_bytes": 2068255
+    },
+    {
+      "path": "HeiQ_EO_Vapour_Test_Cell_Selected_Design_Basis_2026-09-04.pdf",
+      "sha256": "03fc8fa78684988d34d6fc7c9835b07e4bce8e762bc34d4534e1a24c6dad4b7e",
+      "size_bytes": 291828
+    }
+  ],
+  "schema_version": 1,
+  "sources": [
+    {
+      "path": "config/eo_vapor_test_cell_net_transport_volume_study.json",
+      "sha256": "4892fd601268089a381f6ef64213e49f1ccb43b9c4b289500e4e43bead8f5435"
+    },
+    {
+      "path": "config/eo_vapor_test_cell_design.json",
+      "sha256": "e8f460f53474c91a648a331cf7252e5dead5755dac6299c60b74ddc8540d2b5e"
+    },
+    {
+      "path": "scripts/design_eo_vapor_test_cell.py",
+      "sha256": "e89894393f242e3c806df40fc81e06c4ddac0f40692a4323f767440f7a557309"
+    },
+    {
+      "path": "reports/test_cell_20mm_channel_study_2026-09-04/decision_summary.json",
+      "sha256": "606b040a8135f1f40a97b06d7cb7915a24883d8ca82649d317a2937b4f31057d"
+    },
+    {
+      "path": "reports/test_cell_handoff_supplement_2026-09-03/figures/eo_vapour_integrated_two_chamber_exterior_render.png",
+      "sha256": "4332a8aec63ea67536e878ad80fdc3ac6978fbefd8a6e69bc40e0913ce044d19"
+    },
+    {
+      "path": "scripts/build_eo_vapour_test_cell_selected_basis.py",
+      "sha256": "03b3c98b7d2b99c05f32e8b2d943d48b1bb609f46c853d92ecf50676043df755"
+    }
+  ]
+}

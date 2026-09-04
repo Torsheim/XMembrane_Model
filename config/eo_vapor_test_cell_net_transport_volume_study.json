@@ -20,6 +20,12 @@
     "sensor_tau63_s": 4.0,
     "note": "Ten percentage points is a comparison target for a net-transient experiment, not a constant-boundary constraint."
   },
+  "recommended_working_point": {
+    "calibrated_net_volume_ml_per_side": 500.0,
+    "segment_duration_s": 12.0,
+    "polarity_sequence": [1, -1, -1, 1],
+    "selection_reason": "Retain the illustrated 0.50 L-per-side cell and use a longer segment to produce an approximately 10 percentage-point net-transient RH signal while giving the current humidity sensor more response time."
+  },
   "net_volume_cases_ml_per_side": [200.0, 300.0, 500.0],
   "interpretation": {
     "fixed_flux_assumption": "All values condition on the base configuration's 208 g/m2/h target flux over the unchanged 25 cm2 active membrane.",

@@ -45,6 +45,13 @@ calculated starting values plus strengths, weaknesses and residual physical
 tests for all 13 fabrication gates. It does not modify the published
 handoff-v1 package.
 
+`test_cell_selected_design_basis_2026-09-04/` is the short English working
+note for the selected net-transient configuration. It combines the integrated
+setup visualization with the 25 cm² membrane, 500 mL-per-side calibrated
+volume, 20 mm bulk depth and 12 s polarity-segment calculations. The note is
+available as Markdown, DOCX and PDF and explicitly separates the illustrative
+architecture from fabrication evidence.
+
 ## Historical reports
 
 The V8/V8.1 and V9 reports, the August atlases, weekly reports, workshop packs,
