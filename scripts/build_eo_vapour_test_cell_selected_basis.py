@@ -38,17 +38,11 @@ GEOMETRY_SUMMARY_PATH = (
     / "test_cell_20mm_channel_study_2026-09-04"
     / "decision_summary.json"
 )
-FIGURE_PATH = (
-    ROOT
-    / "reports"
-    / "test_cell_handoff_supplement_2026-09-03"
-    / "figures"
-    / "eo_vapour_integrated_two_chamber_exterior_render.png"
-)
 DEFAULT_OUTPUT_DIR = (
     ROOT / "reports" / "test_cell_selected_design_basis_2026-09-04"
 )
 DOCUMENT_STEM = "HeiQ_EO_Vapour_Test_Cell_Selected_Design_Basis_2026-09-04"
+BLUEPRINT_STEM = "eo_vapour_test_cell_engineering_blueprint"
 
 if DOCX_AVAILABLE:
     NAVY = RGBColor(20, 48, 75)
@@ -196,6 +190,131 @@ def calculate_basis() -> dict[str, float | list[int] | str]:
     }
 
 
+def build_blueprint(png_path: Path, svg_path: Path) -> None:
+    """Draw a number-free functional section and cartridge detail."""
+    import matplotlib.pyplot as plt
+    from matplotlib.patches import Arc, Circle, FancyArrowPatch, Rectangle
+
+    ink = "#17304b"
+    light = "#e9f2f8"
+    fill = "#f8fbfd"
+    accent = "#127a9b"
+    orange = "#d97706"
+    grey = "#65758b"
+
+    figure, axis = plt.subplots(figsize=(13.5, 7.6))
+    figure.patch.set_facecolor("white")
+    axis.set_facecolor("white")
+    axis.set_xlim(0, 16)
+    axis.set_ylim(0, 9)
+    axis.axis("off")
+
+    def box(x, y, width, height, *, face=fill, linewidth=1.6, linestyle="-"):
+        patch = Rectangle(
+            (x, y), width, height, facecolor=face, edgecolor=ink,
+            linewidth=linewidth, linestyle=linestyle, zorder=2,
+        )
+        axis.add_patch(patch)
+        return patch
+
+    def label(x, y, text, *, size=8.2, weight="normal", align="center", color=ink):
+        axis.text(
+            x, y, text, ha=align, va="center", fontsize=size,
+            fontweight=weight, color=color, family="DejaVu Sans", zorder=8,
+        )
+
+    def leader(x_start, y_start, x_end, y_end, text, *, side="right"):
+        axis.plot([x_start, x_end], [y_start, y_end], color=grey, linewidth=1.0, zorder=5)
+        alignment = "left" if side == "right" else "right"
+        offset = 0.08 if side == "right" else -0.08
+        label(x_end + offset, y_end, text, size=7.4, align=alignment, color=grey)
+
+    label(0.4, 8.62, "EO VAPOUR TEST CELL — FUNCTIONAL SECTION", size=13, weight="bold", align="left")
+    axis.plot([0.4, 15.6], [8.33, 8.33], color=accent, linewidth=2.0)
+
+    # Main symmetric chamber assembly.
+    box(0.7, 3.15, 6.05, 3.85, face=light)
+    box(9.25, 3.15, 6.05, 3.85, face=light)
+    box(6.75, 2.9, 2.5, 4.35, face="#f1f5f9", linewidth=2.0)
+    box(7.45, 3.15, 0.22, 3.85, face="#c7d7e3", linewidth=1.0)
+    box(7.67, 3.15, 0.18, 3.85, face="#f3c27a", linewidth=1.0)
+    box(7.85, 3.15, 0.30, 3.85, face="#ffffff", linewidth=1.3)
+    box(8.15, 3.15, 0.18, 3.85, face="#f3c27a", linewidth=1.0)
+    box(8.33, 3.15, 0.22, 3.85, face="#c7d7e3", linewidth=1.0)
+
+    label(3.72, 6.65, "CONDITIONED CHAMBER — SIDE A", size=9.3, weight="bold")
+    label(12.28, 6.65, "CONDITIONED CHAMBER — SIDE B", size=9.3, weight="bold")
+    label(8.0, 7.55, "REMOVABLE MEMBRANE CARTRIDGE", size=8.6, weight="bold")
+
+    # Fans and mixing loops.
+    for fan_x in (1.55, 14.45):
+        axis.add_patch(Circle((fan_x, 4.25), 0.48, facecolor="white", edgecolor=ink, linewidth=1.4, zorder=4))
+        axis.add_patch(Circle((fan_x, 4.25), 0.08, facecolor=ink, edgecolor=ink, zorder=5))
+        for angle in (0, 90, 180, 270):
+            axis.add_patch(Arc((fan_x, 4.25), 0.72, 0.36, angle=angle, theta1=15, theta2=165, color=ink, linewidth=1.1, zorder=5))
+    box(2.3, 3.65, 0.16, 2.15, face="white", linewidth=1.1)
+    box(13.54, 3.65, 0.16, 2.15, face="white", linewidth=1.1)
+    for x_start, x_end, y, bend in ((1.8, 6.45, 5.9, 0.35), (14.2, 9.55, 5.9, -0.35), (6.4, 1.85, 3.55, -0.25), (9.6, 14.15, 3.55, 0.25)):
+        axis.add_patch(FancyArrowPatch(
+            (x_start, y), (x_end, y), arrowstyle="-|>", mutation_scale=11,
+            connectionstyle=f"arc3,rad={bend}", color=accent, linewidth=1.25, zorder=5,
+        ))
+
+    # Sensor probes and pressure taps.
+    for probe_x in (4.15, 11.85):
+        axis.plot([probe_x, probe_x], [7.0, 5.45], color=ink, linewidth=1.6, zorder=5)
+        axis.add_patch(Circle((probe_x, 5.25), 0.20, facecolor="white", edgecolor=ink, linewidth=1.2, zorder=5))
+    for tap_x in (5.35, 10.65):
+        axis.plot([tap_x, tap_x], [7.0, 6.15], color=ink, linewidth=1.4, zorder=5)
+        axis.add_patch(Circle((tap_x, 6.05), 0.09, facecolor=orange, edgecolor=ink, linewidth=0.8, zorder=6))
+
+    # Flexible pressure compensators beneath each chamber.
+    for cx in (4.7, 11.3):
+        box(cx - 0.9, 2.35, 1.8, 0.48, face="white", linewidth=1.2)
+        xs = [cx - 0.72, cx - 0.45, cx - 0.18, cx + 0.09, cx + 0.36, cx + 0.63]
+        ys = [2.58, 2.43, 2.70, 2.43, 2.70, 2.58]
+        axis.plot(xs, ys, color=accent, linewidth=1.2, zorder=5)
+        axis.plot([cx, cx], [3.15, 2.83], color=ink, linewidth=1.0, zorder=4)
+
+    # Measurement and electrical topology.
+    box(6.1, 0.72, 3.8, 0.92, face="#eef4f7", linewidth=1.5)
+    label(8.0, 1.18, "BIPOLAR SOURCE–MEASURE UNIT", size=8.6, weight="bold")
+    axis.plot([7.75, 7.75], [1.64, 2.9], color=orange, linewidth=1.6, zorder=4)
+    axis.plot([8.25, 8.25], [1.64, 2.9], color=ink, linewidth=1.6, zorder=4)
+    axis.add_patch(FancyArrowPatch((7.38, 5.08), (8.62, 5.08), arrowstyle="<|-|>", mutation_scale=13, color=orange, linewidth=1.5, zorder=7))
+    label(8.0, 4.72, "NET WATER TRANSPORT", size=7.2, weight="bold", color=orange)
+
+    box(0.75, 0.72, 3.25, 0.92, face="#eef4f7", linewidth=1.3)
+    label(2.38, 1.18, "DATA ACQUISITION", size=8.3, weight="bold")
+    box(12.0, 0.72, 3.25, 0.92, face="#eef4f7", linewidth=1.3)
+    label(13.62, 1.18, "DIFFERENTIAL PRESSURE", size=8.0, weight="bold")
+    axis.plot([4.15, 2.4, 2.4], [7.0, 7.75, 1.64], color=grey, linewidth=1.0, linestyle="--", zorder=1)
+    axis.plot([11.85, 2.8, 2.8], [7.0, 7.55, 1.64], color=grey, linewidth=1.0, linestyle="--", zorder=1)
+    axis.plot([5.35, 13.2, 13.2], [7.0, 7.75, 1.64], color=grey, linewidth=1.0, linestyle="--", zorder=1)
+    axis.plot([10.65, 14.0, 14.0], [7.0, 7.55, 1.64], color=grey, linewidth=1.0, linestyle="--", zorder=1)
+
+    # Callouts.
+    leader(4.15, 5.3, 3.2, 5.0, "temperature / RH probe", side="left")
+    leader(5.35, 6.05, 5.85, 6.35, "pressure tap")
+    leader(1.55, 4.25, 0.7, 2.95, "quiet mixing fan", side="right")
+    leader(2.38, 4.6, 2.9, 4.25, "flow baffle")
+    leader(4.7, 2.6, 3.35, 2.05, "flexible pressure compensator", side="left")
+    leader(6.75, 6.7, 6.1, 7.72, "clamping frame", side="left")
+    leader(7.56, 4.05, 6.85, 3.45, "local gas gap", side="left")
+    leader(7.76, 5.65, 6.8, 5.85, "porous electrode", side="left")
+    leader(8.0, 5.5, 9.0, 5.85, "EO membrane coupon")
+    leader(8.45, 4.05, 9.15, 3.45, "local gas gap")
+    leader(8.28, 6.2, 9.2, 6.4, "double seal / guard groove")
+
+    label(0.7, 0.25, "Solid line: gas or electrical connection     Dashed line: instrumentation signal", size=7.4, align="left", color=grey)
+    label(15.3, 0.25, "Functional layout — not a fabrication drawing", size=7.4, align="right", color=grey)
+
+    png_path.parent.mkdir(parents=True, exist_ok=True)
+    figure.savefig(png_path, dpi=220, bbox_inches="tight", facecolor="white")
+    figure.savefig(svg_path, bbox_inches="tight", facecolor="white")
+    plt.close(figure)
+
+
 def add_cell_shading(cell, fill: str) -> None:
     properties = cell._tc.get_or_add_tcPr()
     shading = OxmlElement("w:shd")
@@ -255,9 +374,9 @@ def build_markdown(values: dict[str, Any], output_path: Path) -> None:
 
 Status: engineering working basis for net-transient membrane measurements; not a fabrication-release drawing.
 
-![Illustrative integrated two-chamber setup](../test_cell_handoff_supplement_2026-09-03/figures/eo_vapour_integrated_two_chamber_exterior_render.png)
+![Two-dimensional engineering blueprint of the test cell](figures/eo_vapour_test_cell_engineering_blueprint.png)
 
-*Figure 1. Illustrative two-chamber setup with the central membrane cartridge, one conditioned chamber on each side, humidity/temperature/pressure sensing, internal mixing and a bipolar source-measure unit. The image communicates architecture only; released CAD and measured internal volumes remain required.*
+*Figure 1. Two-dimensional functional section showing the central membrane cartridge, symmetric conditioned chambers, sensing, internal mixing, pressure compensation, source-measure unit and acquisition connections. Values and dimensions are deliberately kept outside the figure. It is an engineering system blueprint, not released fabrication CAD.*
 
 ## Selected working values
 
@@ -311,7 +430,7 @@ The selected dimensions remain conditional on measured mixing, leakage, temperat
     output_path.write_text(text, encoding="utf-8")
 
 
-def build_docx(values: dict[str, Any], output_path: Path) -> None:
+def build_docx(values: dict[str, Any], figure_path: Path, output_path: Path) -> None:
     if not DOCX_AVAILABLE:
         raise RuntimeError(
             "python-docx is required for DOCX output; install "
@@ -359,9 +478,9 @@ def build_docx(values: dict[str, Any], output_path: Path) -> None:
         ]],
     )
     document.add_paragraph()
-    document.add_picture(str(FIGURE_PATH), width=Cm(16.4))
+    document.add_picture(str(figure_path), width=Cm(17.0))
     caption = document.add_paragraph(
-        "Figure 1. Illustrative integrated two-chamber setup. The image shows the intended architecture, not released CAD or verified internal geometry."
+        "Figure 1. Two-dimensional functional blueprint of the complete test setup. Values and dimensions are kept in the calculation basis; this is not released fabrication CAD."
     )
     caption.alignment = WD_ALIGN_PARAGRAPH.CENTER
     caption.runs[0].italic = True
@@ -513,7 +632,6 @@ def write_manifest(output_dir: Path, generated: list[Path]) -> None:
         BASE_CONFIG_PATH,
         BASE_MODEL_PATH,
         GEOMETRY_SUMMARY_PATH,
-        FIGURE_PATH,
         Path(__file__).resolve(),
     ]
     manifest = {
@@ -528,7 +646,7 @@ def write_manifest(output_dir: Path, generated: list[Path]) -> None:
         ],
         "generated_outputs": [
             {
-                "path": path.name,
+                "path": path.relative_to(output_dir).as_posix(),
                 "sha256": sha256(path),
                 "size_bytes": path.stat().st_size,
             }
@@ -548,13 +666,22 @@ def main() -> None:
     calculation_path = output_dir / "calculation_basis.json"
     markdown_path = output_dir / f"{DOCUMENT_STEM}.md"
     docx_path = output_dir / f"{DOCUMENT_STEM}.docx"
+    figure_dir = output_dir / "figures"
+    blueprint_png_path = figure_dir / f"{BLUEPRINT_STEM}.png"
+    blueprint_svg_path = figure_dir / f"{BLUEPRINT_STEM}.svg"
     calculation_path.write_text(
         json.dumps(values, indent=2, sort_keys=True) + "\n", encoding="utf-8"
     )
+    build_blueprint(blueprint_png_path, blueprint_svg_path)
     build_markdown(values, markdown_path)
-    generated = [calculation_path, markdown_path]
+    generated = [
+        calculation_path,
+        markdown_path,
+        blueprint_png_path,
+        blueprint_svg_path,
+    ]
     if not args.skip_docx:
-        build_docx(values, docx_path)
+        build_docx(values, blueprint_png_path, docx_path)
         generated.append(docx_path)
     elif not args.skip_pdf:
         raise ValueError("PDF output requires DOCX output; add --skip-pdf")

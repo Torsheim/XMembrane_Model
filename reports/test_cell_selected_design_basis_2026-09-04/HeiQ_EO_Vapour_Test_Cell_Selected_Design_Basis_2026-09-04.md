@@ -2,9 +2,9 @@
 
 Status: engineering working basis for net-transient membrane measurements; not a fabrication-release drawing.
 
-![Illustrative integrated two-chamber setup](../test_cell_handoff_supplement_2026-09-03/figures/eo_vapour_integrated_two_chamber_exterior_render.png)
+![Two-dimensional engineering blueprint of the test cell](figures/eo_vapour_test_cell_engineering_blueprint.png)
 
-*Figure 1. Illustrative two-chamber setup with the central membrane cartridge, one conditioned chamber on each side, humidity/temperature/pressure sensing, internal mixing and a bipolar source-measure unit. The image communicates architecture only; released CAD and measured internal volumes remain required.*
+*Figure 1. Two-dimensional functional section showing the central membrane cartridge, symmetric conditioned chambers, sensing, internal mixing, pressure compensation, source-measure unit and acquisition connections. Values and dimensions are deliberately kept outside the figure. It is an engineering system blueprint, not released fabrication CAD.*
 
 ## Selected working values
 
