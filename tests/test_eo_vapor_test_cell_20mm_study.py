@@ -26,8 +26,41 @@ QUANTITIES = MODULE.base_quantities(BASE, BASE_MODEL)
 def test_study_interprets_20mm_as_bulk_depth_and_preserves_local_gap() -> None:
     MODULE.validate_study_config(STUDY, BASE)
     assert STUDY["interpretation"]["requested_channel_depth_mm"] == 20.0
-    assert STUDY["interpretation"]["local_membrane_gap_remains_mm"] == 2.0
+    assert STUDY["membrane_constraint"]["local_gap_remains_mm"] == 2.0
     assert BASE["integrated_sealed_cell"]["membrane_region"]["nominal_gap_mm"] == 2.0
+
+
+def test_active_membrane_is_fixed_at_25cm2_independent_of_bulk_footprint() -> None:
+    membrane = STUDY["membrane_constraint"]
+    assert membrane["active_width_mm"] == 50.0
+    assert membrane["active_height_mm"] == 50.0
+    assert membrane["active_area_cm2"] == 25.0
+    assert membrane["coupon_dimensions_mm"] == [80.0, 80.0]
+    assert math.isclose(QUANTITIES["active_membrane_area_m2"], 0.0025)
+    assert math.isclose(QUANTITIES["active_membrane_area_cm2"], 25.0)
+    assert math.isclose(QUANTITIES["rate_mg_s"], 13.0 / 90.0)
+    assert math.isclose(QUANTITIES["transferred_mg"], 13.0 / 18.0)
+
+    scenarios = MODULE.build_scenario_frame(STUDY, QUANTITIES)
+    assert scenarios["active_membrane_area_cm2"].eq(25.0).all()
+    assert all(
+        math.isclose(value, 13.0 / 90.0)
+        for value in scenarios["integrated_water_rate_mg_s"]
+    )
+    summary = MODULE.build_decision_summary(STUDY, QUANTITIES, scenarios)
+    invariant = summary["membrane_area_invariant"]
+    assert invariant["active_window_mm"] == [50.0, 50.0]
+    assert invariant["active_area_cm2"] == 25.0
+    assert invariant["bulk_footprint_used_as_transport_area"] is False
+    assert math.isclose(
+        invariant["recommended_bulk_footprint_area_cm2_not_active"], 272.25
+    )
+    assert math.isclose(
+        invariant["bulk_footprint_to_active_membrane_area_ratio"], 10.89
+    )
+    incorrect = invariant["if_bulk_footprint_were_incorrectly_used_as_active"]
+    assert incorrect["status"] == "FORBIDDEN MISINTERPRETATION"
+    assert incorrect["required_volume_for_5pp_ml"] > 4600.0
 
 
 def test_release_checksum_verifier_detects_payload_drift(tmp_path: Path) -> None:
@@ -74,7 +107,7 @@ def test_literal_100x100x20_geometry_fails_original_volume_basis() -> None:
     )
 
 
-def test_recommended_165mm_cavity_has_trim_margin_for_500ml() -> None:
+def test_recommended_165mm_bulk_footprint_has_trim_margin_for_500ml() -> None:
     frame = MODULE.build_scenario_frame(STUDY, QUANTITIES).set_index("scenario_id")
     pretrim = frame.loc["165x165x20_before_calibration_trim"]
     calibrated = frame.loc["165x165x20_calibrated_to_500ml"]
@@ -102,7 +135,9 @@ def test_geometry_thresholds_follow_volume_identity() -> None:
         math.sqrt(26_130.0),
     )
     assert math.isclose(
-        thresholds["required_depth_at_100mm_face_with_displacement_bound_mm"],
+        thresholds[
+            "required_depth_at_100mm_bulk_footprint_with_displacement_bound_mm"
+        ],
         52.26,
     )
     assert MODULE.rectangular_volume_ml(140.0, 140.0, 20.0) == 392.0
@@ -261,6 +296,8 @@ def test_cli_writes_hash_bound_passing_study(tmp_path: Path) -> None:
     assert result["status"] == "PASS"
     assert result["literal_100mm_status"] == "REJECT"
     assert result["assessed_gates"] == 13
+    assert result["active_membrane_area_cm2"] == 25.0
+    assert result["recommended_bulk_cavity_footprint_mm"] == 165.0
 
     audit = json.loads((output / "audit.json").read_text(encoding="utf-8"))
     manifest = json.loads(
@@ -280,6 +317,8 @@ def test_cli_writes_hash_bound_passing_study(tmp_path: Path) -> None:
     report = (output / "REPORT.md").read_text(encoding="utf-8")
     assert "Styrke" in report
     assert "Svakhet" in report
+    assert "50 x 50 mm = 25 cm²" in report
+    assert "bulk-kammerets fotavtrykk" in report
     for record in manifest["generated_outputs"]:
         path = output / record["path"]
         assert path.is_file()

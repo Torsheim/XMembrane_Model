@@ -188,6 +188,7 @@ def validate_study_config(study: dict[str, Any], base: dict[str, Any]) -> None:
     if int(study["schema_version"]) != 1:
         raise ValueError("Only 20 mm study schema version 1 is supported")
     interpretation = study["interpretation"]
+    membrane = study["membrane_constraint"]
     if not math.isclose(
         float(interpretation["requested_channel_depth_mm"]), 20.0, abs_tol=1e-12
     ):
@@ -196,11 +197,39 @@ def validate_study_config(study: dict[str, Any], base: dict[str, Any]) -> None:
         base["integrated_sealed_cell"]["membrane_region"]["nominal_gap_mm"]
     )
     if not math.isclose(
-        float(interpretation["local_membrane_gap_remains_mm"]),
+        float(membrane["local_gap_remains_mm"]),
         nominal_gap,
         abs_tol=1e-12,
     ):
         raise ValueError("The bulk-depth study must preserve the base local membrane gap")
+    region = base["integrated_sealed_cell"]["membrane_region"]
+    base_width_mm = float(region["width_mm"])
+    base_height_mm = float(region["height_mm"])
+    declared_width_mm = float(membrane["active_width_mm"])
+    declared_height_mm = float(membrane["active_height_mm"])
+    declared_area_cm2 = float(membrane["active_area_cm2"])
+    base_coupon_mm = [
+        float(value)
+        for value in base["integrated_sealed_cell"]["mechanical_starting_values"][
+            "membrane_coupon_mm"
+        ]
+    ]
+    declared_coupon_mm = [float(value) for value in membrane["coupon_dimensions_mm"]]
+    if not (
+        math.isclose(declared_width_mm, base_width_mm, abs_tol=1e-12)
+        and math.isclose(declared_height_mm, base_height_mm, abs_tol=1e-12)
+        and math.isclose(
+            declared_area_cm2,
+            base_width_mm * base_height_mm / 100.0,
+            abs_tol=1e-12,
+        )
+        and math.isclose(declared_area_cm2, 25.0, abs_tol=1e-12)
+        and declared_coupon_mm == base_coupon_mm
+    ):
+        raise ValueError(
+            "The study must preserve the 50 x 50 mm (25 cm2) active window "
+            "and 80 x 80 mm coupon"
+        )
     target = float(study["geometry"]["target_net_free_gas_volume_ml_per_side"])
     base_target = float(
         base["integrated_sealed_cell"]["volume_sizing_basis"][
@@ -227,6 +256,10 @@ def base_quantities(base: dict[str, Any], model: Any) -> dict[str, float]:
     cell = base["integrated_sealed_cell"]
     state = base["operating_state"]
     basis = cell["volume_sizing_basis"]
+    region = cell["membrane_region"]
+    membrane_width_mm = float(region["width_mm"])
+    membrane_height_mm = float(region["height_mm"])
+    membrane_area_m2 = float(model.membrane_area_m2(base))
     target_volume_ml = float(basis["selected_net_free_gas_volume_ml_per_side"])
     rate_mg_s = float(model.integrated_target_water_rate_mg_s(base))
     segment_s = float(basis["half_cycle_duration_s"])
@@ -241,6 +274,10 @@ def base_quantities(base: dict[str, Any], model: Any) -> dict[str, float]:
         "target_volume_ml": target_volume_ml,
         "required_volume_ml": float(model.required_net_volume_ml_per_side(base)),
         "target_flux_g_m2_h": float(basis["target_net_water_flux_g_m2_h"]),
+        "active_membrane_width_mm": membrane_width_mm,
+        "active_membrane_height_mm": membrane_height_mm,
+        "active_membrane_area_m2": membrane_area_m2,
+        "active_membrane_area_cm2": membrane_area_m2 * 1.0e4,
         "allowed_rh_change_pp": float(
             basis["maximum_single_chamber_rh_change_percentage_points"]
         ),
@@ -309,8 +346,10 @@ def scenario_row(
     response = response_at_volume(net_ml, quantities)
     return {
         "scenario_id": scenario_id,
-        "clear_width_mm": width_mm,
-        "clear_height_mm": height_mm,
+        "bulk_cavity_width_mm": width_mm,
+        "bulk_cavity_height_mm": height_mm,
+        "active_membrane_area_cm2": quantities["active_membrane_area_cm2"],
+        "integrated_water_rate_mg_s": quantities["rate_mg_s"],
         "bulk_depth_mm": depth_mm,
         "gross_empty_cavity_volume_ml_per_side": gross_ml,
         "assumed_component_displacement_ml_per_side": displacement_ml,
@@ -331,9 +370,12 @@ def build_scenario_frame(
 ) -> pd.DataFrame:
     geometry = study["geometry"]
     depth_mm = float(study["interpretation"]["requested_channel_depth_mm"])
-    existing_w, existing_h = [float(value) for value in geometry["existing_clear_face_mm"]]
+    existing_w, existing_h = [
+        float(value) for value in geometry["existing_bulk_cavity_footprint_mm"]
+    ]
     recommended_w, recommended_h = [
-        float(value) for value in geometry["recommended_clear_face_mm"]
+        float(value)
+        for value in geometry["recommended_bulk_cavity_footprint_mm"]
     ]
     displacement_ml = component_displacement_bound_ml(study)
     recommended_gross_ml = rectangular_volume_ml(
@@ -401,7 +443,8 @@ def build_geometry_sweep_frame(
         response = response_at_volume(net_ml, quantities)
         rows.append(
             {
-                "square_clear_face_side_mm": float(side_mm),
+                "square_bulk_cavity_footprint_side_mm": float(side_mm),
+                "active_membrane_area_cm2": quantities["active_membrane_area_cm2"],
                 "bulk_depth_mm": depth_mm,
                 "gross_volume_ml_per_side": gross_ml,
                 "component_displacement_bound_ml_per_side": displacement_ml,
@@ -516,7 +559,9 @@ def build_local_gap_interpretation_frame(
 
 def build_plate_pressure_screen_frame(study: dict[str, Any]) -> pd.DataFrame:
     screen = study["mechanical_screen"]
-    side_mm = float(study["geometry"]["recommended_clear_face_mm"][0])
+    side_mm = float(
+        study["geometry"]["recommended_bulk_cavity_footprint_mm"][0]
+    )
     side_m = side_mm / 1000.0
     pressure_pa = float(screen["proof_differential_pressure_pa"])
     model = screen["plate_model"]
@@ -549,7 +594,7 @@ def build_plate_pressure_screen_frame(study: dict[str, Any]) -> pd.DataFrame:
             {
                 "component": key,
                 "material": item["material"],
-                "clear_span_mm": side_mm,
+                "bulk_cavity_clear_span_mm": side_mm,
                 "thickness_mm": float(item["thickness_mm"]),
                 "proof_differential_pressure_pa": pressure_pa,
                 "flexural_rigidity_nm": rigidity_nm,
@@ -592,8 +637,8 @@ def build_decision_summary(
         (target_ml + displacement_ml)
         * 1000.0
         / (
-            float(geometry["existing_clear_face_mm"][0])
-            * float(geometry["existing_clear_face_mm"][1])
+            float(geometry["existing_bulk_cavity_footprint_mm"][0])
+            * float(geometry["existing_bulk_cavity_footprint_mm"][1])
         )
     )
 
@@ -621,7 +666,9 @@ def build_decision_summary(
     double_acting_compliance_nl_pa = diaphragm_travel_ul * 1000.0 / target_dp
 
     proof_pressure_pa = float(screen["proof_differential_pressure_pa"])
-    recommended_side_m = float(geometry["recommended_clear_face_mm"][0]) / 1000.0
+    recommended_side_m = (
+        float(geometry["recommended_bulk_cavity_footprint_mm"][0]) / 1000.0
+    )
     pressure_separation_force_n = proof_pressure_pa * recommended_side_m**2
     fasteners = screen["fasteners"]
     nominal_preload_n_each = float(fasteners["nominal_torque_nm_each"]) / (
@@ -702,13 +749,51 @@ def build_decision_summary(
 
     pretrim_net_ml = float(recommended["resulting_net_gas_volume_ml_per_side"])
     gross_recommended_ml = rectangular_volume_ml(
-        float(geometry["recommended_clear_face_mm"][0]),
-        float(geometry["recommended_clear_face_mm"][1]),
+        float(geometry["recommended_bulk_cavity_footprint_mm"][0]),
+        float(geometry["recommended_bulk_cavity_footprint_mm"][1]),
         depth_mm,
+    )
+    recommended_footprint_area_cm2 = (
+        float(geometry["recommended_bulk_cavity_footprint_mm"][0])
+        * float(geometry["recommended_bulk_cavity_footprint_mm"][1])
+        / 100.0
+    )
+    footprint_to_membrane_area_ratio = (
+        recommended_footprint_area_cm2 / quantities["active_membrane_area_cm2"]
     )
     return {
         "study_id": study["study_id"],
         "selected_interpretation": study["interpretation"]["meaning"],
+        "membrane_area_invariant": {
+            "active_window_mm": [
+                quantities["active_membrane_width_mm"],
+                quantities["active_membrane_height_mm"],
+            ],
+            "active_area_cm2": quantities["active_membrane_area_cm2"],
+            "coupon_dimensions_mm": study["membrane_constraint"][
+                "coupon_dimensions_mm"
+            ],
+            "target_flux_g_m2_h": quantities["target_flux_g_m2_h"],
+            "integrated_water_rate_mg_s": quantities["rate_mg_s"],
+            "water_transferred_per_5s_segment_mg": quantities["transferred_mg"],
+            "recommended_bulk_footprint_area_cm2_not_active": recommended_footprint_area_cm2,
+            "bulk_footprint_to_active_membrane_area_ratio": footprint_to_membrane_area_ratio,
+            "bulk_footprint_used_as_transport_area": False,
+            "if_bulk_footprint_were_incorrectly_used_as_active": {
+                "active_area_cm2": recommended_footprint_area_cm2,
+                "integrated_water_rate_mg_s": quantities["rate_mg_s"]
+                * footprint_to_membrane_area_ratio,
+                "water_transferred_per_5s_segment_mg": quantities["transferred_mg"]
+                * footprint_to_membrane_area_ratio,
+                "required_volume_for_5pp_ml": quantities["required_volume_ml"]
+                * footprint_to_membrane_area_ratio,
+                "rigid_pressure_difference_at_500ml_pa": response_at_volume(
+                    target_ml, quantities
+                )["rigid_chamber_differential_pressure_pa"]
+                * footprint_to_membrane_area_ratio,
+                "status": "FORBIDDEN MISINTERPRETATION",
+            },
+        },
         "literal_100mm_case": {
             "gross_volume_ml_per_side": float(
                 literal["gross_empty_cavity_volume_ml_per_side"]
@@ -731,7 +816,19 @@ def build_decision_summary(
             ),
         },
         "recommended_geometry": {
-            "clear_face_mm": geometry["recommended_clear_face_mm"],
+            "bulk_cavity_footprint_mm": geometry[
+                "recommended_bulk_cavity_footprint_mm"
+            ],
+            "active_membrane_window_mm": [
+                quantities["active_membrane_width_mm"],
+                quantities["active_membrane_height_mm"],
+            ],
+            "active_membrane_area_cm2": quantities["active_membrane_area_cm2"],
+            "membrane_coupon_mm": study["membrane_constraint"][
+                "coupon_dimensions_mm"
+            ],
+            "integrated_water_rate_mg_s_at_target_flux": quantities["rate_mg_s"],
+            "water_transferred_per_5s_segment_mg": quantities["transferred_mg"],
             "bulk_depth_mm": depth_mm,
             "outer_plate_face_mm": geometry["recommended_outer_plate_face_mm"],
             "gross_volume_ml_per_side": gross_recommended_ml,
@@ -751,14 +848,14 @@ def build_decision_summary(
             "minimum_square_side_for_500ml_without_hardware_mm": minimum_side_target_no_hardware,
             "minimum_square_side_for_500ml_with_displacement_bound_mm": minimum_side_target_with_bound,
             "minimum_square_side_for_rh_limit_with_displacement_bound_mm": minimum_side_rh_with_bound,
-            "required_depth_at_100mm_face_with_displacement_bound_mm": required_depth_existing_with_bound,
+            "required_depth_at_100mm_bulk_footprint_with_displacement_bound_mm": required_depth_existing_with_bound,
         },
         "design_alternatives": {
-            "external_plenum_at_100mm_face": {
+            "external_plenum_at_100mm_bulk_footprint": {
                 "minimum_external_volume_ml_per_side": target_ml
                 + displacement_ml
                 - float(literal["gross_empty_cavity_volume_ml_per_side"]),
-                "strength": "Preserves the compact 100 x 100 mm clear face.",
+                "strength": "Preserves the compact 100 x 100 mm bulk-cavity footprint.",
                 "weakness": "Adds tubing/plenum dead volume, surface adsorption and a mixing delay to a five-second test.",
             },
             "compact_cell_with_revised_protocol": {
@@ -849,10 +946,10 @@ def build_gate_assessment_frame(
         {
             "gate": "gross_empty_cavity_volume_and_depth",
             "desktop_assessment": "calculated_design_selected",
-            "recommendation": "Bruk 165 x 165 x 20 mm klar kavitet per side; 544,5 mL brutto.",
-            "strength": "Beholder ønsket dybde på 20 mm og gir kalibreringsmargin.",
-            "weakness": "Gir et bredt, grunt kammer og øker ytterplaten til omtrent 205 mm kvadrat.",
-            "remaining_evidence": "Frigi CAD og kontroller de maskinerte kavitetsmålene.",
+            "recommendation": "Bruk 165 x 165 x 20 mm bulk-kammerfotavtrykk per side rundt et uendret 50 x 50 mm aktivt membranvindu (25 cm²); 544,5 mL brutto.",
+            "strength": "Beholder både 25 cm² membranareal og ønsket dybde på 20 mm, samtidig som det gir kalibreringsmargin.",
+            "weakness": "Gir et bredt, grunt plenum og krever en kontrollert overgang via 80 x 80 mm kupong til 50 x 50 mm aktivt vindu; 165 x 165 mm kan ikke være membranaperturen.",
+            "remaining_evidence": "Frigi CAD som viser separat bulkplenum, 80 x 80 mm kupong og 50 x 50 mm aktiv apertur; kontroller deretter kavitetsmålene.",
         },
         {
             "gate": "installed_component_displacement",
@@ -889,10 +986,10 @@ def build_gate_assessment_frame(
         {
             "gate": "baffle_geometry_and_mounting",
             "desktop_assessment": "starting_geometry_proposed",
-            "recommendation": "Bruk avtakbare 1 mm PEEK-vende-/fordelerskovler, minst 60% åpne og maksimalt 2 mL fastvolum per side.",
-            "strength": "Lite volumtap og enkel iterasjon mot dødsoner.",
-            "weakness": "Åpningsgrad beviser ikke jevn blanding og kan gi lokalt trykkfall.",
-            "remaining_evidence": "Frigi CAD etter sporstoff- eller rask fuktkartlegging.",
+            "recommendation": "Bruk avtakbare 1 mm PEEK-vende-/fordelerskovler som fordeler strømmen symmetrisk mellom 165 x 165 mm bulkplenum og 50 x 50 mm aktivt membranvindu, minst 60% åpne og maksimalt 2 mL fastvolum per side.",
+            "strength": "Bevarer 25 cm² aktivt areal, gir lite volumtap og kan itereres mot dødsoner.",
+            "weakness": "Den store arealkontraksjonen kan gi fuktgradienter og lokalt trykkfall; åpningsgrad alene beviser ikke jevn blanding.",
+            "remaining_evidence": "Frigi overgangs-/baffel-CAD etter flerposisjons sporstoff- eller rask fuktkartlegging over 50 x 50 mm-vinduet.",
         },
         {
             "gate": "differential_pressure_management",
@@ -986,6 +1083,8 @@ def write_report(
         scenario_rows.append(
             [
                 row.scenario_id,
+                f"{row.bulk_cavity_width_mm:.0f} x {row.bulk_cavity_height_mm:.0f}",
+                f"{row.active_membrane_area_cm2:.0f}",
                 f"{row.gross_empty_cavity_volume_ml_per_side:.1f}",
                 f"{row.resulting_net_gas_volume_ml_per_side:.1f}",
                 f"{row.single_chamber_rh_change_pp:.3f}",
@@ -1011,6 +1110,7 @@ def write_report(
     )
     compact = summary["literal_100mm_case"]
     geometry = summary["recommended_geometry"]
+    membrane = summary["membrane_area_invariant"]
     thresholds = summary["geometry_thresholds"]
     alternatives = summary["design_alternatives"]
     pressure = summary["pressure_management"]
@@ -1033,7 +1133,11 @@ Status: post-V10 engineering sensitivity. Den publiserte V10-utgivelsen og hando
 
 ## Tolkning og hovedresultat
 
-20 mm er her tolket som bulk kammerdybde på hver side av membranen. Det lokale membrangapet forblir 2 mm. Med dagens 100 x 100 mm klare kammerflate blir bruttovolumet bare **200.0 mL per side**. Selv uten installerte komponenter er dette under det beregnede minimumet på **{quantities['required_volume_ml']:.2f} mL** og langt under målet 500.0 +/- 5.0 mL.
+20 mm er her tolket som bulk kammerdybde på hver side av membranen. **Det aktive membranvinduet er uendret 50 x 50 mm = {quantities['active_membrane_area_cm2']:.0f} cm²** innenfor den eksisterende 80 x 80 mm kupongen, og det lokale membrangapet forblir 2 mm. Alle fukt- og trykkresultater bruker derfor fortsatt 208 g/m²/h over 25 cm², som gir {quantities['rate_mg_s']:.6f} mg/s og {quantities['transferred_mg']:.6f} mg vann per 5 s-segment.
+
+Dimensjonene 100 x 100 mm og 165 x 165 mm nedenfor er bare **bulk-kammerets fotavtrykk**, ikke membranarealet. Med dagens 100 x 100 mm bulkfotavtrykk blir bruttovolumet **200.0 mL per side**. Selv uten installerte komponenter er dette under det beregnede minimumet på **{quantities['required_volume_ml']:.2f} mL** og langt under målet 500.0 +/- 5.0 mL.
+
+Som misforståelsessperre: 165 x 165 mm tilsvarer {membrane['recommended_bulk_footprint_area_cm2_not_active']:.2f} cm², altså {membrane['bulk_footprint_to_active_membrane_area_ratio']:.2f} ganger det aktive arealet. Denne flaten brukes **ikke** i transportberegningen; bare 25 cm²-membranen brukes. Hvis 165 x 165 mm feilaktig ble brukt som aktiv membran, ville nødvendig 5-prosentpoengsvolum øke til omtrent {membrane['if_bulk_footprint_were_incorrectly_used_as_active']['required_volume_for_5pp_ml'] / 1000.0:.2f} L. Det er eksplisitt forbudt i auditen.
 
 Ved 200 mL gir den samme 208 g/m2/h-fluksen og det samme 5 s-segmentet:
 
@@ -1042,21 +1146,21 @@ Ved 200 mL gir den samme 208 g/m2/h-fluksen og det samme 5 s-segmentet:
 - stivt kammer, differansetrykkdiagnostikk: **{compact['pressure_difference_pa']:.1f} Pa**;
 - for å holde 5 prosentpoeng: segmentet må ned til **{compact['maximum_segment_duration_s']:.3f} s**, frekvensen opp til minst **{compact['minimum_switching_frequency_hz']:.4f} Hz**, eller fluksen ned til **{compact['maximum_flux_g_m2_h']:.2f} g/m2/h**.
 
-Den anbefalte 20 mm-løsningen er derfor en **165 x 165 x 20 mm klar kavitet** per side, ikke 100 x 100 x 20 mm. Den gir 544.5 mL brutto. Etter et konservativt komponentbudsjett på {geometry['component_displacement_upper_bound_ml_per_side']:.1f} mL gjenstår {geometry['pretrim_net_volume_ml_per_side']:.1f} mL. Bruk modulære kalibreringsinnsatser med kapasitet fra {geometry['required_trim_range_for_zero_to_bounded_component_displacement_ml_per_side'][0]:.1f} til {geometry['required_trim_range_for_zero_to_bounded_component_displacement_ml_per_side'][1]:.1f} mL per side; {geometry['nominal_removable_trim_insert_ml_per_side']:.1f} mL er startverdien ved konservativ komponentgrense. Trim hver ferdigmonterte side til 500.0 +/- 5.0 mL ved måling.
+Den anbefalte 20 mm-løsningen er derfor et **165 x 165 x 20 mm bulk-kammerfotavtrykk** per side rundt det uendrede 50 x 50 mm membranvinduet. Dette gir 544.5 mL brutto uten å øke den aktive membranen. Etter et konservativt komponentbudsjett på {geometry['component_displacement_upper_bound_ml_per_side']:.1f} mL gjenstår {geometry['pretrim_net_volume_ml_per_side']:.1f} mL. Bruk modulære kalibreringsinnsatser med kapasitet fra {geometry['required_trim_range_for_zero_to_bounded_component_displacement_ml_per_side'][0]:.1f} til {geometry['required_trim_range_for_zero_to_bounded_component_displacement_ml_per_side'][1]:.1f} mL per side; {geometry['nominal_removable_trim_insert_ml_per_side']:.1f} mL er startverdien ved konservativ komponentgrense. Trim hver ferdigmonterte side til 500.0 +/- 5.0 mL ved måling.
 
-En kvadratisk 20 mm-kavitet trenger minst {thresholds['minimum_square_side_for_500ml_without_hardware_mm']:.2f} mm side uten maskinvare, {thresholds['minimum_square_side_for_500ml_with_displacement_bound_mm']:.2f} mm med det konservative komponentbudsjettet, og {thresholds['minimum_square_side_for_rh_limit_with_displacement_bound_mm']:.2f} mm for bare å møte RH-grensen. Ved 100 x 100 mm måtte dybden vært minst {thresholds['required_depth_at_100mm_face_with_displacement_bound_mm']:.1f} mm for 500 mL med samme budsjett.
+En kvadratisk 20 mm-kavitet trenger minst {thresholds['minimum_square_side_for_500ml_without_hardware_mm']:.2f} mm side uten maskinvare, {thresholds['minimum_square_side_for_500ml_with_displacement_bound_mm']:.2f} mm med det konservative komponentbudsjettet, og {thresholds['minimum_square_side_for_rh_limit_with_displacement_bound_mm']:.2f} mm for bare å møte RH-grensen. Ved 100 x 100 mm bulkfotavtrykk måtte dybden vært minst {thresholds['required_depth_at_100mm_bulk_footprint_with_displacement_bound_mm']:.1f} mm for 500 mL med samme budsjett.
 
 ## Scenarioresultater
 
-{markdown_table(['Scenario', 'Brutto mL', 'Netto mL', 'RH-endring pp', 'Delta p Pa', '5 pp-krav'], scenario_rows)}
+{markdown_table(['Scenario', 'Bulkfotavtrykk mm', 'Aktiv membran cm²', 'Brutto mL', 'Netto mL', 'RH-endring pp', 'Delta p Pa', '5 pp-krav'], scenario_rows)}
 
 ![Sammenligning av 20 mm-geometri](channel_depth_tradeoff.png)
 
-## Alternative måter å beholde 100 mm klarflate
+## Alternative måter å beholde 100 mm bulkfotavtrykk
 
-Det finnes to reelle alternativer til den anbefalte 165 mm-flaten:
+Det finnes to reelle alternativer til det anbefalte 165 mm-bulkfotavtrykket; membranen er 25 cm² i alle alternativene:
 
-1. Legg til minst **{alternatives['external_plenum_at_100mm_face']['minimum_external_volume_ml_per_side']:.1f} mL eksternt volum per side**. Styrken er at selve cellen forblir kompakt. Svakheten er ekstra slange-/plenumvolum, fuktopptak på flere flater og blandeforsinkelse i en test som bare varer fem sekunder per segment.
+1. Legg til minst **{alternatives['external_plenum_at_100mm_bulk_footprint']['minimum_external_volume_ml_per_side']:.1f} mL eksternt volum per side**. Styrken er at selve cellen forblir kompakt. Svakheten er ekstra slange-/plenumvolum, fuktopptak på flere flater og blandeforsinkelse i en test som bare varer fem sekunder per segment.
 2. Bruk den konservative installerte øvre grensen på **{alternatives['compact_cell_with_revised_protocol']['conservative_installed_net_volume_ml_per_side']:.1f} mL** og endre protokollen til høyst **{alternatives['compact_cell_with_revised_protocol']['maximum_segment_duration_s']:.3f} s** per halvsyklus, minst **{alternatives['compact_cell_with_revised_protocol']['minimum_switching_frequency_hz']:.4f} Hz**, eller høyst **{alternatives['compact_cell_with_revised_protocol']['maximum_flux_g_m2_h']:.2f} g/m2/h**. Styrken er enkel mekanikk. Svakheten er at forsøket ikke lenger tester den opprinnelige 5 s / 208 g/m2/h-basen, og sensoren blir for treg i forhold til dynamikken.
 
 ## Designporter som kan beregnes eller avgrenses
@@ -1067,7 +1171,7 @@ Ingen fysisk designport er markert lukket fra en skrivebordsberegning. Tabellen 
 
 ## Mekanisk skjermberegning
 
-Plateskjermen bruker 5 kPa prøvedifferanse over hele den 165 mm klare flaten, omtrent 12 ganger den stive 500 mL-diagnostikken. Dette er en lineær, enkelt opplagt kvadratplateskjerm og ikke en slutt-FOA/FEA.
+Plateskjermen bruker 5 kPa prøvedifferanse over hele det 165 mm brede bulk-kammerspennet, omtrent 12 ganger den stive 500 mL-diagnostikken. Dette er en lineær, enkelt opplagt kvadratplateskjerm og ikke en sluttanalyse/FEA. Det aktive membranspennet er fortsatt bare 50 x 50 mm.
 
 {markdown_table(['Material', 'Thickness mm', 'Pressure deflection um', 'Bending stress MPa'], plate_rows)}
 
@@ -1093,7 +1197,7 @@ Dette er ikke det valgte tilfellet, men følsomheten er beregnet. Lokalt volum �
 - Plateskjermen inkluderer ikke bolthull, punktlaster, tetningskraft, kryp, termiske gradienter eller den endelige randbetingelsen.
 - Katalogluftmengde er ikke lik blandingstid i den grunne cellen.
 - Sensorrespons, diafragmastivhet, lekkasje, overflateadsorpsjon og montert volum kan bare lukkes eksperimentelt.
-- 165 mm-flaten kan gi større laterale fuktgradienter enn den gamle 100 mm-flaten; baffle og sensorer må derfor valideres ved flere posisjoner.
+- Overgangen fra 165 mm bulk-kammerfotavtrykk til 50 x 50 mm aktivt membranvindu kan gi laterale fuktgradienter; baffel og sensorer må derfor valideres ved flere posisjoner.
 
 ## Primærkilder for foreslåtte valg
 
@@ -1120,13 +1224,17 @@ def make_tradeoff_plot(
     displacement_ml = component_displacement_bound_ml(study)
     depth_mm = float(study["interpretation"]["requested_channel_depth_mm"])
     faces = [100.0, 140.0, 165.0]
-    labels = ["Dagens klarflate\n100 mm", "Dagens husflate\n140 mm", "Anbefalt klarflate\n165 mm"]
+    labels = [
+        "Bulkplenum\n100 x 100 mm",
+        "Husgrense\n140 x 140 mm",
+        "Anbefalt bulkplenum\n165 x 165 mm",
+    ]
     gross = [rectangular_volume_ml(side, side, depth_mm) for side in faces]
     net = [value - displacement_ml for value in gross]
 
     fig, (ax_drift, ax_volume) = plt.subplots(1, 2, figsize=(11.2, 4.8))
     ax_drift.plot(
-        sweep["square_clear_face_side_mm"],
+        sweep["square_bulk_cavity_footprint_side_mm"],
         sweep["single_chamber_rh_change_pp"],
         color="#176B87",
         linewidth=2.2,
@@ -1139,7 +1247,9 @@ def make_tradeoff_plot(
         label="Krav: 5 prosentpoeng",
     )
     for side, color in ((100.0, "#B91C1C"), (165.0, "#15803D")):
-        row = sweep.loc[sweep["square_clear_face_side_mm"].eq(side)].iloc[0]
+        row = sweep.loc[
+            sweep["square_bulk_cavity_footprint_side_mm"].eq(side)
+        ].iloc[0]
         ax_drift.scatter(
             [side], [row["single_chamber_rh_change_pp"]], s=55, color=color, zorder=3
         )
@@ -1150,7 +1260,7 @@ def make_tradeoff_plot(
             textcoords="offset points",
             fontsize=9,
         )
-    ax_drift.set_xlabel("Sidekant for kvadratisk klarflate (mm)")
+    ax_drift.set_xlabel("Sidekant for kvadratisk bulk-kammerfotavtrykk (mm)")
     ax_drift.set_ylabel("RH-endring i ett kammer etter 5 s (prosentpoeng)")
     ax_drift.set_title("20 mm dybde: krav til fuktendring")
     ax_drift.grid(True, alpha=0.25)
@@ -1197,13 +1307,18 @@ def make_tradeoff_plot(
                 fontsize=8,
             )
     ax_volume.set_xticks(positions, labels)
+    ax_volume.tick_params(axis="x", labelsize=8)
     ax_volume.set_ylabel("Volum per side (mL)")
     ax_volume.set_title("Geometrisk volumbudsjett")
     ax_volume.grid(True, axis="y", alpha=0.25)
     ax_volume.legend(fontsize=8)
     ax_volume.set_ylim(0.0, max(gross) * 1.2)
 
-    fig.suptitle("EO-dampcelle: screening av 20 mm bulkdybde", fontsize=14)
+    fig.suptitle(
+        "EO-dampcelle: 20 mm bulkdybde\n"
+        "Aktiv membran er fast 50 x 50 mm = 25 cm²",
+        fontsize=14,
+    )
     fig.tight_layout()
     fig.savefig(path, dpi=200, bbox_inches="tight")
     plt.close(fig)
@@ -1215,6 +1330,7 @@ def write_audit_and_manifest(
     study: dict[str, Any],
     base_path: Path,
     base_model_path: Path,
+    quantities: dict[str, float],
     scenarios: pd.DataFrame,
     local_gap: pd.DataFrame,
     plates: pd.DataFrame,
@@ -1241,7 +1357,33 @@ def write_audit_and_manifest(
             float(study["interpretation"]["requested_channel_depth_mm"]), 20.0
         )
         and math.isclose(
-            float(study["interpretation"]["local_membrane_gap_remains_mm"]), 2.0
+            float(study["membrane_constraint"]["local_gap_remains_mm"]), 2.0
+        ),
+        "active_membrane_is_fixed_at_50x50mm_and_25cm2": math.isclose(
+            quantities["active_membrane_width_mm"], 50.0
+        )
+        and math.isclose(quantities["active_membrane_height_mm"], 50.0)
+        and math.isclose(quantities["active_membrane_area_cm2"], 25.0)
+        and math.isclose(quantities["rate_mg_s"], 13.0 / 90.0)
+        and summary["membrane_area_invariant"]["coupon_dimensions_mm"]
+        == [80.0, 80.0],
+        "bulk_footprint_is_not_used_as_transport_area": not bool(
+            summary["membrane_area_invariant"][
+                "bulk_footprint_used_as_transport_area"
+            ]
+        )
+        and math.isclose(
+            summary["membrane_area_invariant"][
+                "recommended_bulk_footprint_area_cm2_not_active"
+            ],
+            272.25,
+        )
+        and not math.isclose(
+            quantities["rate_mg_s"],
+            quantities["target_flux_g_m2_h"]
+            * 0.027225
+            * 1000.0
+            / 3600.0,
         ),
         "literal_100x100x20_volume_is_200ml": math.isclose(
             float(literal["gross_empty_cavity_volume_ml_per_side"]), 200.0
@@ -1314,7 +1456,8 @@ def write_audit_and_manifest(
         },
         "design_decision": {
             "literal_100x100x20_status": "REJECT for original 5 s / 500 mL basis",
-            "recommended_geometry": "165 x 165 x 20 mm clear cavity per side with measured trim to 500 +/- 5 mL",
+            "membrane_area": "50 x 50 mm active window = 25 cm2; unchanged",
+            "recommended_geometry": "165 x 165 x 20 mm bulk cavity footprint per side around the unchanged 50 x 50 mm membrane window, with measured trim to 500 +/- 5 mL",
             "fabrication_release": "NOT READY; physical evidence remains required",
         },
     }
@@ -1416,6 +1559,7 @@ def run(config_path: Path, output_dir: Path) -> dict[str, Any]:
         study,
         base_path,
         base_model_path,
+        quantities,
         scenarios,
         local_gap,
         plates,
@@ -1427,7 +1571,8 @@ def run(config_path: Path, output_dir: Path) -> dict[str, Any]:
         "status": "PASS",
         "study_id": study["study_id"],
         "literal_100mm_status": "REJECT",
-        "recommended_clear_face_mm": 165.0,
+        "active_membrane_area_cm2": quantities["active_membrane_area_cm2"],
+        "recommended_bulk_cavity_footprint_mm": 165.0,
         "bulk_depth_mm": 20.0,
         "assessed_gates": len(gates),
         "output_dir": output_dir.as_posix(),

@@ -2,13 +2,13 @@
   "generated_outputs": [
     {
       "path": "scenario_comparison.csv",
-      "sha256": "8f78e9395893b6dd98c8a443a88731e3a748cf151ef030e9cd23dea788723762",
-      "size_bytes": 1935
+      "sha256": "c9310fa5427a0ecda2158f8029b661f91a49c6bd2067c53c418e5bba46a0eba2",
+      "size_bytes": 2099
     },
     {
       "path": "geometry_sweep.csv",
-      "sha256": "7d34b2f1c215320b2151785f2b747e12feef31caf5904421e38dc6c1164688b5",
-      "size_bytes": 5926
+      "sha256": "4bb9a2dc84357180bfd4c2722b3d31f74af5cb50cc3ad6534c07683732abf5be",
+      "size_bytes": 6417
     },
     {
       "path": "local_gap_interpretation.csv",
@@ -17,40 +17,40 @@
     },
     {
       "path": "plate_pressure_screen.csv",
-      "sha256": "6894a98ff154096be374f0265ffa7ff19d83cf9fc4e77624e96b5c471d261228",
-      "size_bytes": 876
+      "sha256": "2d91e888a0dc346ee6b2d5897e0bf94b795c95dbe90afdeb5fe74159ee7f26a1",
+      "size_bytes": 980
     },
     {
       "path": "engineering_gate_assessment.csv",
-      "sha256": "3b706ce515d7f66c8560ca8f55ff6d32bc3fc845e5a7fd0944d7cd36971dbc82",
-      "size_bytes": 7020
+      "sha256": "39048f1aa6dd7c441d062922507f02e63806a0ba48390246124e6253e256ef0b",
+      "size_bytes": 7526
     },
     {
       "path": "decision_summary.json",
-      "sha256": "87750661a7b9829493e5a8ce979c66329288d8e1596dd193da5a13b3df954402",
-      "size_bytes": 4528
+      "sha256": "606b040a8135f1f40a97b06d7cb7915a24883d8ca82649d317a2937b4f31057d",
+      "size_bytes": 5776
     },
     {
       "path": "REPORT.md",
-      "sha256": "1ad967a5ea514dae5c8e2a5669b9839ecd77529538680c523004779ccda310ce",
-      "size_bytes": 14452
+      "sha256": "d28842139a558b790e739ae8aabebb06ce275fc38df77eb9fcb77a2757d567ce",
+      "size_bytes": 16010
     },
     {
       "path": "channel_depth_tradeoff.png",
-      "sha256": "7aa85c0f243d6df755af1878aab2c53509ff6a7de27d0dd9dd7052610cf42645",
-      "size_bytes": 177785
+      "sha256": "a5578f04424ee867c3a9f46f592b29af9e339f6aac4bdc8161ccba829afa080a",
+      "size_bytes": 191003
     },
     {
       "path": "audit.json",
-      "sha256": "d6c3e246e821c45d5b8626328a25eb9deda723c8be34fc299b51a99d5ec38eda",
-      "size_bytes": 1743
+      "sha256": "db24fe946363a7b131236f016d8aa3c0f8ac51b3f9d2945289e811f3fc3dca64",
+      "size_bytes": 1987
     }
   ],
   "schema_version": 1,
   "sources": [
     {
       "path": "config/eo_vapor_test_cell_20mm_channel_study.json",
-      "sha256": "1da7706b82502a758950b545a2be5bf6029392e647dc96ff0b6817e3578cc899"
+      "sha256": "a146c1733c34cdcb65e00784aac2c5ab3362895e8e41bd334b846e4dab085e90"
     },
     {
       "path": "config/eo_vapor_test_cell_design.json",
@@ -62,7 +62,7 @@
     },
     {
       "path": "scripts/analyze_eo_vapor_test_cell_20mm.py",
-      "sha256": "ade7eae275cf8a2f2ddc817b71db55afe06fea651ef00cda3c15934a0649addc"
+      "sha256": "ad361070eed3b2d45d18ddab7c62da77d5ff210715f5057ee4225fca7df8245c"
     },
     {
       "path": "deliverables/current/2026-09-02_v10/SHA256SUMS",

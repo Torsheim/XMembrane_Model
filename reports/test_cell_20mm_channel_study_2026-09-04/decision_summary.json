@@ -8,9 +8,9 @@
       "strength": "Keeps the original compact cavity without external volume.",
       "weakness": "Changes the experimental basis and becomes faster than the screened humidity sensor response."
     },
-    "external_plenum_at_100mm_face": {
+    "external_plenum_at_100mm_bulk_footprint": {
       "minimum_external_volume_ml_per_side": 322.6,
-      "strength": "Preserves the compact 100 x 100 mm clear face.",
+      "strength": "Preserves the compact 100 x 100 mm bulk-cavity footprint.",
       "weakness": "Adds tubing/plenum dead volume, surface adsorption and a mixing delay to a five-second test."
     }
   },
@@ -33,7 +33,7 @@
     "minimum_square_side_for_500ml_with_displacement_bound_mm": 161.6477652180815,
     "minimum_square_side_for_500ml_without_hardware_mm": 158.11388300841898,
     "minimum_square_side_for_rh_limit_with_displacement_bound_mm": 150.026733070382,
-    "required_depth_at_100mm_face_with_displacement_bound_mm": 52.26
+    "required_depth_at_100mm_bulk_footprint_with_displacement_bound_mm": 52.26
   },
   "interconnect_screen": {
     "actual_fitting_tube_and_valve_volume_included": false,
@@ -54,6 +54,31 @@
     "pressure_difference_pa": 1017.1321691328133,
     "rh_change_pp_per_chamber": 10.689010317885824
   },
+  "membrane_area_invariant": {
+    "active_area_cm2": 25.0,
+    "active_window_mm": [
+      50.0,
+      50.0
+    ],
+    "bulk_footprint_to_active_membrane_area_ratio": 10.89,
+    "bulk_footprint_used_as_transport_area": false,
+    "coupon_dimensions_mm": [
+      80.0,
+      80.0
+    ],
+    "if_bulk_footprint_were_incorrectly_used_as_active": {
+      "active_area_cm2": 272.25,
+      "integrated_water_rate_mg_s": 1.573,
+      "required_volume_for_5pp_ml": 4656.132894471065,
+      "rigid_pressure_difference_at_500ml_pa": 4430.627728742535,
+      "status": "FORBIDDEN MISINTERPRETATION",
+      "water_transferred_per_5s_segment_mg": 7.864999999999999
+    },
+    "integrated_water_rate_mg_s": 0.14444444444444443,
+    "recommended_bulk_footprint_area_cm2_not_active": 272.25,
+    "target_flux_g_m2_h": 208.0,
+    "water_transferred_per_5s_segment_mg": 0.7222222222222221
+  },
   "pressure_management": {
     "minimum_full_stroke_ul_per_side": 1982.9897256242466,
     "minimum_travel_from_nominal_ul_per_side": 991.5193260458082,
@@ -64,15 +89,25 @@
     "two_external_reference_diaphragms_minimum_compliance_nl_per_pa_each": 396607.73041832325
   },
   "recommended_geometry": {
-    "bulk_depth_mm": 20.0,
-    "clear_face_mm": [
+    "active_membrane_area_cm2": 25.0,
+    "active_membrane_window_mm": [
+      50.0,
+      50.0
+    ],
+    "bulk_cavity_footprint_mm": [
       165.0,
       165.0
     ],
+    "bulk_depth_mm": 20.0,
     "component_displacement_upper_bound_ml_per_side": 22.6,
     "final_acceptance_requires_measured_net_volume_ml": 500.0,
     "final_acceptance_tolerance_ml": 5.0,
     "gross_volume_ml_per_side": 544.5,
+    "integrated_water_rate_mg_s_at_target_flux": 0.14444444444444443,
+    "membrane_coupon_mm": [
+      80.0,
+      80.0
+    ],
     "minimum_available_trim_capacity_ml_per_side": 44.5,
     "nominal_removable_trim_insert_ml_per_side": 21.899999999999977,
     "outer_plate_face_mm": [
@@ -83,7 +118,8 @@
     "required_trim_range_for_zero_to_bounded_component_displacement_ml_per_side": [
       21.899999999999977,
       44.5
-    ]
+    ],
+    "water_transferred_per_5s_segment_mg": 0.7222222222222221
   },
   "seal_screen": {
     "cross_section_mm": 2.0,
@@ -96,6 +132,6 @@
     "resulting_gland_fill_fraction": 0.7222052077217915,
     "screened_minimum_effective_gland_depth_mm": 1.4
   },
-  "selected_interpretation": "Bulk chamber cavity depth normal to the clear chamber face, per side.",
+  "selected_interpretation": "Bulk chamber cavity depth normal to the bulk-cavity footprint, per side. It is not a membrane dimension.",
   "study_id": "eo-vapor-test-cell-20mm-bulk-depth-v1-2026-09-04"
 }

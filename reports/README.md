@@ -37,11 +37,13 @@ inventory, checksums, source/build notes, and explicit V10 reference.
 
 `test_cell_20mm_channel_study_2026-09-04/` is a later, post-V10 geometry
 sensitivity. It interprets 20 mm as bulk cavity depth per side while retaining
-the 2 mm nominal local membrane gap. It rejects the literal 100 x 100 x 20 mm
-cavity for the original 5 s / 500 mL basis, evaluates a 165 x 165 x 20 mm
-alternative, and gives calculated starting values plus strengths, weaknesses
-and residual physical tests for all 13 fabrication gates. It does not modify
-the published handoff-v1 package.
+the 50 x 50 mm active membrane window (25 cm²), the 80 x 80 mm coupon and the
+2 mm nominal local membrane gap. It rejects a 100 x 100 x 20 mm bulk plenum for
+the original 5 s / 500 mL basis, evaluates a 165 x 165 x 20 mm bulk-plenum
+footprint behind a transition to the unchanged membrane window, and gives
+calculated starting values plus strengths, weaknesses and residual physical
+tests for all 13 fabrication gates. It does not modify the published
+handoff-v1 package.
 
 ## Historical reports
 

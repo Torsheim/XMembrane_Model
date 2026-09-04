@@ -4,7 +4,11 @@ Status: post-V10 engineering sensitivity. Den publiserte V10-utgivelsen og hando
 
 ## Tolkning og hovedresultat
 
-20 mm er her tolket som bulk kammerdybde på hver side av membranen. Det lokale membrangapet forblir 2 mm. Med dagens 100 x 100 mm klare kammerflate blir bruttovolumet bare **200.0 mL per side**. Selv uten installerte komponenter er dette under det beregnede minimumet på **427.56 mL** og langt under målet 500.0 +/- 5.0 mL.
+20 mm er her tolket som bulk kammerdybde på hver side av membranen. **Det aktive membranvinduet er uendret 50 x 50 mm = 25 cm²** innenfor den eksisterende 80 x 80 mm kupongen, og det lokale membrangapet forblir 2 mm. Alle fukt- og trykkresultater bruker derfor fortsatt 208 g/m²/h over 25 cm², som gir 0.144444 mg/s og 0.722222 mg vann per 5 s-segment.
+
+Dimensjonene 100 x 100 mm og 165 x 165 mm nedenfor er bare **bulk-kammerets fotavtrykk**, ikke membranarealet. Med dagens 100 x 100 mm bulkfotavtrykk blir bruttovolumet **200.0 mL per side**. Selv uten installerte komponenter er dette under det beregnede minimumet på **427.56 mL** og langt under målet 500.0 +/- 5.0 mL.
+
+Som misforståelsessperre: 165 x 165 mm tilsvarer 272.25 cm², altså 10.89 ganger det aktive arealet. Denne flaten brukes **ikke** i transportberegningen; bare 25 cm²-membranen brukes. Hvis 165 x 165 mm feilaktig ble brukt som aktiv membran, ville nødvendig 5-prosentpoengsvolum øke til omtrent 4.66 L. Det er eksplisitt forbudt i auditen.
 
 Ved 200 mL gir den samme 208 g/m2/h-fluksen og det samme 5 s-segmentet:
 
@@ -13,24 +17,24 @@ Ved 200 mL gir den samme 208 g/m2/h-fluksen og det samme 5 s-segmentet:
 - stivt kammer, differansetrykkdiagnostikk: **1017.1 Pa**;
 - for å holde 5 prosentpoeng: segmentet må ned til **2.339 s**, frekvensen opp til minst **0.2138 Hz**, eller fluksen ned til **97.30 g/m2/h**.
 
-Den anbefalte 20 mm-løsningen er derfor en **165 x 165 x 20 mm klar kavitet** per side, ikke 100 x 100 x 20 mm. Den gir 544.5 mL brutto. Etter et konservativt komponentbudsjett på 22.6 mL gjenstår 521.9 mL. Bruk modulære kalibreringsinnsatser med kapasitet fra 21.9 til 44.5 mL per side; 21.9 mL er startverdien ved konservativ komponentgrense. Trim hver ferdigmonterte side til 500.0 +/- 5.0 mL ved måling.
+Den anbefalte 20 mm-løsningen er derfor et **165 x 165 x 20 mm bulk-kammerfotavtrykk** per side rundt det uendrede 50 x 50 mm membranvinduet. Dette gir 544.5 mL brutto uten å øke den aktive membranen. Etter et konservativt komponentbudsjett på 22.6 mL gjenstår 521.9 mL. Bruk modulære kalibreringsinnsatser med kapasitet fra 21.9 til 44.5 mL per side; 21.9 mL er startverdien ved konservativ komponentgrense. Trim hver ferdigmonterte side til 500.0 +/- 5.0 mL ved måling.
 
-En kvadratisk 20 mm-kavitet trenger minst 158.11 mm side uten maskinvare, 161.65 mm med det konservative komponentbudsjettet, og 150.03 mm for bare å møte RH-grensen. Ved 100 x 100 mm måtte dybden vært minst 52.3 mm for 500 mL med samme budsjett.
+En kvadratisk 20 mm-kavitet trenger minst 158.11 mm side uten maskinvare, 161.65 mm med det konservative komponentbudsjettet, og 150.03 mm for bare å møte RH-grensen. Ved 100 x 100 mm bulkfotavtrykk måtte dybden vært minst 52.3 mm for 500 mL med samme budsjett.
 
 ## Scenarioresultater
 
-| Scenario | Brutto mL | Netto mL | RH-endring pp | Delta p Pa | 5 pp-krav |
-| --- | --- | --- | --- | --- | --- |
-| 100x100x20_geometry_only | 200.0 | 200.0 | 10.689 | 1017.1 | FAIL |
-| 100x100x20_with_conservative_component_bound | 200.0 | 177.4 | 12.051 | 1146.7 | FAIL |
-| 165x165x20_before_calibration_trim | 544.5 | 521.9 | 4.096 | 389.8 | PASS |
-| 165x165x20_calibrated_to_500ml | 544.5 | 500.0 | 4.276 | 406.9 | PASS |
+| Scenario | Bulkfotavtrykk mm | Aktiv membran cm² | Brutto mL | Netto mL | RH-endring pp | Delta p Pa | 5 pp-krav |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 100x100x20_geometry_only | 100 x 100 | 25 | 200.0 | 200.0 | 10.689 | 1017.1 | FAIL |
+| 100x100x20_with_conservative_component_bound | 100 x 100 | 25 | 200.0 | 177.4 | 12.051 | 1146.7 | FAIL |
+| 165x165x20_before_calibration_trim | 165 x 165 | 25 | 544.5 | 521.9 | 4.096 | 389.8 | PASS |
+| 165x165x20_calibrated_to_500ml | 165 x 165 | 25 | 544.5 | 500.0 | 4.276 | 406.9 | PASS |
 
 ![Sammenligning av 20 mm-geometri](channel_depth_tradeoff.png)
 
-## Alternative måter å beholde 100 mm klarflate
+## Alternative måter å beholde 100 mm bulkfotavtrykk
 
-Det finnes to reelle alternativer til den anbefalte 165 mm-flaten:
+Det finnes to reelle alternativer til det anbefalte 165 mm-bulkfotavtrykket; membranen er 25 cm² i alle alternativene:
 
 1. Legg til minst **322.6 mL eksternt volum per side**. Styrken er at selve cellen forblir kompakt. Svakheten er ekstra slange-/plenumvolum, fuktopptak på flere flater og blandeforsinkelse i en test som bare varer fem sekunder per segment.
 2. Bruk den konservative installerte øvre grensen på **177.4 mL** og endre protokollen til høyst **2.075 s** per halvsyklus, minst **0.2410 Hz**, eller høyst **86.30 g/m2/h**. Styrken er enkel mekanikk. Svakheten er at forsøket ikke lenger tester den opprinnelige 5 s / 208 g/m2/h-basen, og sensoren blir for treg i forhold til dynamikken.
@@ -41,12 +45,12 @@ Ingen fysisk designport er markert lukket fra en skrivebordsberegning. Tabellen 
 
 | Designport | Skrivebordsstatus | Anbefalt valg | Styrke | Svakhet | Gjenstår |
 | --- | --- | --- | --- | --- | --- |
-| Bruttovolum og kammerdybde | calculated design selected | Bruk 165 x 165 x 20 mm klar kavitet per side; 544,5 mL brutto. | Beholder ønsket dybde på 20 mm og gir kalibreringsmargin. | Gir et bredt, grunt kammer og øker ytterplaten til omtrent 205 mm kvadrat. | Frigi CAD og kontroller de maskinerte kavitetsmålene. |
+| Bruttovolum og kammerdybde | calculated design selected | Bruk 165 x 165 x 20 mm bulk-kammerfotavtrykk per side rundt et uendret 50 x 50 mm aktivt membranvindu (25 cm²); 544,5 mL brutto. | Beholder både 25 cm² membranareal og ønsket dybde på 20 mm, samtidig som det gir kalibreringsmargin. | Gir et bredt, grunt plenum og krever en kontrollert overgang via 80 x 80 mm kupong til 50 x 50 mm aktivt vindu; 165 x 165 mm kan ikke være membranaperturen. | Frigi CAD som viser separat bulkplenum, 80 x 80 mm kupong og 50 x 50 mm aktiv apertur; kontroller deretter kavitetsmålene. |
 | Fortrengning fra installerte komponenter | conservative upper bound | Reserver 22.6 mL per side ved å bruke komponentenes fulle avgrensningsvolumer. | Konservativt tidlig volumbudsjett; faktisk fast fortrengning bør bli mindre. | Viftevolumet inneholder luft og er derfor ikke en kalibrert fortrengningsverdi. | Mål hver installert del med CAD/nedsenking og kalibrer det monterte kammeret. |
 | Dimensjonering av endevegg og midtskille | uniform pressure component screened | Behold 12 mm lastplater i 6082-T6 aluminium og minst 16 mm ufylt PEEK-isolasjon; beregnet trykkdeformasjon i aluminium er 1.33 µm ved 5 kPa. | Den jevne gasstrykk-komponenten gir liten beregnet deformasjon og spenning. | Beregningen utelater punktlaster fra bolter, tetningskraft, hull, PEEK-kryp og temperaturgradienter. | Kontroller endelig CAD/FEA og mål deformasjon under last. |
 | Fluidiske og elektriske gjennomføringer | idealized wall bore screen only | Prøv to 316-rustfrie 6 mm OD-bulkheadkoblinger med 4 mm strømningsvei per side og en avtakbar hermetisk seks-pins gjennomføring. Header, trykktapp og to ideelle 4 x 8 mm veggboringer summerer til 0.971 mL og etterlater bare 0.329 mL av 1,3 mL-budsjettet. | Standardiserte, gjenbrukbare komponentkandidater og en liten idealisert veggboregeometri. | Screeningen utelater faktisk indre volum i koblinger, rør og isolasjonsventiler; den dokumenterer derfor ikke at 1,3 mL-grensen består. | Mål eller hent CAD-volum helt frem til stengte ventiler, frigi grensesnitttegninger og utfør trykkfall- og krysslekkasjetest. |
 | Innvendig vifte og innfesting | catalogue screen only | Prøv én NF-A4x10 5V PWM-vifte per side, innfelt eller kantmontert. Ideell volumomsetning er 0.20 s og 20%-skjermen gir 1.01 s. | Passer innen 20 mm dybde, har PWM-styring og god katalogluftmengde. | V/Q er ikke blandetid. Maksimal statisk viftetrykk er 19.1 Pa mot 5 Pa-målet, og maksimal katalogeffekt gir en gas-only øvre temperaturgrense på 3.0 K. | Mål temperaturbias, faktisk fortrengning, strømning og vibrasjon i begge kamre. |
-| Baffelgeometri og innfesting | starting geometry proposed | Bruk avtakbare 1 mm PEEK-vende-/fordelerskovler, minst 60% åpne og maksimalt 2 mL fastvolum per side. | Lite volumtap og enkel iterasjon mot dødsoner. | Åpningsgrad beviser ikke jevn blanding og kan gi lokalt trykkfall. | Frigi CAD etter sporstoff- eller rask fuktkartlegging. |
+| Baffelgeometri og innfesting | starting geometry proposed | Bruk avtakbare 1 mm PEEK-vende-/fordelerskovler som fordeler strømmen symmetrisk mellom 165 x 165 mm bulkplenum og 50 x 50 mm aktivt membranvindu, minst 60% åpne og maksimalt 2 mL fastvolum per side. | Bevarer 25 cm² aktivt areal, gir lite volumtap og kan itereres mot dødsoner. | Den store arealkontraksjonen kan gi fuktgradienter og lokalt trykkfall; åpningsgrad alene beviser ikke jevn blanding. | Frigi overgangs-/baffel-CAD etter flerposisjons sporstoff- eller rask fuktkartlegging over 50 x 50 mm-vinduet. |
 | Differansetrykkhåndtering | required compliance calculated | Bruk enten to eksternrefererte gasstette diafragmaer med minst +/-992 µL vandring, 1.98 mL fullt slag og 0.397 mL/Pa hver, eller én dobbeltvirkende med samme slag og 0.198 mL/Pa mot differansetrykket. | Utjevner trykk uten direkte blanding av de fuktige gassinventarene. | Friksjon, fjærstivhet, hysterese og permeasjon kan dominere ved bare 5 Pa. | Kjør hele ABBA-sekvensen med kalibrert differansetrykksensor. |
 | Boltmønster og forspenning | pressure separation only screen | Bruk 16 x M5 A4-skruer med omtrent 45-50 mm perifer avstand, harde kompresjonsstopp og skivefjærer; 1,0 Nm gir omtrent 1000 N nominelt per skrue ved K=0,2. | Nominell samlet forspenning er omtrent 118 ganger den rene separasjonskraften fra 5 kPa. | Spredning mellom moment og forspenning samt PEEK-kryp gjør moment alene uegnet som gapkontroll. | Definer boltmønster, kryssvis tiltrekking og kontroller last/gap etter holdetid. |
 | Tetningsgeometri og kompresjon | gland starting dimensions calculated | Prøv to kontinuerlige 2 mm EPDM 70-plantetninger ved 25% nominell klem: 1,50 mm spordybde og 2,90 mm bredde (72.2% nominell fylling), adskilt av guardsporet. Spesifiser gasstetningsflaten som Rq/RMS <= 0.4 µm, ikke Ra. | Dobbel tetning gir målbar guard-lekkasje; bredere spor har 77.4% fylling selv ved screenet 1,40 mm effektiv dybde. | Diameter-/sportoleranse, hjørnevolum, svelling, kompresjonssett og permeasjon er fortsatt ikke fullstendig toleransestablet. | Bekreft leverandørens toleranser og kompatibilitet, gjør full gland-stack og utfør lekkasje-/blanktest med harde stopp. |
@@ -57,7 +61,7 @@ Ingen fysisk designport er markert lukket fra en skrivebordsberegning. Tabellen 
 
 ## Mekanisk skjermberegning
 
-Plateskjermen bruker 5 kPa prøvedifferanse over hele den 165 mm klare flaten, omtrent 12 ganger den stive 500 mL-diagnostikken. Dette er en lineær, enkelt opplagt kvadratplateskjerm og ikke en slutt-FOA/FEA.
+Plateskjermen bruker 5 kPa prøvedifferanse over hele det 165 mm brede bulk-kammerspennet, omtrent 12 ganger den stive 500 mL-diagnostikken. Dette er en lineær, enkelt opplagt kvadratplateskjerm og ikke en sluttanalyse/FEA. Det aktive membranspennet er fortsatt bare 50 x 50 mm.
 
 | Material | Thickness mm | Pressure deflection um | Bending stress MPa |
 | --- | --- | --- | --- |
@@ -86,7 +90,7 @@ Dette er ikke det valgte tilfellet, men følsomheten er beregnet. Lokalt volum �
 - Plateskjermen inkluderer ikke bolthull, punktlaster, tetningskraft, kryp, termiske gradienter eller den endelige randbetingelsen.
 - Katalogluftmengde er ikke lik blandingstid i den grunne cellen.
 - Sensorrespons, diafragmastivhet, lekkasje, overflateadsorpsjon og montert volum kan bare lukkes eksperimentelt.
-- 165 mm-flaten kan gi større laterale fuktgradienter enn den gamle 100 mm-flaten; baffle og sensorer må derfor valideres ved flere posisjoner.
+- Overgangen fra 165 mm bulk-kammerfotavtrykk til 50 x 50 mm aktivt membranvindu kan gi laterale fuktgradienter; baffel og sensorer må derfor valideres ved flere posisjoner.
 
 ## Primærkilder for foreslåtte valg
 
