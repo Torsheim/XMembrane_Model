@@ -2,9 +2,11 @@
   "all_pass": true,
   "calculation_status": "PASS",
   "checks": {
+    "active_membrane_is_fixed_at_50x50mm_and_25cm2": true,
     "actual_fitting_tube_and_valve_volume_remains_unclaimed": true,
     "all_thirteen_gates_are_assessed": true,
     "alternate_20mm_local_gap_fails_on_header_alone": true,
+    "bulk_footprint_is_not_used_as_transport_area": true,
     "declared_outputs_exist_and_are_nonempty": true,
     "frozen_v10_checksums_pass": true,
     "handoff_v1_checksums_pass": true,
@@ -23,7 +25,8 @@
   "design_decision": {
     "fabrication_release": "NOT READY; physical evidence remains required",
     "literal_100x100x20_status": "REJECT for original 5 s / 500 mL basis",
-    "recommended_geometry": "165 x 165 x 20 mm clear cavity per side with measured trim to 500 +/- 5 mL"
+    "membrane_area": "50 x 50 mm active window = 25 cm2; unchanged",
+    "recommended_geometry": "165 x 165 x 20 mm bulk cavity footprint per side around the unchanged 50 x 50 mm membrane window, with measured trim to 500 +/- 5 mL"
   },
   "release_checksum_verification": {
     "handoff_v1": {

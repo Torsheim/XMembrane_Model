@@ -572,12 +572,15 @@ model-phase release.
 ## 2026-09-04 — Post-V10 20 mm bulk-depth sensitivity
 
 A requested 20 mm channel depth was interpreted as bulk cavity depth per side;
-the 2 mm nominal local membrane gap was retained. A literal 100 x 100 x 20 mm
-cavity provides only 200.0 mL gross per side and fails the original 5 s humidity
+the 50 x 50 mm active membrane window (25 cm²), 80 x 80 mm coupon and 2 mm
+nominal local membrane gap were retained. A literal 100 x 100 x 20 mm bulk
+plenum provides only 200.0 mL gross per side and fails the original 5 s humidity
 drift basis: the predicted single-chamber change is 10.689 percentage points and
 the rigid chamber-to-chamber pressure diagnostic is 1017.1 Pa. With an early
-22.6 mL component bounding-volume allowance, a 165 x 165 x 20 mm clear cavity
-provides 521.9 mL before calibration trim. The selected engineering starting
+22.6 mL component bounding-volume allowance, a 165 x 165 x 20 mm bulk-cavity
+footprint provides 521.9 mL before calibration trim. This larger footprint is
+only a gas plenum behind a symmetric transition to the unchanged 50 x 50 mm
+active window; it is not the membrane area. The selected engineering starting
 point uses removable inserts and requires measured adjustment to 500.0 +/- 5.0
 mL per assembled side.
 

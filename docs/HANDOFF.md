@@ -230,8 +230,10 @@ presentation claim against the V10 report before release.
 The later `reports/test_cell_20mm_channel_study_2026-09-04/` directory is a
 post-release geometry sensitivity, not part of handoff-v1. It treats 20 mm as
 bulk cavity depth, retains the 2 mm local membrane gap, compares the existing
-100 mm clear face with a 165 mm alternative, and records an assessment of all
-13 fabrication gates. Reproduce it with
+100 mm bulk-cavity footprint with a 165 mm alternative, and records an
+assessment of all 13 fabrication gates. The active membrane is fixed at
+50 x 50 mm (25 cm²) inside the existing 80 x 80 mm coupon in every scenario;
+165 x 165 mm is a separate plenum footprint, not a membrane aperture. Reproduce it with
 `python3 scripts/analyze_eo_vapor_test_cell_20mm.py`.
 
 The rendered-document toolchain is broader than `pyproject.toml`. Its Python
