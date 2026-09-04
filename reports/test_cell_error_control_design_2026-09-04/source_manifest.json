@@ -1,0 +1,72 @@
+{
+  "outputs": [
+    {
+      "path": "wall_thickness_screen.csv",
+      "sha256": "1ff2d5bf04fcd110bffee4d02b140becc370ce5b346bd93aba08f3a09b560ff9",
+      "size_bytes": 1647
+    },
+    {
+      "path": "edge_band_screen.csv",
+      "sha256": "2ac20a77fa1cc893952022ee22c0b28431e8edc32cc93ecd551de0d7915f3f6f",
+      "size_bytes": 206
+    },
+    {
+      "path": "aperture_regression_design.csv",
+      "sha256": "3e4c4542165c528c5e46018f115ef3f22f33a184b952528836e19e03bf4d1bb1",
+      "size_bytes": 218
+    },
+    {
+      "path": "error_budget.csv",
+      "sha256": "d6a43fc9382d039139a4cda1ceaaf4b51fe65853ea21b44e5f6cc5196a7e7ec3",
+      "size_bytes": 247
+    },
+    {
+      "path": "decision_summary.json",
+      "sha256": "9ee888438fce7a9cdd386665678bba06f93ae8fa93fee98531359df93aefedf3",
+      "size_bytes": 3973
+    },
+    {
+      "path": "audit.json",
+      "sha256": "77402d02b3fd0ec352f31b0e3ba7affbb006dfb4b1103d989668d3d96260ee5f",
+      "size_bytes": 427
+    },
+    {
+      "path": "wall_and_edge_error_controls.png",
+      "sha256": "3a0db1df82676b1458560c20c3798892bff98b9bf2295ed3018ffab5750db547",
+      "size_bytes": 181115
+    },
+    {
+      "path": "REPORT.md",
+      "sha256": "5fffda4fde80010f531a20dedd44b5881464fea79a4cd6c38abe3df336fcdf2b",
+      "size_bytes": 5721
+    }
+  ],
+  "schema_version": 1,
+  "sources": [
+    {
+      "path": "config/eo_vapor_test_cell_error_control_design.json",
+      "sha256": "fd3f3ca16fec3fc39de125adb5a233929d512c6136f92195b9f4787f49688751"
+    },
+    {
+      "path": "config/eo_vapor_test_cell_design.json",
+      "sha256": "e8f460f53474c91a648a331cf7252e5dead5755dac6299c60b74ddc8540d2b5e"
+    },
+    {
+      "path": "config/eo_vapor_test_cell_20mm_channel_study.json",
+      "sha256": "a146c1733c34cdcb65e00784aac2c5ab3362895e8e41bd334b846e4dab085e90"
+    },
+    {
+      "path": "config/eo_vapor_test_cell_net_transport_volume_study.json",
+      "sha256": "4892fd601268089a381f6ef64213e49f1ccb43b9c4b289500e4e43bead8f5435"
+    },
+    {
+      "path": "scripts/design_eo_vapor_test_cell.py",
+      "sha256": "e89894393f242e3c806df40fc81e06c4ddac0f40692a4323f767440f7a557309"
+    },
+    {
+      "path": "scripts/analyze_eo_vapor_test_cell_error_controls.py",
+      "sha256": "d8d2c3c296c1337ce51b445781da27dcaf8e2d6a18346d778dd49a7375725e52"
+    }
+  ],
+  "study_id": "eo-vapor-test-cell-error-controlled-design-v1-2026-09-04"
+}

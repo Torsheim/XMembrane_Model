@@ -1,0 +1,12 @@
+{
+  "checks": {
+    "individual_volume_uncertainty_is_at_most_quarter_percent": true,
+    "one_mm_edge_band_is_not_negligible": true,
+    "planning_rss_error_is_below_four_percent": true,
+    "primary_area_is_25_cm2": true,
+    "selected_loaded_gap_tolerance_is_one_percent": true,
+    "selected_plates_pass_pressure_only_deflection_limit": true,
+    "wall_blank_is_below_one_percent_of_signal": true
+  },
+  "status": "PASS"
+}

@@ -52,6 +52,14 @@ volume, 20 mm bulk depth and 12 s polarity-segment calculations. The note is
 available as Markdown, DOCX and PDF and explicitly separates the illustrative
 architecture from fabrication evidence.
 
+`test_cell_error_control_design_2026-09-04/` is the calculation-backed
+refinement that turns the cell concept into an error-controlled build basis.
+It screens wall and insulating-plate thickness, quantifies the active-area
+fraction exposed to membrane-edge effects, sets wall-storage and leakage blank
+limits, defines spatial sensing and volume-calibration criteria, and requires
+multi-aperture area/perimeter regression. Physical validation remains required
+before fabrication release.
+
 ## Historical reports
 
 The V8/V8.1 and V9 reports, the August atlases, weekly reports, workshop packs,

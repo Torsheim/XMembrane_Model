@@ -1,0 +1,17 @@
+component,material,thickness_mm,pressure_only_deflection_um,deflection_as_percent_of_local_gap,passes_pressure_only_deflection_limit,selected
+outer_load_plate,EN AW-6082-T6 aluminium,4.0,35.91381080847657,1.7956905404238284,False,False
+outer_load_plate,EN AW-6082-T6 aluminium,6.0,10.641129128437505,0.5320564564218753,False,False
+outer_load_plate,EN AW-6082-T6 aluminium,8.0,4.489226351059571,0.22446131755297855,True,False
+outer_load_plate,EN AW-6082-T6 aluminium,10.0,2.2984838917425,0.114924194587125,True,False
+outer_load_plate,EN AW-6082-T6 aluminium,12.0,1.3301411410546882,0.06650705705273441,True,True
+outer_load_plate,EN AW-6082-T6 aluminium,15.0,0.6810322642200003,0.03405161321100002,True,False
+outer_load_plate,EN AW-6082-T6 aluminium,20.0,0.2873104864678125,0.014365524323390624,True,False
+insulating_cartridge_plate,Unfilled PEEK,8.0,70.52987197265625,3.526493598632813,False,False
+insulating_cartridge_plate,Unfilled PEEK,10.0,36.11129445,1.8055647225000002,False,False
+insulating_cartridge_plate,Unfilled PEEK,12.0,20.897739843750006,1.0448869921875004,False,False
+insulating_cartridge_plate,Unfilled PEEK,14.0,13.160092729591838,0.658004636479592,False,False
+insulating_cartridge_plate,Unfilled PEEK,16.0,8.816233996582032,0.4408116998291016,False,False
+insulating_cartridge_plate,Unfilled PEEK,18.0,6.19192291666667,0.3095961458333335,False,False
+insulating_cartridge_plate,Unfilled PEEK,20.0,4.51391180625,0.22569559031250003,True,True
+insulating_cartridge_plate,Unfilled PEEK,24.0,2.612217480468751,0.13061087402343755,True,False
+insulating_cartridge_plate,Unfilled PEEK,30.0,1.3374553500000006,0.06687276750000003,True,False

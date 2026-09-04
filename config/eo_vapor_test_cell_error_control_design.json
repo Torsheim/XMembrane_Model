@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "study_id": "eo-vapor-test-cell-error-controlled-design-v1-2026-09-04",
+  "authority": "Post-V10 engineering design refinement. This defines a build-and-validation basis, not fabrication release.",
+  "base_config": "config/eo_vapor_test_cell_design.json",
+  "geometry_config": "config/eo_vapor_test_cell_20mm_channel_study.json",
+  "selected_working_point_config": "config/eo_vapor_test_cell_net_transport_volume_study.json",
+  "measurement_basis": {
+    "active_window_mm": [50.0, 50.0],
+    "coupon_mm": [80.0, 80.0],
+    "bulk_cavity_footprint_mm": [165.0, 165.0],
+    "bulk_depth_mm": 20.0,
+    "local_gap_mm": 2.0,
+    "calibrated_net_volume_ml_per_side": 500.0,
+    "segment_duration_s": 12.0,
+    "conditional_water_rate_mg_s": 0.14444444444444443
+  },
+  "mechanical_design": {
+    "proof_differential_pressure_pa": 5000.0,
+    "pressure_only_deflection_limit_um": 5.0,
+    "loaded_local_gap_tolerance_mm": 0.02,
+    "outer_load_plate": {
+      "material": "EN AW-6082-T6 aluminium",
+      "selected_thickness_mm": 12.0,
+      "candidate_thicknesses_mm": [4.0, 6.0, 8.0, 10.0, 12.0, 15.0, 20.0],
+      "elastic_modulus_gpa": 70.0,
+      "poisson_ratio": 0.33
+    },
+    "insulating_cartridge_plate": {
+      "material": "Unfilled PEEK",
+      "selected_thickness_mm": 20.0,
+      "candidate_thicknesses_mm": [8.0, 10.0, 12.0, 14.0, 16.0, 18.0, 20.0, 24.0, 30.0],
+      "elastic_modulus_gpa": 4.2,
+      "poisson_ratio": 0.4
+    },
+    "plate_model": {
+      "boundary_condition": "Conservative simply-supported square thin-plate pressure screen over the full 165 mm clear span.",
+      "deflection_coefficient": 0.00406,
+      "limitation": "Uniform pressure only. Bolt-point loading, seal compression, holes, PEEK creep, thermal gradients and local cartridge loads require final CAD/FEA and loaded inspection."
+    },
+    "fastening": {
+      "count": 16,
+      "size": "M5 A4 stainless",
+      "nominal_torque_nm": 1.0,
+      "nut_factor": 0.2,
+      "hard_gap_stops_required": true,
+      "assembly": "Cross-pattern tightening with spring washers or disc springs; verify the loaded gap rather than relying on torque alone."
+    }
+  },
+  "edge_control": {
+    "coupon_land_per_side_mm": 15.0,
+    "seal_guard_chain_mm": [3.0, 2.0, 3.0, 7.0],
+    "edge_band_widths_to_screen_mm": [0.5, 1.0, 2.0, 3.0, 5.0],
+    "characterisation_apertures_mm": [30.0, 40.0, 50.0],
+    "model": "Fit measured net rate to R = J_area*A + J_edge*P using at least the three apertures at identical gap, state and electrical loading.",
+    "acceptance": "At the primary 50 x 50 mm window, the fitted perimeter term plus regression uncertainty must be at most 1.5% of the corrected net signal."
+  },
+  "wetted_surface_control": {
+    "conservative_internal_surface_model": "Closed 165 x 165 x 20 mm rectangular plenum before component subtraction.",
+    "construction": "Structural aluminium outside the gas boundary; removable smooth non-porous metal liner on bulk wetted surfaces. Keep exposed PEEK to the minimum required insulating cartridge land.",
+    "surface_finish_and_cleaning": "Specify and document liner finish, solvent-compatible cleaning, rinse, dry and humidity preconditioning. Avoid porous anodising, absorbent adhesives and exposed printed polymers in the calibrated gas volume.",
+    "blank_acceptance_fraction_of_segment_signal": 0.01,
+    "validation": "Run an impermeable-coupon humidity blank with the fans, pressure compensation and acquisition active. Correct only a stable repeatable blank; reject a drifting blank."
+  },
+  "sealing": {
+    "design": "Two continuous EPDM 70 Shore A static face seals separated by a vented and monitored guard groove.",
+    "o_ring_cross_section_mm": 2.0,
+    "nominal_squeeze_fraction": 0.25,
+    "groove_depth_mm": 1.5,
+    "groove_width_mm": 2.9,
+    "maximum_gland_fill_fraction": 0.85,
+    "gas_seal_surface_roughness_rq_um": 0.4,
+    "acceptance": "Guard signal and blank-derived leakage correction must each remain within the allocated leakage error; otherwise reject the run."
+  },
+  "instrumentation_and_control": {
+    "humidity_temperature_sensors_per_chamber": 2,
+    "sensor_candidate": "SHT45",
+    "pairwise_relative_calibration_target_rh_pp": 0.1,
+    "maximum_spatial_rh_disagreement_pp": 0.15,
+    "maximum_chamber_temperature_difference_k": 0.05,
+    "maximum_net_volume_measurement_uncertainty_ml": 1.0,
+    "differential_pressure_target_pa": 5.0,
+    "pressure_compensation_travel_ml_per_side": 2.4,
+    "measurement_rule": "Trim each assembled side into the 500 +/- 5 mL acceptance band, measure its actual volume with no more than 1 mL uncertainty, and use each chamber's measured volume, temperature and pressure in the inventory calculation. Do not infer transferred water from RH alone.",
+    "mixing_rule": "Operate matched fans continuously and symmetrically after thermal equilibration; reject intervals that fail the spatial RH criterion."
+  },
+  "error_budget_percent_of_corrected_segment_signal": {
+    "volume_calibration": 0.25,
+    "temperature_state": 0.5,
+    "relative_humidity_calibration": 1.0,
+    "spatial_mixing": 1.5,
+    "leakage_residual": 0.5,
+    "wall_storage_blank_residual": 1.0,
+    "pressure_volume_correction": 0.5,
+    "edge_regression": 1.5,
+    "repeatability": 2.0
+  },
+  "mandatory_run_sequence": [
+    "Individual chamber volume calibration after all internals are installed.",
+    "Pressure-decay and monitored-guard leak test.",
+    "Impermeable-coupon wall-storage and thermal blank with fans running.",
+    "Zero-current membrane diffusion blank.",
+    "Three-aperture edge regression at matched conditions.",
+    "Randomised ABBA polarity blocks with both sensor locations logged.",
+    "Post-run zero-current and impermeable-coupon drift checks."
+  ],
+  "sources": [
+    {
+      "id": "hydro-6082",
+      "url": "https://www.hydro.com/Document/Index?id=7824&name=Hydro+EN+AW+6082.PDF",
+      "used_for": "Aluminium elastic modulus, density and thermal properties."
+    },
+    {
+      "id": "ensinger-tecapeek-natural",
+      "url": "https://www.ensingerplastics.com/en-gb/shapes/peek-tecapeek-natural",
+      "used_for": "Unfilled PEEK modulus and the warning that even low bulk water absorption is large compared with the milligram-scale signal."
+    },
+    {
+      "id": "parker-ord-5700",
+      "url": "https://www.parker.com/content/dam/Parker-com/Literature/O-Ring-Division-Literature/ORD-5700.pdf",
+      "used_for": "Static face-seal squeeze and gland-fill limits."
+    },
+    {
+      "id": "sensirion-sht45",
+      "url": "https://sensirion.com/products/catalog/SHT45",
+      "used_for": "Typical RH and temperature accuracy and response time; motivates relative calibration and spatial duplication."
+    }
+  ]
+}

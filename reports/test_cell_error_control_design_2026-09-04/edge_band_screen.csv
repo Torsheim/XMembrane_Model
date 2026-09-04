@@ -1,0 +1,6 @@
+edge_band_width_mm,edge_affected_area_mm2,edge_affected_fraction_percent,unaffected_central_area_cm2
+0.5,99.0,3.96,24.01
+1.0,196.0,7.84,23.04
+2.0,384.0,15.36,21.16
+3.0,564.0,22.56,19.36
+5.0,900.0,36.0,16.0

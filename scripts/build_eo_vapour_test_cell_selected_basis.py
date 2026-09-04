@@ -38,6 +38,12 @@ GEOMETRY_SUMMARY_PATH = (
     / "test_cell_20mm_channel_study_2026-09-04"
     / "decision_summary.json"
 )
+ERROR_CONTROL_SUMMARY_PATH = (
+    ROOT
+    / "reports"
+    / "test_cell_error_control_design_2026-09-04"
+    / "decision_summary.json"
+)
 DEFAULT_OUTPUT_DIR = (
     ROOT / "reports" / "test_cell_selected_design_basis_2026-09-04"
 )
@@ -84,6 +90,7 @@ def calculate_basis() -> dict[str, float | list[int] | str]:
     study = read_json(CONFIG_PATH)
     base = read_json(BASE_CONFIG_PATH)
     geometry = read_json(GEOMETRY_SUMMARY_PATH)
+    error_control = read_json(ERROR_CONTROL_SUMMARY_PATH)
     model = load_base_model()
 
     selected = study["recommended_working_point"]
@@ -143,6 +150,12 @@ def calculate_basis() -> dict[str, float | list[int] | str]:
     sensor_ramp_fraction = 1.0 - tau_s / segment_s * sensor_step_fraction
 
     recommended_geometry = geometry["recommended_geometry"]
+    construction = error_control["selected_construction"]
+    outer_wall = construction["outer_load_plate"]
+    insulating_plate = construction["insulating_cartridge_plate"]
+    wall_storage = error_control["wall_storage"]
+    error_measurement = error_control["measurement_controls"]
+    instrumentation = error_control["instrumentation_acceptance"]
     return {
         "study_id": study["study_id"],
         "active_area_m2": active_area_m2,
@@ -187,6 +200,38 @@ def calculate_basis() -> dict[str, float | list[int] | str]:
         "sensor_ramp_fraction": sensor_ramp_fraction,
         "sensor_ramp_indicated_pp": rh_change_pp * sensor_ramp_fraction,
         "selection_reason": str(selected["selection_reason"]),
+        "outer_wall_material": str(outer_wall["material"]),
+        "outer_wall_thickness_mm": float(outer_wall["thickness_mm"]),
+        "outer_wall_deflection_um": float(outer_wall["pressure_only_deflection_um"]),
+        "insulating_plate_material": str(insulating_plate["material"]),
+        "insulating_plate_thickness_mm": float(insulating_plate["thickness_mm"]),
+        "insulating_plate_deflection_um": float(insulating_plate["pressure_only_deflection_um"]),
+        "loaded_gap_tolerance_mm": float(construction["loaded_local_gap_tolerance_mm"]),
+        "wetted_surface_strategy": str(construction["wetted_surface"]),
+        "one_mm_edge_fraction_percent": float(
+            error_control["edge_control"]["one_mm_band_fraction_percent"]
+        ),
+        "edge_apertures_mm": list(error_control["edge_control"]["characterisation_apertures_mm"]),
+        "wall_blank_limit_mg": float(wall_storage["allowed_wall_storage_blank_mg"]),
+        "wall_blank_equivalent_film_nm": float(
+            wall_storage["allowed_equivalent_reversible_water_film_change_nm"]
+        ),
+        "sensors_per_chamber": int(instrumentation["humidity_temperature_sensors_per_chamber"]),
+        "relative_calibration_target_rh_pp": float(
+            instrumentation["pairwise_relative_calibration_target_rh_pp"]
+        ),
+        "spatial_rh_limit_pp": float(instrumentation["maximum_spatial_rh_disagreement_pp"]),
+        "temperature_difference_limit_k": float(
+            instrumentation["maximum_chamber_temperature_difference_k"]
+        ),
+        "volume_measurement_uncertainty_ml": float(
+            instrumentation["maximum_net_volume_measurement_uncertainty_ml"]
+        ),
+        "cross_leak_limit_ml_min": 1000.0
+        * float(error_measurement["cross_leak_flow_screen_l_min_at_peak_rh_difference"]),
+        "planning_rss_error_percent": float(
+            error_control["planning_root_sum_square_error_percent"]
+        ),
     }
 
 
@@ -235,6 +280,14 @@ def build_blueprint(png_path: Path, svg_path: Path) -> None:
     # Main symmetric chamber assembly.
     box(0.7, 3.15, 6.05, 3.85, face=light)
     box(9.25, 3.15, 6.05, 3.85, face=light)
+    axis.add_patch(Rectangle(
+        (0.79, 3.24), 5.87, 3.67, facecolor="none", edgecolor=orange,
+        linewidth=1.15, zorder=3,
+    ))
+    axis.add_patch(Rectangle(
+        (9.34, 3.24), 5.87, 3.67, facecolor="none", edgecolor=orange,
+        linewidth=1.15, zorder=3,
+    ))
     box(6.75, 2.9, 2.5, 4.35, face="#f1f5f9", linewidth=2.0)
     box(7.45, 3.15, 0.22, 3.85, face="#c7d7e3", linewidth=1.0)
     box(7.67, 3.15, 0.18, 3.85, face="#f3c27a", linewidth=1.0)
@@ -298,6 +351,7 @@ def build_blueprint(png_path: Path, svg_path: Path) -> None:
     leader(5.35, 6.05, 5.85, 6.35, "pressure tap")
     leader(1.55, 4.25, 0.7, 2.95, "quiet mixing fan", side="right")
     leader(2.38, 4.6, 2.9, 4.25, "flow baffle")
+    leader(3.0, 6.91, 2.25, 7.35, "removable low-sorption liner", side="left")
     leader(4.7, 2.6, 3.35, 2.05, "flexible pressure compensator", side="left")
     leader(6.75, 6.7, 6.1, 7.72, "clamping frame", side="left")
     leader(7.56, 4.05, 6.85, 3.45, "local gas gap", side="left")
@@ -313,6 +367,11 @@ def build_blueprint(png_path: Path, svg_path: Path) -> None:
     figure.savefig(png_path, dpi=220, bbox_inches="tight", facecolor="white")
     figure.savefig(svg_path, bbox_inches="tight", facecolor="white")
     plt.close(figure)
+    svg_path.write_text(
+        "\n".join(line.rstrip() for line in svg_path.read_text(encoding="utf-8").splitlines())
+        + "\n",
+        encoding="utf-8",
+    )
 
 
 def add_cell_shading(cell, fill: str) -> None:
@@ -420,6 +479,21 @@ The removable trim system must cover {values['nominal_trim_ml']:.1f}–{values['
 The 500 mL inventory prevents the response from becoming excessively fast while retaining a clear net-transient signal. A {values['segment_s']:.0f} s segment gives approximately {values['rh_change_pp']:.1f} percentage points per chamber. The SHT45 step-response fraction over this duration is {values['sensor_step_fraction']:.1%}; however, a continuously changing RH ramp would only be indicated at about {values['sensor_ramp_fraction']:.1%} in a simple first-order sensor model. A faster calibrated reference remains preferable for the transient shape.
 
 The rigid-cell gas diagnostic is {values['rigid_dp_pa']:.0f} Pa after one segment, far above the {values['target_dp_pa']:.0f} Pa differential-pressure target. Under the same ideal-gas screen, pressure management therefore needs approximately ±{values['diaphragm_travel_ml']:.2f} mL travel per side and {values['diaphragm_full_stroke_ml']:.2f} mL full stroke. This requirement must be verified with the real diaphragm, fan, seals and ports.
+
+## Error-controlled construction
+
+| Control | Selected design or acceptance criterion |
+| --- | --- |
+| Structural walls | {values['outer_wall_thickness_mm']:.0f} mm {values['outer_wall_material']}; {values['outer_wall_deflection_um']:.2f} µm pressure-only deflection at the proof screen. |
+| Insulating cartridge plate | {values['insulating_plate_thickness_mm']:.0f} mm {values['insulating_plate_material']}; {values['insulating_plate_deflection_um']:.2f} µm pressure-only deflection. |
+| Loaded membrane gap | {values['local_gap_mm']:.2f} ± {values['loaded_gap_tolerance_mm']:.2f} mm with hard stops and a loaded gap map. |
+| Wetted surfaces | Removable smooth non-porous metal liners; exposed PEEK limited to the required insulating land. |
+| Edge effects | Retain the 50 mm primary aperture and use {', '.join(f'{item:.0f}' for item in values['edge_apertures_mm'])} mm inserts to fit area and perimeter terms. A hypothetical 1 mm edge band already covers {values['one_mm_edge_fraction_percent']:.2f}% of the active area. |
+| Wall-storage blank | No more than {values['wall_blank_limit_mg']:.5f} mg per segment ({values['wall_blank_equivalent_film_nm']:.3f} nm equivalent reversible film). |
+| Sensors and mixing | {values['sensors_per_chamber']} T/RH positions per chamber; pair calibration ≤ {values['relative_calibration_target_rh_pp']:.2f} RH point and spatial disagreement ≤ {values['spatial_rh_limit_pp']:.2f} RH point. |
+| State control | Chamber ΔT ≤ {values['temperature_difference_limit_k']:.2f} K, measured volume uncertainty ≤ {values['volume_measurement_uncertainty_ml']:.1f} mL and cross-leak screen ≤ {values['cross_leak_limit_ml_min']:.2f} mL/min at peak RH difference. |
+
+The planning root-sum-square error allocation is {values['planning_rss_error_percent']:.2f}% of the corrected segment signal. This is not a claimed accuracy: impermeable-coupon, zero-current, leakage, mixing and aperture-scaling tests must pass before results are accepted.
 
 ## Measurement interpretation
 
@@ -596,6 +670,73 @@ def build_docx(values: dict[str, Any], figure_path: Path, output_path: Path) -> 
     note.runs[0].bold = True
     note.runs[0].font.color.rgb = ORANGE
 
+    document.add_section(WD_SECTION.NEW_PAGE)
+    add_heading(document, "Error-controlled construction")
+    document.add_paragraph(
+        "The cell geometry is now tied to an explicit error budget. Calculation is used for "
+        "stiffness and inventory scaling; physical blanks and scaling tests control effects that "
+        "cannot be credibly removed by geometry alone."
+    )
+    add_table(
+        document,
+        ["Control", "Selected design / acceptance criterion"],
+        [
+            [
+                "Structural wall",
+                f"{values['outer_wall_thickness_mm']:.0f} mm {values['outer_wall_material']}; "
+                f"{values['outer_wall_deflection_um']:.2f} µm pressure-only proof deflection.",
+            ],
+            [
+                "Insulating plate",
+                f"{values['insulating_plate_thickness_mm']:.0f} mm {values['insulating_plate_material']}; "
+                f"{values['insulating_plate_deflection_um']:.2f} µm pressure-only proof deflection.",
+            ],
+            [
+                "Loaded local gap",
+                f"{values['local_gap_mm']:.2f} ± {values['loaded_gap_tolerance_mm']:.2f} mm with hard stops and a loaded gap map.",
+            ],
+            [
+                "Wetted surfaces",
+                "Smooth removable non-porous metal liners; exposed PEEK restricted to the insulating cartridge land.",
+            ],
+            [
+                "Edge effect",
+                f"Primary 50 mm aperture plus 30/40/50 mm area–perimeter regression. A 1 mm band is already "
+                f"{values['one_mm_edge_fraction_percent']:.2f}% of active area.",
+            ],
+            [
+                "Wall-storage blank",
+                f"≤ {values['wall_blank_limit_mg']:.5f} mg per segment, equivalent to "
+                f"{values['wall_blank_equivalent_film_nm']:.3f} nm reversible water film.",
+            ],
+            [
+                "Sensors / mixing",
+                f"{values['sensors_per_chamber']} T/RH locations per chamber; relative calibration ≤ "
+                f"{values['relative_calibration_target_rh_pp']:.2f} RH point and spatial disagreement ≤ "
+                f"{values['spatial_rh_limit_pp']:.2f} RH point.",
+            ],
+            [
+                "State / leakage",
+                f"Chamber ΔT ≤ {values['temperature_difference_limit_k']:.2f} K; volume uncertainty ≤ "
+                f"{values['volume_measurement_uncertainty_ml']:.1f} mL; cross-leak screen ≤ "
+                f"{values['cross_leak_limit_ml_min']:.2f} mL/min at peak RH difference.",
+            ],
+        ],
+    )
+    add_heading(document, "Acceptance logic")
+    document.add_paragraph(
+        f"The planning root-sum-square allocation is {values['planning_rss_error_percent']:.2f}% of the corrected "
+        "segment signal. This is not demonstrated accuracy. Accept data only after individual volume calibration, "
+        "pressure-decay and guard-leak testing, an impermeable-coupon wall/thermal blank, a zero-current diffusion "
+        "blank, three-aperture edge regression, spatial mixing verification and post-run drift checks."
+    )
+    warning = document.add_paragraph(
+        "Wall thickness cannot eliminate membrane-edge transport or reversible water storage. These are controlled "
+        "by the liner, guard, blanks and aperture regression."
+    )
+    warning.runs[0].bold = True
+    warning.runs[0].font.color.rgb = ORANGE
+
     document.save(output_path)
 
 
@@ -632,6 +773,7 @@ def write_manifest(output_dir: Path, generated: list[Path]) -> None:
         BASE_CONFIG_PATH,
         BASE_MODEL_PATH,
         GEOMETRY_SUMMARY_PATH,
+        ERROR_CONTROL_SUMMARY_PATH,
         Path(__file__).resolve(),
     ]
     manifest = {
@@ -696,7 +838,7 @@ def main() -> None:
                 "status": "PASS",
                 "docx": str(docx_path),
                 "pdf": str(pdf_path) if pdf_path else None,
-                "pages_target": "short two-page document",
+                "pages_target": "short three-page document",
             },
             indent=2,
             sort_keys=True,
