@@ -80,6 +80,14 @@ def test_cli_writes_editable_source_and_word_document(
 
     markdown = output / f"{MODULE.DOCUMENT_STEM}.md"
     assert markdown.is_file()
+    blueprint_png = output / "figures" / f"{MODULE.BLUEPRINT_STEM}.png"
+    blueprint_svg = output / "figures" / f"{MODULE.BLUEPRINT_STEM}.svg"
+    assert blueprint_png.is_file()
+    assert blueprint_svg.is_file()
+    blueprint_text = blueprint_svg.read_text(encoding="utf-8")
+    assert "FUNCTIONAL SECTION" in blueprint_text
+    assert "REMOVABLE MEMBRANE CARTRIDGE" in blueprint_text
+    assert "DIFFERENTIAL PRESSURE" in blueprint_text
     if MODULE.DOCX_AVAILABLE:
         assert (output / f"{MODULE.DOCUMENT_STEM}.docx").is_file()
     assert (output / "calculation_basis.json").is_file()
