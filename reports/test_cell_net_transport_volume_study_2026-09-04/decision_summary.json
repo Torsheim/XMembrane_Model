@@ -1,0 +1,83 @@
+{
+  "cases": [
+    {
+      "active_membrane_area_cm2": 25.0,
+      "bulk_depth_mm": 20.0,
+      "calibrated_net_volume_ml_per_side": 200.0,
+      "case": "Kompakt transientcelle",
+      "component_displacement_upper_bound_ml_per_side": 22.6,
+      "duration_to_planning_rh_signal_s": 4.677701537656433,
+      "gross_cavity_volume_ml_per_side": 244.5,
+      "integrated_water_rate_mg_s": 0.14444444444444443,
+      "pretrim_net_volume_at_displacement_bound_ml_per_side": 221.9,
+      "rigid_chamber_differential_pressure_pa": 1017.1321691328133,
+      "segment_duration_s": 5.0,
+      "sensor_step_fraction_at_planning_signal": 0.6894546658039477,
+      "single_chamber_rh_change_pp": 10.689010317885824,
+      "square_bulk_footprint_side_mm": 110.56672193747991,
+      "target_flux_g_m2_h": 208.0,
+      "trim_capacity_if_component_displacement_is_zero_ml_per_side": 44.5,
+      "trim_required_at_displacement_bound_ml_per_side": 21.9,
+      "water_transferred_per_segment_mg": 0.7222222222222221
+    },
+    {
+      "active_membrane_area_cm2": 25.0,
+      "bulk_depth_mm": 20.0,
+      "calibrated_net_volume_ml_per_side": 300.0,
+      "case": "Mellomvolum",
+      "component_displacement_upper_bound_ml_per_side": 22.6,
+      "duration_to_planning_rh_signal_s": 7.016552306484647,
+      "gross_cavity_volume_ml_per_side": 344.5,
+      "integrated_water_rate_mg_s": 0.14444444444444443,
+      "pretrim_net_volume_at_displacement_bound_ml_per_side": 321.9,
+      "rigid_chamber_differential_pressure_pa": 678.088112755209,
+      "segment_duration_s": 5.0,
+      "sensor_step_fraction_at_planning_signal": 0.8269436606679,
+      "single_chamber_rh_change_pp": 7.126006878590552,
+      "square_bulk_footprint_side_mm": 131.24404748406687,
+      "target_flux_g_m2_h": 208.0,
+      "trim_capacity_if_component_displacement_is_zero_ml_per_side": 44.5,
+      "trim_required_at_displacement_bound_ml_per_side": 21.9,
+      "water_transferred_per_segment_mg": 0.7222222222222221
+    },
+    {
+      "active_membrane_area_cm2": 25.0,
+      "bulk_depth_mm": 20.0,
+      "calibrated_net_volume_ml_per_side": 500.0,
+      "case": "Lavdriftcelle",
+      "component_displacement_upper_bound_ml_per_side": 22.6,
+      "duration_to_planning_rh_signal_s": 11.694253844141082,
+      "gross_cavity_volume_ml_per_side": 544.5,
+      "integrated_water_rate_mg_s": 0.14444444444444443,
+      "pretrim_net_volume_at_displacement_bound_ml_per_side": 521.9,
+      "rigid_chamber_differential_pressure_pa": 406.8528676531253,
+      "segment_duration_s": 5.0,
+      "sensor_step_fraction_at_planning_signal": 0.9462581612673676,
+      "single_chamber_rh_change_pp": 4.27560412715433,
+      "square_bulk_footprint_side_mm": 165.0,
+      "target_flux_g_m2_h": 208.0,
+      "trim_capacity_if_component_displacement_is_zero_ml_per_side": 44.5,
+      "trim_required_at_displacement_bound_ml_per_side": 21.9,
+      "water_transferred_per_segment_mg": 0.7222222222222221
+    }
+  ],
+  "claim_boundary": "The closed cell reports integrated net water movement under evolving humidity conditions. It does not by itself establish a constant-boundary or intrinsic membrane flux.",
+  "fixed_membrane": {
+    "active_area_cm2": 25.0,
+    "active_window_mm": [
+      50.0,
+      50.0
+    ],
+    "coupon_mm": [
+      80.0,
+      80.0
+    ],
+    "local_membrane_gap_mm": 2.0
+  },
+  "recommended_use": {
+    "fast_reference_sensor": "200\u2013300 mL per side for a compact net-transient cell",
+    "sht45_as_primary_sensor": "500 mL per side with approximately 10\u201312 s segments"
+  },
+  "status": "SCREENING ONLY",
+  "study_id": "eo-vapor-test-cell-net-transport-volume-v1-2026-09-04"
+}

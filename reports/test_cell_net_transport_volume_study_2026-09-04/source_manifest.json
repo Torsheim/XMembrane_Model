@@ -1,0 +1,44 @@
+{
+  "generated_outputs": [
+    {
+      "path": "volume_cases.csv",
+      "sha256": "574de070b0472c0e19aa08cd3f7f817f8ea5df07797113bcb33a3d57428c1574",
+      "size_bytes": 1172
+    },
+    {
+      "path": "net_transport_volume_tradeoff.png",
+      "sha256": "3a249c76789d302833d668e4b2f1d590a91460ba78d7d2427ca5be4060643f92",
+      "size_bytes": 105197
+    },
+    {
+      "path": "SUMMARY.md",
+      "sha256": "d7a1a4c098de15c9d06ceab83dc1aa4ed1530f6e1cd08130550b2443cdabb11b",
+      "size_bytes": 2106
+    },
+    {
+      "path": "decision_summary.json",
+      "sha256": "eee75b80232b7b17fd2b36108dfbf335db3d98b0bbf89baf7c20fa3da97bf1eb",
+      "size_bytes": 3642
+    }
+  ],
+  "schema_version": 1,
+  "sources": [
+    {
+      "path": "config/eo_vapor_test_cell_net_transport_volume_study.json",
+      "sha256": "d8ec1ad4166eacd497f3b9d7f3bd7720f1eecd83f3d2333dac0c971dc3da291a"
+    },
+    {
+      "path": "config/eo_vapor_test_cell_design.json",
+      "sha256": "e8f460f53474c91a648a331cf7252e5dead5755dac6299c60b74ddc8540d2b5e"
+    },
+    {
+      "path": "scripts/design_eo_vapor_test_cell.py",
+      "sha256": "e89894393f242e3c806df40fc81e06c4ddac0f40692a4323f767440f7a557309"
+    },
+    {
+      "path": "scripts/analyze_eo_vapor_test_cell_net_transport_volumes.py",
+      "sha256": "a75b31046f59d21466f65c7bc11ab03f400cc9f61c61ac9539a7f530b515e77d"
+    }
+  ],
+  "study_id": "eo-vapor-test-cell-net-transport-volume-v1-2026-09-04"
+}
