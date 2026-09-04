@@ -15,6 +15,7 @@ reports.
 | EO vapour test-cell design | `scripts/design_eo_vapor_test_cell.py` | `config/eo_vapor_test_cell_design.json` | `tests/test_eo_vapor_test_cell_design.py` |
 | Post-V10 20 mm chamber-depth screen (fixed 25 cm² active membrane) | `scripts/analyze_eo_vapor_test_cell_20mm.py` | `config/eo_vapor_test_cell_20mm_channel_study.json` | `tests/test_eo_vapor_test_cell_20mm_study.py` |
 | Post-V10 net-transient volume screen | `scripts/analyze_eo_vapor_test_cell_net_transport_volumes.py` | `config/eo_vapor_test_cell_net_transport_volume_study.json` | `tests/test_eo_vapor_test_cell_net_transport_volumes.py` |
+| Selected test-cell design-basis document | `scripts/build_eo_vapour_test_cell_selected_basis.py` | net-transient volume and test-cell design configurations | `tests/test_eo_vapour_test_cell_selected_basis.py` |
 | Capacitive-electrode transient screen | `scripts/run_capacitive_electrode_study_v1.py` and `src/heiq/wp1/electrodes/capacitive.py` | `config/capacitive_electrode_study_v1.json` | `tests/test_capacitive_electrode_study_v1.py` |
 | V10 model-phase closeout release | `scripts/package_final_closeout_v10.py` | hash-bound report/evidence inputs | live full suite plus `verification/V10_STATUS.json` |
 | Current-density policy | the three active receiver workflows | their native configurations | `tests/test_current_density_cap_policy.py` |
