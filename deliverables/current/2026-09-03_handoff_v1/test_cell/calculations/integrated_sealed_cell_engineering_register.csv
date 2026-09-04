@@ -1,0 +1,15 @@
+item,status,closure_evidence
+net_free_gas_volume_target,defined,Configuration-controlled 500.0 +/- 5.0 mL net free-gas acceptance target per assembled side
+gross_empty_cavity_volume_and_depth,open,Released cavity geometry and dimensional inspection
+installed_component_displacement,open,"Displacement inventory for fan, probes, baffles and ports"
+end_wall_and_central_divider_structural_sizing,open,Selected materials and thicknesses supported by structural calculation and loaded-deflection inspection
+fluidic_and_electrical_port_interfaces,open,"Released interface specification covering threads, seals and feedthroughs plus an assembled leak test"
+internal_fan_selection_and_mounting,open,"Selected fan, envelope and mount with measured heat load and chamber displacement"
+baffle_geometry_and_mounting,open,Released baffle CAD and mounting details supported by the chamber mixing test
+differential_pressure_management,open,Transient pressure test across the full polarity sequence
+fixture_mounting_fastener_pattern_and_preload,open,"Released external mounting interface, bolt-load calculation and torque map"
+seal_geometry_and_compression,open,Seal supplier limits and compression inspection
+drawing_datums_and_dimensional_tolerances,open,Released datum and tolerance scheme with completed dimensional inspection
+loaded_flatness_and_gap_uniformity,open,"Mapped 1, 2 and 4 mm gaps under operating preload"
+internal_mixing_time,open,Humidity step-response test in each chamber
+net_volume_calibration,open,Traceable measured 500.0 +/- 5.0 mL free-gas volume calibration for each assembled side

@@ -1,134 +1,175 @@
 {
-  "schema_version": 1,
-  "study_id": "eo-vapor-cell-sizing-v1-2026-08-28",
-  "purpose": "Dimension a modular two-sided EO vapour coupon cell from measurable water rate, gas-film sensitivity and boundary-condition drift.",
+  "schema_version": 2,
+  "study_id": "eo-vapor-integrated-sealed-cell-v2-2026-09-03",
+  "purpose": "Dimension the integrated sealed two-chamber EO vapour test-cell concept from a declared water-transfer rate, switching time and humidity-drift limit.",
   "operating_state": {
     "temperature_c": 32.0,
     "absolute_pressure_pa": 101325.0,
-    "equal_inlet_water_activity": 0.5
+    "initial_relative_humidity_percent": 50.0
   },
-  "geometry": {
-    "square_active_areas_cm2": [4.0, 9.0, 25.0],
-    "channel_gaps_mm": [1.0, 2.0, 4.0],
-    "channel_velocities_m_s": [0.5, 1.0, 2.0, 4.0],
-    "edge_strip_width_mm": 1.0,
-    "external_closed_loop_volumes_l": [0.005, 0.1, 1.0, 5.0, 10.0, 20.0]
-  },
-  "material_coupon_screen": {
-    "water_transport_numbers": [0.3, 1.0, 2.5],
-    "current_densities_a_m2": [10.0, 25.0, 50.0, 100.0, 200.0],
-    "interpretation": "Order-unity reference scenarios. Gross Faradaic EO transport only; diffusion, gas films, electrode water and leakage are not subtracted."
-  },
-  "inverse_design_anchor_screen": {
-    "water_transport_numbers": [100.06078708377692],
-    "current_densities_a_m2": [0.5, 0.75, 1.0, 2.0, 3.0, 5.0],
-    "interpretation": "Hypothetical project inverse-design anchor, not a measured material property."
-  },
-  "membrane_time_scale_screen": {
-    "thickness_um": 36.91369958200169,
-    "water_diffusivities_m2_s": [1.597880133581376e-14, 1e-13, 1e-12, 1e-11, 1e-10],
-    "preconditioning_multiple_of_l2_over_d": 4.0,
-    "interpretation": "Hypothetical project anchor thickness and diffusivity sweep. L2/D is a characteristic scale, not a guaranteed equilibration time."
-  },
-  "boundary_activity_mismatch_screen": {
-    "water_capacity_mol_m3_activity": 10000.0,
-    "membrane_thickness_um": 36.91369958200169,
-    "water_diffusivities_m2_s": [1.597880133581376e-14, 1e-13, 1e-12, 1e-11, 1e-10],
-    "activity_mismatch_rh_percentage_points": [0.01, 0.05, 0.1, 0.2],
-    "reference_area_cm2": 25.0,
-    "reference_water_transport_number": 1.0,
-    "reference_current_densities_a_m2": [3.0, 10.0],
-    "interpretation": "Linear D*C/L screening scale only. Use it to set equal-boundary tolerances, not as a validated passive-flux prediction."
-  },
-  "measurement": {
-    "single_stream_humidity_expanded_uncertainty_rh_percentage_points": 0.1,
-    "minimum_signal_to_uncertainty_ratio": 5.0,
-    "closed_loop_allowed_boundary_drift_rh_percentage_points": 1.0,
-    "closed_loop_run_time_minutes": 60.0,
-    "maximum_blank_fraction_of_minimum_signal": 0.1,
-    "maximum_membrane_differential_pressure_pa": 5.0
-  },
-  "faradaic_gas_safety_screen": {
-    "electrons_per_h2_molecule": 2.0,
-    "warning_h2_volume_fraction": 0.04,
-    "interpretation": "Conservative diagnostic if the electrode chemistry could evolve hydrogen at 100 percent Faradaic yield. It is not a prediction that this cell will produce hydrogen."
-  },
-  "fixture_starting_point": {
-    "maximum_active_window_mm": [50.0, 50.0],
-    "membrane_coupon_mm": [80.0, 80.0],
-    "outer_plate_mm": [110.0, 110.0],
-    "aperture_inserts_mm": [
-      {"aperture_id": "square_20", "width_mm": 20.0, "flow_length_mm": 20.0},
-      {"aperture_id": "slot_50_along_flow", "width_mm": 8.0, "flow_length_mm": 50.0},
-      {"aperture_id": "slot_50_across_flow", "width_mm": 50.0, "flow_length_mm": 8.0},
-      {"aperture_id": "square_30", "width_mm": 30.0, "flow_length_mm": 30.0},
-      {"aperture_id": "square_40", "width_mm": 40.0, "flow_length_mm": 40.0},
-      {"aperture_id": "square_50", "width_mm": 50.0, "flow_length_mm": 50.0}
-    ],
-    "inner_seal_width_mm": 3.0,
-    "guard_groove_width_mm": 2.0,
-    "outer_seal_width_mm": 3.0,
-    "mask_inserts_leave_50x50_mm_flow_field_fixed": true,
-    "maximum_internal_dead_volume_ml_per_side": 1.3,
-    "proposed_internal_volume_geometry": {
-      "triangular_header_count": 2,
-      "triangular_header_length_mm": 7.5,
-      "port_bore_count": 2,
-      "port_bore_inner_diameter_mm": 6.0,
-      "port_bore_length_mm": 8.0,
-      "pressure_tap_volume_ml_total": 0.02
+  "integrated_sealed_cell": {
+    "system_id": "integrated-sealed-two-chamber-concept-2026-09-03",
+    "status": "Engineering concept; not released for fabrication while required register items remain open.",
+    "chamber_net_free_gas_volumes_ml": {
+      "A": 500.0,
+      "B": 500.0
     },
-    "insulating_flow_frame_thickness_mm": [8.0, 10.0],
-    "metal_load_plate_recommended_thickness_mm": 12.0,
-    "all_polymer_load_plate_recommended_thickness_mm": 16.0,
-    "nominal_channel_gap_mm": 2.0,
-    "interchangeable_channel_gaps_mm": [1.0, 2.0, 4.0],
-    "nominal_channel_velocity_m_s": 1.0,
-    "note": "Starting dimensions only. Final plate thickness is accepted from measured flatness/deflection under the actual gasket, hard-stop and bolt load, not from gas pressure alone."
-  },
-  "detectability_flow_screen": {
-    "reference_area_cm2": 25.0,
-    "reference_gap_mm": 2.0,
-    "candidate_actual_flows_l_min": [0.5, 0.7, 1.0, 2.0, 3.0, 6.0, 12.0],
-    "reference_cases": [
-      {
-        "case_id": "low_drag_signal_floor",
-        "water_transport_number": 0.3,
-        "current_density_a_m2": 10.0,
-        "interpretation": "Low-drag gross Faradaic signal floor; not a net membrane prediction."
-      },
-      {
-        "case_id": "order_unity_reference",
-        "water_transport_number": 1.0,
-        "current_density_a_m2": 10.0,
-        "interpretation": "Order-unity gross Faradaic reference; not a net membrane prediction."
-      },
-      {
-        "case_id": "inverse_design_anchor",
-        "water_transport_number": 100.06078708377692,
-        "current_density_a_m2": 1.0,
-        "interpretation": "Hypothetical project inverse-design anchor; not a measured material property."
+    "net_volume_calibration_tolerance_ml_per_side": 5.0,
+    "membrane_region": {
+      "width_mm": 50.0,
+      "height_mm": 50.0,
+      "local_gap_options_mm": [1.0, 2.0, 4.0],
+      "nominal_gap_mm": 2.0
+    },
+    "volume_sizing_basis": {
+      "target_net_water_flux_g_m2_h": 208.0,
+      "switching_frequency_hz": 0.1,
+      "half_cycle_duration_s": 5.0,
+      "maximum_single_chamber_rh_change_percentage_points": 5.0,
+      "selected_net_free_gas_volume_ml_per_side": 500.0
+    },
+    "transient_protocol": {
+      "polarity_sequence": [1, -1, -1, 1],
+      "segment_duration_s": 5.0,
+      "sample_interval_s": 0.1,
+      "positive_polarity_water_direction": "A_to_B"
+    },
+    "model_assumptions": {
+      "gas_phase": "ideal water vapour at uniform chamber temperature",
+      "mixing": "each chamber is spatially well mixed at every reported time",
+      "boundary": "rigid sealed two-chamber water inventory",
+      "transfer": "constant signed water rate within each polarity segment",
+      "pressure_diagnostic": "water-vapour partial-pressure difference from the transferred gas-phase inventory"
+    },
+    "mechanical_starting_values": {
+      "housing_face_mm": [140.0, 140.0],
+      "clear_chamber_face_mm": [100.0, 100.0],
+      "outer_plate_mm": [110.0, 110.0],
+      "membrane_coupon_mm": [80.0, 80.0],
+      "inner_seal_width_mm": 3.0,
+      "guard_groove_width_mm": 2.0,
+      "outer_seal_width_mm": 3.0,
+      "insulating_frame_thickness_mm": [8.0, 10.0],
+      "metal_load_plate_thickness_mm": 12.0,
+      "peek_load_plate_minimum_thickness_mm": 16.0,
+      "port_bore_count_per_side": 2,
+      "port_bore_inner_diameter_mm": 6.0,
+      "port_bore_length_mm": 8.0
+    },
+    "interconnect_header_port_budget": {
+      "maximum_volume_ml_per_side": 1.3,
+      "triangular_header_count_per_side": 2,
+      "triangular_header_length_mm": 7.5,
+      "pressure_tap_volume_ml_per_side": 0.02
+    },
+    "gross_cavity_accounting": {
+      "gross_empty_cavity_volume_ml_per_side": null,
+      "installed_component_displacement_ml_per_side": null,
+      "gross_cavity_depth_mm_per_side": null,
+      "identity": "gross_empty_cavity_volume = calibrated_net_free_gas_volume + installed_component_displacement"
+    },
+    "differential_pressure_target_pa": 5.0,
+    "fabrication_release": {
+      "ready": false,
+      "gate_rule": "Ready may become true only after every required register item has status closed and cites its closure evidence.",
+      "required_register_items": [
+        "gross_empty_cavity_volume_and_depth",
+        "installed_component_displacement",
+        "end_wall_and_central_divider_structural_sizing",
+        "fluidic_and_electrical_port_interfaces",
+        "internal_fan_selection_and_mounting",
+        "baffle_geometry_and_mounting",
+        "differential_pressure_management",
+        "fixture_mounting_fastener_pattern_and_preload",
+        "seal_geometry_and_compression",
+        "drawing_datums_and_dimensional_tolerances",
+        "loaded_flatness_and_gap_uniformity",
+        "internal_mixing_time",
+        "net_volume_calibration"
+      ],
+      "unresolved_dimensions": {
+        "gross_cavity_depth_mm_per_side": null,
+        "end_wall_thickness_mm": null,
+        "central_divider_thickness_mm": null,
+        "fluidic_port_thread_and_seal_specification": null,
+        "electrical_feedthrough_specification": null,
+        "internal_fan_part_envelope_mount_and_heat_load": null,
+        "baffle_geometry_and_mounting": null,
+        "external_fixture_mounting_interface": null,
+        "drawing_datum_and_tolerance_scheme": null
       }
-    ],
-    "interpretation": "Ideal two-stream humidity signal before passive back-diffusion, film losses, leakage, storage and electrode reactions. Low-flow detectability and high-flow film characterization are separate operating modes."
-  },
-  "structural_screen": {
-    "unsupported_square_span_mm": 50.0,
-    "smallest_channel_gap_mm": 1.0,
-    "maximum_bow_fraction_of_smallest_gap": 0.02,
-    "plate_boundary_condition": "simply_supported_square_uniform_load_screen",
-    "plate_coefficient_alpha_q_a4_over_D": 0.00406,
-    "effective_uniform_load_cases_pa": [
-      {"load_case": "gas_pressure_challenge", "pressure_pa": 50.0},
-      {"load_case": "low_fixture_load_surrogate", "pressure_pa": 50000.0},
-      {"load_case": "moderate_fixture_load_surrogate", "pressure_pa": 200000.0},
-      {"load_case": "high_fixture_load_surrogate", "pressure_pa": 1000000.0}
-    ],
-    "materials": [
-      {"material_id": "PEEK", "youngs_modulus_gpa": 3.6, "poisson_ratio": 0.38, "reference_thickness_mm": 16.0},
-      {"material_id": "Al_6061_T6", "youngs_modulus_gpa": 69.0, "poisson_ratio": 0.33, "reference_thickness_mm": 8.0},
-      {"material_id": "316L_stainless", "youngs_modulus_gpa": 193.0, "poisson_ratio": 0.30, "reference_thickness_mm": 8.0}
-    ],
-    "interpretation": "Classical small-deflection plate screen. The equivalent uniform fixture loads are sensitivity coordinates, not calculated gasket contact pressures. Final acceptance requires measured flatness under the real bolt, gasket, hard-stop, port and electrode stack."
+    },
+    "engineering_register": [
+      {
+        "item": "net_free_gas_volume_target",
+        "status": "defined",
+        "closure_evidence": "Configuration-controlled 500.0 +/- 5.0 mL net free-gas acceptance target per assembled side"
+      },
+      {
+        "item": "gross_empty_cavity_volume_and_depth",
+        "status": "open",
+        "closure_evidence": "Released cavity geometry and dimensional inspection"
+      },
+      {
+        "item": "installed_component_displacement",
+        "status": "open",
+        "closure_evidence": "Displacement inventory for fan, probes, baffles and ports"
+      },
+      {
+        "item": "end_wall_and_central_divider_structural_sizing",
+        "status": "open",
+        "closure_evidence": "Selected materials and thicknesses supported by structural calculation and loaded-deflection inspection"
+      },
+      {
+        "item": "fluidic_and_electrical_port_interfaces",
+        "status": "open",
+        "closure_evidence": "Released interface specification covering threads, seals and feedthroughs plus an assembled leak test"
+      },
+      {
+        "item": "internal_fan_selection_and_mounting",
+        "status": "open",
+        "closure_evidence": "Selected fan, envelope and mount with measured heat load and chamber displacement"
+      },
+      {
+        "item": "baffle_geometry_and_mounting",
+        "status": "open",
+        "closure_evidence": "Released baffle CAD and mounting details supported by the chamber mixing test"
+      },
+      {
+        "item": "differential_pressure_management",
+        "status": "open",
+        "closure_evidence": "Transient pressure test across the full polarity sequence"
+      },
+      {
+        "item": "fixture_mounting_fastener_pattern_and_preload",
+        "status": "open",
+        "closure_evidence": "Released external mounting interface, bolt-load calculation and torque map"
+      },
+      {
+        "item": "seal_geometry_and_compression",
+        "status": "open",
+        "closure_evidence": "Seal supplier limits and compression inspection"
+      },
+      {
+        "item": "drawing_datums_and_dimensional_tolerances",
+        "status": "open",
+        "closure_evidence": "Released datum and tolerance scheme with completed dimensional inspection"
+      },
+      {
+        "item": "loaded_flatness_and_gap_uniformity",
+        "status": "open",
+        "closure_evidence": "Mapped 1, 2 and 4 mm gaps under operating preload"
+      },
+      {
+        "item": "internal_mixing_time",
+        "status": "open",
+        "closure_evidence": "Humidity step-response test in each chamber"
+      },
+      {
+        "item": "net_volume_calibration",
+        "status": "open",
+        "closure_evidence": "Traceable measured 500.0 +/- 5.0 mL free-gas volume calibration for each assembled side"
+      }
+    ]
   }
 }

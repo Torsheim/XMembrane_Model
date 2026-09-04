@@ -1,7 +1,8 @@
 from __future__ import annotations
 
-import importlib.util
+import copy
 import hashlib
+import importlib.util
 import json
 import math
 from pathlib import Path
@@ -11,260 +12,215 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "scripts" / "design_eo_vapor_test_cell.py"
+CONFIG_PATH = ROOT / "config" / "eo_vapor_test_cell_design.json"
 SPEC = importlib.util.spec_from_file_location("design_eo_vapor_test_cell", SCRIPT)
 assert SPEC is not None and SPEC.loader is not None
 MODULE = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(MODULE)
-CONFIG = json.loads(
-    (ROOT / "config" / "eo_vapor_test_cell_design.json").read_text(
-        encoding="utf-8"
-    )
-)
+CONFIG = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+
+REQUIRED_FABRICATION_GATES = {
+    "gross_empty_cavity_volume_and_depth",
+    "installed_component_displacement",
+    "end_wall_and_central_divider_structural_sizing",
+    "fluidic_and_electrical_port_interfaces",
+    "internal_fan_selection_and_mounting",
+    "baffle_geometry_and_mounting",
+    "differential_pressure_management",
+    "fixture_mounting_fastener_pattern_and_preload",
+    "seal_geometry_and_compression",
+    "drawing_datums_and_dimensional_tolerances",
+    "loaded_flatness_and_gap_uniformity",
+    "internal_mixing_time",
+    "net_volume_calibration",
+}
+
+UNRESOLVED_PHYSICAL_DIMENSIONS = {
+    "gross_cavity_depth_mm_per_side",
+    "end_wall_thickness_mm",
+    "central_divider_thickness_mm",
+    "fluidic_port_thread_and_seal_specification",
+    "electrical_feedthrough_specification",
+    "internal_fan_part_envelope_mount_and_heat_load",
+    "baffle_geometry_and_mounting",
+    "external_fixture_mounting_interface",
+    "drawing_datum_and_tolerance_scheme",
+}
 
 
-def test_gross_eo_rate_identity() -> None:
-    # 10 cm2 at 100 A/m2 is 0.1 A. With transport number one this is
-    # 0.1/F mol/s of water.
-    expected = (
-        0.1
-        / MODULE.FARADAY_C_MOL
-        * MODULE.WATER_MOLAR_MASS_KG_MOL
-        * 3600.0
-        * 1.0e6
-    )
-    observed = MODULE.gross_eo_water_mg_h(10.0, 100.0, 1.0)
-    assert math.isclose(observed, expected, rel_tol=1e-12)
+def test_selected_physical_system_is_symmetric_and_valid() -> None:
+    MODULE.validate_config(CONFIG)
+    volumes = CONFIG["integrated_sealed_cell"]["chamber_net_free_gas_volumes_ml"]
+    assert volumes == {"A": 500.0, "B": 500.0}
+    region = CONFIG["integrated_sealed_cell"]["membrane_region"]
+    assert (region["width_mm"], region["height_mm"]) == (50.0, 50.0)
+    assert region["local_gap_options_mm"] == [1.0, 2.0, 4.0]
 
 
-def test_humidity_ratio_round_trip() -> None:
-    activity = 0.5
-    humidity_ratio = MODULE.humidity_ratio_kg_kg_da(activity, 32.0, 101325.0)
-    recovered = MODULE.activity_from_humidity_ratio(
-        humidity_ratio, 32.0, 101325.0
-    )
-    assert math.isclose(recovered, activity, rel_tol=1e-12)
+def test_validation_rejects_asymmetric_chambers() -> None:
+    changed = copy.deepcopy(CONFIG)
+    changed["integrated_sealed_cell"]["chamber_net_free_gas_volumes_ml"]["B"] = 499.0
+    try:
+        MODULE.validate_config(changed)
+    except ValueError as error:
+        assert "equal calibrated net volumes" in str(error)
+    else:
+        raise AssertionError("Asymmetric chambers must fail validation")
 
 
-def test_nominal_25_cm2_channel_flow() -> None:
-    config = {
-        "operating_state": {
-            "temperature_c": 32.0,
-            "absolute_pressure_pa": 101325.0,
-            "equal_inlet_water_activity": 0.5,
-        },
-        "geometry": {
-            "square_active_areas_cm2": [25.0],
-            "channel_gaps_mm": [2.0],
-            "channel_velocities_m_s": [1.0],
-        },
-    }
-    row = MODULE.build_geometry_frame(config).iloc[0]
-    assert math.isclose(row["actual_flow_l_min"], 6.0, rel_tol=1e-12)
-    assert math.isclose(row["active_channel_volume_ml_per_side"], 5.0, rel_tol=1e-12)
+def test_target_rate_and_required_volume_follow_declared_basis() -> None:
+    rate = MODULE.integrated_target_water_rate_mg_s(CONFIG)
+    assert math.isclose(rate, 13.0 / 90.0, rel_tol=1e-12)
+    assert math.isclose(rate * 3600.0, 520.0, rel_tol=1e-12)
+
+    density = MODULE.saturated_water_vapour_density_kg_m3(32.0)
+    expected_ml = (rate * 5.0 / 1e6) / (density * 0.05) * 1e6
+    observed_ml = MODULE.required_net_volume_ml_per_side(CONFIG)
+    assert math.isclose(observed_ml, expected_ml, rel_tol=1e-12)
+    assert 425.0 < observed_ml < 430.0
 
 
-def test_membrane_diffusion_time_scale_identity() -> None:
-    config = {
-        "membrane_time_scale_screen": {
-            "thickness_um": 40.0,
-            "water_diffusivities_m2_s": [2.0e-12],
-            "preconditioning_multiple_of_l2_over_d": 4.0,
-            "interpretation": "test",
-        }
-    }
-    row = MODULE.build_membrane_time_scale_frame(config).iloc[0]
-    expected_s = (40.0e-6) ** 2 / 2.0e-12
-    assert math.isclose(row["l2_over_d_seconds"], expected_s, rel_tol=1e-12)
+def test_local_bulk_net_and_gross_volumes_are_distinct() -> None:
+    rows = MODULE.build_integrated_volume_basis_frame(CONFIG)
+    assert rows["local_gap_mm"].tolist() == [1.0, 2.0, 4.0]
+    assert rows["local_membrane_region_volume_ml_per_side"].tolist() == [2.5, 5.0, 10.0]
+    assert rows["bulk_free_gas_volume_ml_per_side"].tolist() == [497.5, 495.0, 490.0]
+    assert (rows["calibrated_net_free_gas_volume_ml_per_side"] == 500.0).all()
+    assert rows["gross_empty_cavity_volume_ml_per_side"].isna().all()
+    assert rows["gross_cavity_depth_mm_per_side"].isna().all()
+    assert (
+        rows["local_membrane_region_volume_ml_per_side"]
+        + rows["bulk_free_gas_volume_ml_per_side"]
+        == rows["calibrated_net_free_gas_volume_ml_per_side"]
+    ).all()
+
+
+def test_selected_volume_meets_half_cycle_drift_criterion() -> None:
+    row = MODULE.build_integrated_volume_basis_frame(CONFIG).iloc[0]
     assert math.isclose(
-        row["multiple_l2_over_d_hours"], 4.0 * expected_s / 3600.0, rel_tol=1e-12
+        row["water_transferred_per_half_cycle_mg"], 13.0 / 18.0, rel_tol=1e-12
     )
+    assert row["selected_to_required_volume_ratio"] > 1.16
+    assert math.isclose(
+        row["predicted_single_chamber_rh_change_percentage_points"],
+        5.0 / row["selected_to_required_volume_ratio"],
+        rel_tol=1e-12,
+    )
+    assert row["predicted_single_chamber_rh_change_percentage_points"] < 5.0
 
 
-def test_boundary_mismatch_linear_scale() -> None:
-    config = {
-        "boundary_activity_mismatch_screen": {
-            "water_capacity_mol_m3_activity": 10000.0,
-            "membrane_thickness_um": 40.0,
-            "water_diffusivities_m2_s": [1.0e-10],
-            "activity_mismatch_rh_percentage_points": [0.1],
-            "reference_area_cm2": 25.0,
-            "reference_water_transport_number": 1.0,
-            "reference_current_densities_a_m2": [3.0],
-            "interpretation": "test",
-        }
-    }
-    row = MODULE.build_boundary_mismatch_frame(config).iloc[0]
-    expected_mol_s = 1.0e-10 * 10000.0 / 40.0e-6 * 0.001 * 0.0025
-    expected_mg_h = (
-        expected_mol_s
-        * MODULE.WATER_MOLAR_MASS_KG_MOL
-        * 3600.0
-        * 1.0e6
-    )
-    assert math.isclose(
-        row["linear_passive_water_rate_mg_h"], expected_mg_h, rel_tol=1e-12
-    )
-
-
-def test_fixture_land_and_nominal_aperture_arithmetic() -> None:
-    fixture = MODULE.build_fixture_dimension_frame(CONFIG).iloc[0]
-    apertures = MODULE.build_aperture_insert_frame(CONFIG).set_index("aperture_id")
-    main = apertures.loc["square_50"]
-    assert math.isclose(fixture["coupon_land_each_side_x_mm"], 15.0)
-    assert math.isclose(
-        fixture["remaining_coupon_land_after_seal_guard_stack_mm"], 7.0
-    )
-    assert math.isclose(main["active_area_cm2"], 25.0)
-    assert math.isclose(main["aperture_following_channel_volume_ml_per_side"], 5.0)
-    assert math.isclose(
-        main["aperture_following_actual_flow_l_min_per_side"], 6.0
-    )
-    assert math.isclose(
-        main["recommended_fixed_flow_field_volume_ml_per_side"], 5.0
-    )
-    assert math.isclose(main["nonmembrane_wetted_area_cm2_per_side"], 29.0)
-    assert math.isclose(main["maximum_internal_dead_volume_ml_per_side"], 1.3)
-
-
-def test_rotated_slot_preserves_area_perimeter_and_volume_but_changes_flow() -> None:
-    rows = MODULE.build_aperture_insert_frame(CONFIG).set_index("aperture_id")
-    along = rows.loc["slot_50_along_flow"]
-    across = rows.loc["slot_50_across_flow"]
-    for field in (
-        "active_area_cm2",
-        "perimeter_cm",
-        "aperture_following_channel_volume_ml_per_side",
-    ):
-        assert math.isclose(along[field], across[field], rel_tol=1e-12)
-    assert math.isclose(
-        along["aperture_following_actual_flow_l_min_per_side"], 0.96
-    )
-    assert math.isclose(
-        across["aperture_following_actual_flow_l_min_per_side"], 6.0
-    )
-    assert math.isclose(along["aperture_following_gas_residence_time_ms"], 50.0)
-    assert math.isclose(across["aperture_following_gas_residence_time_ms"], 8.0)
-    assert math.isclose(
-        along["recommended_fixed_flow_field_actual_flow_l_min_per_side"], 6.0
-    )
-    assert math.isclose(
-        across["recommended_fixed_flow_field_actual_flow_l_min_per_side"], 6.0
-    )
-
-
-def test_internal_volume_budget_matches_proposed_headers_and_ports() -> None:
-    row = MODULE.build_internal_volume_budget_frame(CONFIG).iloc[0]
-    assert math.isclose(row["active_parallel_plate_volume_ml_per_side"], 5.0)
+def test_interconnect_budget_is_named_and_bounded_separately() -> None:
+    row = MODULE.build_interconnect_volume_budget_frame(CONFIG).iloc[0]
     assert math.isclose(row["triangular_header_volume_ml_per_side"], 0.75)
+    assert math.isclose(row["port_bore_volume_ml_per_side"], 0.4523893421169302)
     assert math.isclose(
-        row["port_bore_volume_ml_per_side"], 0.4523893421169302
+        row["interconnect_header_port_volume_ml_per_side"], 1.2223893421169302
     )
-    assert math.isclose(
-        row["proposed_internal_dead_volume_ml_per_side"], 1.2223893421169302
-    )
-    assert math.isclose(
-        row["proposed_total_swept_internal_volume_ml_per_side"],
-        6.22238934211693,
-    )
-    assert row["dead_volume_target_pass"]
+    assert row["maximum_interconnect_header_port_volume_ml_per_side"] == 1.3
+    assert row["calibrated_net_free_gas_volume_ml_per_side"] == 500.0
+    assert row["interconnect_volume_target_pass"]
 
 
-def test_plate_deflection_screen_known_peek_high_load_case() -> None:
-    rows = MODULE.build_plate_deflection_frame(CONFIG)
-    row = rows[
-        (rows["material_id"] == "PEEK")
-        & (rows["load_case"] == "high_fixture_load_surrogate")
-    ].iloc[0]
-    assert math.isclose(
-        row["required_plate_thickness_mm_for_allowable_bow"],
-        15.352361642245084,
-        rel_tol=1e-12,
-    )
-    assert row["reference_thickness_passes_screen"]
-    assert row["predicted_bow_um_at_reference_thickness"] < 20.0
+def test_transient_conserves_inventory_and_is_symmetric() -> None:
+    frame = MODULE.build_integrated_transient_frame(CONFIG)
+    initial = frame.iloc[0]
+    delta_a = frame["water_inventory_A_mg"] - initial["water_inventory_A_mg"]
+    delta_b = frame["water_inventory_B_mg"] - initial["water_inventory_B_mg"]
+    assert (
+        frame["total_water_inventory_mg"] - initial["total_water_inventory_mg"]
+    ).abs().max() < 1e-12
+    assert (delta_a + delta_b).abs().max() < 1e-12
+    assert len(frame) == 201
 
 
-def test_closed_five_ml_pressure_time_matches_inventory_identity() -> None:
-    rows = MODULE.build_closed_cell_dimension_frame(CONFIG)
-    row = rows[
-        (rows["case_id"] == "low_drag_signal_floor")
-        & (rows["gas_volume_l_per_side"] == 0.005)
-    ].iloc[0]
-    assert math.isclose(row["gas_only_time_to_pressure_limit_s"], 0.06338149610110864)
-    one_l = rows[
-        (rows["case_id"] == "low_drag_signal_floor")
-        & (rows["gas_volume_l_per_side"] == 1.0)
-    ].iloc[0]
-    assert math.isclose(
-        one_l["gas_only_time_to_pressure_limit_s"]
-        / row["gas_only_time_to_pressure_limit_s"],
-        200.0,
-        rel_tol=1e-12,
+def test_abba_endpoints_and_pressure_diagnostic() -> None:
+    frame = MODULE.build_integrated_transient_frame(CONFIG)
+    endpoints = frame[frame["time_s"].isin([0.0, 5.0, 10.0, 15.0, 20.0])]
+    expected = [0.0, 13.0 / 18.0, 0.0, -13.0 / 18.0, 0.0]
+    assert all(
+        math.isclose(observed, target, abs_tol=1e-12)
+        for observed, target in zip(
+            endpoints["signed_water_transferred_A_to_B_mg"], expected
+        )
     )
+    peak = endpoints[endpoints["time_s"] == 5.0].iloc[0]
+    assert 45.0 < peak["relative_humidity_A_percent"] < 46.0
+    assert 54.0 < peak["relative_humidity_B_percent"] < 55.0
+    assert 400.0 < peak["gas_only_differential_pressure_B_minus_A_pa"] < 410.0
+    assert math.isclose(endpoints.iloc[-1]["relative_humidity_A_percent"], 50.0, abs_tol=1e-12)
+    assert math.isclose(endpoints.iloc[-1]["relative_humidity_B_percent"], 50.0, abs_tol=1e-12)
 
 
-def test_detectability_limit_is_at_declared_signal_threshold() -> None:
-    limits = MODULE.build_detectability_limit_frame(CONFIG).set_index("case_id")
-    row = limits.loc["low_drag_signal_floor"]
-    signal = MODULE.ideal_two_stream_humidity_signal(
-        water_rate_mg_h=row["gross_eo_water_mg_h"],
-        actual_flow_l_min_per_side=row[
-            "maximum_actual_flow_l_min_per_side_for_declared_detectability"
-        ],
-        inlet_activity=CONFIG["operating_state"]["equal_inlet_water_activity"],
-        temperature_c=CONFIG["operating_state"]["temperature_c"],
-        absolute_pressure_pa=CONFIG["operating_state"]["absolute_pressure_pa"],
+def test_time_response_scales_with_selected_chamber_inventory() -> None:
+    baseline = MODULE.build_integrated_transient_frame(CONFIG)
+    doubled = copy.deepcopy(CONFIG)
+    doubled["integrated_sealed_cell"]["chamber_net_free_gas_volumes_ml"] = {
+        "A": 1000.0,
+        "B": 1000.0,
+    }
+    doubled["integrated_sealed_cell"]["volume_sizing_basis"][
+        "selected_net_free_gas_volume_ml_per_side"
+    ] = 1000.0
+    doubled_frame = MODULE.build_integrated_transient_frame(doubled)
+
+    baseline_step = abs(
+        float(baseline.loc[baseline["time_s"].eq(5.0), "relative_humidity_A_percent"].iloc[0])
+        - 50.0
     )
-    assert math.isclose(
-        signal["differential_signal_rh_percentage_points"],
-        row["declared_required_differential_signal_rh_percentage_points"],
-        rel_tol=1e-12,
+    doubled_step = abs(
+        float(
+            doubled_frame.loc[
+                doubled_frame["time_s"].eq(5.0), "relative_humidity_A_percent"
+            ].iloc[0]
+        )
+        - 50.0
     )
+    assert math.isclose(doubled_step, baseline_step / 2.0, rel_tol=1e-12)
 
 
-def test_minimum_detectable_area_is_at_declared_signal_threshold() -> None:
-    rows = MODULE.build_minimum_detectable_area_frame(CONFIG)
-    row = rows[
-        (rows["case_id"] == "inverse_design_anchor")
-        & (rows["fixed_actual_flow_l_min_per_side"] == 6.0)
-    ].iloc[0]
-    rate = MODULE.gross_eo_water_mg_h(
-        row["minimum_ideal_active_area_cm2"],
-        row["current_density_a_m2"],
-        row["water_transport_number"],
+def test_engineering_register_explicitly_gates_every_physical_tbd() -> None:
+    cell = CONFIG["integrated_sealed_cell"]
+    release = cell["fabrication_release"]
+    register = MODULE.build_integrated_engineering_register_frame(CONFIG)
+    register_by_item = register.set_index("item")
+
+    assert release["ready"] is False
+    assert set(release["required_register_items"]) == REQUIRED_FABRICATION_GATES
+    assert REQUIRED_FABRICATION_GATES.issubset(set(register_by_item.index))
+    assert (
+        register_by_item.loc[sorted(REQUIRED_FABRICATION_GATES), "status"] == "open"
+    ).all()
+    assert (
+        register_by_item.loc[sorted(REQUIRED_FABRICATION_GATES), "closure_evidence"]
+        .str.strip()
+        .ne("")
+        .all()
     )
-    signal = MODULE.ideal_two_stream_humidity_signal(
-        water_rate_mg_h=rate,
-        actual_flow_l_min_per_side=row["fixed_actual_flow_l_min_per_side"],
-        inlet_activity=CONFIG["operating_state"]["equal_inlet_water_activity"],
-        temperature_c=CONFIG["operating_state"]["temperature_c"],
-        absolute_pressure_pa=CONFIG["operating_state"]["absolute_pressure_pa"],
-    )
-    target = (
-        math.sqrt(2.0)
-        * CONFIG["measurement"][
-            "single_stream_humidity_expanded_uncertainty_rh_percentage_points"
-        ]
-        * CONFIG["measurement"]["minimum_signal_to_uncertainty_ratio"]
-    )
-    assert math.isclose(
-        signal["differential_signal_rh_percentage_points"],
-        target,
-        rel_tol=1e-12,
-    )
-    assert 6.0 < row["minimum_ideal_active_area_cm2"] < 7.0
-    assert row["smallest_existing_insert_that_passes_cm2"] == 9.0
-    assert row["fits_25_cm2_fixture"]
+    assert set(release["unresolved_dimensions"]) == UNRESOLVED_PHYSICAL_DIMENSIONS
+    assert all(value is None for value in release["unresolved_dimensions"].values())
+    assert register_by_item.loc["net_free_gas_volume_target", "status"] == "defined"
+    assert register_by_item.loc["net_volume_calibration", "status"] == "open"
 
 
-def test_cli_writes_passing_hash_bound_audit(tmp_path: Path) -> None:
-    output = tmp_path / "sizing"
+def test_validation_rejects_premature_fabrication_release() -> None:
+    changed = copy.deepcopy(CONFIG)
+    changed["integrated_sealed_cell"]["fabrication_release"]["ready"] = True
+    try:
+        MODULE.validate_config(changed)
+    except ValueError as error:
+        assert "cannot be ready" in str(error)
+    else:
+        raise AssertionError("An open engineering register must block fabrication release")
+
+
+def test_cli_writes_passing_portable_hash_bound_package(tmp_path: Path) -> None:
+    output = tmp_path / "integrated-cell"
     subprocess.run(
         [
             sys.executable,
             str(SCRIPT),
             "--config",
-            str(ROOT / "config" / "eo_vapor_test_cell_design.json"),
+            str(CONFIG_PATH),
             "--output-dir",
             str(output),
         ],
@@ -275,16 +231,24 @@ def test_cli_writes_passing_hash_bound_audit(tmp_path: Path) -> None:
     )
 
     audit = json.loads((output / "audit.json").read_text(encoding="utf-8"))
-    manifest = json.loads(
-        (output / "source_manifest.json").read_text(encoding="utf-8")
-    )
+    manifest = json.loads((output / "source_manifest.json").read_text(encoding="utf-8"))
     assert audit["all_pass"]
     assert all(audit["checks"].values())
-    assert audit["recommended_starting_fixture"]["maximum_active_area_cm2"] == 25.0
     assert manifest["verification"]["audit_all_pass"]
     assert len(manifest["sources"]) == 2
-    assert len(manifest["generated_outputs"]) == 20
-    for record in [*manifest["sources"], *manifest["generated_outputs"]]:
-        path = Path(record["path"])
+    assert len(manifest["generated_outputs"]) == 8
+    expected_names = {
+        "integrated_sealed_cell_volume_basis.csv",
+        "integrated_sealed_cell_transient.csv",
+        "integrated_sealed_cell_engineering_register.csv",
+        "interconnect_header_port_volume_budget.csv",
+        "config_used.json",
+        "SUMMARY.md",
+        "integrated_sealed_cell_transient.png",
+        "audit.json",
+    }
+    assert {Path(record["path"]).name for record in manifest["generated_outputs"]} == expected_names
+    for record in manifest["generated_outputs"]:
+        path = output / Path(record["path"]).name
         assert path.is_file()
         assert hashlib.sha256(path.read_bytes()).hexdigest() == record["sha256"]

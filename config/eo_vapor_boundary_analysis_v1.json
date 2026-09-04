@@ -112,7 +112,9 @@
   },
   "source_provenance": {
     "finite_film_solver": "heiq_pre_receiver_material_analyses/heiq_pre_receiver_model.py::solve_powerlaw_at_current",
-    "film_correlation": "/home/torsheim/HeiQ/HeiQ_V2/scripts/make_wp1_pre_receiver_axial_v3.py::calculate_film_state",
+    "external_repository": "HeiQ_V2",
+    "external_root_environment_variable": "HEIQ_V2_ROOT",
+    "film_correlation_relative_to_external_root": "scripts/make_wp1_pre_receiver_axial_v3.py::calculate_film_state",
     "parent_sizing_config": "config/eo_vapor_test_cell_design.json"
   }
 }

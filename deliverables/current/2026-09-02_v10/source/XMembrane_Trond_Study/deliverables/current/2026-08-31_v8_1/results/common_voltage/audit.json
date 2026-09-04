@@ -1,0 +1,31 @@
+{
+  "study_id": "workshop-common-voltage-diffusivity-v1-2026-08-30",
+  "script_version": "workshop-common-voltage-diffusivity-v1.2-2026-08-31",
+  "passed": true,
+  "checks": {
+    "expected_case_count": true,
+    "voltage_cap_respected": true,
+    "no_current_density_gate": true,
+    "no_area_acceptance_gate": true,
+    "all_feasible_rows_pass_thermodynamics": true,
+    "energy_identity": true,
+    "convergence_pair_count": true,
+    "envelope_coordinate_count": true,
+    "local_bracket_probe_exact_source_coverage": true,
+    "local_bracket_probe_voltage_cap_respected": true,
+    "local_bracket_probe_elevates_only_numeric_bound": true,
+    "unrecovered_high_bracket_cases_remain_unresolved": true,
+    "recovered_high_bracket_cases_pass_full_closure": true,
+    "legacy_high_bracket_status_is_fail_closed": true
+  },
+  "case_count": 196,
+  "profile_row_count": 2352,
+  "refined_feasible_case_count": 14,
+  "numerically_confirmed_envelope_coordinate_count": 7,
+  "refined_numerical_or_local_unresolved_case_count": 49,
+  "local_bracket_probe_case_count": 98,
+  "local_bracket_probe_recovered_case_count": 0,
+  "local_bracket_probe_unrecovered_case_count": 98,
+  "maximum_energy_identity_error_kw": 0.0,
+  "full_system_claim_allowed": false
+}

@@ -1,0 +1,616 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{tgtermes}
+\usepackage{tgheros}
+\usepackage{microtype}
+\usepackage[a4paper,top=18mm,bottom=20mm,left=18mm,right=18mm]{geometry}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{bookmark}
+\usepackage{ragged2e}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{needspace}
+
+\definecolor{Navy}{HTML}{17324D}
+\definecolor{Teal}{HTML}{008C8C}
+\definecolor{TealLight}{HTML}{E1F2F2}
+\definecolor{Orange}{HTML}{E58B2A}
+\definecolor{OrangeLight}{HTML}{FFF1DE}
+\definecolor{Green}{HTML}{2E7D5B}
+\definecolor{GreenLight}{HTML}{E8F4ED}
+\definecolor{Red}{HTML}{B94A3D}
+\definecolor{RedLight}{HTML}{F9E9E7}
+\definecolor{Slate}{HTML}{607284}
+\definecolor{Light}{HTML}{F2F6F8}
+\definecolor{Line}{HTML}{D8E2E9}
+\definecolor{Ink}{HTML}{172A3A}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=Teal,
+  urlcolor=Teal,
+  pdftitle={HeiQ XMembrane -- Prior Material Search Consolidation},
+  pdfauthor={XMembrane project team | HeiQ Materials AG},
+  pdfsubject={Consolidation of the previous XMembrane material search and handoff to supplier and coupon qualification},
+  pdfkeywords={XMembrane, electro-osmosis, ERV, membrane, material search, Selemion, lithium, coupon}
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\raggedbottom
+\setlist[itemize]{leftmargin=5mm,itemsep=2.2pt,topsep=3pt}
+\setlist[enumerate]{leftmargin=6mm,itemsep=2.3pt,topsep=3pt}
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+\newcolumntype{C}{>{\Centering\arraybackslash}X}
+\renewcommand{\arraystretch}{1.16}
+
+\titleformat{\section}
+  {\sffamily\bfseries\color{Navy}\fontsize{17}{20}\selectfont}
+  {\thesection}{8pt}{}
+\titlespacing*{\section}{0pt}{9pt}{5pt}
+\titleformat{\subsection}
+  {\sffamily\bfseries\color{Navy}\fontsize{12.5}{15}\selectfont}
+  {\thesubsection}{7pt}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\sffamily\footnotesize\color{Slate}HEIQ MATERIALS AG · XMEMBRANE}
+\fancyhead[R]{\sffamily\footnotesize\color{Slate}MATERIAL SEARCH CONSOLIDATION · 31.08.2026}
+\fancyfoot[L]{\sffamily\scriptsize\color{Slate}Internal evidence handoff · not a procurement ranking}
+\fancyfoot[R]{\sffamily\scriptsize\color{Slate}Page \thepage\ of \pageref*{LastPage}}
+\renewcommand{\headrulewidth}{0.35pt}
+
+\newtcolorbox{mainbox}[1][]{
+  enhanced,colback=TealLight,colframe=Teal,boxrule=0.8pt,arc=1.5mm,
+  left=4mm,right=4mm,top=3mm,bottom=3mm,#1
+}
+\newtcolorbox{warningbox}[1][]{
+  enhanced,colback=OrangeLight,colframe=Orange,boxrule=0.8pt,arc=1.5mm,
+  left=4mm,right=4mm,top=3mm,bottom=3mm,#1
+}
+\newtcolorbox{stopbox}[1][]{
+  enhanced,colback=RedLight,colframe=Red,boxrule=0.8pt,arc=1.5mm,
+  left=4mm,right=4mm,top=3mm,bottom=3mm,#1
+}
+\newtcolorbox{plainbox}[1][]{
+  enhanced,colback=Light,colframe=Line,boxrule=0.6pt,arc=1.5mm,
+  left=4mm,right=4mm,top=3mm,bottom=3mm,#1
+}
+\newcommand{\eyebrow}[1]{{\sffamily\bfseries\small\color{Teal}\MakeUppercase{#1}}}
+\newcommand{\evidencepath}[1]{\texttt{\small\detokenize{#1}}}
+
+\begin{document}
+
+% -----------------------------------------------------------------------------
+% Cover
+% -----------------------------------------------------------------------------
+\thispagestyle{empty}
+\pdfbookmark[0]{Cover}{cover}
+\vspace*{-10mm}
+\begin{tcolorbox}[enhanced,colback=Navy,colframe=Navy,boxrule=0pt,
+  arc=0mm,left=11mm,right=11mm,top=13mm,bottom=13mm,width=\textwidth]
+  {\sffamily\bfseries\color{TealLight}\large HEIQ XMEMBRANE PROJECT}\par\vspace{7mm}
+  {\raggedright\sffamily\bfseries\color{white}\fontsize{28}{32}\selectfont
+  Prior material search consolidation\par}
+  \vspace{4mm}
+  {\sffamily\color{white!85}\fontsize{14}{18}\selectfont
+  What was already learned · what is a real lead · what must be measured next}
+\end{tcolorbox}
+
+\vspace{12mm}
+{\sffamily\bfseries\fontsize{16}{20}\selectfont\color{Navy}Internal team report · 31 August 2026}\par
+\vspace{5mm}
+{\fontsize{12}{17}\selectfont\color{Ink}
+This report consolidates the complete local material-search record under
+\texttt{/home/torsheim/HeiQ}. It does not restart the search. It separates
+named membranes and literature leads from counter-ion routes, synthetic
+inverse-design coordinates, historical screening constraints and current
+same-sample qualification requirements.}
+
+\vspace{8mm}
+\begin{mainbox}
+\textbf{Correct phase statement.} Considerable material work has already been
+completed. It established a Li$^+$-form cation-exchange/ionomer route,
+identified several named evidence anchors, tested broad hypothetical property
+spaces and derived architecture-dependent targets. What remains is to convert
+that work into traceable supplier and physical-coupon records, then measure the
+coupled property bundle on the same specimens. This is a consolidation and
+qualification phase, not a new search from zero.
+\end{mainbox}
+
+\vfill
+\begin{tabularx}{\textwidth}{@{}p{46mm}Y@{}}
+\textbf{Local scope indexed} & 39,284 files and 1,039 PDF files across five HeiQ roots plus the top-level utility \\
+\textbf{Downloads record retained} & 45 manifest rows, 31 unique PDFs and 14 duplicate copies \\
+\textbf{Traceable source set} & 75 canonical current, historical, archive and workspace records with SHA-256 hashes \\
+\textbf{Named material/reference records} & 10; none has a complete same-sample MAT-01--MAT-09 bundle \\
+\textbf{First evidence-anchor coupon} & Selemion CMVN in Li$^+$ form, if construction and supply are confirmed \\
+\textbf{Controls} & Nafion NR211/NR212 only as method and thickness controls, not target materials
+\end{tabularx}
+
+\clearpage
+
+% -----------------------------------------------------------------------------
+\pdfbookmark[0]{Abstract}{abstract}
+\section*{Abstract}
+\addcontentsline{toc}{section}{Abstract}
+
+The local record contains extensive previous material work, but it is spread
+across literature registers, ion screens, Nafion references, inverse-design
+studies, downloaded reports and thousands of synthetic model coordinates. The
+work did not identify a commercially validated ``optimal membrane.'' Its most
+defensible real-material result is Selemion CMVN: in liquid single-salt tests
+at $295\pm1$~K, reported water drag was
+$1.1\pm0.8$, $9.2\pm0.8$, $4.9\pm0.2$ and $3.7\pm0.4$ mol H$_2$O per mol
+charge for H$^+$, Li$^+$, Na$^+$ and K$^+$ forms. This makes Li$^+$ the best
+same-platform counter-ion hypothesis and Selemion the strongest local
+mechanism coupon, not a demonstrated system-performance candidate. CR61 AZL
+386, MF-4SC, Nafion 117/120 and BPSH contribute useful property fragments;
+microporous polyamine, plaster--silica, perforated ion-exchange and graded or
+adsorbing composites remain literature/architecture leads.
+
+The historical V12--V15 sequence supports the Li$^+$ route but also shows why
+it cannot be promoted directly to procurement ranking. V12's cross-study
+prior gave Li$^+$ a median conditional flux of 0.442~kg,m$^{-2}$,h$^{-1}$
+and SEC of 0.125~kWh/kg at 0.6~V. V13 identified wet vapour conductivity as
+the dominant information gap, followed by drag and diffusivity. V14's
+supported 25-$\mu$m checkpoint remained conditional, and V15 reduced its bulk
+performance once two vapour interfaces were introduced; favourable-gradient
+flux was about 2.68 times the opposing-gradient result. The current direct-EO
+and active-ERV studies likewise define sampled property regions, not material
+recipes.
+
+The earlier transport numbers above 100 are fully retained: they originated
+in hypothetical V4 and later inverse-design sweeps extending to
+$t_w=150$, while the current Terminal-1 vector has $t_w=100.0608$.
+Neither is a measured material. No named local candidate has a complete,
+same-sample set of sorption, chemical water mobility, EO drag, wet
+through-plane conductivity, compressed-stack ASR, swelling/thickness,
+two-sided flux, interface compatibility and provenance. The immediate step is
+therefore an availability-and-coupon shortlist built from the existing leads,
+followed by one controlled protocol on the same physical samples. Candidate
+ranking and net energy claims remain open until that evidence exists.
+
+The governing V8 decision sequence makes post-ERV O30 the first
+system-relevant coupon target. It removes 1,228.27~kg/h on the declared
+boundary and has sampled solutions at 1.00--1.25~V for every one-factor
+$D=10^{-14}$--$10^{-9}$~m$^2$/s coordinate, although the conditional power
+window deteriorates from $+162.416$ to $-181.413$~kW. Direct EO inside the ERV
+is a separate secondary architecture: 178/320 rows close transport, 50/320
+pass the engineering screen and 0/320 pass the full coupled gate. Neither
+screen identifies a physical membrane or a net system saving.
+
+\begin{mainbox}
+\textbf{Decision.} Do not perform another broad hypothetical material sweep.
+Begin supplier/availability consolidation and coupon qualification using the
+existing search results. Start with the Li$^+$-form CEM/ionomer route and a
+Selemion CMVN evidence anchor, retain non-PFSA and microporous/composite routes,
+and use Nafion only as a reference control.
+\end{mainbox}
+
+% -----------------------------------------------------------------------------
+\section{Audit scope and evidence classes}
+\eyebrow{Everything local is retained, but not everything is equivalent evidence}
+
+The consolidation inventories the five active local roots:
+\texttt{HeiQ-Thermodynamical-Analysis}, \texttt{HeiQ\_V2},
+\texttt{XMembrane\_Model}, \texttt{XMembrane\_Trond\_Study} and
+\texttt{deliverables}. It also includes the hashed manifest of PDFs previously
+reviewed in Windows Downloads. Frozen report copies are retained for
+chronology and reproducibility, while top-level source, configuration and
+output files remain the maintained implementation chain. Git metadata,
+backup/cache directories and this newly generated handoff directory are
+excluded from the counts to avoid self-inflation. The single top-level file,
+\texttt{collect\_for\_chatgpt.sh}, was also inspected; it is a historical
+three-project bundle utility, not material evidence. Byte-identical project
+and top-level V8/V8.1 release mirrors are present in the physical file count
+but are represented once in the evidence register.
+
+\begin{mainbox}
+\textbf{Current authority.} V8.1 is the latest hash-frozen controlled English
+delivery; all 107 declared checksums and the recorded 300/300 live tests pass.
+It is an additive translation layer with no scientific delta from V8, not an
+immutable whole-repository archival snapshot. The governing science and decisions
+remain the V8 Current Result and Decision Report; the model-closure report is
+supporting provenance where V8 does not differ. This consolidation is an
+internal post-release addendum and does not mutate or enter the V8/V8.1
+allowlist.
+\end{mainbox}
+
+The rebuilt weekly Revision~1 now includes the post-release direct-ERV weather
+figure and uses the same authority hierarchy. It remains a dated,
+non-governing presentation; it adds no named material or full-system closure.
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{@{}p{25mm}Y Y@{}}
+\toprule
+\textbf{Evidence tier} & \textbf{Meaning} & \textbf{Current examples} \\
+\midrule
+E0 & Concept or unqualified architecture hypothesis & Graded, MOF-buffered or adsorbing composite; symmetric-AC rectification route \\
+E1 & Named literature family or mechanism & BPSH, microporous polyamine, plaster--silica, perforated ion-exchange architecture \\
+E2 & Named grade/product with unmatched property fragments & Selemion CMVN, CR61, MF-4SC, Nafion 117/120 and current Nafion controls \\
+E3 & Partial bundle measured on one identifiable lot/coupon & None in the local evidence \\
+E4 & Complete same-sample MAT-01--MAT-09 coupon bundle & None \\
+E5 & Repeated batch and subsystem evidence & None \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{warningbox}
+The phrase ``validated Terminal-1 vector'' in older material means numerically
+reproduced. It does not mean experimentally measured. Likewise, a model row
+named ``candidate,'' ``optimum'' or \texttt{Mxxxxx} is not a physical material
+unless identity, grade, batch and source are independently present.
+\end{warningbox}
+
+% -----------------------------------------------------------------------------
+\section{What the previous material search established}
+\eyebrow{The search produced useful route knowledge and target history}
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{@{}p{24mm}p{45mm}Y@{}}
+\toprule
+\textbf{Workstream} & \textbf{Retained finding} & \textbf{Correct present use} \\
+\midrule
+V4 & Hypothetical water-transport-number sweep to $t_w=150$ & Explains historical $t_w>100$; no named material demonstrated it \\
+Legacy material-sweep V8/V11 & 2,304 synthetic property combinations and 12 retained M-ID regression vectors & Parameter-space and code-regression history only; unrelated to controlled Release V8 \\
+V9/V10 & Nafion-relative inverse envelopes and decomposition of effective transport & Search vocabulary; properties were deliberately independent \\
+V12 & Literature-bounded H/Li/Na/K comparison ranked Li$^+$ most favourably & Select counter-ion route, not a product \\
+V13 & Thin Li$^+$ optimum at the minimum-thickness boundary; conductivity dominated value of information & Prioritize vapour conductivity, then drag and $D$/sorption measurements \\
+V14 & Supported 25-$\mu$m Li$^+$ checkpoint with added ASR & Coupon architecture checkpoint, not a mechanical recommendation \\
+V15 & Two-interface vapour model reduced performance and exposed gradient-direction sensitivity & Measure both films and both gradient directions \\
+V42--V55 & Successive inverse, wet-receiver and surface-robustness screens & Preserve chronology; V53 is the relevant $\leq2$-V descendant, while V55 required 3.177~V \\
+V61 & Direct-EO-in-ERV inverse frontiers & Historical integrated-ERV requirements; area-conditioned and synthetic \\
+V62 & Practical break-even $t_w\approx18.43/27.39/35.85/44.82$ for O60/O50/O40/O30 & Architecture-dependent target envelope with receiver SEC excluded \\
+Current post-ERV & O30 common-voltage screen below 2~V & First system-relevant coupon replay; conditional budget, not net saving \\
+Current direct ERV & Terminal-1 gradient, $+J/0/-J$ and coupled-gate replays & Secondary/open architecture; replay only after passive transfer and films are measured \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+The evolution matters. Early studies explored deliberately independent
+properties to learn which combinations might work. Later studies introduced
+hydration correlations, receiver surfaces, two gas films, voltage budgets and
+fuller energy ledgers. A point that passed an intermediate screen could fail a
+later closure: the V43 M00653/70-times-PFSA-drag point, for example,
+disappeared under the V44 robust-surface test. The correct response is to
+retain the point as provenance, not carry it forward as a material lead.
+
+% -----------------------------------------------------------------------------
+\Needspace{26\baselineskip}
+\section{Named materials and literature leads}
+\eyebrow{Real identity first; performance claims second}
+
+\begin{center}\footnotesize
+\begin{tabularx}{\textwidth}{@{}p{27mm}p{37mm}Y p{24mm}@{}}
+\toprule
+\textbf{Material or family} & \textbf{Local quantitative evidence} & \textbf{Use now} & \textbf{Class} \\
+\midrule
+Selemion CMVN & Drag H/Li/Na/K = $1.1/9.2/4.9/3.7$ with reported uncertainties in liquid at 295~K & First mechanism/evidence-anchor coupon; compare ion forms from one lot and recover vapour bundle & P0 test priority, not ranking \\
+CR61 AZL 386 & Approximate aqueous drag H $\sim2$, K $\sim11$ & Secondary counter-ion reference if construction and supply are practical & Secondary test lead \\
+MF-4SC & Fully hydrated conductivity H/Li/Na = $2.8/0.61/0.62$~S/m & Alkali-PFSA conductivity lead; grade and matched properties missing & Family evidence lead \\
+Nafion 117 & Li/Na conductivity $1.3/1.1$~S/m at 98\% RH; nominal thickness 178--183~$\mu$m & Thick counter-ion literature bridge only & Control \\
+Nafion 120 & Liquid-equilibrated $D_w=2.65\times10^{-10}$ (Na) and $2.15\times10^{-10}$~m$^2$/s (K) & Diffusivity reference fragment; do not rank on $D$ alone & P2 reference \\
+BPSH & Vapour H$^+$-drag source, no complete local vector & Non-PFSA sulfonated aromatic search family & P2 family lead \\
+NR211/NR212 & 25/50~$\mu$m PFSA references; matched NR211 active row is 91.63\% diffusive and uses 0.493~kW more electricity than passive & Method, thickness and negative/mechanism-control coupons only & Controls \\
+Microporous polyamines & Very high apparent water-per-charge behaviour in liquid/anionic literature & Explore reciprocal definitions and vapour applicability; not an intrinsic $t_w$ input & P1 exploratory \\
+Plaster--silica gel & Direct EO-dehumidification precedent in Gerlach 2008 & Recover construction and operating conditions & P1 literature recovery \\
+Perforated/porous IEM & Yaroshchuk asymmetric EO architecture & Separate architecture and possible rectification route & P2 architecture \\
+Graded/adsorbing/MOF composite & Local conceptual proposal only & Search taxonomy after a base ionomer is characterized & P2 exploratory \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+No structured local commercial matrix was found for Aquivion, Fumasep,
+Flemion, Aciplex, Gore, SPEEK, PBI, PVA, chitosan or cellulose membranes. This
+does not prove that those families are unsuitable. It means the existing local
+work did not produce traceable candidate rows for them, so they belong in the
+optional targeted gap-filling list after availability checks on the existing
+named leads; they must not trigger another broad desk search or be silently
+treated as screened out.
+
+\begin{plainbox}
+\textbf{Test and evidence-anchor order.} (1) Li$^+$-form CEM/ionomer and a
+supported thin-layer variant; (2) Na$^+$-form CEM/ionomer; (3) non-PFSA
+sulfonated aromatic and microporous chemistry; (4) K$^+$ as a mechanism
+control; (5) porous/perforated or graded composite architectures. H-form PFSA
+grades are controls, not the desired optimum.
+\end{plainbox}
+
+% -----------------------------------------------------------------------------
+\section{Quantitative route evidence and present target gaps}
+\eyebrow{Architecture changes the required membrane region}
+
+\subsection{The Li$^+$ route from V12 to V15}
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{@{}p{23mm}r r Y@{}}
+\toprule
+\textbf{Study} & \textbf{Median flux} & \textbf{Median SEC} & \textbf{Interpretation} \\
+ & [kg,m$^{-2}$,h$^{-1}$] & [kWh/kg] & \\
+\midrule
+V12 Li$^+$, 100~$\mu$m, 0.6~V & 0.442 & 0.125 & Best cross-study ion prior; not a real joint distribution \\
+V13 inverse Li$^+$, 15~$\mu$m, 0.6375~V & 3.57 & 0.131 & Minimum-thickness boundary; conductivity drives uncertainty \\
+V14 supported Li$^+$, 25~$\mu$m, 0.675~V & 2.35 & 0.136 & Adds 0.05~m$\Omega$,m$^2$ support/interface ASR \\
+V15 opposing gradient 65$\rightarrow$80\% RH, 0.55~V & 0.434 & 0.217 & Two vapour interfaces erase much of the bulk-only advantage \\
+V15 favourable gradient 80$\rightarrow$60\% RH, 0.60~V & 1.164 & 0.142 & About 2.68 times the opposing-gradient flux \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+These numbers compare different conditional models and must not be interpreted
+as one development trajectory with identical system boundaries. Their robust
+shared result is the experimental priority: retain the Li$^+$ hypothesis, but
+measure vapour-state conductivity, EO drag, sorption/mobility and both
+interfaces on the same specimen.
+
+\subsection{Named evidence versus current model coordinates}
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{@{}p{36mm}p{43mm}p{29mm}Y@{}}
+\toprule
+\textbf{Comparison} & \textbf{Evidence value} & \textbf{Model coordinate} & \textbf{Reading} \\
+\midrule
+Selemion Li drag vs direct EO & $9.2\pm0.8$ in liquid & Preferred sampled cores around $t_w=20$ or 25--30 & Central value is 2.17 times below $t_w=20$; conditions do not match \\
+Selemion Li drag vs active ERV & 9.2 & Terminal-1 $t_w=100.0608$ & 10.88-fold gap before $D$, $\sigma$, sorption and films \\
+Upper historical Li prior vs active ERV & 15 & $t_w=100.0608$ & 6.67-fold gap; still a cross-study prior \\
+MF-4SC Li conductivity vs active ERV & 0.61~S/m, fully hydrated & Terminal-1 $\sigma_{0.8}=23.1719$~S/m & 38-fold warning-scale gap under non-matched conditions \\
+Nafion drag envelope vs active ERV & 0.3--2.5 & $t_w=100.0608$ & At least 40-fold gap; confirms reference-only role \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+The active-ERV Terminal-1 coordinate is
+\begin{equation}
+  t_w=100.0608,\quad D_{\rm ref}=1.598\times10^{-14}\ \mathrm{m^2/s},
+  \quad \sigma_{\rm ref}=23.1719\ \mathrm{S/m},\quad L=36.9137\ \mu\mathrm{m}.
+\end{equation}
+It is a synthetic inverse target, not ``the optimal membrane.'' In addition,
+the physically relevant passive term is not scalar $D$ by itself but the
+chemical-permeance bundle
+\begin{equation}
+  K_{a,w}\propto \frac{D(a_w,T)}{L}\frac{\partial C_w}{\partial a_w},
+\end{equation}
+together with drag, conductivity/ASR and source/receiver films. A favourable
+ERV gradient can assist passive transport before the pinch, so blindly
+minimising permeance may also remove useful transfer.
+
+\begin{stopbox}
+Do not build a fictitious candidate by taking drag from Selemion, conductivity
+from MF-4SC, diffusivity from Nafion 120 and thickness from an inverse-design
+row. That combination has never existed on one membrane. The previous studies
+used such combinations deliberately as hypothesis space; the next phase must
+test whether the required properties coexist.
+\end{stopbox}
+
+\subsection{Governing experiment sequence and the two distinct O30 boundaries}
+
+\begin{center}\footnotesize
+\begin{tabularx}{\textwidth}{@{}p{31mm}p{42mm}Y@{}}
+\toprule
+\textbf{Model boundary} & \textbf{Current result} & \textbf{Material implication} \\
+\midrule
+Post-ERV O30 & 1,228.27~kg/h; sampled common-bus solutions at 1.00--1.25~V for all seven $D$ coordinates & First system-relevant 25-cm$^2$ coupon target; measure a joint property curve, not $D$ alone \\
+Post-ERV $D$ sensitivity & Known power rises 30.055 to 373.885~kW and conditional window falls $+162.416$ to $-181.413$~kW from $10^{-14}$ to $10^{-9}$~m$^2$/s & High chemical permeance can erase the conditional energy room; one-factor result only \\
+Post-ERV full remaining duty & 0/49 sampled points confirmed; 21 physical no-solutions and 28 numerical/local unresolved & No demonstrated $\leq2$-V solution, but not a global no-go proof \\
+Direct-ERV O30 & 4,365.918~kg/h at the selected diagnostic; bulk direction favourable, surface margin $-0.00797$ & Needs 1.137-times film capacity/diagnostic area for zero surface margin and 1.733-times for $+0.02$; never merge with post-ERV O30 \\
+Direct-ERV full duty & Zero-bulk-gradient pinch; no finite film/area multiplier creates positive surface margin at finite flux & Surface direction remains a diagnostic rather than an active-EO feasibility gate \\
+Direct-ERV symmetric $\pm J$ & Incremental even rate 0.001518~kg/h at O30 (0.348~ppm of $+J$) and zero at full duty & Present quasi-static constant-drag model gives no useful AC rectification; frequency and asymmetry remain untested hypotheses \\
+Direct-active coupled gates & 178/320 transport-closed, 50/320 engineering passes, 0/320 full-coupled passes & Secondary/open architecture, not the first procurement or coupon target \\
+Post-release direct-ERV weather replay & Fixed inverse area 34,425.05~m$^2$; O80/O50/O30 voltages 0.2500/0.1491/0.04155~V and totals 107.856/93.293/88.235~kW & O80/O50 pass the declared engineering screen, O30 fails stack/engineering and all full-system claims are false; not in V8.1 or material evidence \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+The passive ERV+AC reference is 543.741~kW. The post-ERV O30 subtotal of
+381.327~kW leaves a conditional 162.414-kW model budget, not 162.414~kW of
+demonstrated saving. Receiver/sink energy, EO heat rejection, electrodes,
+manifolds, leakage and durability remain outside the closed ledger. The
+direct-active diagnostic is still more conditional and cannot replace this
+first test sequence. The post-release weather replay uses three different
+outdoor duties and a weather-specific inverse voltage root, not a manufactured
+fixed-stack off-design model or a same-duty savings comparison.
+
+% -----------------------------------------------------------------------------
+\section{Qualification plan: turn old search results into candidates}
+\eyebrow{One physical ID, one batch, one conditioning history}
+
+The candidate master should contain physical products or synthesized batches
+only. Terminal-1, M-IDs, V43--V62 coordinates and direct-grid exemplar IDs
+belong in a separate inverse-design scenario table. Every physical candidate
+must retain supplier, product grade, lot/sample, ion form, conditioning,
+temperature, humidity definition, thickness and source provenance.
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{@{}p{17mm}p{45mm}Y@{}}
+\toprule
+\textbf{Gate} & \textbf{Measurement} & \textbf{Why it blocks ranking} \\
+\midrule
+MAT-01 & Sorption, desorption and hysteresis & Defines loading, $\partial C_w/\partial a_w$ and chemical work \\
+MAT-02 & Water $D$/mobility and chemical permeance & Quantifies passive assistance or back-diffusion with an explicit definition \\
+MAT-03 & EO water drag & Defines polarity-odd water per charge under the actual ion form and RH \\
+MAT-04 & Wet through-plane conductivity & Sets membrane ohmic work in the same hydration state \\
+MAT-05 & Membrane and compressed-stack ASR & Exposes contacts/support/interface penalties missing from bulk conductivity \\
+MAT-06 & Dry/wet thickness, swelling and mechanics & Couples permeability, resistance, durability and supported-layer design \\
+MAT-07 & Coupled two-sided net water flux and charge & Tests whether all favourable properties coexist and closes the water balance \\
+MAT-08 & Receiver/electrode/interface compatibility & Determines reversibility, leakage, corrosion and receiver burden \\
+MAT-09 & Provenance, grade and availability & Makes the result procurable, repeatable and rankable \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Recommended first coupon matrix}
+
+\begin{enumerate}
+  \item Confirm whether Selemion CMVN of known construction and lot is
+    obtainable. Prepare Li$^+$, Na$^+$, K$^+$ and H$^+$ forms from the same lot
+    where chemically defensible. Record sheet dimensions, support/open area,
+    minimum order and the number of usable 80-by-80-mm coupons. This is the
+    cleanest local counter-ion test, not a performance ranking.
+  \item Run NR211 and NR212 in the identical fixture as thin/thickness PFSA
+    controls. They validate the method; they do not define the target.
+  \item Add one obtainable non-PFSA sulfonated aromatic/BPSH-like membrane and
+    one microporous/adsorbing architecture coupon when identity and construction
+    are traceable.
+  \item Use split common inlet, foil blank, zero-current positive/negative
+    gradients and ABBA/BAAB polarity blocks. Close source loss against receiver
+    gain; repeat masks, gap and flow; keep $\Delta p$ within $\pm5$~Pa and run
+    separate 0, $\pm20$ and $\pm50$~Pa pressure challenges.
+  \item Use the same physical coupon for sorption, mobility, drag, conductivity
+    and stack ASR wherever the method permits. Freeze replicate count only
+    after the pilot and conditioning-yield check.
+  \item Replay measured property curves first at post-ERV O30 and only then in
+    direct active-ERV if measured passive transfer and films justify it. Report
+    solved current density and area, but apply neither a 21-A/m$^2$ limit nor an
+    exploratory area acceptance cap.
+\end{enumerate}
+
+The canonical starting fixture has a 50-by-50-mm maximum active aperture,
+approximately 80-by-80-mm coupon, 110-by-110-mm outer plates and interchangeable
+1/2/4-mm symmetric gaps, with 2~mm nominal. Six L/min per side is the
+film-characterisation mode, not a universal measurement flow: the declared
+low-signal detectability limits are 0.69 and 2.29~L/min per side, so use a
+separately calibrated low-flow mode or integrating water balance. The active
+channel contains 5.00~mL and proposed non-membrane dead volume is 1.222~mL per
+side; both fixture dimensions and loads are starting values to be measured.
+A quiescent or shallow closed cell can support transient inventory work, but it
+cannot represent a fixed-boundary steady state without an explicit sink and
+boundary evolution. The 25-cm$^2$ aperture is a laboratory fixture choice, not
+a system-area cap.
+
+% -----------------------------------------------------------------------------
+\section{Conflicts and superseded rules retained explicitly}
+\eyebrow{No silent harmonisation}
+
+\begin{center}\footnotesize
+\begin{tabularx}{\textwidth}{@{}p{31mm}Y Y@{}}
+\toprule
+\textbf{Conflict} & \textbf{What differs} & \textbf{Required treatment} \\
+\midrule
+Two Nafion implementations & Older local model uses 1,980~kg/m$^3$, polynomial $D$ and $n_d=\mathrm{clip}(2.5\lambda/22)$; newer library uses 1,970~kg/m$^3$, Motupally $D$ and drag scenarios 0.3/1/2.5 & Name the implementation and conditioning; never merge into a same-sample vector \\
+N117 thickness & Historical 178~$\mu$m versus current grade library 183~$\mu$m & Report 178--183~$\mu$m with source/condition \\
+Terminal-1 aliases & \texttt{terminal1\_anchor}, \texttt{terminal1\_post\_erv\_anchor}, \texttt{legacy\_O30\_case\_94\_material} and \texttt{Terminal1\_optimum} are the same synthetic vector & Map to one scenario record; not a material \\
+\texttt{O30\_final\_material} & Comparator label lacks a matched local property-source row & Do not auto-alias to Terminal-1 \\
+M14424/M14425 & Legacy material-sweep V8 report and atlas disagree on an extreme-row ID & Preserve both until the raw grid row resolves the label \\
+OFAT versus global conductivity & Local high-conductivity saturation appears weak while broad screens rank conductivity strongly & State sampled range and reference point; this is scale dependence, not a contradiction \\
+Standalone $D$ & Older studies rank scalar/PFSA-relative $D$; current closure uses $D(\partial C_w/\partial a_w)/L$ & Keep old $D$ work as one-factor sensitivity only \\
+MAT identifier collision & Historical MAT-01--MAT-05 and current MAT-01--MAT-09 assign different properties to the same IDs & Join by property meaning and schema/source version, never MAT ID alone \\
+Relocated report manifests & Report-level relative paths no longer resolve after copying into V8/V8.1, although top release hashes pass & Use top MANIFEST for copy integrity and original canonical manifests for scientific provenance \\
+Frozen report copies & Code/data copied into report bundles duplicate maintained top-level sources & Use for report reproduction, not as independent implementations or evidence \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+The following constraints are also superseded as present acceptance rules:
+20- or 100-m$^2$ area gates; a 21-A/m$^2$ current-density gate; the historical
+2,000-A/m$^2$ dense-ionomer screen as a product limit; 5-V material sweeps;
+Nafion as the target; positive passive surface direction as an active-EO
+feasibility gate; and low $D$ as a sufficient material criterion. Preferred
+material work remains below 2~V, while area and current density are reported as
+engineering diagnostics.
+
+% -----------------------------------------------------------------------------
+\Needspace{26\baselineskip}
+\section{Decision and concrete next move}
+\eyebrow{The search is consolidated; candidate ranking is not yet earned}
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{@{}p{48mm}p{22mm}Y@{}}
+\toprule
+\textbf{Decision item} & \textbf{Status} & \textbf{Action} \\
+\midrule
+Previous material-search knowledge recovered & \textcolor{Green}{\textbf{COMPLETE}} & Use the generated named-material, literature-lead, route, target, alias and source registers \\
+Latest controlled delivery checked & \textcolor{Green}{\textbf{COMPLETE}} & V8.1 verifies 107/107 hashes and declares no scientific delta from governing V8 \\
+Start from zero & \textcolor{Red}{\textbf{NO}} & Preserve V4--V62 and current model results as the search basis \\
+Lead chemistry/ion direction & \textcolor{Green}{\textbf{READY}} & Li$^+$-form CEM/ionomer first; retain Na$^+$ and non-PFSA/microporous alternatives \\
+First evidence-anchor coupon & \textcolor{Green}{\textbf{READY}} & Check Selemion CMVN supply/construction and prepare ion-form controls if obtainable \\
+First system target & \textcolor{Green}{\textbf{READY}} & Post-ERV O30 in the 25-cm$^2$ controlled-flow fixture \\
+Direct EO inside ERV & \textcolor{Orange}{\textbf{OPEN}} & Secondary replay only after measured passive transfer and film behaviour; present full-coupled gate is 0/320 \\
+Commercial procurement ranking & \textcolor{Orange}{\textbf{OPEN}} & Populate supplier, grade, lot, thickness, availability and E2 evidence; no current row qualifies as a lead solution \\
+Measured material ranking & \textcolor{Orange}{\textbf{OPEN}} & Complete MAT-01--MAT-09 on identifiable same-sample groups \\
+Net system energy claim & \textcolor{Red}{\textbf{NO-GO}} & Requires measured receiver, heat, fan/manifold, electrode, leakage and durability ledger \\
+Additional broad hypothetical sweeps & \textcolor{Red}{\textbf{STOP}} & Only replay measured candidates or a named subsystem uncertainty \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{mainbox}
+\textbf{Immediate team task.} Build an availability sheet from the existing
+leads, not a fresh unstructured material search. For each candidate, record
+supplier, exact grade, ion form/exchange route, construction/support,
+thickness, sheet dimensions, usable 80-by-80-mm coupon count, lot/sample
+availability and source. Then select a small coupon set
+that maximizes mechanism discrimination: Selemion CMVN ion forms, NR211/NR212
+controls, one non-PFSA sulfonated candidate and one microporous/adsorbing or
+porous-architecture lead. No candidate should be called ``optimal'' until the
+same-sample bundle is measured and replayed.
+\end{mainbox}
+
+% -----------------------------------------------------------------------------
+\clearpage
+\section{Machine-readable handoff and canonical evidence}
+\eyebrow{The report is a view; the registers are the working interface}
+
+The handoff was generated by
+\evidencepath{scripts/build_material_search_handoff_v1.py}. The local evidence
+contract passes, including source existence, source-ID resolution, the 2,304
+row legacy material-sweep V8 grid, the V4 $t_w=150$ maximum, the four V62
+thresholds, the two Nafion implementations, both controlled-release checksum
+sets and the 45-row Downloads manifest. Eight targeted tests pass.
+
+\begin{itemize}
+  \item \evidencepath{data/named_material_register.csv}: physical/named
+    material and control records;
+  \item \evidencepath{data/literature_lead_register.csv}: chemistry and
+    architecture leads not yet promoted to products;
+  \item \evidencepath{data/candidate_availability_sheet.csv}: pre-populated
+    availability, identity and first-question worklist;
+  \item \evidencepath{data/development_route_register.csv}: Li/Na/K,
+    direct-EO and direct-active-ERV routes;
+  \item \evidencepath{data/synthetic_target_register.csv}: Terminal-1,
+    M-IDs and other non-material model coordinates;
+  \item \evidencepath{data/qualification_matrix.csv}: 90 candidate-by-MAT
+    evidence cells;
+  \item \evidencepath{data/gap_to_current_targets.csv}: quantitative gap
+    comparisons with their condition caveats;
+  \item \evidencepath{data/historical_screen_milestones.csv}: retained V4--V62
+    and current search chronology;
+  \item \evidencepath{data/model_conflict_register.csv} and
+    \evidencepath{data/alias_register.csv}: no-silent-merge rules;
+  \item \evidencepath{data/source_inventory.csv}: 75 source paths, sizes and
+    SHA-256 hashes;
+  \item \evidencepath{data/handoff_summary.json} and
+    \evidencepath{data/output_manifest.csv}: decision and generated-file audit.
+\end{itemize}
+
+The governing current energy, gradient and decision interpretation remains in
+the V8 Current Result and Decision Report delivered unchanged through V8.1.
+The model-closure report is supporting provenance. This material addendum
+neither changes that claim boundary nor promotes conditional post-ERV or
+active-ERV power differences to net savings.
+
+\begin{stopbox}
+Permitted wording is: \emph{the previous studies identify a prioritized
+material and ion-family search space, with Selemion CMVN as the strongest local
+evidence-anchor coupon and Li$^+$ as the leading counter-ion hypothesis.}
+Do not state that an optimal membrane, a complete procurement shortlist or a
+net energy-saving material has been identified.
+\end{stopbox}
+
+\vfill
+{\sffamily\scriptsize\color{Slate}
+End of prior-material-search consolidation. All conclusions refer to the local
+evidence state indexed on 31 August 2026.}
+
+\end{document}

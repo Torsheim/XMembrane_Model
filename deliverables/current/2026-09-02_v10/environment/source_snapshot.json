@@ -1,0 +1,2344 @@
+{
+  "file_count": 333,
+  "files": [
+    {
+      "archive_member": "XMembrane_Trond_Study/.github/workflows/tests.yml",
+      "entry_type": "regular_file",
+      "path": ".github/workflows/tests.yml",
+      "sha256": "45a6fd0d8b2bfb0f79a9c6f3019a57cc68dff0cf85fc08e5f71e31c9a346eba5",
+      "size_bytes": 1030
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/.gitignore",
+      "entry_type": "regular_file",
+      "path": ".gitignore",
+      "sha256": "b78578a0b4a637966bbab89e65f713ad717bf2bb550c7d7dc704fa49f6900d20",
+      "size_bytes": 898
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/README.md",
+      "entry_type": "regular_file",
+      "path": "README.md",
+      "sha256": "3da085f1be7a4ea9df6bc2807e7b6294dfc5202702710faa7b68b2a6a6324a7c",
+      "size_bytes": 8825
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/config/capacitive_electrode_study_v1.json",
+      "entry_type": "regular_file",
+      "path": "config/capacitive_electrode_study_v1.json",
+      "sha256": "aee511c82c6540ebfd23c40b1d9d420b53616d2d87af92ca0c09dc1cbd468e9d",
+      "size_bytes": 5887
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/config/closed_receiver_system_v12_config.json",
+      "entry_type": "regular_file",
+      "path": "config/closed_receiver_system_v12_config.json",
+      "sha256": "3801a3c1b5c80a30c35cb48c4b93b4982432c927ed55fe92dc9c30d2989daa59",
+      "size_bytes": 7245
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/config/direct_eo_erv_study_v1.json",
+      "entry_type": "regular_file",
+      "path": "config/direct_eo_erv_study_v1.json",
+      "sha256": "f91a1c75f5d642d4103e0149223f5c4094c7eed8be84dd2886f5fb1fd2e0c2f3",
+      "size_bytes": 8587
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/config/direct_eo_low_voltage_study_v1.json",
+      "entry_type": "regular_file",
+      "path": "config/direct_eo_low_voltage_study_v1.json",
+      "sha256": "a4ab1bba3113a11d304b4459a314450a7813ea5ade5b669408027d868cd2a685",
+      "size_bytes": 3908
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/config/direct_erv_gradient_closure_v1.json",
+      "entry_type": "regular_file",
+      "path": "config/direct_erv_gradient_closure_v1.json",
+      "sha256": "a060aca5599b6dcfc784455d4cfdfef571bcfeb1c6fb0372693c483ce30e34ce",
+      "size_bytes": 1475
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/config/eo_vapor_boundary_analysis_v1.json",
+      "entry_type": "regular_file",
+      "path": "config/eo_vapor_boundary_analysis_v1.json",
+      "sha256": "6dc47ac17cc4cfd1c0fc936eb3f129c50bcb1752179024f1cb60b6b45205d28c",
+      "size_bytes": 6220
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/config/eo_vapor_test_cell_design.json",
+      "entry_type": "regular_file",
+      "path": "config/eo_vapor_test_cell_design.json",
+      "sha256": "77a73ec801b34a80f11a8009c126d302aa29e9132498d8d1e6af7715a475a6e4",
+      "size_bytes": 6914
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/config/final_delivery_check_v1.json",
+      "entry_type": "regular_file",
+      "path": "config/final_delivery_check_v1.json",
+      "sha256": "823878726e9e43eff0520e26fb9772f98172cb96dae6e551b626f5576e4d6228",
+      "size_bytes": 7095
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/config/fom_assessment_v1.json",
+      "entry_type": "regular_file",
+      "path": "config/fom_assessment_v1.json",
+      "sha256": "3108feb8e63a96a3d497cf1858d3a23b3fec5d0cb5123da6dbe265831491b797",
+      "size_bytes": 1578
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/config/material_parameter_windows_with_nafion_v1.json",
+      "entry_type": "regular_file",
+      "path": "config/material_parameter_windows_with_nafion_v1.json",
+      "sha256": "fb4e58f1ad3e8d379944260db7691c6a261ad1e0ec0a037fb6a0c21d28f091ba",
+      "size_bytes": 5986
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/config/membrane_operating_region_study_v1.json",
+      "entry_type": "regular_file",
+      "path": "config/membrane_operating_region_study_v1.json",
+      "sha256": "f274dabde6d08051470fea228802df9ac6be986d16e19623d3758a13f4acad0f",
+      "size_bytes": 5125
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/config/open_questions_analysis_v1.json",
+      "entry_type": "regular_file",
+      "path": "config/open_questions_analysis_v1.json",
+      "sha256": "d00180f4f956b0840d4b62100d8d837fb0b9dfc488a48baf38ccd1bcf3b0931e",
+      "size_bytes": 12391
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/config/post_erv_eo_design_frontier_v1.json",
+      "entry_type": "regular_file",
+      "path": "config/post_erv_eo_design_frontier_v1.json",
+      "sha256": "59922ec0336f36ba985d0977c6eb85fa8935659bb3a6543609ec07023886925b",
+      "size_bytes": 3990
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/config/post_erv_eo_percentage_sweep_v1.json",
+      "entry_type": "regular_file",
+      "path": "config/post_erv_eo_percentage_sweep_v1.json",
+      "sha256": "357c750f88848d2e001c7207b450e223ec33a5ebf40a2461616615d37c7fbb71",
+      "size_bytes": 3146
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/config/post_erv_full_eo_study_v1.json",
+      "entry_type": "regular_file",
+      "path": "config/post_erv_full_eo_study_v1.json",
+      "sha256": "5cc75621e4d7ec2a3ddab60abcfb0f77d6b01e44428fe32d9f52b5643351b376",
+      "size_bytes": 4761
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/config/pre_receiver_axial_v3_config.json",
+      "entry_type": "regular_file",
+      "path": "config/pre_receiver_axial_v3_config.json",
+      "sha256": "d4d4a1b8d2e70aaea75c99567d6aa153a22d8a4d322bc477ab3a47cd9e9fa126",
+      "size_bytes": 2398
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/config/project_closure_check_v1.json",
+      "entry_type": "regular_file",
+      "path": "config/project_closure_check_v1.json",
+      "sha256": "f1159a3235d198b738572335477ce4f678d7e4f62ad8c63eb0ad06231a22c192",
+      "size_bytes": 5564
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/config/system_energy_closure_references.json",
+      "entry_type": "regular_file",
+      "path": "config/system_energy_closure_references.json",
+      "sha256": "f8759eeb98e6dce9de00a248a0073ac4063e6125e8ed6b41fd810604f02f48d2",
+      "size_bytes": 824
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/config/workshop_common_voltage_diffusivity_v1.json",
+      "entry_type": "regular_file",
+      "path": "config/workshop_common_voltage_diffusivity_v1.json",
+      "sha256": "e0a54dba9835dcad6644dc7d965fb67bc87c4005391a8234e0b248f4e97e1cfe",
+      "size_bytes": 2139
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/config/workshop_diffusivity_energy_v1.json",
+      "entry_type": "regular_file",
+      "path": "config/workshop_diffusivity_energy_v1.json",
+      "sha256": "ebe53e8a7809254e209cdda3273ac7b6d7b0de4acfd51800a33022a9e51c8ea3",
+      "size_bytes": 4639
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/data/golden/direct_liquid/crossover_summary.csv",
+      "entry_type": "regular_file",
+      "path": "data/golden/direct_liquid/crossover_summary.csv",
+      "sha256": "b20942e5f751c9072afbdba6fa3ba9ca267ccd3a35d67ce6eefcde911a918486",
+      "size_bytes": 1441
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/data/golden/o30/overall_best.csv",
+      "entry_type": "regular_file",
+      "path": "data/golden/o30/overall_best.csv",
+      "sha256": "2095fdebe6c1941856b80185e226951ea31d79ae2619221ac5be7f6beafae164",
+      "size_bytes": 5008
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/data/golden/o30/required_area_1v_convergence_v1.csv",
+      "entry_type": "regular_file",
+      "path": "data/golden/o30/required_area_1v_convergence_v1.csv",
+      "sha256": "19c7f28ca096b1ad114db28488aefd834242ad12978e870a28340dca6023dbab",
+      "size_bytes": 451
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/data/golden/o30/required_area_1v_curve_v1.csv",
+      "entry_type": "regular_file",
+      "path": "data/golden/o30/required_area_1v_curve_v1.csv",
+      "sha256": "a04f7ba0653a297e7b1999f82c0961897fe84f67cd941ef18b667e3e41ed73d6",
+      "size_bytes": 2098
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/data/golden/o50/best_by_drag.csv",
+      "entry_type": "regular_file",
+      "path": "data/golden/o50/best_by_drag.csv",
+      "sha256": "1e7dee443a22b508d216807480a69afa02ce905daac0149e1bb0602a54688435",
+      "size_bytes": 6736
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/data/golden/thermodynamic_audit/axial_voltage_flux_budget.csv",
+      "entry_type": "regular_file",
+      "path": "data/golden/thermodynamic_audit/axial_voltage_flux_budget.csv",
+      "sha256": "bea963a63b1a507eaa0d213b83e26bfa7cc7f7331172bf7acd08e6e8a0d783c4",
+      "size_bytes": 152228
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/data/reference/v11_compat/axial_base_config_used.json",
+      "entry_type": "regular_file",
+      "path": "data/reference/v11_compat/axial_base_config_used.json",
+      "sha256": "5b31218605f4f287fdeffefaf5e467c38ba2f6dfb1871e3bdddc1d5c5fac6e1b",
+      "size_bytes": 2398
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/data/reference/v11_compat/candidate_materials.csv",
+      "entry_type": "regular_file",
+      "path": "data/reference/v11_compat/candidate_materials.csv",
+      "sha256": "4c567c6ee9a77a1825cc9ef8eaf21e387c81707f86109abcf16c7781850d793d",
+      "size_bytes": 2576
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/data/reference/v11_compat/source_manifest.json",
+      "entry_type": "regular_file",
+      "path": "data/reference/v11_compat/source_manifest.json",
+      "sha256": "cd1c1633517acce4ee4b94125fccb2699420b8e5577cd6cb37e0868163fefe90",
+      "size_bytes": 1402
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/README.md",
+      "entry_type": "regular_file",
+      "path": "deliverables/README.md",
+      "sha256": "12476096e08c1ca37ff85532035014b8d8aafa5bf91eb7e87fd769bf91f8d823",
+      "size_bytes": 793
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/MANIFEST.json",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/MANIFEST.json",
+      "sha256": "6b83c446fc44f109790a043063d39012df54eb7c3d64c50e53de9c4552ca76a1",
+      "size_bytes": 48876
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/README.md",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/README.md",
+      "sha256": "bde8ee0e9ed9d95511f677494f9eded2cd4a3b1807d1262f11b7a25286dbc54b",
+      "size_bytes": 9167
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/RELEASE_NOTES.md",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/RELEASE_NOTES.md",
+      "sha256": "f5bc98fbc80be855c6ec3f2242d0b1b0b366ab1bcfc470f9e9bccbdc49a2b3a5",
+      "size_bytes": 4195
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/SHA256SUMS",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/SHA256SUMS",
+      "sha256": "346174d31e45c292f98d18fe81f8a668141cbd0fcc2a23f8174449c2cc44d8fe",
+      "size_bytes": 12108
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/archives/HeiQ_XMembrane_2026-08-31_v8_1_results.zip",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/archives/HeiQ_XMembrane_2026-08-31_v8_1_results.zip",
+      "sha256": "322a9c9a1cd992dc4b64a7aca1cbbb6dc9f58cb16063b7409c8b61c448541357",
+      "size_bytes": 2773892
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/archives/HeiQ_XMembrane_2026-08-31_v8_1_source.zip",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/archives/HeiQ_XMembrane_2026-08-31_v8_1_source.zip",
+      "sha256": "6238f275f5844fd89274c57668975812ef85c50965a7864eda88a1e7004c3763",
+      "size_bytes": 241412
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/package_release.py",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/package_release.py",
+      "sha256": "8166e3b05e08d425f6ef9dd311691c40e92f435cdebc02c8ac864dab7ee6103c",
+      "size_bytes": 100373
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/reports/current_result/HeiQ_XMembrane_Current_Result_and_Decision_Report_2026-08-31_v8.pdf",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/reports/current_result/HeiQ_XMembrane_Current_Result_and_Decision_Report_2026-08-31_v8.pdf",
+      "sha256": "26abb43769fdf0b28e86d4369da1b409cfb1ce45b59b228728edb3daf7c60216",
+      "size_bytes": 1092450
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/reports/current_result/HeiQ_XMembrane_Current_Result_and_Decision_Report_2026-08-31_v8.tex",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/reports/current_result/HeiQ_XMembrane_Current_Result_and_Decision_Report_2026-08-31_v8.tex",
+      "sha256": "0b0afdb066eff7d0fdd981908de4cbcb20365b3dc9445804051075599fcf6c82",
+      "size_bytes": 44730
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/reports/current_result/README.md",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/reports/current_result/README.md",
+      "sha256": "3328b2261184d6faedcfb35fc2cd30266c1eedc9fec0518ba219a6d72da3fa43",
+      "size_bytes": 1099
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/reports/current_result/source_manifest.json",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/reports/current_result/source_manifest.json",
+      "sha256": "876c5c4635e0868eb01ab3a84356fe2ba999b59b9c45f31f14e532c81d5cc21e",
+      "size_bytes": 10293
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/reports/eo_vapor_cell_en/HeiQ_EO_Vapour_Cell_Boundary_Conditions_and_Sizing_2026-08-31_v2.pdf",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/reports/eo_vapor_cell_en/HeiQ_EO_Vapour_Cell_Boundary_Conditions_and_Sizing_2026-08-31_v2.pdf",
+      "sha256": "023390952feec6b685466dd68802080dc5df1ed46160e69af55c7ae2c568d0a4",
+      "size_bytes": 1130913
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/reports/eo_vapor_cell_en/HeiQ_EO_Vapour_Cell_Boundary_Conditions_and_Sizing_2026-08-31_v2.tex",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/reports/eo_vapor_cell_en/HeiQ_EO_Vapour_Cell_Boundary_Conditions_and_Sizing_2026-08-31_v2.tex",
+      "sha256": "7bab024109672363a4dc16fd21ca9e0158361dfad98640a53587c8478cf218cd",
+      "size_bytes": 40829
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/reports/eo_vapor_cell_en/README.md",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/reports/eo_vapor_cell_en/README.md",
+      "sha256": "401df82c91bee8208084ecafd25a297c772a6ac0b8222af1213045fe7cee7a76",
+      "size_bytes": 2205
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/reports/eo_vapor_cell_en/source_manifest.json",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/reports/eo_vapor_cell_en/source_manifest.json",
+      "sha256": "df41cc5a1c5956f1ec6e0d18e7d07113147654ae57b3b08fe125f78daa886bfa",
+      "size_bytes": 10532
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/reports/model_closure/HeiQ_XMembrane_Model_Closure_and_Material_Handoff_2026-08-31.pdf",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/reports/model_closure/HeiQ_XMembrane_Model_Closure_and_Material_Handoff_2026-08-31.pdf",
+      "sha256": "0ca78fa3b264ae838b1047fa1b18acb46dd075849b03c61bdd54211bd893779b",
+      "size_bytes": 342036
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/reports/model_closure/HeiQ_XMembrane_Model_Closure_and_Material_Handoff_2026-08-31.tex",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/reports/model_closure/HeiQ_XMembrane_Model_Closure_and_Material_Handoff_2026-08-31.tex",
+      "sha256": "0c8326fd33bb99ec2e4cf13540ff9ebe764aaa313b31f78ddba653d10b65e4e9",
+      "size_bytes": 25725
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/reports/model_closure/README.md",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/reports/model_closure/README.md",
+      "sha256": "fbcee8355b4247233bf6c40e3300ebbadf69deb3eebbcfe291cd9f06b06be4f6",
+      "size_bytes": 3087
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/reports/model_closure/source_manifest.json",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/reports/model_closure/source_manifest.json",
+      "sha256": "2e5b7f827f03544037ce22aac2039f4f20cc71764bce2d053b1885ddbfc0cf97",
+      "size_bytes": 4226
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/common_voltage/README.md",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/common_voltage/README.md",
+      "sha256": "3ee3f6754ef2145bfdf8df9bc495f323312daa88f9665ccfdd1308c39bb49ccc",
+      "size_bytes": 5368
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/common_voltage/audit.json",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/common_voltage/audit.json",
+      "sha256": "24a0ffaced5c540e76f3a762fa28b5ffd3d40c2c3ff2b05a4311e921a9fe3105",
+      "size_bytes": 1249
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/common_voltage/cases.csv",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/common_voltage/cases.csv",
+      "sha256": "ed3cd504210851cddc26afd0f1383f3f4a4252bba8c9a8b862eb8bfebcc35eeb",
+      "size_bytes": 196299
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/common_voltage/diffusivity_envelope.csv",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/common_voltage/diffusivity_envelope.csv",
+      "sha256": "940bd50f1219084c6c200672f598749d39c241150f5482ce95dda308cc59357e",
+      "size_bytes": 4592
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/common_voltage/local_bracket_probe.csv",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/common_voltage/local_bracket_probe.csv",
+      "sha256": "74062b94db9410e354baa59c923f22690cba9cc86e0907eb61bffeb7792017db",
+      "size_bytes": 56024
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/common_voltage/segment_convergence.csv",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/common_voltage/segment_convergence.csv",
+      "sha256": "4361380b374cb22df6cc01531d5b7f6d45a81ea4ccdbdbed0e5dbfe605e3e2c3",
+      "size_bytes": 22850
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/common_voltage/source_manifest.json",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/common_voltage/source_manifest.json",
+      "sha256": "4729bbaa34e80974e551a12c4396f249cb7c167beb5de4465d8ee33ec6ebda87",
+      "size_bytes": 2285
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/direct_active_erv/DECISION_SUMMARY.json",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/direct_active_erv/DECISION_SUMMARY.json",
+      "sha256": "cd32596573e5516d349bd9a49f5d1049015fbacb3dbafeb3c3376378f766222e",
+      "size_bytes": 2418
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/direct_active_erv/SUMMARY.md",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/direct_active_erv/SUMMARY.md",
+      "sha256": "578a6261f1320d93009afbc19a2e251319c1769c0fe3c713580dbfc0d90b5af7",
+      "size_bytes": 1705
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/direct_active_erv/gate_counts.csv",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/direct_active_erv/gate_counts.csv",
+      "sha256": "f7ed1df8c8002a8ecebe017e16ce39e399114b47e065b4b2df866949a4a71db9",
+      "size_bytes": 713
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/direct_active_erv/segment_convergence.csv",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/direct_active_erv/segment_convergence.csv",
+      "sha256": "90e9bd636eb46afff510ce0682e1f4668e84f7f84b53d8f5f1fed789050f45c4",
+      "size_bytes": 61993
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/direct_active_erv/selected_cases.csv",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/direct_active_erv/selected_cases.csv",
+      "sha256": "6ccb1b6fb2d2b986a6e909f78bb585074d9d22ff9a8e71512f8d5093b1aeb9de",
+      "size_bytes": 20807
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/direct_active_erv/study_audit.json",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/direct_active_erv/study_audit.json",
+      "sha256": "9fc1e169404c26d8579a40504a0b46457b51a8cc68d93eda789874b4b22239de",
+      "size_bytes": 10899
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/direct_active_erv/target_summary.csv",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/direct_active_erv/target_summary.csv",
+      "sha256": "5de5debd0023d4955da863f0819a6bd200e76d48000a4b019eb606a0a871722a",
+      "size_bytes": 1032
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/direct_erv_gradient/SUMMARY.md",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/direct_erv_gradient/SUMMARY.md",
+      "sha256": "c89d214575deee470f2d7409d1ecb59056158ec8512e2792010d904c57706423",
+      "size_bytes": 1535
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/direct_erv_gradient/audit.json",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/direct_erv_gradient/audit.json",
+      "sha256": "5ef72174495f3089ca0673cb5f7d1336c6ed5ef59511f61099381be6e7569ccc",
+      "size_bytes": 1197
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/direct_erv_gradient/case_summary.csv",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/direct_erv_gradient/case_summary.csv",
+      "sha256": "54e50859aad97a26dce5ae48cad1c4ed79ae6d0459ceac3a53bc593be94aa516",
+      "size_bytes": 1579
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/direct_erv_gradient/film_area_sweep.csv",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/direct_erv_gradient/film_area_sweep.csv",
+      "sha256": "af2f22d177107b7ddb08e61d0c19343b5e100a6f8cbce2199fab4a5eb3a16083",
+      "size_bytes": 45554
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/direct_erv_gradient/signed_triplet.csv",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/direct_erv_gradient/signed_triplet.csv",
+      "sha256": "4cd3bd9d755941962e484f8fa81161a3c35337a1e97ecdd29ae4bc957212f26e",
+      "size_bytes": 8734
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/direct_erv_gradient/source_manifest.json",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/direct_erv_gradient/source_manifest.json",
+      "sha256": "be58acc101608336a9823f5d4d18e538a2c4be48afd5f6cf07dfbec0efab7803",
+      "size_bytes": 2916
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/eo_vapor_boundary/SUMMARY.md",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/eo_vapor_boundary/SUMMARY.md",
+      "sha256": "4bacdc798db4ebf6df7caa42b361e350ab204b1577dbfb589ef8d14e13aa2ec4",
+      "size_bytes": 5100
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/eo_vapor_boundary/aperture_design_identifiability.csv",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/eo_vapor_boundary/aperture_design_identifiability.csv",
+      "sha256": "fad9f1cb2b5f708f15608dd0f38bde4e3ea562988b10005b7aaa86dd2ec1f06d",
+      "size_bytes": 622
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/eo_vapor_boundary/audit.json",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/eo_vapor_boundary/audit.json",
+      "sha256": "86465289c15df2deeda7456cc0293ea13c653f4e23a8b54bf611e35fdc2fdc3b",
+      "size_bytes": 536
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/eo_vapor_boundary/combined_sensitivity_rank.csv",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/eo_vapor_boundary/combined_sensitivity_rank.csv",
+      "sha256": "9dca4200d99a8dbdb369f8832fa8a4ada01b5f16b320044aef485ad4ae613003",
+      "size_bytes": 47523
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/eo_vapor_boundary/config_used.json",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/eo_vapor_boundary/config_used.json",
+      "sha256": "02492ed650bff72debe261c2868f2f541f8884769f1e748743aa93a16cccf0da",
+      "size_bytes": 6986
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/eo_vapor_boundary/nominal_cases.csv",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/eo_vapor_boundary/nominal_cases.csv",
+      "sha256": "8c7cf03003e53e9944a8c4f6d95e2f8317c47d843ae7a8d0d6122e6366b0d84f",
+      "size_bytes": 920
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/eo_vapor_boundary/scenario_summary.csv",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/eo_vapor_boundary/scenario_summary.csv",
+      "sha256": "9c03cc83040448c375d7166c464f19b20db8bd729fa991f45281d8b8b336c5c7",
+      "size_bytes": 2185
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/eo_vapor_boundary/source_manifest.json",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/eo_vapor_boundary/source_manifest.json",
+      "sha256": "2d6ce28a546e86172dd24d0f791d35bdf42cfee2970b2c365277a1626a12c9cd",
+      "size_bytes": 5320
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/eo_vapor_sizing/SUMMARY.md",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/eo_vapor_sizing/SUMMARY.md",
+      "sha256": "6d95ec563edefef5b83a38372c952c19f21d2c4b23ae326681d40a5a5e029ca5",
+      "size_bytes": 4658
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/eo_vapor_sizing/aperture_insert_dimensions.csv",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/eo_vapor_sizing/aperture_insert_dimensions.csv",
+      "sha256": "4a54843fc9f9fd4dba3699685a7ee3cceeda95e260fc028ebbf673869a2c80c0",
+      "size_bytes": 2427
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/eo_vapor_sizing/audit.json",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/eo_vapor_sizing/audit.json",
+      "sha256": "12632b20fee31fc817224dd59ccd589558927c1c8da9df39d277092724a45808",
+      "size_bytes": 1660
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/eo_vapor_sizing/boundary_activity_mismatch_screen.csv",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/eo_vapor_sizing/boundary_activity_mismatch_screen.csv",
+      "sha256": "8f16a1008b3971344548bd6bba6f12beca2cb53e98b7b70722f0bfeb6b85db43",
+      "size_bytes": 9723
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/eo_vapor_sizing/cell_dimension_tradeoffs.png",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/eo_vapor_sizing/cell_dimension_tradeoffs.png",
+      "sha256": "01bc819831d8e4736bd8147031f3867be7e47e641b712acfe31d24bfc4250b09",
+      "size_bytes": 239567
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/eo_vapor_sizing/closed_cell_dimension_screen.csv",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/eo_vapor_sizing/closed_cell_dimension_screen.csv",
+      "sha256": "e6dc5671202a22f0a782a6b6c2c43ae797d2719fa104a7fac29fbd7980449453",
+      "size_bytes": 5055
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/eo_vapor_sizing/config_used.json",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/eo_vapor_sizing/config_used.json",
+      "sha256": "0b6a264f1076d74fc4f78a4605499eb994fd82de5597a6034e4bf69de0970071",
+      "size_bytes": 7819
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/eo_vapor_sizing/detectability_flow_limits.csv",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/eo_vapor_sizing/detectability_flow_limits.csv",
+      "sha256": "f28eaa89ba33d5d766ee8ac2012b744ada05ae9b39228b4375a3d8279db9412e",
+      "size_bytes": 993
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/eo_vapor_sizing/fixture_dimension_basis.csv",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/eo_vapor_sizing/fixture_dimension_basis.csv",
+      "sha256": "6f3c79883772b7f1b9d40da88ee520a922e788da4d245867496dc527ecf199ac",
+      "size_bytes": 855
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/eo_vapor_sizing/gross_signal_envelope_25cm2.png",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/eo_vapor_sizing/gross_signal_envelope_25cm2.png",
+      "sha256": "3525b9777da26b135cb92fa80f37555c5e7cbbd4bd1e511ef4f074f57f5b210a",
+      "size_bytes": 97053
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/eo_vapor_sizing/internal_volume_budget.csv",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/eo_vapor_sizing/internal_volume_budget.csv",
+      "sha256": "3b7c9bfd2bcfb3843246d6b5c508ad5d6bb9e5a813bfdf50a048eed5e36c84af",
+      "size_bytes": 651
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/eo_vapor_sizing/membrane_diffusion_time_scale.csv",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/eo_vapor_sizing/membrane_diffusion_time_scale.csv",
+      "sha256": "ebe8e2191ceb519819dd0ffb850e7a865c8ff585cea23a119d607e3262fcce8b",
+      "size_bytes": 1256
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/eo_vapor_sizing/plate_deflection_screen.csv",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/eo_vapor_sizing/plate_deflection_screen.csv",
+      "sha256": "0a0ec819153ab856ff69fd56d8844a2716630b39f8ab9fb416a54028236b6763",
+      "size_bytes": 5428
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/eo_vapor_sizing/source_manifest.json",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/eo_vapor_sizing/source_manifest.json",
+      "sha256": "1c96a4e92a33be70695b073e22d6a3d5d6acc716c0bc5b33bd001469bb4c6d1c",
+      "size_bytes": 5225
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/fom/audit.json",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/fom/audit.json",
+      "sha256": "90a34b845762a57f494e8c38107368264748910514abd3bb73bc89371067ee2b",
+      "size_bytes": 362
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/fom/device_fom.csv",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/fom/device_fom.csv",
+      "sha256": "c7d6decfb97fd5be3c2df49d056ad1299cb135d4083e98d20b84860d83a7899f",
+      "size_bytes": 1949
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/fom/economic_sensitivity.csv",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/fom/economic_sensitivity.csv",
+      "sha256": "a90bb0e9c5e7a93bda2e9d2a63d73c12920057eaf79c964b38a92d1843d3c55d",
+      "size_bytes": 6342
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/fom/operating_point.csv",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/fom/operating_point.csv",
+      "sha256": "c8bc030a0cb9bd9d78178aaea5ae53e24eaaff76eb296d77476598ce2fc16ff7",
+      "size_bytes": 615
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/fom/source_manifest.json",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/fom/source_manifest.json",
+      "sha256": "12653bd8aef71357378455f0638e5d24d061d8462b40330eed7f21cbe48737a4",
+      "size_bytes": 2110
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/fom/summary.json",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/fom/summary.json",
+      "sha256": "8c7da0dc057fca005637b0e73ea48b300991dcf86a7fcdcf4c6cbe110866dac4",
+      "size_bytes": 5308
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/fom/system_fom.csv",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/fom/system_fom.csv",
+      "sha256": "bc6585df21153a3143ec58ca8dd95b66eca4859472622bdba60eadcf0e7d81fe",
+      "size_bytes": 1971
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/fom/thirteen_fom_register.csv",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/fom/thirteen_fom_register.csv",
+      "sha256": "79b09f8905213e0a7325655bf1596b883952ba748db9b41f0df163daff3a7cfa",
+      "size_bytes": 4919
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/project_closure/SUMMARY.md",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/project_closure/SUMMARY.md",
+      "sha256": "de54598240b3525a1a1e1f180a7e922c5257a3601c088ea9a33a28d69eabb9fb",
+      "size_bytes": 4256
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/project_closure/active_erv_reclassification.csv",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/project_closure/active_erv_reclassification.csv",
+      "sha256": "bbca76e0596d26eaddda555501d1b6b9df449e6a25bf027b809f8b4f7adaaf85",
+      "size_bytes": 793
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/project_closure/closure_status.json",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/project_closure/closure_status.json",
+      "sha256": "e52fe66b0ba3b2f289af740fecdf3a906dafc48dbde4ec423eea6339cf0390d6",
+      "size_bytes": 657
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/project_closure/common_voltage_convergence.csv",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/project_closure/common_voltage_convergence.csv",
+      "sha256": "66fb264f7ab3a2c03dc376bdd4632f827a9227cb14c76043cc5503abc3320b74",
+      "size_bytes": 1667
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/project_closure/common_voltage_window_summary.csv",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/project_closure/common_voltage_window_summary.csv",
+      "sha256": "31ff012dfe9d5c290c64df8cb6b66da4d1d45a7a0364824c2e4f31a093d20767",
+      "size_bytes": 743
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/project_closure/decision_gate_register.csv",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/project_closure/decision_gate_register.csv",
+      "sha256": "24c2bae3fa6923c537303a7451b6e7780ea73510d4827d1511bb9030f8ade885",
+      "size_bytes": 3218
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/project_closure/independent_voltage_root_replay.csv",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/project_closure/independent_voltage_root_replay.csv",
+      "sha256": "39ac4bf100b7e98e9fc3115799367551b0c4d7ef5debed3689ecaa94db766812",
+      "size_bytes": 820
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/project_closure/source_manifest.json",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/project_closure/source_manifest.json",
+      "sha256": "1d08a09b8e767cc44f7e24dab79fca99d14bc7b720d273b8695964488f175a95",
+      "size_bytes": 11456
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/results/project_closure/uniform_current_convergence.csv",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/results/project_closure/uniform_current_convergence.csv",
+      "sha256": "a06e9856c9670ba8553fbc1f165572f1483fbcb31e68a8297ab07bd78702156b",
+      "size_bytes": 2168
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/source/config/direct_active_eo_erv_study_v1.json",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/source/config/direct_active_eo_erv_study_v1.json",
+      "sha256": "f91a1c75f5d642d4103e0149223f5c4094c7eed8be84dd2886f5fb1fd2e0c2f3",
+      "size_bytes": 8587
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/source/config/direct_erv_gradient_closure_v1.json",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/source/config/direct_erv_gradient_closure_v1.json",
+      "sha256": "395f147aceb87da635a4b699d922b8e00fca729ecc889094590ed7142f08522b",
+      "size_bytes": 1482
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/source/config/eo_vapor_boundary_analysis_v1.json",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/source/config/eo_vapor_boundary_analysis_v1.json",
+      "sha256": "9663ff43a14b314c422e522ef78fdf6f3391f4dcf2bb23cd0ee93320ef0e9a17",
+      "size_bytes": 6218
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/source/config/eo_vapor_cell_sizing_v1.json",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/source/config/eo_vapor_cell_sizing_v1.json",
+      "sha256": "77a73ec801b34a80f11a8009c126d302aa29e9132498d8d1e6af7715a475a6e4",
+      "size_bytes": 6914
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/source/config/final_delivery_check_v1.json",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/source/config/final_delivery_check_v1.json",
+      "sha256": "823878726e9e43eff0520e26fb9772f98172cb96dae6e551b626f5576e4d6228",
+      "size_bytes": 7095
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/source/config/fom_assessment_v1.json",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/source/config/fom_assessment_v1.json",
+      "sha256": "d7b51368ec7c06bc67ff3414c69f04340919c948343b24e9deec2fed860ccd40",
+      "size_bytes": 1585
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/source/config/project_closure_check_v1.json",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/source/config/project_closure_check_v1.json",
+      "sha256": "81da253b6edb08e16dc6739b89ef758d2532fe91d515d72fa4787b09c84e0a96",
+      "size_bytes": 5571
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/source/config/workshop_common_voltage_diffusivity_v1.json",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/source/config/workshop_common_voltage_diffusivity_v1.json",
+      "sha256": "e0a54dba9835dcad6644dc7d965fb67bc87c4005391a8234e0b248f4e97e1cfe",
+      "size_bytes": 2139
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/source/parent_release/XMembrane_2026-08-31_V8_MANIFEST.json",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/source/parent_release/XMembrane_2026-08-31_V8_MANIFEST.json",
+      "sha256": "51f8ba4742af613a7b24d4d94062d4ad4b6a5440ed83149015c07afb9cf234fd",
+      "size_bytes": 46758
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/source/scripts/analyze_eo_vapor_boundaries_v1.py",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/source/scripts/analyze_eo_vapor_boundaries_v1.py",
+      "sha256": "9b6d9c95425820d29252160723445d74d654cb079a9161f3723a44f149026bc3",
+      "size_bytes": 73780
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/source/scripts/calculate_fom_assessment_v1.py",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/source/scripts/calculate_fom_assessment_v1.py",
+      "sha256": "b429b8b354ddd8c916ae220bc18cb3c3d5ef8c43bff94921b9b8b199f9f94995",
+      "size_bytes": 42998
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/source/scripts/run_direct_active_eo_erv_study_v1.py",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/source/scripts/run_direct_active_eo_erv_study_v1.py",
+      "sha256": "811af6c004b0eb58b82439c8861481e79b57d8dfe2f66b5dfd4aa49df9165e45",
+      "size_bytes": 80310
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/source/scripts/run_direct_erv_gradient_closure_v1.py",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/source/scripts/run_direct_erv_gradient_closure_v1.py",
+      "sha256": "cf859e20675576611a714e76a26c95352b56624d13b9aa30125effbf6521cdf5",
+      "size_bytes": 37192
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/source/scripts/run_final_delivery_check_v1.py",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/source/scripts/run_final_delivery_check_v1.py",
+      "sha256": "8848f31cbda8ddb01938687a5703c61df51dc3116203c977a0466d8d01e982e2",
+      "size_bytes": 68983
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/source/scripts/run_project_closure_check_v1.py",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/source/scripts/run_project_closure_check_v1.py",
+      "sha256": "426fec9289703b6bf7ca102f53c4b9449cefe9ff2a2c21e93ade500ef9978845",
+      "size_bytes": 78981
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/source/scripts/run_workshop_common_voltage_diffusivity_v1.py",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/source/scripts/run_workshop_common_voltage_diffusivity_v1.py",
+      "sha256": "9ee728f0254d29820a1bdd3d9aae767d3eb5fbf9fa6b01c52f21392aa8ebec84",
+      "size_bytes": 64535
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/source/scripts/size_eo_vapor_cell_v1.py",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/source/scripts/size_eo_vapor_cell_v1.py",
+      "sha256": "147e90c0545bdf674b653c7e1147f1919822a4cf0bb8831000f42aa299fb0ed0",
+      "size_bytes": 64183
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/source/tests/test_direct_active_eo_erv_study_v1.py",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/source/tests/test_direct_active_eo_erv_study_v1.py",
+      "sha256": "f4db37aa73b6e1a083f8f63697df331b3015c1a41b11053b506f0d42fff3239f",
+      "size_bytes": 11246
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/source/tests/test_direct_erv_gradient_closure_v1.py",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/source/tests/test_direct_erv_gradient_closure_v1.py",
+      "sha256": "a8e09595b098b6996c07c7b7d878722851c710248f843181356b178a85573d4b",
+      "size_bytes": 4537
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/source/tests/test_eo_vapor_boundary_analysis_v1.py",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/source/tests/test_eo_vapor_boundary_analysis_v1.py",
+      "sha256": "5ed115e42e0b0df3f481f464c77fe1a5a54f1e79d7818c429183ab68507f3325",
+      "size_bytes": 5132
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/source/tests/test_eo_vapor_cell_sizing_v1.py",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/source/tests/test_eo_vapor_cell_sizing_v1.py",
+      "sha256": "c712713775174d9a1a4d3a99fcaed712ca62d2232ee533da5464617afee97576",
+      "size_bytes": 9203
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/source/tests/test_final_delivery_check_v1.py",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/source/tests/test_final_delivery_check_v1.py",
+      "sha256": "f63a2b974fddba5c556e5884fa0fee6c14fe512c726b1f72d5c23653ccda8c2f",
+      "size_bytes": 25308
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/source/tests/test_fom_assessment_v1.py",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/source/tests/test_fom_assessment_v1.py",
+      "sha256": "9b6b703a80c55d6ff554e5a9c04abc40b76f49e2fa426d2bab1d7f18667dd64d",
+      "size_bytes": 2365
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/source/tests/test_project_closure_check_v1.py",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/source/tests/test_project_closure_check_v1.py",
+      "sha256": "ff9ce80cb20d55f8c682ab97821c82221549cbe917bb260b439286c92834741f",
+      "size_bytes": 5550
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/source/tests/test_workshop_common_voltage_diffusivity_v1.py",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/source/tests/test_workshop_common_voltage_diffusivity_v1.py",
+      "sha256": "26f03521d81cc88013c892cd48c6cb7d49359abddbc53d810a548170f5c9fcf7",
+      "size_bytes": 11324
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/verification/final_delivery_check/SUMMARY.md",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/verification/final_delivery_check/SUMMARY.md",
+      "sha256": "f02e2757c53d37330b6fa9883869b39e4f0e3e38687d41c8dbad1dbb9c92af41",
+      "size_bytes": 796
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/verification/final_delivery_check/gate_register.csv",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/verification/final_delivery_check/gate_register.csv",
+      "sha256": "c29cd80530092418f058121885d6f7649f65aba6d85824c4cf26fada35a5185f",
+      "size_bytes": 1598
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/verification/final_delivery_check/source_manifest.json",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/verification/final_delivery_check/source_manifest.json",
+      "sha256": "3428e0e68ccac7953cac8ed1236e7ec36c1faed831e00e4df2ed5076a89c4258",
+      "size_bytes": 8114
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/verification/final_delivery_check/status.json",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/verification/final_delivery_check/status.json",
+      "sha256": "ad787119e26c709c717deb76c3aff358042cd4f155bf151aae34488f89837505",
+      "size_bytes": 144360
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-08-31_v8_1/verification/final_delivery_check/test_run.json",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-08-31_v8_1/verification/final_delivery_check/test_run.json",
+      "sha256": "53fcbd496c331e82dd9214cd741051a1a72d1e70f71af8510608b6e25cbe1a26",
+      "size_bytes": 5678
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-09-02_v10/README.md",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-09-02_v10/README.md",
+      "sha256": "2e91aedcdef8a6a55d8ae3489c961696ce06516c015d5b9269d934d03e3dd9fa",
+      "size_bytes": 3795
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/deliverables/current/2026-09-02_v10/RELEASE_NOTES.md",
+      "entry_type": "regular_file",
+      "path": "deliverables/current/2026-09-02_v10/RELEASE_NOTES.md",
+      "sha256": "7a78dd6b609fb515cf68b34fe89fea88c23cdef1718ca2ccc9875868816d24cf",
+      "size_bytes": 2247
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/docs/CAPACITIVE_ELECTRODE_TRANSIENT_STUDY_2026-09-01.md",
+      "entry_type": "regular_file",
+      "path": "docs/CAPACITIVE_ELECTRODE_TRANSIENT_STUDY_2026-09-01.md",
+      "sha256": "9fcf5042e725b2098bf07ae0f6a219ea635a134692e12cda208aa96877281209",
+      "size_bytes": 6967
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/docs/CLAIM_BOUNDARY.md",
+      "entry_type": "regular_file",
+      "path": "docs/CLAIM_BOUNDARY.md",
+      "sha256": "3aa3e700c39a26567aaf05cebc769b9ef542364a0a9780463e1319e7f8daf21f",
+      "size_bytes": 2541
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/docs/EO_VAPOR_BOUNDARY_ANALYSIS_v1.md",
+      "entry_type": "regular_file",
+      "path": "docs/EO_VAPOR_BOUNDARY_ANALYSIS_v1.md",
+      "sha256": "e0d35306fb76f168e4eba60a6bb56b84bca89d80a8d6c92e7815face12822b8a",
+      "size_bytes": 5307
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/docs/EO_VAPOR_TEST_CELL_DESIGN.md",
+      "entry_type": "regular_file",
+      "path": "docs/EO_VAPOR_TEST_CELL_DESIGN.md",
+      "sha256": "42ab9631f35fc45ee034f6286914e4d3db0109a6a3cf3ba71df6f9936c914a3c",
+      "size_bytes": 9087
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/docs/EXPERIMENT_MOISTURE_TARGET_AND_CELL_SCALING_2026-09-01.md",
+      "entry_type": "regular_file",
+      "path": "docs/EXPERIMENT_MOISTURE_TARGET_AND_CELL_SCALING_2026-09-01.md",
+      "sha256": "71bf3b7c3c47bfbdac10fbe29a09ccec873ab191b9201d647264ba8810c13647",
+      "size_bytes": 17697
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/docs/MODEL_CHAIN.md",
+      "entry_type": "regular_file",
+      "path": "docs/MODEL_CHAIN.md",
+      "sha256": "188c2f1f89c5cf28693fa2154d225a8e3ea03e547d91cd29dc499066f94be5c7",
+      "size_bytes": 2677
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/docs/O30_REQUIRED_AREA_1V_v1.md",
+      "entry_type": "regular_file",
+      "path": "docs/O30_REQUIRED_AREA_1V_v1.md",
+      "sha256": "0908169b294c3cd05f94d7b23b397e6e0d36d5609c22739cca3f1430b9faf716",
+      "size_bytes": 3970
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/docs/PACKAGE_BOUNDARIES.md",
+      "entry_type": "regular_file",
+      "path": "docs/PACKAGE_BOUNDARIES.md",
+      "sha256": "64faca08b24c1c471b2705278658f87d6f53a34c8c9e912d2eed95cf753d30c1",
+      "size_bytes": 2693
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/docs/POST_ERV_EO_DESIGN_FRONTIER_v1.md",
+      "entry_type": "regular_file",
+      "path": "docs/POST_ERV_EO_DESIGN_FRONTIER_v1.md",
+      "sha256": "99d6e466db2bb32c517d570c57f56eba9d4c13995aa469c3564cefa970763c64",
+      "size_bytes": 6444
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/docs/POST_ERV_EO_PERCENTAGE_SWEEP_v1.md",
+      "entry_type": "regular_file",
+      "path": "docs/POST_ERV_EO_PERCENTAGE_SWEEP_v1.md",
+      "sha256": "15c8cb00247b4af97e19edb9d7c2b190fdc1bee7f1427fafc2b1cfc810dbfb3b",
+      "size_bytes": 10996
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/docs/POST_ERV_FULL_EO_STUDY_v1.md",
+      "entry_type": "regular_file",
+      "path": "docs/POST_ERV_FULL_EO_STUDY_v1.md",
+      "sha256": "7b6e6c7d3a42a582c8429cc130f99ca0aeccc64936c56ed5fb34b9d30c23323b",
+      "size_bytes": 5197
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/docs/PROVENANCE.md",
+      "entry_type": "regular_file",
+      "path": "docs/PROVENANCE.md",
+      "sha256": "04400fdadd5a1234cc000a13ee833b1ce6d427060b76b9c0f10dfca2036b8fbb",
+      "size_bytes": 4378
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/docs/REPOSITORY_LAYOUT.md",
+      "entry_type": "regular_file",
+      "path": "docs/REPOSITORY_LAYOUT.md",
+      "sha256": "627a778f22e1604dc9ece2feb9ae38649f9d39a7119750cecf9ff2709ff4af47",
+      "size_bytes": 3173
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/docs/SYSTEM_ENERGY_CLOSURE_STUDY.md",
+      "entry_type": "regular_file",
+      "path": "docs/SYSTEM_ENERGY_CLOSURE_STUDY.md",
+      "sha256": "1110909b3f9c25f7af54944b8a117061785d7d8c7016eab2d1987a79300bd499",
+      "size_bytes": 5369
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/docs/TEST_CELL_AND_ERV_SCALE_CHECK_2026-09-01.md",
+      "entry_type": "regular_file",
+      "path": "docs/TEST_CELL_AND_ERV_SCALE_CHECK_2026-09-01.md",
+      "sha256": "02bd138b7875cbd48231430d708bc2f5f9846b1de6d674a661cc4d2d97f7cad7",
+      "size_bytes": 5620
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/docs/WP1_RESEARCH_LOG.md",
+      "entry_type": "regular_file",
+      "path": "docs/WP1_RESEARCH_LOG.md",
+      "sha256": "f739239f3cde3cb5d22bed8c00b76836c6845deae66d23e0d240d7a40fe783ec",
+      "size_bytes": 25714
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/heiq_pre_receiver_material_analyses/config/default.json",
+      "entry_type": "regular_file",
+      "path": "heiq_pre_receiver_material_analyses/config/default.json",
+      "sha256": "519b90cc7819a83f607e376add55fe874b376850a49de2fdead32403c2c389a7",
+      "size_bytes": 4485
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/heiq_pre_receiver_material_analyses/heiq_pre_receiver_model.py",
+      "entry_type": "regular_file",
+      "path": "heiq_pre_receiver_material_analyses/heiq_pre_receiver_model.py",
+      "sha256": "f538f810ae89e7f5eaff3ad2b8be38c587f11587ea4b1f8558d0a9c278f21f54",
+      "size_bytes": 41099
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/heiq_pre_receiver_material_analyses/tests/test_model.py",
+      "entry_type": "regular_file",
+      "path": "heiq_pre_receiver_material_analyses/tests/test_model.py",
+      "sha256": "a00d42bf6bd452908ce54c88752a4a5772a32c6d84a9c53ea8ad406f5a2d9582",
+      "size_bytes": 7882
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/axial_independent_material_sweep_v8/coarse/voltage_refinement_v11/axial_base_config_used.json",
+      "entry_type": "symlink",
+      "link_target": "../../../../data/reference/v11_compat/axial_base_config_used.json",
+      "path": "outputs/axial_independent_material_sweep_v8/coarse/voltage_refinement_v11/axial_base_config_used.json",
+      "sha256": "cac172a6bb09d635be24c8da64a1abb48eb5ab2440ad5b9cc3cc6483a37c560f",
+      "size_bytes": 65
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/axial_independent_material_sweep_v8/coarse/voltage_refinement_v11/candidate_materials.csv",
+      "entry_type": "symlink",
+      "link_target": "../../../../data/reference/v11_compat/candidate_materials.csv",
+      "path": "outputs/axial_independent_material_sweep_v8/coarse/voltage_refinement_v11/candidate_materials.csv",
+      "sha256": "48a83f83ad46913637cd57e65ac62db2a812528c64ef98ff79ac8f70aa660d59",
+      "size_bytes": 61
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/axial_independent_material_sweep_v8/coarse/voltage_refinement_v11/source_manifest.json",
+      "entry_type": "symlink",
+      "link_target": "../../../../data/reference/v11_compat/source_manifest.json",
+      "path": "outputs/axial_independent_material_sweep_v8/coarse/voltage_refinement_v11/source_manifest.json",
+      "sha256": "01d93d4fb9f0b60918cb3788200ef6b0434dcb96e4894c35a8e00eb94dc62c0f",
+      "size_bytes": 58
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/pyproject.toml",
+      "entry_type": "regular_file",
+      "path": "pyproject.toml",
+      "sha256": "fb5b5e8ae7235a92a918a1491d466ac8075b0712cd577955fec489af257873ea",
+      "size_bytes": 639
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/README.md",
+      "entry_type": "regular_file",
+      "path": "reports/README.md",
+      "sha256": "864a16a2d44958524261716797d113cb5e7ff58d3a57c0f0b118674cdd2c1cd6",
+      "size_bytes": 1325
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/eo_vapour_experiment_design_2026-09-01/HeiQ_XMembrane_EO_Vapour_Experiment_Design_2026-09-01.pdf",
+      "entry_type": "regular_file",
+      "path": "reports/eo_vapour_experiment_design_2026-09-01/HeiQ_XMembrane_EO_Vapour_Experiment_Design_2026-09-01.pdf",
+      "sha256": "59510da0b048cbae884b42a315c6414153af32f899ad84254062698114acd2ba",
+      "size_bytes": 436515
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/eo_vapour_experiment_design_2026-09-01/HeiQ_XMembrane_EO_Vapour_Experiment_Design_2026-09-01.tex",
+      "entry_type": "regular_file",
+      "path": "reports/eo_vapour_experiment_design_2026-09-01/HeiQ_XMembrane_EO_Vapour_Experiment_Design_2026-09-01.tex",
+      "sha256": "7505f675fbd2ad57afae1fdefaf0850ff317c40e7b052ea5613c43b60d3131db",
+      "size_bytes": 23833
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/final_project_closeout_2026-09-02/HeiQ_XMembrane_Final_Project_Closeout_2026-09-02_v10.md",
+      "entry_type": "regular_file",
+      "path": "reports/final_project_closeout_2026-09-02/HeiQ_XMembrane_Final_Project_Closeout_2026-09-02_v10.md",
+      "sha256": "c6f0310bd7f661ed62ff06e724f60b47e6aca191fc49d3b4fc5b29c1467eff97",
+      "size_bytes": 13989
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/final_project_closeout_2026-09-02/HeiQ_XMembrane_Final_Project_Closeout_2026-09-02_v10.pdf",
+      "entry_type": "regular_file",
+      "path": "reports/final_project_closeout_2026-09-02/HeiQ_XMembrane_Final_Project_Closeout_2026-09-02_v10.pdf",
+      "sha256": "9ffe07a8e2584086422169a5b03f494f9828cf08e3101e3973e4cb6534ade723",
+      "size_bytes": 237627
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/final_project_closeout_2026-09-02/HeiQ_XMembrane_Final_Project_Closeout_2026-09-02_v10.tex",
+      "entry_type": "regular_file",
+      "path": "reports/final_project_closeout_2026-09-02/HeiQ_XMembrane_Final_Project_Closeout_2026-09-02_v10.tex",
+      "sha256": "7f8fcdb8a979d2d81435ac25188f84c7ab188c642b1db444a07b5573d03a16a5",
+      "size_bytes": 19713
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/final_project_closeout_2026-09-02/source_manifest.json",
+      "entry_type": "regular_file",
+      "path": "reports/final_project_closeout_2026-09-02/source_manifest.json",
+      "sha256": "200efdefbd7e1e7fa53196a3e39626b709a918d484819f59b1bcc07329d7b693",
+      "size_bytes": 12576
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/final_team_decision_report_2026-08-31/HeiQ_XMembrane_Final_Result_and_Decision_Report_2026-08-31_v9.pdf",
+      "entry_type": "regular_file",
+      "path": "reports/final_team_decision_report_2026-08-31/HeiQ_XMembrane_Final_Result_and_Decision_Report_2026-08-31_v9.pdf",
+      "sha256": "2a077c89b7d351b4a718ce279efa436482464709b81a96970251cc4623654e2f",
+      "size_bytes": 476285
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/final_team_decision_report_2026-08-31/HeiQ_XMembrane_Final_Result_and_Decision_Report_2026-08-31_v9.tex",
+      "entry_type": "regular_file",
+      "path": "reports/final_team_decision_report_2026-08-31/HeiQ_XMembrane_Final_Result_and_Decision_Report_2026-08-31_v9.tex",
+      "sha256": "478ede5081adf89247d120b2186892fa1cef635263259d540523c5eea3b0524b",
+      "size_bytes": 18560
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/material_search_handoff_2026-08-31/HeiQ_XMembrane_Prior_Material_Search_Consolidation_2026-08-31.pdf",
+      "entry_type": "regular_file",
+      "path": "reports/material_search_handoff_2026-08-31/HeiQ_XMembrane_Prior_Material_Search_Consolidation_2026-08-31.pdf",
+      "sha256": "4600553be5d63e47fc797ed5cace9247f9de6184f25b06fb6ead23b2f7c2adc5",
+      "size_bytes": 356413
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/material_search_handoff_2026-08-31/HeiQ_XMembrane_Prior_Material_Search_Consolidation_2026-08-31.tex",
+      "entry_type": "regular_file",
+      "path": "reports/material_search_handoff_2026-08-31/HeiQ_XMembrane_Prior_Material_Search_Consolidation_2026-08-31.tex",
+      "sha256": "76af2e1555ec46ce5d95dd2f623889c52024b3c9519089d253a243e645674528",
+      "size_bytes": 37121
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/material_search_handoff_2026-08-31/README.md",
+      "entry_type": "regular_file",
+      "path": "reports/material_search_handoff_2026-08-31/README.md",
+      "sha256": "bcdee93236056eaf1a376015f267baa54c82c223f2e48f9443d54cc70291ac34",
+      "size_bytes": 3864
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/material_search_handoff_2026-08-31/data/alias_register.csv",
+      "entry_type": "regular_file",
+      "path": "reports/material_search_handoff_2026-08-31/data/alias_register.csv",
+      "sha256": "07b7d1ed390fd35466cac003fd8ccfca1d4c0a4bad0f4305c0019bf5f2f393b8",
+      "size_bytes": 895
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/material_search_handoff_2026-08-31/data/candidate_availability_sheet.csv",
+      "entry_type": "regular_file",
+      "path": "reports/material_search_handoff_2026-08-31/data/candidate_availability_sheet.csv",
+      "sha256": "ccbad0f33ab083a113f6e96b3e326fcbf2e9fd81edb404eb788c4a536dfe2296",
+      "size_bytes": 4824
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/material_search_handoff_2026-08-31/data/development_route_register.csv",
+      "entry_type": "regular_file",
+      "path": "reports/material_search_handoff_2026-08-31/data/development_route_register.csv",
+      "sha256": "b029fc9543235a95980154a339a22d9a85b8c7ccab263c2f16cbe16580fcef4a",
+      "size_bytes": 3802
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/material_search_handoff_2026-08-31/data/gap_to_current_targets.csv",
+      "entry_type": "regular_file",
+      "path": "reports/material_search_handoff_2026-08-31/data/gap_to_current_targets.csv",
+      "sha256": "ac6aece057e7c8547c50c7acd16298e8a7076c580fb3b6caf475528263b4bb94",
+      "size_bytes": 4515
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/material_search_handoff_2026-08-31/data/handoff_summary.json",
+      "entry_type": "regular_file",
+      "path": "reports/material_search_handoff_2026-08-31/data/handoff_summary.json",
+      "sha256": "3605ee15c0d730381c0544d21c7c2fd1f52146f3816fc5a613a090f7cd71d1d6",
+      "size_bytes": 4228
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/material_search_handoff_2026-08-31/data/historical_screen_milestones.csv",
+      "entry_type": "regular_file",
+      "path": "reports/material_search_handoff_2026-08-31/data/historical_screen_milestones.csv",
+      "sha256": "900aded8906197c58562aa61408849882f45818ca475d5891dba91443e8c1ee0",
+      "size_bytes": 4888
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/material_search_handoff_2026-08-31/data/literature_lead_register.csv",
+      "entry_type": "regular_file",
+      "path": "reports/material_search_handoff_2026-08-31/data/literature_lead_register.csv",
+      "sha256": "ae50a5b34a3fc9704ac20a34a32f61a0258114f3ce4467d84f3ff4826794bc2f",
+      "size_bytes": 2068
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/material_search_handoff_2026-08-31/data/model_conflict_register.csv",
+      "entry_type": "regular_file",
+      "path": "reports/material_search_handoff_2026-08-31/data/model_conflict_register.csv",
+      "sha256": "fa9f8a0ea13af6e821d90920ea75f8e40b20cca6623440fae0c16d2cfed9c65c",
+      "size_bytes": 3714
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/material_search_handoff_2026-08-31/data/named_material_register.csv",
+      "entry_type": "regular_file",
+      "path": "reports/material_search_handoff_2026-08-31/data/named_material_register.csv",
+      "sha256": "56a3f2c37267e08831f403c8a359fea52e54676606b6d72bd84d8b76d7a77462",
+      "size_bytes": 6082
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/material_search_handoff_2026-08-31/data/output_manifest.csv",
+      "entry_type": "regular_file",
+      "path": "reports/material_search_handoff_2026-08-31/data/output_manifest.csv",
+      "sha256": "f6125d90e72ca26c25638850d3bca4ce26e98e8fdee82c10ec7b6758b1eb2615",
+      "size_bytes": 1405
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/material_search_handoff_2026-08-31/data/qualification_matrix.csv",
+      "entry_type": "regular_file",
+      "path": "reports/material_search_handoff_2026-08-31/data/qualification_matrix.csv",
+      "sha256": "b2ade7dd49f0c6a95a2800b1b95fe90d0b5c85fd8c864e11eee8805aec987ee9",
+      "size_bytes": 10460
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/material_search_handoff_2026-08-31/data/source_inventory.csv",
+      "entry_type": "regular_file",
+      "path": "reports/material_search_handoff_2026-08-31/data/source_inventory.csv",
+      "sha256": "e47a1393987a4bba2219f252f1256e5f539f4a3e0f474c274d4d8e48800ae766",
+      "size_bytes": 28047
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/material_search_handoff_2026-08-31/data/superseded_constraint_register.csv",
+      "entry_type": "regular_file",
+      "path": "reports/material_search_handoff_2026-08-31/data/superseded_constraint_register.csv",
+      "sha256": "c8a0b7053ead56f864ecfd01c0ce2f07750b3a1993abf29ebefe9f9999de9280",
+      "size_bytes": 1995
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/material_search_handoff_2026-08-31/data/synthetic_target_register.csv",
+      "entry_type": "regular_file",
+      "path": "reports/material_search_handoff_2026-08-31/data/synthetic_target_register.csv",
+      "sha256": "adbe900cd2a6776d1deffc624c014b057bfbd920af53edcca6f3fe127b387697",
+      "size_bytes": 2412
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/material_search_handoff_2026-08-31/data/workspace_inventory_summary.csv",
+      "entry_type": "regular_file",
+      "path": "reports/material_search_handoff_2026-08-31/data/workspace_inventory_summary.csv",
+      "sha256": "8d67db7676131b21a54f44d60be453412a06f41b7d350fa0fe2f92d868da2d1d",
+      "size_bytes": 568
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/model_closure_and_material_handoff_2026-08-31_rev2/HeiQ_XMembrane_Model_Closure_and_Material_Handoff_2026-08-31_Rev2.pdf",
+      "entry_type": "regular_file",
+      "path": "reports/model_closure_and_material_handoff_2026-08-31_rev2/HeiQ_XMembrane_Model_Closure_and_Material_Handoff_2026-08-31_Rev2.pdf",
+      "sha256": "005035c7b736241b2fb838efdf287d07b953810c73dc29af92d8e773da73e42c",
+      "size_bytes": 402583
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/model_closure_and_material_handoff_2026-08-31_rev2/HeiQ_XMembrane_Model_Closure_and_Material_Handoff_2026-08-31_Rev2.tex",
+      "entry_type": "regular_file",
+      "path": "reports/model_closure_and_material_handoff_2026-08-31_rev2/HeiQ_XMembrane_Model_Closure_and_Material_Handoff_2026-08-31_Rev2.tex",
+      "sha256": "8daf9be81c2c7a2c3c747c9d305909009bb0bf930f79a1335733384ee7f41895",
+      "size_bytes": 13558
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/model_closure_and_material_handoff_2026-08-31_rev2/figures/cell_dimension_tradeoffs.png",
+      "entry_type": "regular_file",
+      "path": "reports/model_closure_and_material_handoff_2026-08-31_rev2/figures/cell_dimension_tradeoffs.png",
+      "sha256": "01bc819831d8e4736bd8147031f3867be7e47e641b712acfe31d24bfc4250b09",
+      "size_bytes": 239567
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/model_closure_and_material_handoff_2026-08-31_rev2/figures/integrated_break_even_sec.pdf",
+      "entry_type": "regular_file",
+      "path": "reports/model_closure_and_material_handoff_2026-08-31_rev2/figures/integrated_break_even_sec.pdf",
+      "sha256": "731b992ea0e8aec491a383ea1243a583e236fc188a2e749c9d27d2cd58668246",
+      "size_bytes": 25340
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/test_cell_erv_scale_note_2026-09-01/HeiQ_Test_Cell_Minimum_Area_and_ERV_Scale_Check_2026-09-01.pdf",
+      "entry_type": "regular_file",
+      "path": "reports/test_cell_erv_scale_note_2026-09-01/HeiQ_Test_Cell_Minimum_Area_and_ERV_Scale_Check_2026-09-01.pdf",
+      "sha256": "37aa2deb1b513e82032d84d2163ce92585fac90709a128a4153b2069126f208f",
+      "size_bytes": 147371
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/test_cell_erv_scale_note_2026-09-01/HeiQ_Test_Cell_Minimum_Area_and_ERV_Scale_Check_2026-09-01.tex",
+      "entry_type": "regular_file",
+      "path": "reports/test_cell_erv_scale_note_2026-09-01/HeiQ_Test_Cell_Minimum_Area_and_ERV_Scale_Check_2026-09-01.tex",
+      "sha256": "74cda5855e77a8eb7b38366f304d529a0f7126cf92e045f93a4dbe9c118ae962",
+      "size_bytes": 6587
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/analyze_direct_eo_erv_cases_below_9000_m2_v1.py",
+      "entry_type": "regular_file",
+      "path": "scripts/analyze_direct_eo_erv_cases_below_9000_m2_v1.py",
+      "sha256": "8b2f4220c5c388c79ae81ce5ee83f43e1969ca226b6296253becf437cc0322ca",
+      "size_bytes": 8621
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/analyze_direct_eo_low_voltage_study_v1.py",
+      "entry_type": "regular_file",
+      "path": "scripts/analyze_direct_eo_low_voltage_study_v1.py",
+      "sha256": "fb2d90e8c1e6f272d0bf6618829e9608ceb9ee545193af4b104765af58b922ce",
+      "size_bytes": 50569
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/analyze_direct_eo_operating_region_v1.py",
+      "entry_type": "regular_file",
+      "path": "scripts/analyze_direct_eo_operating_region_v1.py",
+      "sha256": "ab6d8a15b5dd1b3eb340b1bdc60ce0646750093c8a5f93eb525d8551303e735e",
+      "size_bytes": 68526
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/analyze_eo_vapor_boundaries_v1.py",
+      "entry_type": "regular_file",
+      "path": "scripts/analyze_eo_vapor_boundaries_v1.py",
+      "sha256": "9b6d9c95425820d29252160723445d74d654cb079a9161f3723a44f149026bc3",
+      "size_bytes": 73780
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/analyze_open_questions_v1.py",
+      "entry_type": "regular_file",
+      "path": "scripts/analyze_open_questions_v1.py",
+      "sha256": "1de1a5354fbefa843e6c4a7d69c7864084cc4af36cf30469cf68b3c04a04962a",
+      "size_bytes": 80658
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/analyze_post_erv_inverse_design_v1.py",
+      "entry_type": "regular_file",
+      "path": "scripts/analyze_post_erv_inverse_design_v1.py",
+      "sha256": "97dfc9014be749639cd1075c03b19b5cbd536df5b1a7b55dbb95d5bf9d501a32",
+      "size_bytes": 136574
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/analyze_wp1_direct_liquid_activity_crossover_v1.py",
+      "entry_type": "regular_file",
+      "path": "scripts/analyze_wp1_direct_liquid_activity_crossover_v1.py",
+      "sha256": "9f0c079c62be17e9083bff6cb79c223ed416fdf2bde41d03bc773116a7ffd8e4",
+      "size_bytes": 23291
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/build_material_search_handoff_v1.py",
+      "entry_type": "regular_file",
+      "path": "scripts/build_material_search_handoff_v1.py",
+      "sha256": "e87c8afe1c5837fe48b02b60ddc11bdaf66d5cef92487909fa41d93d28fc3af5",
+      "size_bytes": 118697
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/calculate_fom_assessment_v1.py",
+      "entry_type": "regular_file",
+      "path": "scripts/calculate_fom_assessment_v1.py",
+      "sha256": "d624752026d218a1be7847c78bf8107a4d4deffe356669cb8cce98df28e6caa4",
+      "size_bytes": 43004
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/closed_receiver_system_v12_config.json",
+      "entry_type": "symlink",
+      "link_target": "../config/closed_receiver_system_v12_config.json",
+      "path": "scripts/closed_receiver_system_v12_config.json",
+      "sha256": "e982dffb1fb1bf5b3f3f00658ce82763a55c45fd46ed30b63f80531b911ebb13",
+      "size_bytes": 48
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/design_eo_vapor_test_cell.py",
+      "entry_type": "regular_file",
+      "path": "scripts/design_eo_vapor_test_cell.py",
+      "sha256": "1e25aec09863eff644c7bc35cc801b00eedaa76e86d58a2321fa9d842eb5fd2f",
+      "size_bytes": 69721
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/make_architecture_comparison_plots_v1.py",
+      "entry_type": "regular_file",
+      "path": "scripts/make_architecture_comparison_plots_v1.py",
+      "sha256": "d204d15056d5a7c89a7c816b77c283a6420278c21b5ece81060668944cebf2aa",
+      "size_bytes": 12455
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/make_equal_service_opportunity_plots_v1.py",
+      "entry_type": "regular_file",
+      "path": "scripts/make_equal_service_opportunity_plots_v1.py",
+      "sha256": "a6de0e56c3e66507fe7881656b012336fc89db549ea482487fbb267345836c9c",
+      "size_bytes": 13930
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/make_fixed_o80_erv_eo_stage_plots_v1.py",
+      "entry_type": "regular_file",
+      "path": "scripts/make_fixed_o80_erv_eo_stage_plots_v1.py",
+      "sha256": "eed9d12e7f1dad5ef969ce06f68bbfaa33f84aafb1cfc8ab591e64472ebe1f41",
+      "size_bytes": 7858
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/make_full_result_atlas_figures_v2.py",
+      "entry_type": "regular_file",
+      "path": "scripts/make_full_result_atlas_figures_v2.py",
+      "sha256": "c98b5c1ad302883ff9007e1823fbf165bfee49eabb82490070ce7a94d170a072",
+      "size_bytes": 25326
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/make_full_result_atlas_v2.py",
+      "entry_type": "regular_file",
+      "path": "scripts/make_full_result_atlas_v2.py",
+      "sha256": "8bf11e721abe0db7497ceed8a7e9120a292b225e98440e956c5ef98806fc0862",
+      "size_bytes": 80947
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/make_integrated_direct_eo_erv_weather_v1.py",
+      "entry_type": "regular_file",
+      "path": "scripts/make_integrated_direct_eo_erv_weather_v1.py",
+      "sha256": "2a5917f4195c38d02ecaf855ce609c4bd0604a1ed9f9c3e8a6261d6cfe9083df",
+      "size_bytes": 25377
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/make_integrated_evidence_register_v1.py",
+      "entry_type": "regular_file",
+      "path": "scripts/make_integrated_evidence_register_v1.py",
+      "sha256": "f1ab06324843634117a44144cf901a9c100e82ba51cbeb7bbe569eacfd4dbe20",
+      "size_bytes": 29939
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/make_material_parameter_windows_with_nafion_v1.py",
+      "entry_type": "regular_file",
+      "path": "scripts/make_material_parameter_windows_with_nafion_v1.py",
+      "sha256": "1a1e5ec6b37d7b177844806f98d7713257055b607c0bc7e781e004ba5b126e3b",
+      "size_bytes": 84812
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/make_membrane_parameter_region_plots_v1.py",
+      "entry_type": "regular_file",
+      "path": "scripts/make_membrane_parameter_region_plots_v1.py",
+      "sha256": "829badf89648f5bdd791dcbfed8bb183886437e7f76385304a2b7f1b9a919e01",
+      "size_bytes": 17114
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/make_post_erv_eo_design_frontier_v1.py",
+      "entry_type": "regular_file",
+      "path": "scripts/make_post_erv_eo_design_frontier_v1.py",
+      "sha256": "9dd95ca212f9ed703822229465fc842ee78442436d323ded40319ea9491d68b3",
+      "size_bytes": 83223
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/make_post_erv_eo_percentage_sweep_v1.py",
+      "entry_type": "regular_file",
+      "path": "scripts/make_post_erv_eo_percentage_sweep_v1.py",
+      "sha256": "27c3e57999870b4fd76fa0b1265cc81863a7ac03b32c490fa9716a3a2d48e775",
+      "size_bytes": 85336
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/make_post_erv_full_eo_study_v1.py",
+      "entry_type": "regular_file",
+      "path": "scripts/make_post_erv_full_eo_study_v1.py",
+      "sha256": "fa38bee9360947e930cd75a3d57835c2e9ea3f6fc110ffe012995bffea804ecd",
+      "size_bytes": 71148
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/make_workshop_diffusivity_report_assets_v1.py",
+      "entry_type": "regular_file",
+      "path": "scripts/make_workshop_diffusivity_report_assets_v1.py",
+      "sha256": "9f2a06f78da47a14af7cadb7e47620e386a131b9950a02f18e121e82876aca5e",
+      "size_bytes": 58055
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/make_wp1_closed_receiver_system_v12.py",
+      "entry_type": "regular_file",
+      "path": "scripts/make_wp1_closed_receiver_system_v12.py",
+      "sha256": "aa67b7d54dc7c055a0fc328a4fd5c795d84a241a8006089439bce8c031002524",
+      "size_bytes": 135120
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/make_wp1_direct_enthalpy_psychrometric.py",
+      "entry_type": "regular_file",
+      "path": "scripts/make_wp1_direct_enthalpy_psychrometric.py",
+      "sha256": "5098471e05649c823e405a3b1b2d7f5c188316f2207b63dcb362a407bcf76c74",
+      "size_bytes": 28016
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/make_wp1_direct_liquid_contact_receiver_v1.py",
+      "entry_type": "regular_file",
+      "path": "scripts/make_wp1_direct_liquid_contact_receiver_v1.py",
+      "sha256": "049be203c42745131014c1d0fee1a38d4c4c91e5d1841ffb38ccfdd0e48084c7",
+      "size_bytes": 79521
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/make_wp1_free_predrying_explicit_cop.py",
+      "entry_type": "regular_file",
+      "path": "scripts/make_wp1_free_predrying_explicit_cop.py",
+      "sha256": "e42183fea5f42db96312978eac6ff478964563699424050f197cbaa55b90bdd8",
+      "size_bytes": 28659
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/make_wp1_o30_required_area_1v_v1.py",
+      "entry_type": "regular_file",
+      "path": "scripts/make_wp1_o30_required_area_1v_v1.py",
+      "sha256": "0e4ff0832efa8b23e7f6f20bf91c9f4b13d1598f713ae390239dc29327932030",
+      "size_bytes": 31091
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/make_wp1_pre_receiver_axial_v3.py",
+      "entry_type": "regular_file",
+      "path": "scripts/make_wp1_pre_receiver_axial_v3.py",
+      "sha256": "333ecf4a5083b57873c6a9035543e206a58f0d0cbcb9ce8795f6918d1f34bf3c",
+      "size_bytes": 58095
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/make_wp1_prearchitecture_bottleneck_diagnostics_v1.py",
+      "entry_type": "regular_file",
+      "path": "scripts/make_wp1_prearchitecture_bottleneck_diagnostics_v1.py",
+      "sha256": "73c7273cdf9c2dc7642bc37ef65338c0450ec33e00139802b94defba43e6c72f",
+      "size_bytes": 62373
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/make_wp1_prearchitecture_continuation_v2.py",
+      "entry_type": "regular_file",
+      "path": "scripts/make_wp1_prearchitecture_continuation_v2.py",
+      "sha256": "3b81eea341b2c3ae1cdca893e8c86d643d0e79a57f6cdf0765dea31b2982dacf",
+      "size_bytes": 22259
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/package_final_closeout_v10.py",
+      "entry_type": "regular_file",
+      "path": "scripts/package_final_closeout_v10.py",
+      "sha256": "767471dce74e465a622bc5dfa21532cd95b84d7f21a3f68b031bc1f066739800",
+      "size_bytes": 69032
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/plot_direct_eo_erv_energy_area_tradeoffs_v2.py",
+      "entry_type": "regular_file",
+      "path": "scripts/plot_direct_eo_erv_energy_area_tradeoffs_v2.py",
+      "sha256": "e0de31203defdad60746bc5a52c2d635b2484ac8e6cadc29a2dc83c93cade3c3",
+      "size_bytes": 15148
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/plot_selected_membrane_current_profile.py",
+      "entry_type": "regular_file",
+      "path": "scripts/plot_selected_membrane_current_profile.py",
+      "sha256": "037d9bf40328919dc185822c97a08794ef85c5b185491ae620ad70421f4b78ba",
+      "size_bytes": 3135
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/plot_selected_membrane_humidity_profile.py",
+      "entry_type": "regular_file",
+      "path": "scripts/plot_selected_membrane_humidity_profile.py",
+      "sha256": "84b1899ae0763997ebb1b38ea0aec9241d2c67c37fcb2ccf66c8746cdf4e26b1",
+      "size_bytes": 3083
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/plot_team_findings_summary_v1.py",
+      "entry_type": "regular_file",
+      "path": "scripts/plot_team_findings_summary_v1.py",
+      "sha256": "2b3cd1af73bda6f08435e0277ddafc2a0b1279c4f1cec6f157ccdf68ca416dd5",
+      "size_bytes": 17416
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/pre_receiver_axial_v3_config.json",
+      "entry_type": "symlink",
+      "link_target": "../config/pre_receiver_axial_v3_config.json",
+      "path": "scripts/pre_receiver_axial_v3_config.json",
+      "sha256": "7a93449cd6ae7245ea3ac7c30654d7afb4dd375f8730d54cba2ae8d78bef337b",
+      "size_bytes": 43
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/promote_direct_eo_low_voltage_study_v1.py",
+      "entry_type": "regular_file",
+      "path": "scripts/promote_direct_eo_low_voltage_study_v1.py",
+      "sha256": "03cee7b6af1da75901c2dd09cd70e7f43215d33ed395ca30dec2d7d639889132",
+      "size_bytes": 12831
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/replay_wp1_legacy_geometry_candidates_v1.py",
+      "entry_type": "regular_file",
+      "path": "scripts/replay_wp1_legacy_geometry_candidates_v1.py",
+      "sha256": "2ec83576f90e70da7b69fa6daa37574414596a98be2ef3765206aa7af05e3c8e",
+      "size_bytes": 21988
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/run_capacitive_electrode_study_v1.py",
+      "entry_type": "regular_file",
+      "path": "scripts/run_capacitive_electrode_study_v1.py",
+      "sha256": "3711bbe0a90e9be5fc0c3392f3659268845c8bd07853144f8df4fdc790d5d3ac",
+      "size_bytes": 78340
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/run_direct_active_erv_tw50_d1e10.py",
+      "entry_type": "regular_file",
+      "path": "scripts/run_direct_active_erv_tw50_d1e10.py",
+      "sha256": "64d19ba2fbccb66e8de2394398cca608658310195d0d9934611a8fb675cf80e7",
+      "size_bytes": 2328
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/run_direct_eo_erv_membrane_sensitivity_1v.py",
+      "entry_type": "regular_file",
+      "path": "scripts/run_direct_eo_erv_membrane_sensitivity_1v.py",
+      "sha256": "139560a3998fbd040343e63fd76886737fbc3ee648ce65f30f68b8b0a03d2821",
+      "size_bytes": 10133
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/run_direct_eo_erv_study_v1.py",
+      "entry_type": "regular_file",
+      "path": "scripts/run_direct_eo_erv_study_v1.py",
+      "sha256": "6298fca091d4edf7ebbe57fb45fcc3ead021ee4e070545013ac35a9252e7904f",
+      "size_bytes": 80326
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/run_direct_eo_low_voltage_study_v1.py",
+      "entry_type": "regular_file",
+      "path": "scripts/run_direct_eo_low_voltage_study_v1.py",
+      "sha256": "8010d1aa84b5362f7a006f2ef9e3275488bb1ef51aaffd3474f13c2e9315ca92",
+      "size_bytes": 13837
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/run_direct_erv_gradient_closure_v1.py",
+      "entry_type": "regular_file",
+      "path": "scripts/run_direct_erv_gradient_closure_v1.py",
+      "sha256": "cf859e20675576611a714e76a26c95352b56624d13b9aa30125effbf6521cdf5",
+      "size_bytes": 37192
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/run_direct_passive_nafion_erv_control_v1.py",
+      "entry_type": "regular_file",
+      "path": "scripts/run_direct_passive_nafion_erv_control_v1.py",
+      "sha256": "3bb90f8e679f42ff4eb264e0afd22e567c2f1aa56ac27333dba98735a88533e2",
+      "size_bytes": 49182
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/run_final_delivery_check_v1.py",
+      "entry_type": "regular_file",
+      "path": "scripts/run_final_delivery_check_v1.py",
+      "sha256": "8848f31cbda8ddb01938687a5703c61df51dc3116203c977a0466d8d01e982e2",
+      "size_bytes": 68983
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/run_membrane_operating_region_study_v1.py",
+      "entry_type": "regular_file",
+      "path": "scripts/run_membrane_operating_region_study_v1.py",
+      "sha256": "663feff7dbf5f8777e654510284fb822c8d6858c2e1e638e7df153410652ea4f",
+      "size_bytes": 42623
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/run_project_closure_check_v1.py",
+      "entry_type": "regular_file",
+      "path": "scripts/run_project_closure_check_v1.py",
+      "sha256": "2000b8ba74d3dda3cf092dfc30e83855d9adee3de36f2be2f4f9634620fb4cdd",
+      "size_bytes": 78995
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/run_system_energy_closure_study.py",
+      "entry_type": "regular_file",
+      "path": "scripts/run_system_energy_closure_study.py",
+      "sha256": "af8e0dfd56a05b279f825a7ac6e7106d50b2d4702cd55bbb26f874724960605d",
+      "size_bytes": 114353
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/run_workshop_common_voltage_diffusivity_v1.py",
+      "entry_type": "regular_file",
+      "path": "scripts/run_workshop_common_voltage_diffusivity_v1.py",
+      "sha256": "69bcb4ec8409a0bb62a2776eabbd91aec26279c20b7b51cc085fb91639d29880",
+      "size_bytes": 64541
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/scan_wp1_o30_one_volt_receiver_boundary_v1.py",
+      "entry_type": "regular_file",
+      "path": "scripts/scan_wp1_o30_one_volt_receiver_boundary_v1.py",
+      "sha256": "4ebf4fd0eaee67db0d1ab9de4cce64e6bb4add43a13b7ccce75154c6b302f251",
+      "size_bytes": 23304
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/verify_workshop_pack_v1.py",
+      "entry_type": "regular_file",
+      "path": "scripts/verify_workshop_pack_v1.py",
+      "sha256": "ab59cb3f2deb784f8161affeb34cfcaba70d2e76151534e2656144b3da087cd7",
+      "size_bytes": 12861
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/src/heiq/__init__.py",
+      "entry_type": "regular_file",
+      "path": "src/heiq/__init__.py",
+      "sha256": "744334dac043809305d225acfdbaac7e55be82a6910d161cedf26dd1e392949d",
+      "size_bytes": 477
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/src/heiq/wp1/__init__.py",
+      "entry_type": "regular_file",
+      "path": "src/heiq/wp1/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/src/heiq/wp1/airside/__init__.py",
+      "entry_type": "regular_file",
+      "path": "src/heiq/wp1/airside/__init__.py",
+      "sha256": "1bc7c25aa4709cdb9a9f3230a7be6f3fcf589f0a1305fa8f51cb8ec3851e9ead",
+      "size_bytes": 522
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/src/heiq/wp1/airside/channels.py",
+      "entry_type": "regular_file",
+      "path": "src/heiq/wp1/airside/channels.py",
+      "sha256": "0bbd81df97fc5b8670d3b6a9582a629ab40aa66000a63036007461239a676e08",
+      "size_bytes": 3043
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/src/heiq/wp1/airside/legacy_v3.py",
+      "entry_type": "regular_file",
+      "path": "src/heiq/wp1/airside/legacy_v3.py",
+      "sha256": "fa192982c82d0be28cabac45690227d42ffb21deac6e93b597034544a1162a6e",
+      "size_bytes": 849
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/src/heiq/wp1/airside/properties.py",
+      "entry_type": "regular_file",
+      "path": "src/heiq/wp1/airside/properties.py",
+      "sha256": "d5d0fb317680e3d6db76212ef62c4625368991bc5fc569bed288a74716e3e57e",
+      "size_bytes": 8459
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/src/heiq/wp1/axial/__init__.py",
+      "entry_type": "regular_file",
+      "path": "src/heiq/wp1/axial/__init__.py",
+      "sha256": "733ee98bc705a986d70db8e519230329f4bfaf7d064f672e5980550c52011910",
+      "size_bytes": 354
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/src/heiq/wp1/axial/integration.py",
+      "entry_type": "regular_file",
+      "path": "src/heiq/wp1/axial/integration.py",
+      "sha256": "cfae42718f5f320ebbbed9bc47b3c1e488ff5be30171c4a5e3cb82c1154e7a46",
+      "size_bytes": 13185
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/src/heiq/wp1/axial/local_state.py",
+      "entry_type": "regular_file",
+      "path": "src/heiq/wp1/axial/local_state.py",
+      "sha256": "d068b8d7429e6cdbfca769672cb95986ee6cc8fd89696c4f296aa1f67fb547c5",
+      "size_bytes": 10492
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/src/heiq/wp1/axial/process.py",
+      "entry_type": "regular_file",
+      "path": "src/heiq/wp1/axial/process.py",
+      "sha256": "7e2b4cc737312b1717e3b9dfe5a4cde3d5f66629d63478c29d6288c8b52439aa",
+      "size_bytes": 700
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/src/heiq/wp1/axial/targets.py",
+      "entry_type": "regular_file",
+      "path": "src/heiq/wp1/axial/targets.py",
+      "sha256": "2cd534ee64e16d986379bc579d75c447d68d45c36335c7714e2e0187f30f41ef",
+      "size_bytes": 4240
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/src/heiq/wp1/electrodes/__init__.py",
+      "entry_type": "regular_file",
+      "path": "src/heiq/wp1/electrodes/__init__.py",
+      "sha256": "2bdb8e36c8e1b54701cfcc3c53cd77af8c44f516db3ef95f036cadd6447bf380",
+      "size_bytes": 367
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/src/heiq/wp1/electrodes/capacitive.py",
+      "entry_type": "regular_file",
+      "path": "src/heiq/wp1/electrodes/capacitive.py",
+      "sha256": "f96e3fb21c332bfb102d2d7ec3516f02a55e39ceea2983c34c9d51e3d654827c",
+      "size_bytes": 26770
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/src/heiq/wp1/engineering/__init__.py",
+      "entry_type": "regular_file",
+      "path": "src/heiq/wp1/engineering/__init__.py",
+      "sha256": "ff509f79f70709cdb09ae66d7fd7377958ca954473ec20c53fa9a35c87ef0bfe",
+      "size_bytes": 263
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/src/heiq/wp1/engineering/channels.py",
+      "entry_type": "regular_file",
+      "path": "src/heiq/wp1/engineering/channels.py",
+      "sha256": "92668bb2d116632c4ed00ea685a41ea0f38a39d2732483d20e01b4980484154b",
+      "size_bytes": 2926
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/src/heiq/wp1/engineering/packaging.py",
+      "entry_type": "regular_file",
+      "path": "src/heiq/wp1/engineering/packaging.py",
+      "sha256": "b8182e34355d44e38df32459729e42fd21e28d041df7eb324d4b4409c2691773",
+      "size_bytes": 3765
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/src/heiq/wp1/engineering/stack.py",
+      "entry_type": "regular_file",
+      "path": "src/heiq/wp1/engineering/stack.py",
+      "sha256": "5ff048aa24616fd44d61892eb1b623c4535448abb829cf24ee898af4e4b8f3c9",
+      "size_bytes": 5644
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/src/heiq/wp1/membrane/__init__.py",
+      "entry_type": "regular_file",
+      "path": "src/heiq/wp1/membrane/__init__.py",
+      "sha256": "81681e5357e7c8d15e76d15c381f2008b5e6410644ffd8193ff68150cfaf8693",
+      "size_bytes": 320
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/src/heiq/wp1/membrane/local_transport.py",
+      "entry_type": "regular_file",
+      "path": "src/heiq/wp1/membrane/local_transport.py",
+      "sha256": "e5830f09f9e7a4f6653f2b0ee13f9a00651a179a8492048f2e1ca8e4cb1008df",
+      "size_bytes": 1579
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/src/heiq/wp1/membrane/thermodynamics.py",
+      "entry_type": "regular_file",
+      "path": "src/heiq/wp1/membrane/thermodynamics.py",
+      "sha256": "f917a7e108d852403821450e7861dc5e14778264ecc50502d2168f25671f40ed",
+      "size_bytes": 10779
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/src/heiq/wp1/receiver/__init__.py",
+      "entry_type": "regular_file",
+      "path": "src/heiq/wp1/receiver/__init__.py",
+      "sha256": "aae9381c8ce297fa536ec0ad6ccd169b4e69f8c005b9fa09698c0686260fed93",
+      "size_bytes": 527
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/src/heiq/wp1/receiver/basis.py",
+      "entry_type": "regular_file",
+      "path": "src/heiq/wp1/receiver/basis.py",
+      "sha256": "9719f39da697b1af1f5998b903c280f676870fbbc8073d5cfef5b2a02462d825",
+      "size_bytes": 7632
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/src/heiq/wp1/receiver/coupled_gas.py",
+      "entry_type": "regular_file",
+      "path": "src/heiq/wp1/receiver/coupled_gas.py",
+      "sha256": "9c5230b5e0acbe1022839193c7ce9f34c5fd3c2428654a1f81c3b0fc16925298",
+      "size_bytes": 802
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/src/heiq/wp1/receiver/coupled_integration.py",
+      "entry_type": "regular_file",
+      "path": "src/heiq/wp1/receiver/coupled_integration.py",
+      "sha256": "b495e8212d62ae17381c19bcec297d444da83445aa05419726033e06b7998df5",
+      "size_bytes": 22242
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/src/heiq/wp1/receiver/legacy_v12.py",
+      "entry_type": "regular_file",
+      "path": "src/heiq/wp1/receiver/legacy_v12.py",
+      "sha256": "9acb51a57360d77dee476b37b9185eea8bec7832bcebc40879a30be4f9418716",
+      "size_bytes": 978
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/src/heiq/wp1/studies/__init__.py",
+      "entry_type": "regular_file",
+      "path": "src/heiq/wp1/studies/__init__.py",
+      "sha256": "3d7ca416eb4e104b264ba0c02dd15f3dcd07a3ec66f453b8d1a8ca54a2b61133",
+      "size_bytes": 372
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/src/heiq/wp1/studies/bootstrap.py",
+      "entry_type": "regular_file",
+      "path": "src/heiq/wp1/studies/bootstrap.py",
+      "sha256": "500703ebf3e4324a367babc07f239d82686da11b18d5b4e14d413d66185e953b",
+      "size_bytes": 2666
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/src/heiq/wp1/studies/direct_eo_erv.py",
+      "entry_type": "regular_file",
+      "path": "src/heiq/wp1/studies/direct_eo_erv.py",
+      "sha256": "9f57b2c44783a7ff5b6a087e8a64d98d0749bc24ea2f459fba64754d9f33ac60",
+      "size_bytes": 51273
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/src/heiq/wp1/studies/prearchitecture.py",
+      "entry_type": "regular_file",
+      "path": "src/heiq/wp1/studies/prearchitecture.py",
+      "sha256": "d267fc77a8dad600e3c44ce883d26337e6fb94ae231c7b1e88c4e0c4517f6b57",
+      "size_bytes": 17111
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/src/heiq/wp1/studies/system_boundaries.py",
+      "entry_type": "regular_file",
+      "path": "src/heiq/wp1/studies/system_boundaries.py",
+      "sha256": "f2f8819a2a8f60e7583e3fcc266d19f0ac96b8e82d2f1bd51e2adb4de4f99880",
+      "size_bytes": 18738
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_airside_api.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_airside_api.py",
+      "sha256": "6fce772cb7d8ee88f9ac0dd98399b1261cd302253aae5aa623262f23ea17aa56",
+      "size_bytes": 1294
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_airside_equivalence.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_airside_equivalence.py",
+      "sha256": "9e76bc2d6b235c761e512c282beee0831754e84588eaced975784fe750a4f683",
+      "size_bytes": 4824
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_analyze_direct_eo_operating_region_v1.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_analyze_direct_eo_operating_region_v1.py",
+      "sha256": "43c85f2c6bf7b5dd261612878e4a29a62e3efb96ce40681b17d4510bc93287b5",
+      "size_bytes": 9944
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_axial_api.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_axial_api.py",
+      "sha256": "fd438c25a5e4067502527450a61927bbc1b45ca5077519ff03986a09fdf81d0e",
+      "size_bytes": 1983
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_axial_integration_equivalence.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_axial_integration_equivalence.py",
+      "sha256": "d4614f8e6446f71374c3e9201a360cbc49d277752bc1359ee2909866832e5577",
+      "size_bytes": 5540
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_axial_targets_equivalence.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_axial_targets_equivalence.py",
+      "sha256": "32a90119a948b1d032f39d908338b1f134a7ed4723d7a645a7b2b04c4b5382e5",
+      "size_bytes": 2381
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_bottleneck_native_workflow.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_bottleneck_native_workflow.py",
+      "sha256": "51287132e9f591bb0e5ed29d1dfb79782e01e2a54cd2988fc6443a952ea0d6d1",
+      "size_bytes": 2583
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_capacitive_electrode_study_v1.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_capacitive_electrode_study_v1.py",
+      "sha256": "5fcac8bbc03b91d5783c9809f650033d99a7aa9b6863a920f3a2587a9a26b7f5",
+      "size_bytes": 12536
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_channel_equivalence.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_channel_equivalence.py",
+      "sha256": "f21ae777b05b554ca360a0c1a7c7b177fe3c617ca97947669f502ca7c25ad6a7",
+      "size_bytes": 2690
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_coupled_receiver_equivalence.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_coupled_receiver_equivalence.py",
+      "sha256": "f7a1172834ca53037ee30848a8557dd509d14de6a2039f4bdba91d379cfa2fe7",
+      "size_bytes": 8188
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_current_density_cap_policy.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_current_density_cap_policy.py",
+      "sha256": "40ba358cc78e760a86dbc85bc28ac7c3e2df0e64cedc5c4e0ab77d294cb849e5",
+      "size_bytes": 4103
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_direct_eo_erv.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_direct_eo_erv.py",
+      "sha256": "763d392a29c82cc8668102212436717a8347fa3447380579566de647f7666761",
+      "size_bytes": 4241
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_direct_eo_erv_study_v1.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_direct_eo_erv_study_v1.py",
+      "sha256": "d38fc423e069174efdfe3f67753e350d8767b5cbd02451c8f0e70aa6da1a7d0a",
+      "size_bytes": 11225
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_direct_eo_low_voltage_study_v1.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_direct_eo_low_voltage_study_v1.py",
+      "sha256": "d8390724d652b300a4bc08b0048286e6624189fbae77d6d5400c7c74b737f29e",
+      "size_bytes": 7393
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_direct_erv_gradient_closure_v1.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_direct_erv_gradient_closure_v1.py",
+      "sha256": "dd6e46b8272410e537331afa0734b9ddc7736fd5397ea1b186351d1494c390e0",
+      "size_bytes": 4993
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_direct_liquid_native_workflow.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_direct_liquid_native_workflow.py",
+      "sha256": "e3606ddfe2b17494eda36f1c4f6026bf31575760224fca211b15e77472ccd7a7",
+      "size_bytes": 1502
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_direct_passive_nafion_erv_control_v1.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_direct_passive_nafion_erv_control_v1.py",
+      "sha256": "e7e8f0defcf97082e6707f23a11d5aa3e4d58ab0b9a3c0f7d8976665609a50d2",
+      "size_bytes": 10108
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_engineering_equivalence.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_engineering_equivalence.py",
+      "sha256": "a3ef1f8d33f1fe9f5c0e30f9f863a29af87193d6ab634186e35679b531389166",
+      "size_bytes": 4928
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_engineering_packaging_equivalence.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_engineering_packaging_equivalence.py",
+      "sha256": "0d4e69b8949dc0781012079519bfae5e975f8ff49cb5fa9b9c1a16d514cbafd3",
+      "size_bytes": 3785
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_eo_vapor_boundary_analysis_v1.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_eo_vapor_boundary_analysis_v1.py",
+      "sha256": "5ed115e42e0b0df3f481f464c77fe1a5a54f1e79d7818c429183ab68507f3325",
+      "size_bytes": 5132
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_eo_vapor_test_cell_design.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_eo_vapor_test_cell_design.py",
+      "sha256": "0bf18074256e3c0026c7a3ccbec71410aa45e90adeb993626a0d4564a5f9ac32",
+      "size_bytes": 10588
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_final_delivery_check_v1.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_final_delivery_check_v1.py",
+      "sha256": "f63a2b974fddba5c556e5884fa0fee6c14fe512c726b1f72d5c23653ccda8c2f",
+      "size_bytes": 25308
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_fom_assessment_v1.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_fom_assessment_v1.py",
+      "sha256": "eac4b178da9bb70544121ad71db7b4df460282700aa2430ec20002fe20842c4f",
+      "size_bytes": 2870
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_full_result_atlas_v2.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_full_result_atlas_v2.py",
+      "sha256": "6bed6faa8999e5a0b6e99d5b59e0f5eac4e8a2c150cc0d52ad7949c06b88f0a3",
+      "size_bytes": 2649
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_geometry_candidate_replay.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_geometry_candidate_replay.py",
+      "sha256": "ff7d03a09a678f0d9f0d4bcc925bd01970a06794d62228f83f087904f7a3bf17",
+      "size_bytes": 3287
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_independent_film_scaling.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_independent_film_scaling.py",
+      "sha256": "db94a1bbaa9127937ab632847ccbdb63d3759dc824e5de01818d2e20d0d5fb82",
+      "size_bytes": 6124
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_integrated_evidence_register_v1.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_integrated_evidence_register_v1.py",
+      "sha256": "61b7a7acf30753425f830bbc337ee99fd5d94a2ea2a0058b83dfc4ff1527222d",
+      "size_bytes": 2645
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_local_state_equivalence.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_local_state_equivalence.py",
+      "sha256": "dbe910a4689740a436afc32ecb16fdc5b2fbaea82637c5741198aad562347ba1",
+      "size_bytes": 9041
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_material_parameter_windows_with_nafion_v1.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_material_parameter_windows_with_nafion_v1.py",
+      "sha256": "3c865947241a8eb8553fc8be25c7d4e08a6ea35b83a57c0093c987b8ad3c3387",
+      "size_bytes": 5109
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_material_search_handoff_v1.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_material_search_handoff_v1.py",
+      "sha256": "2cebfeac70267e3a13e5b6a81df97fce876903dec3fd7c7fdf9e6693e6182ae5",
+      "size_bytes": 6202
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_membrane_operating_region_study_v1.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_membrane_operating_region_study_v1.py",
+      "sha256": "311c627e91cb60e1f2ad28585e76816b3189f1728cee369b32a781ff663bce26",
+      "size_bytes": 6954
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_membrane_thermodynamics.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_membrane_thermodynamics.py",
+      "sha256": "0b7a164b2f46cd7bdc9eb1ba0db8ec6e1af0afb5b8ce6e7259b3983edc160604",
+      "size_bytes": 6140
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_o30_one_volt_receiver_scan.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_o30_one_volt_receiver_scan.py",
+      "sha256": "10f5ee8373f8156dd2e87e06ae9ebb74af93029738045cd9e575d344c24f42dc",
+      "size_bytes": 6708
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_o30_required_area_1v.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_o30_required_area_1v.py",
+      "sha256": "c15020fb7f1c7a42d0aa831ac89780092de7df63bc4be022525a38f24f5f8527",
+      "size_bytes": 6554
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_open_questions_analysis_v1.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_open_questions_analysis_v1.py",
+      "sha256": "349669da2e1644cc8ed6ceb07468501565951963d9fc528858f6331d449d8b30",
+      "size_bytes": 8867
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_package_api.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_package_api.py",
+      "sha256": "1aef94399c1d286cd76e43abe4d260e78b25212adfc99ef5b70968ffd4630f16",
+      "size_bytes": 951
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_package_boundaries.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_package_boundaries.py",
+      "sha256": "47c565bba5c70d21055fb87c1334d47a38cf5f29bb69ed7abef566a5de430909",
+      "size_bytes": 1988
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_phase_a_regression.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_phase_a_regression.py",
+      "sha256": "db01e464c0436a0e8e9cb609a33d3828cf6ba738cbe737e6b6041c1c0bf26fd3",
+      "size_bytes": 3534
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_post_erv_eo_design_frontier_v1.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_post_erv_eo_design_frontier_v1.py",
+      "sha256": "1560c780f279231bae248edd567fa56c48722b93d4aa9c4e4e7b952b3c1d4173",
+      "size_bytes": 17852
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_post_erv_eo_percentage_sweep_v1.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_post_erv_eo_percentage_sweep_v1.py",
+      "sha256": "eab26f0ee902f9c86724ee2f665595ad6fae749dfb7ef2f9cfbd6fefed4998c5",
+      "size_bytes": 18735
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_post_erv_full_eo_study_v1.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_post_erv_full_eo_study_v1.py",
+      "sha256": "278ca50338a5c3727941f287d35c057cbfb45626dd623829e548f2e74b50bce3",
+      "size_bytes": 10511
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_prearchitecture_workflow.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_prearchitecture_workflow.py",
+      "sha256": "b043d08c7f67c1ccb91170d0dd138eb961ba5bf3838995c269cdeeeed71e4821",
+      "size_bytes": 2752
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_project_closure_check_v1.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_project_closure_check_v1.py",
+      "sha256": "ff9ce80cb20d55f8c682ab97821c82221549cbe917bb260b439286c92834741f",
+      "size_bytes": 5550
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_promote_direct_eo_low_voltage_study_v1.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_promote_direct_eo_low_voltage_study_v1.py",
+      "sha256": "3e5fb313802a6547274df8e42a52db4393d586fe7df35193defffb1d7dd3c037",
+      "size_bytes": 2974
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_receiver_api.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_receiver_api.py",
+      "sha256": "a3edcfa6d4adde5492700537c81371113e790e68b440d0bf67c6ef3c6af424ce",
+      "size_bytes": 3065
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_receiver_basis_equivalence.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_receiver_basis_equivalence.py",
+      "sha256": "ade7085551ed041ab8b5279f82bb5a1aa3fc65c311c230532dd91d043b0b5c12",
+      "size_bytes": 5492
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_system_boundaries.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_system_boundaries.py",
+      "sha256": "ed348ac6981c3f006876e138a5ad592348c0523c878a0e573969b5eb637e581f",
+      "size_bytes": 5046
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_system_energy_closure_study.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_system_energy_closure_study.py",
+      "sha256": "31c598002e018b7734b4c903328195788e561f506753c32d9778c02b47ff56eb",
+      "size_bytes": 17349
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_workflow_bootstrap.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_workflow_bootstrap.py",
+      "sha256": "7e74721d34f10ae56b09bab7a00973800011b1c680753d78073318e52c2a3dae",
+      "size_bytes": 1559
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/tests/test_workshop_common_voltage_diffusivity_v1.py",
+      "entry_type": "regular_file",
+      "path": "tests/test_workshop_common_voltage_diffusivity_v1.py",
+      "sha256": "26f03521d81cc88013c892cd48c6cb7d49359abddbc53d810a548170f5c9fcf7",
+      "size_bytes": 11324
+    }
+  ],
+  "schema_version": 1,
+  "snapshot_type": "complete_git_revision",
+  "source_revision": "805ae087a7f3e133444c93f9fbb72856863754bf"
+}

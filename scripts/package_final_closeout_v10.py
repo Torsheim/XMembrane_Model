@@ -30,6 +30,7 @@ import os
 import platform
 import re
 import shutil
+import stat
 import subprocess
 import sys
 import tempfile
@@ -810,6 +811,87 @@ def copy_file(source: Path, destination: Path) -> None:
     shutil.copy2(source, destination)
 
 
+def normalize_release_modes(
+    release_root: Path,
+    source_tree: Sequence[Mapping[str, str]],
+) -> dict[str, int]:
+    """Apply portable modes without changing release file contents.
+
+    The package may be staged on a filesystem that reports every copied file
+    as executable. Published directories and ordinary files are normalized to
+    0755 and 0644 respectively. Only files in the extracted Git source
+    snapshot whose declared Git mode is 100755 retain an executable bit.
+    Symlink modes are deliberately left alone because chmod would operate on
+    their targets on many platforms.
+    """
+
+    if not release_root.is_dir() or release_root.is_symlink():
+        raise PackagingError(
+            f"Release mode root is not a normal directory: {release_root}"
+        )
+
+    source_modes: dict[PurePosixPath, str] = {}
+    for record in source_tree:
+        try:
+            source_path = PurePosixPath(str(record["path"]))
+            source_mode = str(record["mode"])
+        except KeyError as exc:
+            raise PackagingError("Source tree mode record is incomplete") from exc
+        if (
+            source_path.is_absolute()
+            or not source_path.parts
+            or ".." in source_path.parts
+            or source_mode not in {"100644", "100755", "120000"}
+        ):
+            raise PackagingError(
+                f"Invalid source tree mode record: {source_mode} {source_path}"
+            )
+        source_modes[source_path] = source_mode
+
+    source_prefix = ("source", PROJECT_ARCHIVE_ROOT)
+    directory_count = 1
+    regular_file_count = 0
+    executable_file_count = 0
+
+    release_root.chmod(0o755)
+    if stat.S_IMODE(release_root.stat().st_mode) != 0o755:
+        raise PackagingError(
+            f"Filesystem did not apply directory mode 0755: {release_root}"
+        )
+
+    for path in sorted(release_root.rglob("*")):
+        if path.is_symlink():
+            continue
+        if path.is_dir():
+            expected_mode = 0o755
+            directory_count += 1
+        elif path.is_file():
+            relative = PurePosixPath(path.relative_to(release_root).as_posix())
+            executable = False
+            if relative.parts[:2] == source_prefix:
+                source_relative = PurePosixPath(*relative.parts[2:])
+                executable = source_modes.get(source_relative) == "100755"
+            expected_mode = 0o755 if executable else 0o644
+            regular_file_count += 1
+            executable_file_count += int(executable)
+        else:
+            raise PackagingError(f"Unsupported release entry: {path}")
+
+        path.chmod(expected_mode)
+        actual_mode = stat.S_IMODE(path.stat().st_mode)
+        if actual_mode != expected_mode:
+            raise PackagingError(
+                "Filesystem did not apply deterministic release mode "
+                f"{expected_mode:04o}: {path} (actual {actual_mode:04o})"
+            )
+
+    return {
+        "directory_count": directory_count,
+        "regular_file_count": regular_file_count,
+        "executable_file_count": executable_file_count,
+    }
+
+
 def safe_zip_member(name: str) -> PurePosixPath:
     path = PurePosixPath(name)
     if path.is_absolute() or not path.parts or ".." in path.parts:
@@ -1264,7 +1346,12 @@ def ensure_safe_existing_release(release_dir: Path) -> None:
         )
 
 
-def publish_atomically(staging: Path, release_dir: Path) -> None:
+def publish_atomically(
+    staging: Path,
+    release_dir: Path,
+    *,
+    source_tree: Sequence[Mapping[str, str]],
+) -> dict[str, int]:
     ensure_safe_existing_release(release_dir)
     backup = release_dir.with_name(release_dir.name + ".previous")
     if backup.exists():
@@ -1274,6 +1361,7 @@ def publish_atomically(staging: Path, release_dir: Path) -> None:
         if had_existing:
             os.replace(release_dir, backup)
         os.replace(staging, release_dir)
+        release_mode_check = normalize_release_modes(release_dir, source_tree)
         verify_package_manifest(release_dir)
         verify_sha256sums(release_dir)
     except Exception:
@@ -1289,6 +1377,7 @@ def publish_atomically(staging: Path, release_dir: Path) -> None:
         raise
     if backup.exists():
         shutil.rmtree(backup)
+    return release_mode_check
 
 
 def build_staging(
@@ -1772,9 +1861,17 @@ def main(argv: Sequence[str] | None = None) -> int:
             )
             local_stage.rmdir()
             shutil.copytree(staging, local_stage, symlinks=True)
+            normalize_release_modes(
+                local_stage,
+                git_state["tree"],
+            )
             verify_package_manifest(local_stage)
             verify_sha256sums(local_stage)
-            publish_atomically(local_stage, release_dir)
+            release_mode_check = publish_atomically(
+                local_stage,
+                release_dir,
+                source_tree=git_state["tree"],
+            )
             published = True
             final_checksum_check = verify_sha256sums(release_dir)
             final_manifest_check = verify_package_manifest(release_dir)
@@ -1784,6 +1881,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                         "mode": "published",
                         "release_dir": str(release_dir),
                         **summary,
+                        "post_publish_release_modes": release_mode_check,
                         "post_publish_manifest_check": final_manifest_check,
                         "post_publish_checksum_check": final_checksum_check,
                     },

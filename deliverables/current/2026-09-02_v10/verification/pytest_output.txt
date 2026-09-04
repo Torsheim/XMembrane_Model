@@ -1,0 +1,43 @@
+..........s............................................................. [ 22%]
+.......ss.......................................................sss..... [ 45%]
+.s.........s.s..s.s...ssss...........................sssss.............. [ 68%]
+........s.ssssssssssss...sssss............s............................. [ 91%]
+..........................                                               [100%]
+=========================== short test summary info ============================
+SKIPPED [1] tests/test_analyze_direct_eo_operating_region_v1.py:127: Audited global and dense direct-EO registers are not present
+SKIPPED [1] tests/test_direct_eo_low_voltage_study_v1.py:157: Full low-voltage output has not been materialized: /mnt/c/Users/mariu/AppData/Local/Temp/xmembrane-v10-reconstructed-718c54t2/XMembrane_Trond_Study/outputs/direct_eo_low_voltage_study_v1
+SKIPPED [1] tests/test_direct_eo_low_voltage_study_v1.py:157: Full low-voltage output has not been materialized: /mnt/c/Users/mariu/AppData/Local/Temp/xmembrane-v10-reconstructed-718c54t2/XMembrane_Trond_Study/outputs/direct_eo_low_voltage_study_v1_candidate_20260826
+SKIPPED [1] tests/test_fom_assessment_v1.py:30: Materialized FOM input registers are not part of a clean source checkout
+SKIPPED [1] tests/test_full_result_atlas_v2.py:25: HeiQ_V2 audited sibling outputs are not present
+SKIPPED [1] tests/test_full_result_atlas_v2.py:49: HeiQ_V2 audited sibling outputs are not present
+SKIPPED [1] tests/test_integrated_evidence_register_v1.py:25: HeiQ_V2 audited sibling output is not present
+SKIPPED [1] tests/test_material_parameter_windows_with_nafion_v1.py:46: Materialized parameter-window evidence and sibling references are absent
+SKIPPED [1] tests/test_material_search_handoff_v1.py:27: The full multi-repository material-search evidence tree is not present
+SKIPPED [1] tests/test_material_search_handoff_v1.py:57: The full multi-repository material-search evidence tree is not present
+SKIPPED [1] tests/test_material_search_handoff_v1.py:93: The full controlled-release hierarchy is not present
+SKIPPED [1] tests/test_membrane_operating_region_study_v1.py:52: direct-EO analysis has not been run
+SKIPPED [1] tests/test_membrane_operating_region_study_v1.py:70: post-ERV study has not finished
+SKIPPED [1] tests/test_membrane_operating_region_study_v1.py:94: post-ERV study has not finished
+SKIPPED [1] tests/test_membrane_operating_region_study_v1.py:144: combined audit has not been run
+SKIPPED [4] tests/test_open_questions_analysis_v1.py:36: Registered evidence is not available in this checkout: Required source missing: /mnt/c/Users/mariu/AppData/Local/Temp/xmembrane-v10-reconstructed-718c54t2/XMembrane_Trond_Study/outputs/membrane_operating_region_study_v1/study_audit.json
+SKIPPED [1] tests/test_open_questions_analysis_v1.py:178: Materialized open-question analysis is not part of a clean checkout
+SKIPPED [1] tests/test_post_erv_eo_design_frontier_v1.py:461: No design-frontier smoke output yet; run the generator's --smoke command first
+SKIPPED [1] tests/test_post_erv_eo_percentage_sweep_v1.py:53: Audited HeiQ_V2 post-ERV runtime is not present
+SKIPPED [1] tests/test_post_erv_eo_percentage_sweep_v1.py:78: Audited HeiQ_V2 post-ERV runtime is not present
+SKIPPED [1] tests/test_post_erv_eo_percentage_sweep_v1.py:139: Audited HeiQ_V2 post-ERV runtime is not present
+SKIPPED [1] tests/test_post_erv_eo_percentage_sweep_v1.py:166: Audited HeiQ_V2 post-ERV runtime is not present
+SKIPPED [1] tests/test_post_erv_eo_percentage_sweep_v1.py:190: Audited HeiQ_V2 post-ERV runtime is not present
+SKIPPED [1] tests/test_post_erv_eo_percentage_sweep_v1.py:223: Audited HeiQ_V2 post-ERV runtime is not present
+SKIPPED [1] tests/test_post_erv_eo_percentage_sweep_v1.py:260: Audited HeiQ_V2 post-ERV runtime is not present
+SKIPPED [1] tests/test_post_erv_eo_percentage_sweep_v1.py:275: Audited HeiQ_V2 post-ERV runtime is not present
+SKIPPED [1] tests/test_post_erv_eo_percentage_sweep_v1.py:301: Audited HeiQ_V2 post-ERV runtime is not present
+SKIPPED [1] tests/test_post_erv_eo_percentage_sweep_v1.py:345: Audited HeiQ_V2 post-ERV runtime is not present
+SKIPPED [1] tests/test_post_erv_eo_percentage_sweep_v1.py:398: Audited HeiQ_V2 post-ERV runtime is not present
+SKIPPED [1] tests/test_post_erv_eo_percentage_sweep_v1.py:471: Audited HeiQ_V2 post-ERV runtime is not present
+SKIPPED [1] tests/test_post_erv_full_eo_study_v1.py:100: Audited HeiQ_V2 post-ERV runtime is not present
+SKIPPED [1] tests/test_post_erv_full_eo_study_v1.py:129: Audited HeiQ_V2 post-ERV runtime is not present
+SKIPPED [1] tests/test_post_erv_full_eo_study_v1.py:149: Audited HeiQ_V2 post-ERV runtime is not present
+SKIPPED [1] tests/test_post_erv_full_eo_study_v1.py:194: Audited HeiQ_V2 post-ERV runtime is not present
+SKIPPED [1] tests/test_post_erv_full_eo_study_v1.py:251: Audited HeiQ_V2 post-ERV runtime is not present
+SKIPPED [1] tests/test_promote_direct_eo_low_voltage_study_v1.py:39: Canonical promotion has not been generated
+275 passed, 39 skipped in 149.15s (0:02:29)

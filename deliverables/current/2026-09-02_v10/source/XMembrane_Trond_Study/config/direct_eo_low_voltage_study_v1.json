@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "study_id": "direct-eo-low-voltage-study-v1-2026-08-26",
+  "purpose": "A separate, hash-bound direct-EO inverse-design study restricted to acceptance caps at or below 2 V, with high-transport-number negative controls and low-current operation retained.",
+  "claim_boundary": {
+    "full_system_claim_allowed": false,
+    "receiver_energy_status": "UNKNOWN",
+    "native_historical_margin_is_system_saving": false,
+    "modern_comparator_margin_is_conditional_until_receiver_closure": true
+  },
+  "source_model": {
+    "v53_generator": "/home/torsheim/HeiQ/HeiQ_V2/scripts/make_wp1_symmetric_wet_receiver_sink_v53.py",
+    "calculation_ceiling_v": 12.0,
+    "calculation_ceiling_interpretation": "Internal ceiling used to retain failed high-voltage coordinates. It is not an accepted operating voltage; all study acceptance caps are <=2 V.",
+    "receiver_control_activity": 0.8,
+    "process_surface_activity_screen_min": 0.1,
+    "hard_area_screen_m2": 5000.0,
+    "preferred_area_diagnostic_m2": 1000.0,
+    "water_activity_voltage_factor": 1.0,
+    "receiver_sink_energy_modelled": false
+  },
+  "grid": {
+    "current_density_a_m2": [5.0, 10.0, 15.0, 20.0, 25.0, 30.0, 40.0, 50.0, 60.0, 75.0, 100.0],
+    "transport_number_reference_t_w": [10.0, 15.0, 20.0, 25.0, 30.0, 35.0, 40.0, 45.0, 50.0, 60.0, 75.0, 90.0, 100.0, 110.0, 120.0, 135.0, 150.0, 175.0, 200.0],
+    "water_diffusivity_scale_vs_pfsa": [0.001, 0.003, 0.006, 0.01, 0.02, 0.03, 0.06, 0.1, 0.2, 0.3, 0.45, 0.6],
+    "dry_thickness_um": [20.0],
+    "ionic_area_resistance_ohm_m2_at_lambda_ref": [5e-06],
+    "retention_factor_vs_pfsa_sorption": [1.25],
+    "receiver_control_activity": [0.8],
+    "cell_voltage_caps_v": [1.0, 1.25, 1.5, 1.75, 2.0]
+  },
+  "gates": {
+    "primary_hard_voltage_cap_v": 2.0,
+    "preferred_maximum_local_voltage_v": 1.8,
+    "robust_process_surface_activity_min": 0.17,
+    "native_historical_margin_diagnostic_kw": 425.0,
+    "modern_comparator_positive_margin_kw": 0.0,
+    "engineering_current_density_limit_a_m2": null,
+    "current_density_is_sampling_or_control_axis": true,
+    "high_transport_negative_control_min_t_w": 100.0
+  },
+  "energy_ledgers": {
+    "native_historical_reference_kw": 1166.0,
+    "native_historical_interpretation": "Inherited no-ERV direct-EO ledger. Its calculated margin is retained for regression only and must not be called system saving.",
+    "modern_ac_erv_reference_kw": 543.7405641877893,
+    "modern_ac_erv_reference_source": "/home/torsheim/HeiQ/HeiQ_V2/outputs/active_eo_erv_direct_v1_full/baseline_reproduction_audit.json",
+    "modern_ac_erv_reference_json_field": "actual_kw",
+    "receiver_sec_values_kwh_kg": [0.0, 0.05, 0.075, 0.1, 0.125, 0.15]
+  },
+  "voltage_decomposition": {
+    "baseline_electrode_overpotential_v": 0.4,
+    "baseline_interface_voltage_v": 0.45,
+    "baseline_combined_fixed_loss_v": 0.85,
+    "combined_fixed_loss_scenarios_v": [0.2, 0.4, 0.6, 0.85, 1.0],
+    "interpretation": "Deterministic post-processing scenarios. They hold the solved transport, activity and current fixed and replace only electrode plus interface voltage. They are not probabilities and are not membrane ASR scenarios."
+  },
+  "parameter_interpretation": {
+    "inverse_design_not_material_population": true,
+    "transport_number_note": "Reference t_w maps to hydration-dependent local drag; it is not a constant measured plateau value.",
+    "diffusion_note": "At fixed thickness the sampled diffusivity scale represents the D/L direction. Do not combine marginal extrema with other studies into an untested material.",
+    "flux_note": "t_w times current density is reported as a transport-intensity diagnostic because t_w and j jointly control gross EO drag flux.",
+    "voltage_cap_note": "The V53 model is current-controlled. A cap filters calculated maximum required local voltage; it is not a fixed applied terminal voltage."
+  }
+}

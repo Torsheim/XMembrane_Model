@@ -1,0 +1,242 @@
+{
+  "schema_version": 1,
+  "study_id": "eo-vapour-boundary-analysis-v2-en-2026-08-31",
+  "generated_utc": "2026-08-31T12:05:31Z",
+  "hash_algorithm": "sha256",
+  "language": "English",
+  "translation_only_no_scientific_delta": true,
+  "translation_source_binding": {
+    "path": "../eo_vapor_boundary_analysis_v2_no/HeiQ_EO_Dampcelle_Randbetingelser_og_Dimensjonering_2026-08-31_v2.tex",
+    "sha256": "3c31268bd8f1fd9637230b7b56b9fc0ddd89b3af0d38088bec1fd0f796c991a9"
+  },
+  "claim_boundary": {
+    "calibrated_probabilities": false,
+    "confidence_intervals": false,
+    "expected_hardware_yield": false,
+    "material_validated": false,
+    "fixture_validated": false,
+    "product_validated": false,
+    "fixture_dimensions_are_starting_values": true,
+    "gross_faradaic_transport_is_not_net_measured_transport": true,
+    "plate_loads_are_sensitivity_coordinates_not_gasket_predictions": true
+  },
+  "verification": {
+    "latex_build": "PASS; 17 A4 pages",
+    "actionable_latex_warning_count": 0,
+    "focused_tests": "18 passed",
+    "sizing_audit_all_pass": true,
+    "sizing_audit_check_count": 10,
+    "scientific_numeric_equivalence": "PASS; 481 versus 481 scientific-section numeric tokens; identical multisets after decimal normalization",
+    "language_audit": "PASS; pdftotext contains no Nordic letters and no distinctive Norwegian prose tokens",
+    "pdf_strictly_newer_than_tex": true,
+    "manifest_self_excluded_to_avoid_recursive_hash": true,
+    "visual_inspection": "PASS; cover, executive summary, dimension table, closed-cell sequence, conclusions, acceptance gates, claim boundary, and appendix inspected"
+  },
+  "files": [
+    {
+      "role": "report_source",
+      "path": "HeiQ_EO_Vapour_Cell_Boundary_Conditions_and_Sizing_2026-08-31_v2.tex",
+      "sha256": "7bab024109672363a4dc16fd21ca9e0158361dfad98640a53587c8478cf218cd"
+    },
+    {
+      "role": "report_pdf",
+      "path": "HeiQ_EO_Vapour_Cell_Boundary_Conditions_and_Sizing_2026-08-31_v2.pdf",
+      "sha256": "023390952feec6b685466dd68802080dc5df1ed46160e69af55c7ae2c568d0a4"
+    },
+    {
+      "role": "report_readme",
+      "path": "README.md",
+      "sha256": "401df82c91bee8208084ecafd25a297c772a6ac0b8222af1213045fe7cee7a76"
+    },
+    {
+      "role": "canonical_norwegian_counterpart_source",
+      "path": "../eo_vapor_boundary_analysis_v2_no/HeiQ_EO_Dampcelle_Randbetingelser_og_Dimensjonering_2026-08-31_v2.tex",
+      "sha256": "3c31268bd8f1fd9637230b7b56b9fc0ddd89b3af0d38088bec1fd0f796c991a9"
+    },
+    {
+      "role": "legacy_english_translation_basis",
+      "path": "../eo_vapor_boundary_analysis_v1/HeiQ_EO_Vapor_Cell_Boundary_Analysis_2026-08-28.tex",
+      "sha256": "fd7b13b37a0243dfe5390bffdcd164ef8a959b1958806bd3d4974a495fb9a67b"
+    },
+    {
+      "role": "boundary_config",
+      "path": "../../config/eo_vapor_boundary_analysis_v1.json",
+      "sha256": "9663ff43a14b314c422e522ef78fdf6f3391f4dcf2bb23cd0ee93320ef0e9a17"
+    },
+    {
+      "role": "sizing_config",
+      "path": "../../config/eo_vapor_cell_sizing_v1.json",
+      "sha256": "77a73ec801b34a80f11a8009c126d302aa29e9132498d8d1e6af7715a475a6e4"
+    },
+    {
+      "role": "boundary_runner",
+      "path": "../../scripts/analyze_eo_vapor_boundaries_v1.py",
+      "sha256": "9b6d9c95425820d29252160723445d74d654cb079a9161f3723a44f149026bc3"
+    },
+    {
+      "role": "sizing_runner",
+      "path": "../../scripts/size_eo_vapor_cell_v1.py",
+      "sha256": "147e90c0545bdf674b653c7e1147f1919822a4cf0bb8831000f42aa299fb0ed0"
+    },
+    {
+      "role": "boundary_test",
+      "path": "../../tests/test_eo_vapor_boundary_analysis_v1.py",
+      "sha256": "5ed115e42e0b0df3f481f464c77fe1a5a54f1e79d7818c429183ab68507f3325"
+    },
+    {
+      "role": "sizing_test",
+      "path": "../../tests/test_eo_vapor_cell_sizing_v1.py",
+      "sha256": "c712713775174d9a1a4d3a99fcaed712ca62d2232ee533da5464617afee97576"
+    },
+    {
+      "role": "boundary_audit",
+      "path": "../../outputs/eo_vapor_boundary_analysis_v1/audit.json",
+      "sha256": "86465289c15df2deeda7456cc0293ea13c653f4e23a8b54bf611e35fdc2fdc3b"
+    },
+    {
+      "role": "boundary_source_manifest",
+      "path": "../../outputs/eo_vapor_boundary_analysis_v1/source_manifest.json",
+      "sha256": "2d6ce28a546e86172dd24d0f791d35bdf42cfee2970b2c365277a1626a12c9cd"
+    },
+    {
+      "role": "boundary_nominal_cases",
+      "path": "../../outputs/eo_vapor_boundary_analysis_v1/nominal_cases.csv",
+      "sha256": "8c7cf03003e53e9944a8c4f6d95e2f8317c47d843ae7a8d0d6122e6366b0d84f"
+    },
+    {
+      "role": "boundary_canonical_crosscheck",
+      "path": "../../outputs/eo_vapor_boundary_analysis_v1/canonical_solver_crosscheck.csv",
+      "sha256": "6fec9f8719a01e7816ff2bdcf1b9f63ca3fc34743a897bad8a3949aab712b7ba"
+    },
+    {
+      "role": "boundary_one_factor_table",
+      "path": "../../outputs/eo_vapor_boundary_analysis_v1/one_factor_boundary_sweeps.csv",
+      "sha256": "d5b358e6405f07f605471be3962f939429412743c200b407cdedd19693e7497e"
+    },
+    {
+      "role": "boundary_scenario_summary",
+      "path": "../../outputs/eo_vapor_boundary_analysis_v1/scenario_summary.csv",
+      "sha256": "9c03cc83040448c375d7166c464f19b20db8bd729fa991f45281d8b8b336c5c7"
+    },
+    {
+      "role": "boundary_rank_table",
+      "path": "../../outputs/eo_vapor_boundary_analysis_v1/combined_sensitivity_rank.csv",
+      "sha256": "9dca4200d99a8dbdb369f8832fa8a4ada01b5f16b320044aef485ad4ae613003"
+    },
+    {
+      "role": "boundary_closed_loop_table",
+      "path": "../../outputs/eo_vapor_boundary_analysis_v1/closed_loop_boundary_screen.csv",
+      "sha256": "6e3e92343b68ce6e33fcdf1b5e7379863174dd78dee6d2ca1f5416945b9cde24"
+    },
+    {
+      "role": "boundary_aperture_identifiability",
+      "path": "../../outputs/eo_vapor_boundary_analysis_v1/aperture_design_identifiability.csv",
+      "sha256": "fad9f1cb2b5f708f15608dd0f38bde4e3ea562988b10005b7aaa86dd2ec1f06d"
+    },
+    {
+      "role": "boundary_figure",
+      "path": "../../outputs/eo_vapor_boundary_analysis_v1/one_factor_boundary_sensitivity.png",
+      "sha256": "d8df2a0f2f4b0ca7ea12305da55031ad9796c0d27b106dd4291c214014d97b64"
+    },
+    {
+      "role": "boundary_figure",
+      "path": "../../outputs/eo_vapor_boundary_analysis_v1/combined_sensitivity_rank.png",
+      "sha256": "aeaabcce7621c13231006089c66f9d2f4fcb8b29e07ab2d248185a5050eee9e2"
+    },
+    {
+      "role": "boundary_figure",
+      "path": "../../outputs/eo_vapor_boundary_analysis_v1/closed_loop_time_to_5pa.png",
+      "sha256": "6d18e11724f3350ad5c9cc053d1da61eb963324c3d9968cdc516939564102a37"
+    },
+    {
+      "role": "boundary_figure",
+      "path": "../../outputs/eo_vapor_boundary_analysis_v1/activity_temperature_interaction.png",
+      "sha256": "2a54d0d306ae8c042cb5fc9a3b9d1a3704438eed6b9be3178a90114f4908c72c"
+    },
+    {
+      "role": "boundary_figure",
+      "path": "../../outputs/eo_vapor_boundary_analysis_v1/combined_error_distributions.png",
+      "sha256": "1a737b192f2222f8d51b5da72a31d8b463d40dbeb32cd65f8fd649a592cefa78"
+    },
+    {
+      "role": "canonical_sizing_audit",
+      "path": "../../outputs/eo_vapor_cell_sizing_v1/audit.json",
+      "sha256": "12632b20fee31fc817224dd59ccd589558927c1c8da9df39d277092724a45808"
+    },
+    {
+      "role": "canonical_sizing_source_manifest",
+      "path": "../../outputs/eo_vapor_cell_sizing_v1/source_manifest.json",
+      "sha256": "1c96a4e92a33be70695b073e22d6a3d5d6acc716c0bc5b33bd001469bb4c6d1c"
+    },
+    {
+      "role": "sizing_summary",
+      "path": "../../outputs/eo_vapor_cell_sizing_v1/SUMMARY.md",
+      "sha256": "6d95ec563edefef5b83a38372c952c19f21d2c4b23ae326681d40a5a5e029ca5"
+    },
+    {
+      "role": "sizing_channel_geometry",
+      "path": "../../outputs/eo_vapor_cell_sizing_v1/channel_geometry_envelope.csv",
+      "sha256": "f78ada9cbffa7d8f3c1522a6a7fef7d9994636e1cdde2addbc017a1250ebc3de"
+    },
+    {
+      "role": "sizing_signal_envelope",
+      "path": "../../outputs/eo_vapor_cell_sizing_v1/gross_signal_and_detectability_envelope.csv",
+      "sha256": "62f96d0b95400faf1a2f48d40c4b5ef98ce66110bf3870b80205b031e6352e48"
+    },
+    {
+      "role": "sizing_aperture_edge",
+      "path": "../../outputs/eo_vapor_cell_sizing_v1/aperture_edge_sensitivity.csv",
+      "sha256": "88b3e0180c7eaf167b7572a6f6186ee692416d5ac378d7e959f45e1282ba8b9f"
+    },
+    {
+      "role": "sizing_fixture_basis",
+      "path": "../../outputs/eo_vapor_cell_sizing_v1/fixture_dimension_basis.csv",
+      "sha256": "6f3c79883772b7f1b9d40da88ee520a922e788da4d245867496dc527ecf199ac"
+    },
+    {
+      "role": "sizing_aperture_inserts",
+      "path": "../../outputs/eo_vapor_cell_sizing_v1/aperture_insert_dimensions.csv",
+      "sha256": "4a54843fc9f9fd4dba3699685a7ee3cceeda95e260fc028ebbf673869a2c80c0"
+    },
+    {
+      "role": "sizing_internal_volume",
+      "path": "../../outputs/eo_vapor_cell_sizing_v1/internal_volume_budget.csv",
+      "sha256": "3b7c9bfd2bcfb3843246d6b5c508ad5d6bb9e5a813bfdf50a048eed5e36c84af"
+    },
+    {
+      "role": "sizing_detectability_limits",
+      "path": "../../outputs/eo_vapor_cell_sizing_v1/detectability_flow_limits.csv",
+      "sha256": "f28eaa89ba33d5d766ee8ac2012b744ada05ae9b39228b4375a3d8279db9412e"
+    },
+    {
+      "role": "sizing_plate_screen",
+      "path": "../../outputs/eo_vapor_cell_sizing_v1/plate_deflection_screen.csv",
+      "sha256": "0a0ec819153ab856ff69fd56d8844a2716630b39f8ab9fb416a54028236b6763"
+    },
+    {
+      "role": "sizing_closed_cell",
+      "path": "../../outputs/eo_vapor_cell_sizing_v1/closed_cell_dimension_screen.csv",
+      "sha256": "e6dc5671202a22f0a782a6b6c2c43ae797d2719fa104a7fac29fbd7980449453"
+    },
+    {
+      "role": "sizing_membrane_time_scale",
+      "path": "../../outputs/eo_vapor_cell_sizing_v1/membrane_diffusion_time_scale.csv",
+      "sha256": "ebe8e2191ceb519819dd0ffb850e7a865c8ff585cea23a119d607e3262fcce8b"
+    },
+    {
+      "role": "sizing_activity_mismatch",
+      "path": "../../outputs/eo_vapor_cell_sizing_v1/boundary_activity_mismatch_screen.csv",
+      "sha256": "8f16a1008b3971344548bd6bba6f12beca2cb53e98b7b70722f0bfeb6b85db43"
+    },
+    {
+      "role": "sizing_figure",
+      "path": "../../outputs/eo_vapor_cell_sizing_v1/gross_signal_envelope_25cm2.png",
+      "sha256": "3525b9777da26b135cb92fa80f37555c5e7cbbd4bd1e511ef4f074f57f5b210a"
+    },
+    {
+      "role": "sizing_figure",
+      "path": "../../outputs/eo_vapor_cell_sizing_v1/cell_dimension_tradeoffs.png",
+      "sha256": "01bc819831d8e4736bd8147031f3867be7e47e641b712acfe31d24bfc4250b09"
+    }
+  ]
+}

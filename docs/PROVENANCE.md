@@ -1,11 +1,25 @@
-# Source provenance
+# Source provenance and integrity boundaries
 
-Canonical source and regression data copied from the historical HeiQ_V2 research repository.
+The repository combines a native package, reviewed compatibility sources, and
+dated research evidence derived from the historical `HeiQ_V2` repository. The
+complete provenance boundary for the governing closeout is recorded inside the
+V10 package, not in this abbreviated source register.
 
-## SHA256
+## Governing V10 integrity record
 
-Only stable source, configuration and regression-data files are listed.
-Interpreter-specific `__pycache__` artifacts are intentionally excluded.
+For release ID `XMEMBRANE-2026-09-02-V10`, use
+`deliverables/current/2026-09-02_v10/SHA256SUMS`, `MANIFEST.json`, and
+`verification/V10_STATUS.json`. They bind the report, evidence, two archives,
+environment record, source revision, and reconstructed-tree test result. Do
+not update those files in place; a changed payload requires a new release
+version.
+
+## Compatibility source register
+
+The checksums below cover the stable retained sources, configuration, and
+regression fixtures named by the original compatibility migration. They were
+rechecked against the current files on 2026-09-04. This is a focused
+register, not a checksum inventory of the whole repository.
 
 3801a3c1b5c80a30c35cb48c4b93b4982432c927ed55fe92dc9c30d2989daa59  config/closed_receiver_system_v12_config.json
 d4d4a1b8d2e70aaea75c99567d6aa153a22d8a4d322bc477ab3a47cd9e9fa126  config/pre_receiver_axial_v3_config.json
@@ -22,19 +36,18 @@ a00d42bf6bd452908ce54c88752a4a5772a32c6d84a9c53ea8ad406f5a2d9582  heiq_pre_recei
 9f0c079c62be17e9083bff6cb79c223ed416fdf2bde41d03bc773116a7ffd8e4  scripts/analyze_wp1_direct_liquid_activity_crossover_v1.py
 aa67b7d54dc7c055a0fc328a4fd5c795d84a241a8006089439bce8c031002524  scripts/make_wp1_closed_receiver_system_v12.py
 5098471e05649c823e405a3b1b2d7f5c188316f2207b63dcb362a407bcf76c74  scripts/make_wp1_direct_enthalpy_psychrometric.py
-e3e8df0ab28cfda6aaaeb17cef74d5415cdec063f57f6f7b6cff66a9b7489cea  scripts/make_wp1_direct_liquid_contact_receiver_v1.py
+049be203c42745131014c1d0fee1a38d4c4c91e5d1841ffb38ccfdd0e48084c7  scripts/make_wp1_direct_liquid_contact_receiver_v1.py
 e42183fea5f42db96312978eac6ff478964563699424050f197cbaa55b90bdd8  scripts/make_wp1_free_predrying_explicit_cop.py
 333ecf4a5083b57873c6a9035543e206a58f0d0cbcb9ce8795f6918d1f34bf3c  scripts/make_wp1_pre_receiver_axial_v3.py
-bd74a13127d24f8f9a532ef09ad1753a05f7739b598cc811da3f07ef6bdfce53  scripts/make_wp1_prearchitecture_bottleneck_diagnostics_v1.py
-f25400c38ab9152e867491d369dd2044a1ed5c0f858bbf38252914271bd9c893  scripts/make_wp1_prearchitecture_continuation_v2.py
+73c7273cdf9c2dc7642bc37ef65338c0450ec33e00139802b94defba43e6c72f  scripts/make_wp1_prearchitecture_bottleneck_diagnostics_v1.py
+3b81eea341b2c3ae1cdca893e8c86d643d0e79a57f6cdf0765dea31b2982dacf  scripts/make_wp1_prearchitecture_continuation_v2.py
 
-## 2026-08-26 integrated decision workflow
+## 2026-08-26 integrated decision snapshot
 
-The integrated evidence register contains its own manifest with absolute source paths
-and SHA256 values for the audited HeiQ_V2 and study-output inputs. The values below
-identify the current canonical integration code, exact O30 regression data and the
-dated handoff report. Historical output and report directory names are retained as
-provenance identifiers.
+The integrated evidence register recorded absolute source paths and SHA-256
+values for the audited `HeiQ_V2` and generated-study inputs. The tracked source
+and fixture checksums below still match. This dated workflow is historical and
+does not supersede V10.
 
 ```text
 f2f8819a2a8f60e7583e3fcc266d19f0ac96b8e82d2f1bd51e2adb4de4f99880  src/heiq/wp1/studies/system_boundaries.py
@@ -44,8 +57,18 @@ f1ab06324843634117a44144cf901a9c100e82ba51cbeb7bbe569eacfd4dbe20  scripts/make_i
 61b7a7acf30753425f830bbc337ee99fd5d94a2ea2a0058b83dfc4ff1527222d  tests/test_integrated_evidence_register_v1.py
 a04f7ba0653a297e7b1999f82c0961897fe84f67cd941ef18b667e3e41ed73d6  data/golden/o30/required_area_1v_curve_v1.csv
 19c7f28ca096b1ad114db28488aefd834242ad12978e870a28340dca6023dbab  data/golden/o30/required_area_1v_convergence_v1.csv
-b85c9981d1ae0ff0fb96fcb3b605c8a4cb0e0115b45c2c9e4b8a6281b06fee72  reports/trond_full_report_v1/HeiQ_Complete_Current_Results_and_Decision_Basis_2026-08-26.tex
-d1313a0244d11cd8abe788d8d0e9afa6c55b4beca2111a88b3483609fb2af9dc  reports/trond_full_report_v1/HeiQ_Complete_Current_Results_and_Decision_Basis_2026-08-26.pdf
-e7b52549600f8b16276d8728305e946ca7f8ba4a99fd3fee12deffeb9c8533cf  outputs/integrated_evidence_v1/source_manifest.json
-407f97369f297b49a7afd0de7179cfe0b99131ef1f42d4992bb29b27583b3d50  deliverables/HeiQ_Complete_Current_Results_and_Decision_Basis_2026-08-26_LaTeX.zip
 ```
+
+The following values are historical artifact records, not a live-checkout
+checksum block:
+
+| Historical artifact | Recorded SHA-256 | Availability in a clean checkout |
+|---|---|---|
+| `reports/trond_full_report_v1/HeiQ_Complete_Current_Results_and_Decision_Basis_2026-08-26.tex` | `b85c9981d1ae0ff0fb96fcb3b605c8a4cb0e0115b45c2c9e4b8a6281b06fee72` | Generated report source; outside the minimal tracked source set |
+| `reports/trond_full_report_v1/HeiQ_Complete_Current_Results_and_Decision_Basis_2026-08-26.pdf` | `d1313a0244d11cd8abe788d8d0e9afa6c55b4beca2111a88b3483609fb2af9dc` | Generated report; outside the minimal tracked source set |
+| `outputs/integrated_evidence_v1/source_manifest.json` | `e7b52549600f8b16276d8728305e946ca7f8ba4a99fd3fee12deffeb9c8533cf` | Ignored output; present only in a materialized working tree or supplied archive |
+| `deliverables/HeiQ_Complete_Current_Results_and_Decision_Basis_2026-08-26_LaTeX.zip` | `407f97369f297b49a7afd0de7179cfe0b99131ef1f42d4992bb29b27583b3d50` | Not present; obtain the matching historical archive before attempting verification |
+
+These four hashes are preserved only so a separately supplied August artifact
+can be identified. Their absence does not weaken the V10 integrity chain, which
+is independently bound by the V10 manifest and checksum file.

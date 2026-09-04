@@ -1,0 +1,115 @@
+{
+  "generated_outputs": [
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/channel_geometry_envelope.csv",
+      "sha256": "f78ada9cbffa7d8f3c1522a6a7fef7d9994636e1cdde2addbc017a1250ebc3de",
+      "size_bytes": 3824
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/gross_signal_and_detectability_envelope.csv",
+      "sha256": "62f96d0b95400faf1a2f48d40c4b5ef98ce66110bf3870b80205b031e6352e48",
+      "size_bytes": 235492
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/aperture_edge_sensitivity.csv",
+      "sha256": "88b3e0180c7eaf167b7572a6f6186ee692416d5ac378d7e959f45e1282ba8b9f",
+      "size_bytes": 332
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/fixture_dimension_basis.csv",
+      "sha256": "6f3c79883772b7f1b9d40da88ee520a922e788da4d245867496dc527ecf199ac",
+      "size_bytes": 855
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/aperture_insert_dimensions.csv",
+      "sha256": "4a54843fc9f9fd4dba3699685a7ee3cceeda95e260fc028ebbf673869a2c80c0",
+      "size_bytes": 2427
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/internal_volume_budget.csv",
+      "sha256": "3b7c9bfd2bcfb3843246d6b5c508ad5d6bb9e5a813bfdf50a048eed5e36c84af",
+      "size_bytes": 651
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/detectability_vs_flow.csv",
+      "sha256": "3cb8e4c3e65f01652fa5e064c7260088f9dbf7f047e347f74ee76e47afdf0497",
+      "size_bytes": 6359
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/detectability_flow_limits.csv",
+      "sha256": "f28eaa89ba33d5d766ee8ac2012b744ada05ae9b39228b4375a3d8279db9412e",
+      "size_bytes": 993
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/plate_deflection_screen.csv",
+      "sha256": "0a0ec819153ab856ff69fd56d8844a2716630b39f8ab9fb416a54028236b6763",
+      "size_bytes": 5428
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/closed_cell_dimension_screen.csv",
+      "sha256": "e6dc5671202a22f0a782a6b6c2c43ae797d2719fa104a7fac29fbd7980449453",
+      "size_bytes": 5055
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/closed_loop_gas_inventory_requirement.csv",
+      "sha256": "dc7921ff586ed697ae062451c3da0cc819c1d4f8ea77ae05eee57c025dd8985f",
+      "size_bytes": 11702
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/closed_loop_drift_time_by_volume.csv",
+      "sha256": "5fcabca995261a42c895f31bbb9879ddbaeb5447ed1bd229117e8b578b94c16f",
+      "size_bytes": 62233
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/membrane_diffusion_time_scale.csv",
+      "sha256": "ebe8e2191ceb519819dd0ffb850e7a865c8ff585cea23a119d607e3262fcce8b",
+      "size_bytes": 1256
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/boundary_activity_mismatch_screen.csv",
+      "sha256": "8f16a1008b3971344548bd6bba6f12beca2cb53e98b7b70722f0bfeb6b85db43",
+      "size_bytes": 9723
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/config_used.json",
+      "sha256": "0b6a264f1076d74fc4f78a4605499eb994fd82de5597a6034e4bf69de0970071",
+      "size_bytes": 7819
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/SUMMARY.md",
+      "sha256": "6d95ec563edefef5b83a38372c952c19f21d2c4b23ae326681d40a5a5e029ca5",
+      "size_bytes": 4658
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/gross_signal_envelope_25cm2.png",
+      "sha256": "3525b9777da26b135cb92fa80f37555c5e7cbbd4bd1e511ef4f074f57f5b210a",
+      "size_bytes": 97053
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/cell_dimension_tradeoffs.png",
+      "sha256": "01bc819831d8e4736bd8147031f3867be7e47e641b712acfe31d24bfc4250b09",
+      "size_bytes": 239567
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/audit.json",
+      "sha256": "12632b20fee31fc817224dd59ccd589558927c1c8da9df39d277092724a45808",
+      "size_bytes": 1660
+    }
+  ],
+  "schema_version": 1,
+  "sources": [
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/config/eo_vapor_cell_sizing_v1.json",
+      "sha256": "77a73ec801b34a80f11a8009c126d302aa29e9132498d8d1e6af7715a475a6e4"
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/scripts/size_eo_vapor_cell_v1.py",
+      "sha256": "147e90c0545bdf674b653c7e1147f1919822a4cf0bb8831000f42aa299fb0ed0"
+    }
+  ],
+  "study_id": "eo-vapor-cell-sizing-v1-2026-08-28",
+  "verification": {
+    "audit_all_pass": true,
+    "manifest_self_excluded_to_avoid_recursive_hash": true
+  }
+}

@@ -1,0 +1,489 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{tgtermes}
+\usepackage{tgheros}
+\usepackage{microtype}
+\usepackage[a4paper,top=18mm,bottom=20mm,left=18mm,right=18mm]{geometry}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{bookmark}
+\usepackage{ragged2e}
+\usepackage{caption}
+\usepackage{placeins}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\definecolor{Navy}{HTML}{17324D}
+\definecolor{Teal}{HTML}{008C8C}
+\definecolor{TealLight}{HTML}{E1F2F2}
+\definecolor{Orange}{HTML}{E58B2A}
+\definecolor{OrangeLight}{HTML}{FFF1DE}
+\definecolor{Green}{HTML}{2E7D5B}
+\definecolor{GreenLight}{HTML}{E8F4ED}
+\definecolor{Red}{HTML}{B94A3D}
+\definecolor{RedLight}{HTML}{F9E9E7}
+\definecolor{Slate}{HTML}{607284}
+\definecolor{Light}{HTML}{F2F6F8}
+\definecolor{Line}{HTML}{D8E2E9}
+\definecolor{Ink}{HTML}{172A3A}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=Teal,
+  urlcolor=Teal,
+  pdftitle={HeiQ XMembrane -- Model Closure and Material Handoff},
+  pdfauthor={XMembrane project team | HeiQ Materials AG},
+  pdfsubject={Closure of the broad XMembrane model phase and handoff to material and coupon work},
+  pdfkeywords={XMembrane, electro-osmosis, ERV, model closure, membrane, material search, coupon}
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\raggedbottom
+\setlist[itemize]{leftmargin=5mm,itemsep=2.2pt,topsep=3pt}
+\setlist[enumerate]{leftmargin=6mm,itemsep=2.3pt,topsep=3pt}
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+\newcolumntype{C}{>{\Centering\arraybackslash}X}
+\renewcommand{\arraystretch}{1.16}
+\captionsetup{font=small,labelfont={bf,sf,color=Navy}}
+
+\titleformat{\section}
+  {\sffamily\bfseries\color{Navy}\fontsize{17}{20}\selectfont}
+  {\thesection}{8pt}{}
+\titlespacing*{\section}{0pt}{9pt}{5pt}
+\titleformat{\subsection}
+  {\sffamily\bfseries\color{Navy}\fontsize{12.5}{15}\selectfont}
+  {\thesubsection}{7pt}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\sffamily\footnotesize\color{Slate}HEIQ MATERIALS AG · XMEMBRANE}
+\fancyhead[R]{\sffamily\footnotesize\color{Slate}MODEL CLOSURE · 31.08.2026}
+\fancyfoot[L]{\sffamily\scriptsize\color{Slate}Internal model decision basis · not product validation}
+\fancyfoot[R]{\sffamily\scriptsize\color{Slate}Page \thepage\ of \pageref*{LastPage}}
+\renewcommand{\headrulewidth}{0.35pt}
+
+\newtcolorbox{mainbox}[1][]{
+  enhanced,colback=TealLight,colframe=Teal,boxrule=0.8pt,arc=1.5mm,
+  left=4mm,right=4mm,top=3mm,bottom=3mm,#1
+}
+\newtcolorbox{warningbox}[1][]{
+  enhanced,colback=OrangeLight,colframe=Orange,boxrule=0.8pt,arc=1.5mm,
+  left=4mm,right=4mm,top=3mm,bottom=3mm,#1
+}
+\newtcolorbox{stopbox}[1][]{
+  enhanced,colback=RedLight,colframe=Red,boxrule=0.8pt,arc=1.5mm,
+  left=4mm,right=4mm,top=3mm,bottom=3mm,#1
+}
+\newtcolorbox{plainbox}[1][]{
+  enhanced,colback=Light,colframe=Line,boxrule=0.6pt,arc=1.5mm,
+  left=4mm,right=4mm,top=3mm,bottom=3mm,#1
+}
+\newcommand{\eyebrow}[1]{{\sffamily\bfseries\small\color{Teal}\MakeUppercase{#1}}}
+\newcommand{\evidencepath}[1]{\texttt{\small\detokenize{#1}}}
+
+\begin{document}
+
+% -----------------------------------------------------------------------------
+% Cover
+% -----------------------------------------------------------------------------
+\thispagestyle{empty}
+\pdfbookmark[0]{Cover}{cover}
+\vspace*{-10mm}
+\begin{tcolorbox}[enhanced,colback=Navy,colframe=Navy,boxrule=0pt,
+  arc=0mm,left=11mm,right=11mm,top=13mm,bottom=13mm,width=\textwidth]
+  {\sffamily\bfseries\color{TealLight}\large HEIQ XMEMBRANE PROJECT}\par\vspace{7mm}
+  {\raggedright\sffamily\bfseries\color{white}\fontsize{29}{33}\selectfont
+  Model closure and material handoff\par}
+  \vspace{4mm}
+  {\sffamily\color{white!85}\fontsize{14}{18}\selectfont
+  Frozen energy basis · direct-ERV gradient closure · AC null test · next experimental gate}
+\end{tcolorbox}
+
+\vspace{13mm}
+{\sffamily\bfseries\fontsize{16}{20}\selectfont\color{Navy}Internal technical decision note · 31 August 2026}\par
+\vspace{4mm}
+{\fontsize{12}{17}\selectfont\color{Ink}
+This is the current authoritative interpretation of the model study. It
+supersedes earlier reports where a positive passive surface-gradient direction
+was treated as a feasibility requirement or water diffusivity was presented as
+an independently sufficient material criterion. Earlier reports remain the
+chronological record.}
+
+\vspace{8mm}
+\begin{mainbox}
+\textbf{Phase decision.} The broad steady-state model phase is complete.
+Start the joint-property material search and controlled-flow coupon work now.
+Additional unfocused parameter sweeps are unlikely to change that decision.
+The project has identified conditional opportunity and the measurements needed
+to test it; it has not validated a membrane, selected a product architecture or
+demonstrated a net system energy saving.
+\end{mainbox}
+
+\vfill
+\begin{tabularx}{\textwidth}{@{}p{43mm}Y@{}}
+\textbf{Primary comparator} & Passive ERV + remaining AC = 543.741~kW; cooling is included \\
+\textbf{Main material result} & Performance is governed by a coupled property bundle, not by $D$ or transport number alone \\
+\textbf{Direct-ERV result} & Active uphill transport is thermodynamically admissible; film losses and the counter-current pinch determine the local gradient regime \\
+\textbf{Symmetric-current result} & No useful quasi-static mean EO transport beyond the passive $N(0)$ state in the present model \\
+\textbf{Current/area boundary} & No current-density acceptance ceiling and no exploratory membrane-area acceptance gate
+\end{tabularx}
+
+\clearpage
+
+% -----------------------------------------------------------------------------
+\pdfbookmark[0]{Abstract}{abstract}
+\section*{Abstract}
+\addcontentsline{toc}{section}{Abstract}
+
+The frozen O80 equal-service basis is 1,166.400~kW for AC alone and
+543.741~kW for passive ERV plus remaining AC. The post-ERV O30
+single-common-voltage coordinate gives a 381.327-kW known subtotal and a
+162.414-kW conditional window, while the full-duty direct-ERV coordinate gives
+107.856~kW and a 435.884-kW (80.16\%) conditional window. These differences
+exclude one or more of receiver/sink work, EO heat rejection, electrodes,
+manifolds, leakage, pressure drop and durability; they are not net savings.
+
+The final direct-ERV audit resolves the gradient question. Positive passive
+surface direction is a regime diagnostic, not a thermodynamic gate for active
+EO. At the frozen O30 mechanism coordinate, the bulk activity margin is
+favourable, but two finite gas films reverse the surface margin to
+$-0.00797$. A 1.137-fold common increase in film capacity, or the equivalent
+diagnostic area increase at fixed duty, restores a non-negative surface
+direction. At full duty the bulk counter-current pinch is exactly zero, so no
+finite film or area multiplier produces a positive surface margin at finite
+flux; EO must act uphill at the pinch. All signed states close the applicable
+thermodynamic audit.
+
+A matched quasi-static $+J/0/-J$ replay also closes the proposed symmetric-AC
+question within the current constant-drag model. O30 produces only
+0.00152~kg/h of even-in-current transport above the passive state, equal to
+0.348~ppm of the $+J$ water rate, while full duty gives zero. Thus a
+charge-balanced symmetric current does not provide useful mean EO pumping here;
+transient or rectified AC would require measured non-linearity, asymmetry or
+memory not present in this model. The correct next step is same-sample
+measurement of sorption, chemical water permeance, drag, wet conductivity,
+compressed-stack ASR, thickness, film exchange and coupled water flux in a
+controlled coupon. Candidate ranking and full-system claims remain open.
+
+\begin{mainbox}
+\textbf{Closure statement.} We know enough to stop the broad modelling loop.
+The remaining uncertainties are empirical and subsystem-specific; they should
+be resolved with materials, coupons and a receiver/thermal ledger rather than
+by searching a larger hypothetical parameter space.
+\end{mainbox}
+
+% -----------------------------------------------------------------------------
+\section{Frozen energy and comparison basis}
+\eyebrow{Use equal service and state every omitted load}
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{@{}Y r r Y@{}}
+\toprule
+\textbf{System coordinate} & \textbf{Power} & \textbf{Difference vs ERV+AC} & \textbf{Claim class} \\
+ & [kW] & [kW / \%] & \\
+\midrule
+AC only, O80 & 1,166.400 & $-622.659$ / $-114.51$ & Calibrated legacy comparator \\
+Passive ERV + AC & 543.741 & 0 / 0 & Primary comparator: 34.359-kW ERV + 509.381-kW cooling \\
+Post-ERV EO to O30, common 1.00~V & 381.327 & $+162.414$ / $+29.87$ & Conditional incomplete ledger \\
+Post-ERV EO to O30, uniform-current cross-check & 379.516 & $+164.225$ / $+30.20$ & Conditional topology cross-check \\
+Direct EO inside ERV, full humidity duty, 0.25~V & 107.856 & $+435.884$ / $+80.16$ & Conditional architecture screen \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+For the post-ERV common-voltage row, 316.910~kW is remaining cooling and
+64.417~kW is the ERV/active-device subtotal. For the direct-ERV row,
+44.438~kW is remaining cooling and 63.419~kW is the known active-core/fan
+subtotal. The conservative post-ERV all-in break-even is
+0.1567008~kWh/kg water removed (156.7~Wh/kg), not the historical
+180-Wh/L shorthand.
+
+\begin{warningbox}
+The positive numbers in the difference column are \textbf{available conditional
+windows}, not measured or net system savings. The direct-ERV 80.16\% result is
+the largest upside and the least complete system boundary. It assumes
+prescribed 0.75 sensible effectiveness, external EO-heat rejection, idealised
+hydraulics and an unmeasured inverse-design material vector.
+\end{warningbox}
+
+The final common-voltage replay below 2~V separates numerical status from
+physical interpretation. On the refined 16-segment grid, O30 has 14 converged
+cases, 14 physical no-solution coordinates and 21 numerical/local unresolved
+coordinates; all seven sampled diffusivities nevertheless have a confirmed
+selected O30 case at 1.00--1.25~V. Full remaining duty has zero confirmed
+cases, 21 physical no-solution coordinates and 28 numerical/local unresolved
+coordinates. Across both segment counts, all 98 cases that encountered the
+legacy high-bracket flag were retried after increasing the configured numerical
+current bound from 50,000 to 5,000,000~A/m$^2$; none recovered. This rules out
+the configured numerical bound as the active limiter in those retries, but it
+does not convert the unresolved rows into a global physical no-go proof.
+
+The post-ERV O30 known-core coordinate removes 1,228.27~kg/h at
+30.057~kW (40.864~kg/kWh known-core FOM). The direct-ERV full-duty coordinate
+transfers 4,827.15~kg/h with a 63.419-kW known active-core/fan subtotal. These
+FOMs have different device boundaries and must not be used as product
+efficiencies without the omitted loads.
+
+% -----------------------------------------------------------------------------
+\section{Direct EO in the ERV: corrected gradient interpretation}
+\eyebrow{Active feasibility and passive assistance are different questions}
+
+For net molar water flux $N>0$ from source to receiver, the finite-film model
+obeys the segment identity
+\begin{equation}
+  \Delta a_{\mathrm{surface}}
+  = \Delta a_{\mathrm{bulk}}
+  - N\left(\frac{1}{K_s}+\frac{1}{K_r}\right),
+  \label{eq:film-identity}
+\end{equation}
+where $K_s$ and $K_r$ are the source- and receiver-side film capacities.
+The numerical identity error is below $3.0\times10^{-15}$ in the closure
+replay. A negative $\Delta a_{\mathrm{surface}}$ says that EO is transporting
+uphill locally; it is not by itself a violation of thermodynamics. The active
+state is admissible when the electrical/chemical coupling and dissipation
+audit closes.
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{@{}p{34mm}r r r r Y@{}}
+\toprule
+\textbf{Coordinate} & \textbf{Bulk $\Delta a$} & \textbf{Surface $\Delta a$} & \textbf{Area} & \textbf{$V_t$} & \textbf{Interpretation} \\
+\midrule
+Direct-ERV O30 mechanism point & $+0.0581$ to $+0.0969$ & $-0.00797$ to $-0.00536$ & 24,604~m$^2$ & 0.025~V & Passive bulk assistance exists, but film losses reverse the local membrane-surface direction \\
+Direct-ERV full duty & 0 at the pinch & $-0.0822$ to $-0.0495$ & 34,425~m$^2$ & 0.25~V & No passive bulk headroom at the pinch; finite-flux transfer is locally uphill \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+At O30, multiplying both film capacities by 1.137 restores
+$\min(\Delta a_{\mathrm{surface}})=0$. The equivalent area diagnostic at fixed
+duty is 27,974~m$^2$. Recovering the former $+0.02$ robustness margin requires
+1.733 times the film capacity or 42,641~m$^2$. These are diagnostic crossover
+values, not area targets. At full duty, increasing film capacity or area only
+approaches zero from below; no finite multiplier creates a positive surface
+margin because the bulk margin is zero.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.96\textwidth]{../../outputs/direct_erv_gradient_closure_v1/figures/01_film_area_gradient_envelope.pdf}
+  \caption{Direct-ERV film/area gradient envelope. The O30 mechanism point has
+  a finite surface-direction crossover; the full-duty counter-current pinch
+  has none at finite local flux. Area is diagnostic, not an acceptance gate.}
+\end{figure}
+\FloatBarrier
+
+Water-polarisation work accounts for up to 99.877\% of the 0.025-V O30
+terminal voltage and 99.990\% of the 0.25-V full-duty voltage. This is why
+``low resistance'' alone cannot identify a good membrane: the chemical water
+work, passive permeance and interface conditions must be evaluated together.
+
+\begin{plainbox}
+\textbf{Resolved gradient statement.} Direct EO in the ERV can exploit a
+favourable bulk gradient where one exists and can actively cross an adverse
+surface gradient when electrical work closes the dissipation balance. The
+potential benefit is therefore real at model level, but the film coefficients
+and pinch location are first-order experimental inputs.
+\end{plainbox}
+
+% -----------------------------------------------------------------------------
+\section{Symmetric-current AC: quasi-static closure}
+\eyebrow{A gradient can break symmetry, but this model contains no useful rectifier}
+
+The final test evaluates the same local constitutive law at $+J$, zero current
+and $-J$, then averages the two signed-current states. The current amplitudes
+are those of the frozen positive-DC coordinates. This is a quasi-static,
+current-symmetric replay; it is not a frequency-domain or electrode model.
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{@{}p{31mm}r r r r r@{}}
+\toprule
+\textbf{Coordinate} & \textbf{$+J$ water} & \textbf{$N(0)$} & \textbf{Cycle mean} & \textbf{Increment over $N(0)$} & \textbf{Cycle electrical power} \\
+ & [kg/h] & [kg/h] & [kg/h] & [kg/h] & [kW] \\
+\midrule
+Direct-ERV O30 & 4,365.918 & 0.415151 & 0.416669 & 0.00151783 & 20.092 \\
+Direct-ERV full duty & 4,827.147 & 0 & 0 & 0 & 17.944 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+The O30 even-in-current increment is only $3.48\times10^{-7}$ of the $+J$
+water rate (0.348~ppm); full duty is exactly zero in the present model.
+Consequently, a charge-balanced symmetric current adds no useful mean EO
+transport beyond passive $N(0)$ while still dissipating electrical power.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.98\textwidth]{../../outputs/direct_erv_gradient_closure_v1/figures/02_signed_triplet_ac_null.pdf}
+  \caption{Matched $+J/0/-J$ quasi-static replay. Positive DC transports the
+  required water, whereas signed-current averaging cancels the polarity-odd EO
+  contribution and leaves essentially the passive state.}
+\end{figure}
+\FloatBarrier
+
+This result does not exclude AC transport based on time-dependent hydration,
+hysteresis, asymmetric interfaces, nonlinear electrode kinetics, induced
+charge or a deliberately graded membrane. It says those mechanisms are absent
+from the current evidence and should not trigger another modelling campaign
+before dynamic measurements exist. Also, zero-mean voltage need not imply
+zero-mean current when a chemical-potential offset is present.
+
+% -----------------------------------------------------------------------------
+\section{What the material search should optimise}
+\eyebrow{The identifiable quantity is a coupled property bundle}
+
+The focused $D=10^{-14}$--$10^{-9}$~m$^2$/s sweep held water capacity,
+thickness, drag, conductivity, ASR and activity exponents fixed. It therefore
+proves a strong \emph{one-factor sensitivity at that coordinate}; it does not
+prove that a dry-state scalar diffusivity is universally dominant. In a
+sorption-based membrane, the passive term contains the chemical water
+permeance, schematically
+\begin{equation}
+  \mathcal{P}_{w,\mathrm{chem}}
+  \propto \frac{D(a,T)}{L}
+  \frac{\partial C_w}{\partial a_w}
+  \quad\text{or an equivalent chemical-potential mobility.}
+  \label{eq:chemical-permeance}
+\end{equation}
+The derivative, thickness and interfaces are therefore inseparable from $D$
+when ranking candidates.
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{@{}p{45mm}Y Y@{}}
+\toprule
+\textbf{Same-sample property} & \textbf{Why it is required} & \textbf{Exploratory direction / method} \\
+\midrule
+Sorption $C_w(a,T)$, hysteresis and $\partial C_w/\partial\mu_w$ & Converts humidity into chemical loading/work and closes the passive mobility & Full adsorption/desorption curves across roughly $a=0.05$--0.9 and 23--32$^\circ$C \\
+$D(a,T)$ or Maxwell--Stefan mobility, with definition & Separates kinetics from capacity and quantifies back-/co-diffusion & The post-ERV frozen screen flags $D\lesssim10^{-11}$ and prefers $\lesssim10^{-12}$~m$^2$/s; this is not a universal gate \\
+EO drag $n_d(a,T,j)$ & Sets polarity-odd water transported per charge & High and reproducible; the inverse-design coordinate is about 100~mol H$_2$O/mol charge, not a minimum pass/fail value \\
+Wet through-plane conductivity and compressed-stack ASR & Sets ohmic work and exposes contact losses & Same hydration/ion form as drag and diffusion; inverse-design coordinates are 23.17~S/m and $10^{-5}$~$\Omega\,\mathrm{m}^2$ \\
+Dry/wet thickness, swelling, creep and strength & Couples permeance and resistance to durability & Thin but stable; inverse-design dry thickness is 36.9~$\mu$m \\
+Source/receiver exchange coefficients & Determines whether bulk assistance survives at membrane surfaces & Measure each side versus humidity, flow and gap; direct-ERV O30 has a 1.137-fold crossover \\
+Coupled net water flux and charge & Tests whether the property bundle coexists & Two-sided water balance under $+J/0/-J$ and repeated polarity blocks \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+Post-ERV polishing and direct-ERV integration need not prefer the same
+material. Post-ERV EO generally benefits from suppressing adverse chemical
+permeance. Direct ERV can use favourable passive transfer before the pinch, so
+indiscriminately minimising permeance can remove useful free transport. Every
+candidate should be replayed against both architecture boundaries after its
+same-sample data are available.
+
+\begin{warningbox}
+Do not construct a synthetic ``best membrane'' by combining $D$, drag,
+conductivity and thickness from different materials or conditioning states.
+Nafion is not the target, area is not yet capped, there is no 21-A/m$^2$ gate,
+and a transport number above 100 is not sufficient by itself.
+\end{warningbox}
+
+% -----------------------------------------------------------------------------
+\section{Closed questions, open gates and handoff}
+\eyebrow{Stop broad modelling; convert uncertainty into measurements}
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{@{}p{45mm}p{20mm}Y@{}}
+\toprule
+\textbf{Question or gate} & \textbf{Status} & \textbf{Decision} \\
+\midrule
+Energy comparator and cooling inclusion & \textcolor{Green}{\textbf{CLOSED}} & Use 543.741~kW passive ERV+AC as the primary equal-service basis \\
+Active transport with a negative surface margin & \textcolor{Green}{\textbf{CLOSED}} & Thermodynamically admissible when the coupling/dissipation audit closes; passive direction remains a diagnostic \\
+Direct-ERV film and pinch behaviour & \textcolor{Green}{\textbf{CLOSED}} & O30 has a finite 1.137-fold crossover; full duty has none at finite flux because the bulk pinch is zero \\
+Symmetric-current benefit in the present model & \textcolor{Green}{\textbf{CLOSED}} & No useful mean EO increment; defer transient AC until measured dynamics justify it \\
+Exploratory current density and area & \textcolor{Green}{\textbf{CLOSED}} & Report solved values; apply neither an A/m$^2$ ceiling nor an area acceptance gate now \\
+Start material search and coupon work & \textcolor{Green}{\textbf{GO}} & Begin now using the joint-property and same-sample requirements \\
+Rank a material candidate & \textcolor{Orange}{\textbf{OPEN}} & No candidate yet has the complete same-sample property set \\
+Full post-ERV duty on one common bus below 2~V & \textcolor{Orange}{\textbf{OPEN}} & No confirmed sampled point: 21 physical no-solution and 28 numerical/local unresolved refined coordinates; test staging/zoning only after material data \\
+Select post-ERV versus direct-ERV architecture & \textcolor{Orange}{\textbf{OPEN}} & Requires measured film, receiver, thermal, pressure-drop and durability evidence \\
+Claim net system or liquid-product performance & \textcolor{Red}{\textbf{NO-GO}} & Requires a complete measured receiver/heat/hardware ledger and long-term operation \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Immediate experimental handoff}
+
+Use the 25-cm$^2$ controlled-flow coupon as the primary transport experiment.
+The current practical basis is a roughly 110$\times$110-mm fixture,
+2-mm flow gaps and 6~L/min per side, followed by 3/6/12-L/min and
+1/2/4-mm gap repeats. Run zero-current controls and an ABBA polarity sequence;
+measure both source loss and receiver gain, charge and voltage, and keep the
+membrane differential pressure within $\pm5$~Pa. Double seals, foil blanks and
+aperture/perimeter masks are required to separate active-area transport from
+bypass and edge leakage.
+
+For each coupon, freeze candidate ID, batch, ion form, conditioning, temperature,
+humidity and wet thickness. Measure sorption, $D$/mobility, drag, wet
+conductivity, compressed ASR, film sensitivity, swelling/creep and the coupled
+two-sided water balance on that same material. A quiescent closed cell may be
+used only as a transient diagnostic; the present model does not support a
+fixed-boundary quiescent steady-state rate.
+
+\begin{mainbox}
+\textbf{Stop criterion reached.} No further broad model study is required
+before materials are sought. Continue modelling only as a replay of measured
+candidate data, a pre-registered design of the coupon experiment, or closure
+of a named subsystem such as the receiver/thermal ledger.
+\end{mainbox}
+
+% -----------------------------------------------------------------------------
+\section{Claim boundaries and canonical evidence}
+\eyebrow{What this report does and does not establish}
+
+All active results are steady-state and conditional. The direct-ERV model
+prescribes sensible effectiveness and external EO-heat rejection and does not
+resolve conjugate temperature/humidity feedback, condensation, manifold
+pressure drop, leakage, electrode kinetics, ageing or control dynamics. The
+signed-current replay is quasi-static; it does not predict frequency response,
+hysteresis, induced-charge EO, electrode rectification or transport in a
+spatially graded membrane. No full-coupled or commercial claim is enabled.
+
+\begin{stopbox}
+Permitted wording is: \emph{the model identifies a conditional energy window
+and a measurable membrane-property region}. Do not state that 162.4~kW or
+435.9~kW has been saved, that the 80.16\% direct-ERV window is a net system
+saving, that full duty is impossible, or that a candidate membrane has been
+identified.
+\end{stopbox}
+
+\subsection*{Canonical evidence paths}
+
+\begin{itemize}
+  \item \evidencepath{outputs/fom_assessment_v1/system_fom.csv} and
+    \evidencepath{device_fom.csv}: frozen equal-service and known-core energy/FOM ledgers;
+  \item \evidencepath{outputs/workshop_common_voltage_diffusivity_v1/}:
+    post-ERV common-voltage diffusivity replay below 2~V;
+  \item \evidencepath{outputs/direct_active_eo_erv_study_v1/study/}:
+    direct active-ERV cases, thermodynamic/engineering screens and convergence;
+  \item \evidencepath{outputs/direct_erv_gradient_closure_v1/}:
+    film identity, area/film sweep, signed $+J/0/-J$ replay, figures, audit and source manifest;
+  \item \evidencepath{outputs/project_closure_check_v1/}:
+    project-level thermodynamic reclassification, common-voltage replay and decision gates;
+  \item \evidencepath{outputs/eo_vapor_cell_sizing_v1/} and
+    \evidencepath{outputs/eo_vapor_boundary_analysis_v1/}:
+    coupon sizing, detectability and quiescent/transient boundary analysis;
+  \item \evidencepath{reports/workshop_pack_2026-08-30/MATERIAL_SEARCH_BRIEF.md}:
+    material-property schema, non-gates and supplier/coupon screening sequence.
+\end{itemize}
+
+Every numerical output directory above contains an audit and/or source
+manifest. Audit PASS means that the declared numerical and identity checks
+passed; it does not mean that a material, module or technology passed
+validation.
+
+\vfill
+{\sffamily\scriptsize\color{Slate}
+End of model-closure report. This document freezes the current interpretation
+of the declared model evidence as of 31 August 2026.}
+
+\end{document}

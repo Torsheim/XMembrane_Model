@@ -1,0 +1,19 @@
+{
+  "governing_pytest_mode": "reconstructed_archive_full_pytest",
+  "governing_pytest_passed": true,
+  "logical_root": "XMembrane_Trond_Study",
+  "nested_scientific_manifests_reverified": true,
+  "passed": true,
+  "reconstruction_inputs": [
+    "archives/HeiQ_XMembrane_2026-09-02_v10_source.zip",
+    "archives/HeiQ_XMembrane_2026-09-02_v10_results.zip"
+  ],
+  "report_manifest_reverified": true,
+  "report_reverified": true,
+  "scientific_audits_reverified": true,
+  "source_result_overlay": {
+    "mismatched_member_count": 0,
+    "passed": true,
+    "shared_member_count": 19
+  }
+}

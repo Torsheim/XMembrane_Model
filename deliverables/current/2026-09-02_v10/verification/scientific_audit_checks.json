@@ -1,0 +1,39 @@
+{
+  "live_input_preflight": {
+    "capacitive_electrode": {
+      "check_count": 16,
+      "full_system_claim_allowed": false,
+      "path": "outputs/capacitive_electrode_study_v1/audit.json",
+      "status": "PASS",
+      "validated_electrode_prediction": false
+    },
+    "passed": true,
+    "synthetic_tw50_d1e10": {
+      "check_count": 17,
+      "commercial_claim_allowed": false,
+      "full_coupled_gate_count": 0,
+      "full_system_claim_allowed": false,
+      "path": "outputs/direct_active_erv_tw50_d1e10_v1/study/study_audit.json",
+      "status": "PASS"
+    }
+  },
+  "passed": true,
+  "reconstructed_archive": {
+    "capacitive_electrode": {
+      "check_count": 16,
+      "full_system_claim_allowed": false,
+      "path": "outputs/capacitive_electrode_study_v1/audit.json",
+      "status": "PASS",
+      "validated_electrode_prediction": false
+    },
+    "passed": true,
+    "synthetic_tw50_d1e10": {
+      "check_count": 17,
+      "commercial_claim_allowed": false,
+      "full_coupled_gate_count": 0,
+      "full_system_claim_allowed": false,
+      "path": "outputs/direct_active_erv_tw50_d1e10_v1/study/study_audit.json",
+      "status": "PASS"
+    }
+  }
+}

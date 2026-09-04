@@ -1,0 +1,27 @@
+{
+  "all_pass": true,
+  "checks": {
+    "abba_sequence_returns_to_initial_state": true,
+    "chamber_design_targets_are_symmetric_500_ml_net": true,
+    "declared_outputs_exist_and_are_nonempty": true,
+    "fabrication_release_is_explicitly_gated": true,
+    "gross_cavity_dimensions_are_registered_open": true,
+    "interconnect_header_port_budget_passes": true,
+    "local_gap_volumes_are_2p5_5_10_ml": true,
+    "local_plus_bulk_equals_net": true,
+    "net_volume_is_a_defined_target_with_open_calibration": true,
+    "selected_volume_meets_switching_drift_basis": true,
+    "transient_chamber_changes_are_equal_and_opposite": true,
+    "transient_total_water_is_conserved": true,
+    "unresolved_physical_dimensions_are_null": true
+  },
+  "numerical_result": {
+    "peak_gas_only_differential_pressure_pa": 406.8528676531253,
+    "predicted_single_chamber_drift_percentage_points": 4.27560412715433,
+    "required_net_volume_ml_per_side": 427.56041271543296,
+    "selected_net_volume_target_ml_per_side": 500.0
+  },
+  "release_status": "Engineering concept; not released for fabrication while required register items remain open.",
+  "schema_version": 2,
+  "study_id": "eo-vapor-integrated-sealed-cell-v2-2026-09-03"
+}

@@ -63,7 +63,7 @@ Modellen inkluderer finite gassfilmer, kortkanal-massebalanse, RH- og temperatur
 ## Kjøring
 
 ```bash
-cd /home/torsheim/HeiQ/XMembrane_Trond_Study
+cd /path/to/XMembrane_Trond_Study
 python3 scripts/analyze_eo_vapor_boundaries_v1.py
 python3 -m pytest -q -s tests/test_eo_vapor_boundary_analysis_v1.py tests/test_eo_vapor_test_cell_design.py
 ```

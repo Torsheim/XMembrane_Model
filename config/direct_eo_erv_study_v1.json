@@ -231,9 +231,11 @@
     ]
   },
   "historical_provenance": {
-    "source_package": "/home/torsheim/HeiQ/HeiQ_V2/tools/HeiQ_active_eo_erv_terminal1_v2",
+    "external_repository": "HeiQ_V2",
+    "external_root_environment_variable": "HEIQ_V2_ROOT",
+    "source_package_relative_to_external_root": "tools/HeiQ_active_eo_erv_terminal1_v2",
     "source_version": "active-eo-erv-terminal1-v2.2.2-2026-08-23",
-    "source_result_directory": "/home/torsheim/HeiQ/HeiQ_V2/outputs/active_eo_erv_terminal1_v2_study",
+    "source_result_directory_relative_to_external_root": "outputs/active_eo_erv_terminal1_v2_study",
     "fixed_loss_reconciliation": "The historical material override reported 0.0 V in candidate.physical, but the V14 solver consumed the inherited 0.1 V candidate.boundary value. This v1 study passes and records an effective 0.0 V fixed loss explicitly; historical positive surface margins are therefore not directly comparable."
   }
 }

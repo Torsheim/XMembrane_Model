@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "generated_utc": "2026-08-31T10:15:00+00:00",
+  "hash_algorithm": "sha256",
+  "claim_boundary": "Authoritative model-phase interpretation; not material, module, technology or full-system validation.",
+  "verification": {
+    "full_pytest_suite": "294 passed, 1 skipped",
+    "workshop_pack": "PASS",
+    "latex_build": "PASS; 7 pages"
+  },
+  "files": {
+    "HeiQ_XMembrane_Model_Closure_and_Material_Handoff_2026-08-31.tex": "0c8326fd33bb99ec2e4cf13540ff9ebe764aaa313b31f78ddba653d10b65e4e9",
+    "HeiQ_XMembrane_Model_Closure_and_Material_Handoff_2026-08-31.pdf": "0ca78fa3b264ae838b1047fa1b18acb46dd075849b03c61bdd54211bd893779b",
+    "README.md": "fbcee8355b4247233bf6c40e3300ebbadf69deb3eebbcfe291cd9f06b06be4f6",
+    "receiver_thermal_ledger_template.csv": "02fafb63719697d826327df2ccc19f1c3957b69350caa02ec85a1684c42fca3d",
+    "architecture_decision_register_template.csv": "5886e75c17ad98fbc8f79969e1d1ff065a094e41da984046bc2f63170f838a11",
+    "../../outputs/fom_assessment_v1/system_fom.csv": "bc6585df21153a3143ec58ca8dd95b66eca4859472622bdba60eadcf0e7d81fe",
+    "../../outputs/fom_assessment_v1/device_fom.csv": "c7d6decfb97fd5be3c2df49d056ad1299cb135d4083e98d20b84860d83a7899f",
+    "../../outputs/fom_assessment_v1/audit.json": "90a34b845762a57f494e8c38107368264748910514abd3bb73bc89371067ee2b",
+    "../../outputs/fom_assessment_v1/source_manifest.json": "12653bd8aef71357378455f0638e5d24d061d8462b40330eed7f21cbe48737a4",
+    "../../outputs/direct_active_eo_erv_study_v1/study/case_register.csv": "518362ce34734526d5700974abe2965988f623132f5cec688328febf00503137",
+    "../../outputs/direct_active_eo_erv_study_v1/study/study_audit.json": "9fc1e169404c26d8579a40504a0b46457b51a8cc68d93eda789874b4b22239de",
+    "../../outputs/direct_erv_gradient_closure_v1/case_summary.csv": "54e50859aad97a26dce5ae48cad1c4ed79ae6d0459ceac3a53bc593be94aa516",
+    "../../outputs/direct_erv_gradient_closure_v1/audit.json": "5ef72174495f3089ca0673cb5f7d1336c6ed5ef59511f61099381be6e7569ccc",
+    "../../outputs/direct_erv_gradient_closure_v1/source_manifest.json": "be58acc101608336a9823f5d4d18e538a2c4be48afd5f6cf07dfbec0efab7803",
+    "../../outputs/workshop_common_voltage_diffusivity_v1/cases.csv": "ed3cd504210851cddc26afd0f1383f3f4a4252bba8c9a8b862eb8bfebcc35eeb",
+    "../../outputs/workshop_common_voltage_diffusivity_v1/diffusivity_envelope.csv": "940bd50f1219084c6c200672f598749d39c241150f5482ce95dda308cc59357e",
+    "../../outputs/workshop_common_voltage_diffusivity_v1/local_bracket_probe.csv": "74062b94db9410e354baa59c923f22690cba9cc86e0907eb61bffeb7792017db",
+    "../../outputs/workshop_common_voltage_diffusivity_v1/audit.json": "24a0ffaced5c540e76f3a762fa28b5ffd3d40c2c3ff2b05a4311e921a9fe3105",
+    "../../outputs/workshop_common_voltage_diffusivity_v1/source_manifest.json": "4729bbaa34e80974e551a12c4396f249cb7c167beb5de4465d8ee33ec6ebda87",
+    "../../outputs/project_closure_check_v1/closure_status.json": "e52fe66b0ba3b2f289af740fecdf3a906dafc48dbde4ec423eea6339cf0390d6",
+    "../../outputs/project_closure_check_v1/decision_gate_register.csv": "24c2bae3fa6923c537303a7451b6e7780ea73510d4827d1511bb9030f8ade885",
+    "../../outputs/project_closure_check_v1/source_manifest.json": "1d08a09b8e767cc44f7e24dab79fca99d14bc7b720d273b8695964488f175a95",
+    "../../outputs/integrated_evidence_v1/material_data_requirements.csv": "8fc51c0403a0873b5f39bf51f29201096bf1d4cab736e0ba6f8eecccac640771",
+    "../../outputs/eo_vapor_boundary_analysis_v1/audit.json": "86465289c15df2deeda7456cc0293ea13c653f4e23a8b54bf611e35fdc2fdc3b",
+    "../../outputs/eo_vapor_boundary_analysis_v1/source_manifest.json": "2d6ce28a546e86172dd24d0f791d35bdf42cfee2970b2c365277a1626a12c9cd",
+    "../../outputs/eo_vapor_cell_sizing_v1/audit.json": "12632b20fee31fc817224dd59ccd589558927c1c8da9df39d277092724a45808",
+    "../../outputs/eo_vapor_cell_sizing_v1/source_manifest.json": "1c96a4e92a33be70695b073e22d6a3d5d6acc716c0bc5b33bd001469bb4c6d1c",
+    "../workshop_pack_2026-08-30/MATERIAL_SEARCH_BRIEF.md": "a29aa95d6f33489e4007cb267c4f04c32758b5ac1baa8c2312801b970ca84bdf",
+    "../workshop_pack_2026-08-30/verification.json": "2de6dcb28dfcd4ecd4b59dfeedea4860aadd0ac40b780a34a9ecfc39628900bf"
+  }
+}

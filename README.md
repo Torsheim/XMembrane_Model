@@ -1,203 +1,93 @@
-# XMembrane Model
+# XMembrane model
 
-Physics-based modelling framework for electro-osmotic water removal from humid air.
+Physics-based research software for electro-osmotic water transport in humid-air
+systems. The selected model architecture places active EO transport within the
+ERV core.
 
-This repository is a cleaned research implementation derived from the larger historical HeiQ_V2 development repository.
+## Start here
 
-## Canonical model chain
+Use [the handoff guide](docs/HANDOFF.md) to choose the correct reading or
+reproduction path. It identifies which workflows run from a clean checkout,
+which need the V10 result overlay, and which retain historical `HeiQ_V2`
+dependencies.
 
-```text
-local membrane transport
-        ↓
-axial process integration
-        ↓
-coupled process/receiver integration
-        ↓
-material and operating-point optimisation
-        ↓
-bottleneck diagnostics and alternative receiver boundaries
-```
+The governing model-phase delivery is the hash-frozen English V10 package:
 
-See `docs/MODEL_CHAIN.md` for the numerical hierarchy, `docs/CLAIM_BOUNDARY.md` for interpretation limits, and `docs/PACKAGE_BOUNDARIES.md` for the boundary between native package code and retained reference implementations.
+- [V10 package guide](deliverables/current/2026-09-02_v10/README.md)
+- package directory: `deliverables/current/2026-09-02_v10/`
+- governing report inside that package:
+  `reports/HeiQ_XMembrane_Final_Project_Closeout_2026-09-02_v10.pdf`
+- release status: `verification/V10_STATUS.json`
 
-## Installation
+V10 governs whenever an earlier report, presentation, note, or generated output
+uses different wording or reaches a different status. The model phase is closed;
+the technology remains a research concept pending experimental qualification.
+The final model interpretation includes the finite-duration response of blocking
+capacitive electrodes and does not establish sustained EO operation or a net
+full-system energy saving.
+
+The selected vapour coupon-cell dimensioning and current presentation are in
+the separately versioned post-V10 supplement at
+`deliverables/current/2026-09-03_handoff_v1/`. They are handoff aids and do not
+amend the V10 decision.
+
+## Install and test
+
+Python 3.10 or newer is required. From a complete repository checkout:
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -e ".[dev]"
+python -m pytest -q
 ```
 
-## Tests
+On Windows PowerShell, activate the environment with
+`.venv\Scripts\Activate.ps1`. The supported numerical installation is editable
+from the complete checkout; a wheel containing only `src/` is not standalone.
 
-```bash
-pytest -q
-```
+Generated study directories under `outputs/` are intentionally ignored by Git.
+Tests that require a large historical result set skip when that evidence is not
+present; unit and regression tests still run from a clean checkout.
+`pyproject.toml` declares compatible minimums, while
+`constraints/v10-python-3.10.txt` selects the model/test dependency versions
+observed in the verified V10 Python 3.10 environment. It is a constraint set,
+not a cross-platform lockfile. The full V10 packaging inventory is recorded under
+`deliverables/current/2026-09-02_v10/environment/` when the complete release is
+present.
 
-The test suite contains local-transport unit tests and golden regression checks against retained reference calculations.
+## Workflow classes
 
-## Final model-phase closeout (2026-09-02)
+| Class | Use | Representative entry points |
+|---|---|---|
+| Standalone checkout | Current package tests, direct EO-in-ERV calculation, and synthetic sensitivity | `python -m pytest -q`; `scripts/run_direct_eo_erv_study_v1.py`; `scripts/run_direct_active_erv_tw50_d1e10.py` |
+| V10 result overlay | Audits that replay the frozen direct-ERV case and segment registers | `scripts/run_direct_erv_gradient_closure_v1.py`; `scripts/run_capacitive_electrode_study_v1.py` |
+| External `HeiQ_V2` evidence | Integrated August studies and report builders that consume a sibling historical repository or its outputs | `scripts/run_membrane_operating_region_study_v1.py`; post-ERV study family; `scripts/make_integrated_evidence_register_v1.py` |
+| Historical | Earlier model generations, decision packages, presentation builders, and the V9 delivery checker | retained for provenance; not current release gates |
+| Post-V10 handoff | Integrated sealed 500 mL-per-side vapour-cell sizing and current presentation | `scripts/design_eo_vapor_test_cell.py`; `npm run build:presentations` |
 
-The hash-frozen English V10 package is the governing delivery. Its final
-project closeout report governs wherever wording or status differs from an
-earlier report or supporting note:
+Exact prerequisites, commands, expected outputs, and platform assumptions are in
+[the handoff guide](docs/HANDOFF.md).
 
-- `deliverables/current/2026-09-02_v10/`
-- `reports/final_project_closeout_2026-09-02/HeiQ_XMembrane_Final_Project_Closeout_2026-09-02_v10.pdf`
+## Model and evidence boundaries
 
-V8/V8.1, V9 and the model-closure report remain historical provenance. See
-`reports/README.md` for the short report map and `docs/REPOSITORY_LAYOUT.md` for
-the source-file naming policy.
+- [Model chain](docs/MODEL_CHAIN.md) — current numerical hierarchy and the
+  capacitive transient extension.
+- [Claim boundary](docs/CLAIM_BOUNDARY.md) — permitted interpretation of model
+  results.
+- [Package boundaries](docs/PACKAGE_BOUNDARIES.md) — native modules and retained
+  compatibility sources.
+- [Source provenance](docs/PROVENANCE.md) — source checksum registers and the V10
+  integrity authority.
+- [Workflow classification](docs/workflow_reproducibility.json) —
+  machine-readable current, result-overlay, external, and historical boundaries.
+- [Research log](docs/WP1_RESEARCH_LOG.md) — dated development record, including
+  the September closeout.
+- [Report map](reports/README.md) and [deliverable map](deliverables/README.md) —
+  governing, supporting, supplemental, and historical documents.
+- [Notice](NOTICE.md) — proprietary status and transfer-authorization boundary.
 
-The model phase is complete; the technology is not validated. Direct EO inside
-the ERV membrane/core is the selected modelling architecture. Post-ERV O30 is
-retained only as a controlled coupon-test boundary and historical comparator.
-No real membrane, sustainable electrode mechanism, module performance or net
-full-system energy saving has been demonstrated. The successor phase, if
-started, is measured same-sample material, electrode and controlled-flow coupon
-qualification. Three important interpretation rules are now frozen:
-
-- current density and membrane area are reported design coordinates, not
-  acceptance limits in the exploratory screen;
-- a positive passive surface-gradient direction is not required for actively
-  driven EO transport, but bulk-to-surface film losses remain an engineering
-  diagnostic that the coupon experiment must measure;
-- purely blocking capacitive electrodes provide finite startup displacement,
-  not demonstrated continuous EO duty.
-
-Water diffusivity is therefore not a universal stand-alone procurement gate.
-The passive transport identifiable by the model is the coupled chemical-water-
-permeance bundle, proportional to
-`D * (dCw/daw) / thickness` under the declared constitutive convention. The
-post-ERV diffusivity replay is a controlled one-factor sensitivity study in
-which sorption capacity, thickness, drag and conductivity were held fixed;
-direct-ERV and post-ERV use may lead to different preferred property vectors.
-
-Run the machine-readable closure checks with:
-
-```bash
-python3 -B scripts/run_direct_erv_gradient_closure_v1.py --overwrite
-python3 -B scripts/run_project_closure_check_v1.py \
-  --output-dir outputs/project_closure_check_v1 --overwrite
-```
-
-The final gradient/film and signed-polarity evidence is written to
-`outputs/direct_erv_gradient_closure_v1`; the project-level readiness decision
-is written to `outputs/project_closure_check_v1`.
-
-The later reduced-order capacitive-electrode screen is run with:
-
-```bash
-PYTHONPATH=src python3 scripts/run_capacitive_electrode_study_v1.py --overwrite
-```
-
-It replaces the steady electrode assumption with a signed transient RC state,
-checks blocking DC, symmetric cycling, diagnostic leakage and a dual frozen
-replay of the stored direct-ERV cases. The original stored terminal-voltage
-limit is the primary duration diagnostic; a separate 1.8 V replay is retained
-only as an optimistic capacity upper bound. Neither is an electrode
-electrochemical-window constraint. See
-`docs/CAPACITIVE_ELECTRODE_TRANSIENT_STUDY_2026-09-01.md`. The capacitance is an
-unmeasured sensitivity coordinate and the result is not a dynamic full-core or
-full-system claim.
-
-Build the current fail-closed V10 closeout package from the curated source
-revision with:
-
-```bash
-python3 scripts/package_final_closeout_v10.py \
-  --expected-source-revision "$(git rev-parse HEAD)"
-```
-
-The package is written atomically to `deliverables/current/2026-09-02_v10`.
-Its verification authority is `verification/V10_STATUS.json`; the packager
-checks the report and evidence bindings, scientific audits, complete source and
-result archives, checksums and the live full test suite before publication.
-
-`scripts/run_final_delivery_check_v1.py` is retained only as the historical
-31 August checker. Its report/nested-manifest configuration predates the
-September electrode and combined-sensitivity evidence and is not the V10
-release gate.
-
-## Earlier integrated decision package (2026-08-26; retained for provenance)
-
-The current conclusion is assembled from named audited outputs rather than from chat
-text or a single historical sweep:
-
-```bash
-PYTHONPATH=src python3 scripts/run_system_energy_closure_study.py \
-  --source-root . \
-  --output-dir outputs/system_energy_closure_study
-
-python3 scripts/make_integrated_evidence_register_v1.py
-```
-
-No current-density acceptance cap is applied by default. The integrated register is
-written to `outputs/integrated_evidence_v1`, and the complete LaTeX/PDF report is under
-`reports/trond_full_report_v1`. `material_data_requirements.csv` is the working template
-for supplier and literature scouting. Full-system savings remain unavailable while receiver
-regeneration and heat rejection are unresolved.
-
-### Reproducible membrane operating-region study
-
-The dense direct-EO and post-ERV parameter maps, inverse-design sensitivity,
-censor-aware area analysis and detailed-HVAC replay are orchestrated by:
-
-```bash
-python3 -B scripts/run_membrane_operating_region_study_v1.py
-```
-
-The declared axes and interpretation policy are in
-`config/membrane_operating_region_study_v1.json`; audited results are written to
-`outputs/membrane_operating_region_study_v1`. Direct EO and EO after ERV retain
-separate reference systems and water duties. Current density is a sampled control
-coordinate, not a 21 A/m² acceptance gate, and conditional saving is not reported as
-full-system saving while receiver/regeneration energy remains unknown.
-
-### ERV først, EO for hele den resterende latentlasten
-
-Den separate studien av passiv ERV fulgt av EO helt ned til tilluftens
-fuktighetsforhold kjøres med:
-
-```bash
-python3 -B scripts/make_post_erv_full_eo_study_v1.py --jobs 8 --overwrite
-```
-
-Konfigurasjonen ligger i `config/post_erv_full_eo_study_v1.json`, resultatene i
-`outputs/post_erv_full_eo_study_v1`, og tolkningen er dokumentert i
-`docs/POST_ERV_FULL_EO_STUDY_v1.md`. Studien rapporterer både det idealiserte
-eksakte coil-endepunktet og et konservativt nær-endepunkt. Receiver/sluk og
-varmeavvisning er ikke lukket, så ingen rad er en fullsystempåstand.
-
-### Prosentstudie for økende EO-andel etter ERV
-
-Den videre studien varierer hvor mye av den endelige ERV-til-tilluft-lasten
-EO tar, og beholder samtidig den historiske prosentdefinisjonen som egen akse:
-
-```bash
-python3 -B scripts/make_post_erv_eo_percentage_sweep_v1.py \
-  --jobs 8 --output-dir outputs/post_erv_eo_percentage_sweep_v1 --overwrite
-```
-
-Det historiske «10 %»-caset tilsvarer 22,1925 % av restlasten, O30 tilsvarer
-72,7003 %, og O50 er allerede passert av ERV-en. Det eksakte 100 %-punktet har
-en separat, idealisert sensible-only coil-gren; nær-endepunktsgrenen brukes som
-konservativ kontrollreferanse. Se
-[konfigurasjonen](config/post_erv_eo_percentage_sweep_v1.json),
-[den norske tolkningen](docs/POST_ERV_EO_PERCENTAGE_SWEEP_v1.md) og
-[det auditerte sammendraget](outputs/post_erv_eo_percentage_sweep_v1/SUMMARY.md).
-Receiver-/slukenergi og varmeavvisning er fortsatt uløst, så prosentkurven er
-ikke en validert fullsystemoptimalisering.
-
-### 1 V-designfront og receiverdiagnostikk etter ERV
-
-Den balanserte, samplede 1 V-fronten ligger mellom 76,3281 og 76,4062 %
-fullført restlast; O30 har en betinget 0,9858 V-kandidat. Alle 160
-receiverdiagnoser med positiv lokal margin krevde negativ spenning over hele
-arealet og er urankbare. Se [tolkningen](docs/POST_ERV_EO_DESIGN_FRONTIER_v1.md)
-og [auditen](outputs/post_erv_eo_design_frontier_v1/audit.json). Ingen rad
-tillater en fullsystempåstand.
-
-## Repository philosophy
-
-The repository exposes one canonical model chain. Historical development generations remain in the original HeiQ_V2 research repository, while three reviewed source implementations are retained here behind explicit compatibility adapters.
+Current density and membrane area are reported design coordinates in the
+exploratory screen. Material-property vectors are hypothetical unless supported
+by same-sample measurements. Full-system claims require a complete, explicit
+energy and engineering ledger.

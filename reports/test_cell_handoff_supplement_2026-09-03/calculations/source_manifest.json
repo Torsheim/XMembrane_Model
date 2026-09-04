@@ -1,0 +1,60 @@
+{
+  "generated_outputs": [
+    {
+      "path": "integrated_sealed_cell_volume_basis.csv",
+      "sha256": "94e7dc202a36df007116638841fda7f181047c727cbb1a86b6a7a5b6fed22507",
+      "size_bytes": 1178
+    },
+    {
+      "path": "integrated_sealed_cell_transient.csv",
+      "sha256": "a0b4325b97c99c2af59a2e18e5c9ad5afe6755f90b1a079fff9cb2b1d0a7fdaf",
+      "size_bytes": 35531
+    },
+    {
+      "path": "integrated_sealed_cell_engineering_register.csv",
+      "sha256": "9b4ef2713b8593c8d01fc31e78b5d44c769d7d1636c6f48379331fc71572e416",
+      "size_bytes": 1594
+    },
+    {
+      "path": "interconnect_header_port_volume_budget.csv",
+      "sha256": "8907fbd08862b95b04d72065396caa581b514fb5cfc6881fa57a8543fe642467",
+      "size_bytes": 357
+    },
+    {
+      "path": "config_used.json",
+      "sha256": "082e4d1f8df2d04733205d913a438e39fc0d6b380c77b6a01eeb26dbe72efc4b",
+      "size_bytes": 7298
+    },
+    {
+      "path": "SUMMARY.md",
+      "sha256": "293593e9fbeca73819b7515c748f4a05bd313e488fd01b1f8e41ee6ea412b37d",
+      "size_bytes": 2397
+    },
+    {
+      "path": "integrated_sealed_cell_transient.png",
+      "sha256": "0fb286cdd03a96d835777755640833e06a71a0b4e5cfdbcc3740310446e7c213",
+      "size_bytes": 192637
+    },
+    {
+      "path": "audit.json",
+      "sha256": "95bef62c9ac8a4671e92862b0ea6462a28e2a7838d84e69de03300fd0f723d86",
+      "size_bytes": 1223
+    }
+  ],
+  "schema_version": 2,
+  "sources": [
+    {
+      "path": "config/eo_vapor_test_cell_design.json",
+      "sha256": "e8f460f53474c91a648a331cf7252e5dead5755dac6299c60b74ddc8540d2b5e"
+    },
+    {
+      "path": "scripts/design_eo_vapor_test_cell.py",
+      "sha256": "e89894393f242e3c806df40fc81e06c4ddac0f40692a4323f767440f7a557309"
+    }
+  ],
+  "study_id": "eo-vapor-integrated-sealed-cell-v2-2026-09-03",
+  "verification": {
+    "audit_all_pass": true,
+    "manifest_self_excluded_to_avoid_recursive_hash": true
+  }
+}

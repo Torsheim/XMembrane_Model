@@ -1,0 +1,9 @@
+# V10 is a frozen byte-for-byte release, including historical CRLF CSVs,
+# Markdown hard breaks and renderer-formatted SVG path data. Disable text
+# normalization and ordinary diffs for the complete tree; its exact bytes are
+# reviewed through MANIFEST.json and SHA256SUMS.
+deliverables/current/2026-09-02_v10/** -text -diff
+
+# Current generated SVGs likewise contain renderer-formatted path data with
+# significant trailing spaces and are hash-bound by the handoff manifest.
+deliverables/current/2026-09-03_handoff_v1/figures/**/*.svg -text -diff

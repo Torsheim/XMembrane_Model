@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "study_id": "direct-erv-gradient-closure-v1-2026-08-31",
+  "sources": {
+    "config": {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/config/direct_erv_gradient_closure_v1.json",
+      "sha256": "395f147aceb87da635a4b699d922b8e00fca729ecc889094590ed7142f08522b",
+      "size_bytes": 1482
+    },
+    "case_register": {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/study/case_register.csv",
+      "sha256": "518362ce34734526d5700974abe2965988f623132f5cec688328febf00503137",
+      "size_bytes": 541320
+    },
+    "segment_register": {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/study/segment_register.csv.gz",
+      "sha256": "8a55ae7c2e5067b776f41530d7b2e5fac9706119fa89e203fc7b0a2608541dfc",
+      "size_bytes": 620901
+    },
+    "active_erv_config": {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/config/direct_active_eo_erv_study_v1.json",
+      "sha256": "f91a1c75f5d642d4103e0149223f5c4094c7eed8be84dd2886f5fb1fd2e0c2f3",
+      "size_bytes": 8587
+    },
+    "v2_config": {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/heiq_pre_receiver_material_analyses/config/default.json",
+      "sha256": "519b90cc7819a83f607e376add55fe874b376850a49de2fdead32403c2c389a7",
+      "size_bytes": 4485
+    },
+    "signed_flux_source": {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/scripts/analyze_eo_vapor_boundaries_v1.py",
+      "sha256": "9b6d9c95425820d29252160723445d74d654cb079a9161f3723a44f149026bc3",
+      "size_bytes": 73780
+    },
+    "runner": {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/scripts/run_direct_erv_gradient_closure_v1.py",
+      "sha256": "cf859e20675576611a714e76a26c95352b56624d13b9aa30125effbf6521cdf5",
+      "size_bytes": 37192
+    }
+  },
+  "figures": [
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_erv_gradient_closure_v1/figures/01_film_area_gradient_envelope.png",
+      "sha256": "c03bb52a868730748ce3776fa80a1f0ebbff7b2dc1373ce191dbea28bd6a672c",
+      "size_bytes": 115332
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_erv_gradient_closure_v1/figures/01_film_area_gradient_envelope.pdf",
+      "sha256": "46d70edbdb64594d8a87a1a9a0b2debe26952575b359861c5981cd68f7bee683",
+      "size_bytes": 16548
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_erv_gradient_closure_v1/figures/02_signed_triplet_ac_null.png",
+      "sha256": "8b21de6992f35bace93e31eefa57af500204c982fc51682763f11776e94098c0",
+      "size_bytes": 104462
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_erv_gradient_closure_v1/figures/02_signed_triplet_ac_null.pdf",
+      "sha256": "55767210a15c282c37ae419b3e20c56ac10df226f6c9a3f97de1e314e50944d4",
+      "size_bytes": 16520
+    }
+  ]
+}

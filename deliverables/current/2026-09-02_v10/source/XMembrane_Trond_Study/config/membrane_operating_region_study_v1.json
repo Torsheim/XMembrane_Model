@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "study_id": "membrane-operating-region-study-v1-2026-08-26",
+  "purpose": "Map and quantify membrane-property and operating regions for EO after passive ERV and for direct EO.",
+  "interpretation": "Independently varied membrane coordinates define an inverse-design requirement space; they are not a probability distribution of available materials.",
+  "current_density_policy": {
+    "engineering_current_density_limit_a_m2": null,
+    "current_density_is_sampling_or_control_axis": true,
+    "note": "No 21 A/m2 acceptance limit is applied. Current is accepted or rejected only through calculated transport, surface, voltage, thermal, packaging and energy consequences."
+  },
+  "system_closure_policy": {
+    "missing_receiver_energy_status": "UNKNOWN",
+    "full_system_claim_allowed": false,
+    "conditional_saving_is_not_system_saving": true
+  },
+  "post_erv": {
+    "model_boundary": "passive ERV outlet -> finite-film isothermal EO polishing -> remaining AC",
+    "process_dry_air_mass_flow_kg_s": 78.81256451,
+    "pressure_pa": 101325.0,
+    "process_inlet_temperature_c": 23.0,
+    "process_inlet_humidity_ratio_kg_kg_da": 0.013214990502676377,
+    "receiver_inlet_temperature_c": 29.155171407470398,
+    "receiver_inlet_humidity_ratio_kg_kg_da": 0.018319027567723776,
+    "target_process_humidity_ratio_kg_kg_da": 0.011893491452408739,
+    "water_duty_kg_h": 374.9426249368389,
+    "screening_incremental_ac_reduction_kw": 58.753812,
+    "passive_erv_plus_ac_reference_kw": 543.7405641877893,
+    "power_electronics_efficiency": 0.9,
+    "source_film_coefficient_mol_m2_s_activity": 0.0552498074293186,
+    "receiver_film_coefficient_mol_m2_s_activity": 0.0808434918647271,
+    "process_and_receiver_fan_power_kw_per_m2": 0.001360545848404042,
+    "area_solver_observation_cap_m2": 24000.0,
+    "terminal1_anchor": {
+      "water_drag": 100.06078708377692,
+      "water_diffusivity_m2_s": 1.597880133581376e-14,
+      "conductivity_s_m": 23.171886845550485,
+      "dry_thickness_um": 36.91369958200169,
+      "water_capacity_mol_m3_activity": 10000.0,
+      "diffusivity_activity_exponent": 2.0,
+      "conductivity_activity_exponent": 4.0,
+      "capacity_activity_exponent": 0.0,
+      "series_area_resistance_ohm_m2": 1e-05
+    },
+    "dense_map": {
+      "water_diffusivity_min_m2_s": 1e-15,
+      "water_diffusivity_max_m2_s": 3e-09,
+      "water_diffusivity_points": 33,
+      "current_density_min_a_m2": 2.0,
+      "current_density_max_a_m2": 35.0,
+      "current_density_points": 34
+    },
+    "global_inverse_design": {
+      "seed": 20260826,
+      "base_sample_size": 512,
+      "water_drag_range": [20.0, 200.0],
+      "water_diffusivity_m2_s_range": [1e-14, 3e-09],
+      "conductivity_s_m_range": [0.01, 100.0],
+      "series_area_resistance_ohm_m2_range": [1e-06, 0.01],
+      "current_density_a_m2_range": [2.5, 30.0],
+      "sampled_coordinate_parameterization": "water_drag, D*C/L, total_L_over_sigma_plus_series_ASR, current_density",
+      "dry_thickness_independently_sampled": false,
+      "mapping_dry_thickness_um": 36.91369958200169,
+      "identifiability_note": "This inverse-design sample varies the identifiable composite coordinates D*C/L and L/sigma + series ASR. Thickness is fixed only to map those composites back to one representative D and sigma pair; it is not an independently estimated sensitivity. Direct-EO v53 contains the separate raw-thickness sweep."
+    }
+  },
+  "direct_eo": {
+    "model_boundary": "direct EO -> remaining AC with controlled ideal-wet receiver interface",
+    "global_v53_gate_register": "/home/torsheim/HeiQ/HeiQ_V2/outputs/EO_symmetric_wet_receiver_sink_v53/joint_material_operating_gate_register.csv",
+    "dense_v53_output_dir": "outputs/membrane_operating_region_study_v1/direct_eo_dense",
+    "receiver_control_activity": 0.8,
+    "receiver_sink_energy_modelled": false,
+    "receiver_water_duty_kg_h": 4473.6,
+    "screening_process_surface_activity_min": 0.1,
+    "robust_process_surface_activity_min": 0.17,
+    "robust_minimum_conditional_saving_kw": 425.0,
+    "robust_voltage_headroom_v": 0.25,
+    "hard_area_screen_m2": 5000.0,
+    "preferred_area_diagnostic_m2": 1000.0,
+    "dense_axes": {
+      "current_density_a_m2": [30.0, 40.0, 50.0, 60.0, 75.0, 100.0],
+      "transport_number_reference_t_w": [25.0, 30.0, 35.0, 40.0, 45.0, 50.0, 60.0, 75.0, 90.0, 100.0],
+      "water_diffusivity_scale_vs_pfsa": [0.003, 0.006, 0.01, 0.02, 0.03, 0.06, 0.1, 0.2, 0.3, 0.45, 0.6],
+      "dry_thickness_um": [20.0],
+      "ionic_area_resistance_ohm_m2_at_lambda_ref": [5e-06],
+      "retention_factor_vs_pfsa_sorption": [1.25],
+      "cell_voltage_cap_tested_v": [3.0, 5.0]
+    },
+    "v55_reference": {
+      "transport_number_reference_t_w": 75.0,
+      "water_diffusivity_scale_vs_pfsa": 0.6,
+      "current_density_a_m2": 50.0,
+      "dry_thickness_um": 20.0,
+      "ionic_area_resistance_ohm_m2_at_lambda_ref": 5e-06,
+      "retention_factor_vs_pfsa_sorption": 1.25,
+      "active_area_m2": 2200.012,
+      "conditional_known_electric_saving_kw": 506.719,
+      "cell_voltage_required_max_v": 3.177365
+    }
+  }
+}

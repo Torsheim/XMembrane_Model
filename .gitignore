@@ -12,6 +12,7 @@ htmlcov/
 # Packaging
 build/
 dist/
+node_modules/
 
 # Generated simulation results
 outputs/*
@@ -33,6 +34,13 @@ outputs/*
 *.zip
 *.tar.gz
 
+# Hash-bound top-level archives in the controlled V10 release. Keep the global
+# archive ignore above; these are the exact V10 payloads named by MANIFEST.json
+# and SHA256SUMS. The frozen source snapshot has its own historical .gitignore,
+# so its two nested V8.1 archives require an exact `git add -f` on first import.
+!deliverables/current/2026-09-02_v10/archives/HeiQ_XMembrane_2026-09-02_v10_results.zip
+!deliverables/current/2026-09-02_v10/archives/HeiQ_XMembrane_2026-09-02_v10_source.zip
+
 # Scientific document build artefacts
 *.aux
 *.bbl
@@ -40,8 +48,46 @@ outputs/*
 *.fdb_latexmk
 *.fls
 *.log
+*.lof
 *.out
 *.synctex.gz
 *.toc
 *.nav
 *.snm
+
+# Local presentation render previews. Final PPTX/PDF, curated contact sheets,
+# and manifest-listed figures remain deliverables; per-slide inspection images
+# and duplicated renderer exports do not.
+deliverables/current/2026-09-03_handoff_v1/presentations/rendered/
+deliverables/archive/2026-09-02_v9_presentations/rendered_deck/
+deliverables/archive/2026-09-02_v9_presentations/rendered_peer_review/
+deliverables/archive/2026-09-02_v9_presentations/rendered_peer_review_v2/
+
+# Local historical/generated snapshots retained on the handoff workstation but
+# deliberately excluded from the controlled Git transfer. Their governing
+# evidence is either already in V10 or superseded by a versioned current
+# deliverable. These exact paths are used instead of broad report ignores so a
+# future release cannot disappear silently.
+deliverables/current/2026-08-31_v8/
+deliverables/peer_review_figures/
+reports/axial_erv_eo_model_note_2026-09-02/
+reports/eo_vapor_boundary_analysis_v1/
+reports/eo_vapor_boundary_analysis_v2_en/
+reports/eo_vapor_boundary_analysis_v2_no/
+reports/fom_assessment_2026-08-30/
+reports/heiq_eo_complete_result_atlas_v7/
+reports/model_closure_2026-08-31/
+reports/team_result_atlas_v8/
+reports/trond_findings_v1/
+reports/trond_full_report_v1/
+reports/trond_full_results_atlas_v2/
+reports/trond_full_results_atlas_v4/
+reports/trond_full_results_atlas_v5/
+reports/trond_full_results_atlas_v6/
+reports/weekly_findings_2026-08-24_to_2026-08-30/
+reports/weekly_results_2026-08-24_to_2026-08-27/
+reports/workshop_diffusivity_energy_v1/
+reports/workshop_pack_2026-08-30/
+reports/test_cell_handoff_supplement_2026-09-03/archive/
+scripts/edit_workshop_summary_section_7_2.py
+scripts/make_model_presentation_figures.py

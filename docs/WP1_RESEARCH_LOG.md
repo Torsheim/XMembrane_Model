@@ -1,8 +1,9 @@
 # WP1 model portfolio and research log
 
-This is the living record for the WP1 modelling programme.
-It must be updated when a new model, comparison or verified
-result is added.
+This is the chronological record for the WP1 modelling programme. The V10
+closeout report governs current interpretation; earlier decisions, gates, and
+planned next steps below are retained to show how the work evolved. New work
+after V10 belongs to a separately versioned successor-phase supplement.
 
 ## Purpose
 
@@ -36,8 +37,12 @@ Every reported result must identify:
 | `module_geometry` | Width, length, gap, films and fan work | No |
 | `modern_ac_erv_reference` | Modern conventional AC+ERV reference | Yes |
 | `eo_erv_hybrid` | Incremental EO benefit beyond ERV | Yes |
+| `direct_eo_in_erv` | Active EO transport within the ERV core | Yes |
+| `direct_erv_gradient_closure` | Film, gradient, and signed-polarity audit of frozen direct-ERV cases | Yes |
+| `capacitive_electrode_transient` | Reduced-order duration and cycle response of blocking capacitive electrodes | Yes |
+| `eo_vapour_coupon_cell` | Selected controlled-flow cell and measurement envelope | N/A |
 
-## Confirmed findings
+## Findings recorded before V10
 
 ### Equal-service no-ERV comparison
 
@@ -164,20 +169,14 @@ Required outputs are additional water transport, outlet
 humidity ratio, area, local and integrated current, voltage,
 EO power, complete incremental power and marginal Wh/L.
 
-## Planned sequence
+## Closeout disposition
 
-1. Establish the nonlinear O30 required-area curve at 1.0 V with no
-   current-density acceptance limit; retain 9000 m² only as a comparison.
-2. Preserve a true passive or zero-current O50 reference.
-3. Compare coupled gas, saturation-drain and direct-liquid
-   receiver boundaries.
-4. Add liquid heat-rejection and drainage sensitivities.
-5. Run diffusivity cases including 1e-10 and 1e-9 m²/s and
-   a sourced Nafion case.
-6. Optimize membrane length, width and channel depth jointly.
-7. Validate a separate modern AC+ERV reference.
-8. Solve EO+ERV topology and incremental 10% cases.
-9. Close the full FOM and energy ledger.
+The numerical sequence was completed or superseded during the August and
+September studies. The model phase closed in V10 on 2026-09-02. The successor
+phase is experimental: measure the complete material-property vector on the
+same sample, demonstrate a sustained electrode mechanism, run the selected
+controlled-flow vapour coupon cell, and use those measurements to qualify the
+module and full energy ledger.
 
 ## Run log
 
@@ -188,20 +187,22 @@ EO power, complete incremental power and marginal Wh/L.
 | 2026-08-26 | pending commit | System-closure gate audit | Superseded after confirmation that 21 A/m2 is not a design limit; closure outputs require regeneration without that gate. | Superseded contract audit |
 | 2026-08-26 | pending commit | O30 nonlinear required area at 1.0 V | All eight fixed-basis receiver points reached target at 10499.7-12139.9 m2; R=3 step-halving result 10499.6770 m2. | Local model-conditioned area curve |
 | 2026-08-31 | pending commit | Direct-ERV gradient and signed-triplet closure | O30 bulk driving is favourable but finite films reverse the selected surface gradient; 1.137x common film/area factor restores zero margin. Full duty is pinched at zero bulk margin. Matched +J/0/-J gives only 0.348 ppm incremental O30 rectification and zero at full duty. | Final steady-model closure; transient AC remains experimental |
+| 2026-09-01 | V10 source revision | Capacitive-electrode transient screen | Blocking DC supplies finite startup displacement; the modelled symmetric cycle has zero net EO transport. Capacitance and leakage remain unmeasured sensitivity coordinates. | Reduced-order transient qualification |
+| 2026-09-02 | `805ae087` | V10 final project closeout | Release `XMEMBRANE-2026-09-02-V10` passed its evidence, archive, report, scientific-audit, and reconstructed-test gates. | Governing model-phase closeout |
+| 2026-09-03 | post-V10 working tree | Cell and presentation handoff material | Selected coupon-cell dimensioning and current V10-aligned presentation assigned to `2026-09-03_handoff_v1`. | Successor-phase handoff aid |
 
-## Open questions
+## Questions handed to the successor phase
 
-- No 21.0 A/m² design limit applies to the current study. Local current
-  density remains a reported diagnostic; finite solver ceilings are numerical
-  guards only.
-- Which measured Nafion diffusivity dataset and hydration
-  condition should define the reference case?
-- Where does phase change occur in a direct-liquid design?
-- What heat sink and rejection COP are physically available?
-- Which exhaust fraction is allocated to ERV versus an EO
-  gas receiver?
-- Which ERV product class and certified operating point
-  should define the industry comparison?
+- Which sustained electrode mechanism operates over the required duty and
+  lifetime?
+- What coupled sorption, diffusivity, conductivity, drag, thickness, swelling,
+  and conditioning vector is measured on each candidate sample?
+- What net water-transfer signal, blank, leakage, film response, and electrode
+  inventory are measured in the selected vapour coupon cell?
+- What core pressure drop, sensible/latent coupling, heat rejection,
+  auxiliaries, durability, safety, manufacturability, and cost are measured at
+  module scale?
+- Which certified ERV operating point defines the equal-service reference?
 
 ## 2026-08-21 — Canonical replay of legacy geometry finalists
 
@@ -480,99 +481,90 @@ source hashes, headline metrics, the next-study matrix and a nine-row
 historical current-gated results remain historical, and missing power is never treated
 as zero.
 
-### Finalization decision
+### Historical finalization decision at 2026-08-26
 
-The recommended primary architecture for the remaining study time is passive ERV plus
-EO polishing. The next numerical work should be one full detailed-HVAC/thermal run with
-an explicit receiver-sink ledger and at least one rankable module/pressure-drop bracket,
-not another broad sweep. Structured material scouting can begin in parallel as a data-
-gap matrix covering sorption, D(a,T), conductivity/ASR, drag, thickness/swelling,
-durability, ion form and receiver compatibility. No candidate should be ranked from a
-single datasheet property.
+At this snapshot, the next numerical work was a detailed-HVAC/thermal run with
+an explicit energy ledger and a rankable module/pressure-drop bracket.
+Structured material scouting was to proceed in parallel as a data-gap matrix
+covering sorption, D(a,T), conductivity/ASR, drag, thickness/swelling,
+durability, ion form, and operating compatibility. No candidate was to be
+ranked from a single datasheet property.
 
-## 2026-08-27 — ERV først, EO for hele den resterende latentlasten
+This dated recommendation was superseded by the V10 selection of direct EO
+transport within the ERV core.
 
-En egen fail-closed studie ble etablert for arkitekturen passiv ERV, deretter
-EO helt ned til tilluftens absolutte fuktighet. Den bruker samme post-ERV
-motstrømsintegrator som den tidligere 10 %-studien, men med eget mål, egne
-akser, eget outputområde og eksplisitt receiver/prosess-luftforhold.
+## 2026-08-27 — Historical post-ERV full-duty study
 
-ERV-utløpet er 23,00 °C og 13,215 g/kg. Fullt EO-mål er 7,260 g/kg og
-vannplikten er 1689,50 kg/h. O50 er allerede passert av ERV alene; O30 er
-beholdt som et mellompunkt. Den eksakte sensible coil-grenen gir et all-in
-break-even-budsjett på 0,27520 kWh/kg, mens et epsilon over målet gir
-0,15670 kWh/kg. Begge kontrollregimer rapporteres, og den lavere verdien er
-konservativ beslutningsgrense inntil coilkontrollen er validert.
+The dated full-duty sweep used an ERV outlet of 23.00 °C and 13.215 g/kg, a
+7.260 g/kg target, and a water duty of 1689.50 kg/h. It evaluated 480 membrane
+cases: 195 reached the target, 185 passed the declared transport and surface
+checks, and 7/7 selected cases passed step halving. The reported primary case
+required 8376.25 m², 0.881–1.895 V, and 47.94 kW of known EO-grid and fan
+power. Its energy result remained conditional because the full engineering and
+energy ledger was incomplete.
 
-Den fulle sweepen evaluerte 480 membrancaser. 195 nådde målet, 185 bestod
-transport- og receiver-overflategatene, ingen beholdt positiv lokal
-overflatedrivretning over hele modulen, og 7/7 utvalgte caser bestod
-step-halvering. Den balanserte primærcasen ved 3,0 A/m² krever 8376,25 m²,
-0,881–1,895 V og 47,94 kW kjent EO-grid- og vifteffekt. Dens betingede
-gevinst før receiver/sluk er 417,00 kW på eksakt endepunkt og 216,80 kW på
-den konservative grenen. Receiver/sluk, varmeavvisning, termisk kobling og
-rankbart manifoldtrykkfall er fortsatt ukjent; fullsystemstatus forblir
-`UNKNOWN`.
+## 2026-08-27 — Historical EO-percentage sweep
 
-## 2026-08-27 — EO-prosentsweep etter ERV
+This sweep varied completion of the remaining latent duty. The earlier
+“additional 10%” coordinate equals 22.1925% completion on that axis, O30 equals
+72.7003%, and the final supply-humidity coordinate equals 100%. At a fixed
+Terminal-1 material/current/resistance coordinate, the corresponding active
+areas were 1858.5, 6089.1, and 8376.2 m²; maximum terminal voltages were 0.503,
+1.314, and 1.895 V. The 720-case run had 306 target-reaching and 289 declared
+transport-gate rows, with 12/12 selected cases passing step halving. The energy
+results were conditional and did not establish a full-system optimum.
 
-Det neste sweepet undersøkte gradvis hvor mye av den endelige
-ERV-til-tilluft-fuktighetsdifferansen EO skal lukke. Den primære aksen er
-derfor prosent av den *gjenværende* latentplikten etter ERV, ikke en relativ
-reduksjon i ERV-utløpets fuktighetsforhold. Med denne definisjonen tilsvarer
-den historiske «10 %»-casen 22,1925 % fullføring, O30 tilsvarer 72,7003 %, og
-full EO-avfukting tilsvarer 100 % fullføring, men bare 45,0603 % relativ
-reduksjon fra ERV-utløpet. Begge prosentdefinisjonene beholdes i output slik
-at eldre resultater ikke ometiketteres.
+## 2026-08-27 — Historical 1 V design frontier
 
-Ved null EO-prosessvarmelekkasje gir den konservative kontrollgrenen følgende
-betingede energigevinst før receiver/sluk:
+The sampled 1 V frontier was 76.328125–76.406250% completion. The best sampled
+O30 coordinate at or below 1 V used `D=1.597880e-14 m²/s`, `j=0.75 A/m²`,
+24,369.97 m², and 0.985815 V, with a negative local surface margin. The audit
+reported 1250 primary cases, 1005 target-reaching cases, 1002 declared-gate
+cases, and 5/5 step-halving checks. This is retained as historical evidence;
+V10 governs the architecture and claim boundary.
 
-| All-in EO-SEC | Historisk «10 %» | O30 | Fullt endepunkt, konservativt |
-|---:|---:|---:|---:|
-| 0,050 kWh/kg | 40,01 kW | 131,06 kW | 180,27 kW |
-| 0,100 kWh/kg | 21,26 kW | 69,64 kW | 95,80 kW |
-| 0,150 kWh/kg | 2,51 kW | 8,23 kW | 11,32 kW |
+## 2026-09-01 — Capacitive-electrode transient closure
 
-Under 100 % forblir screening-HVAC på den mettede coil-grenen, og gevinsten
-øker omtrent lineært med behandlet vann når all-in EO-SEC er under
-0,15670 kWh/kg. Nøyaktig 100 % skifter derimot til en sensible-only
-coil-gren. Dette gir et kontrollregimesprang på 200,1973 kW mellom den
-ensidige konservative grensen og det eksakte endepunktet; spranget er et
-modell-/kontrollregimeskifte og skal ikke tolkes som en kontinuerlig fysisk
-membrangevinst.
+The reduced-order transient study applied signed membrane transport to two
+blocking capacitive electrodes at fixed bulk activities and finite gas films.
+It evaluated blocking DC, symmetric current cycling, interface ESR, diagnostic
+leakage, and frozen direct-ERV axial states. Blocking DC produced finite startup
+displacement, and the modelled symmetric cycle produced zero net EO transport.
+At the unmeasured 5,000 F/m² pair-capacitance coordinate, the original stored
+O30 terminal-voltage case (0.025 V) retained 16.2% after one hour, averaged
+0.68% over 24 hours, and delivered 0.17 h equivalent full contribution. The
+full-duty 0.250 V case gave 16.5%, 0.69%, and 0.17 h respectively. A separate
+1.8 V current-commanded replay gave 98.5%/4.6% for O30 and 92.3%/5.0% for full
+duty; these are optimistic capacity upper bounds, not same-voltage replays or
+electrochemical-window checks. The capacitance and leakage values were
+sensitivity coordinates rather than measurements. The result therefore
+qualified the steady model interpretation without establishing sustained
+operation.
 
-På den faste Terminal-1 D/j/R-koordinaten, der aktivt membranareal dimensjoneres
-på nytt ved hvert mål, utvikler de valgte ankerpunktene seg slik:
+## 2026-09-02 — V10 model-phase closeout
 
-| Punkt | Aktivt areal | Maks. terminalspenning | Maks. receiver-overflateaktivitet | Konservativt receiver/sluk-SEC-budsjett |
-|---|---:|---:|---:|---:|
-| Historisk «10 %» / 22,1925 % fullføring | 1858,5 m² | 0,503 V | 0,8056 | 0,1427 kWh/kg |
-| O30 / 72,7003 % fullføring | 6089,1 m² | 1,314 V | 0,9189 | 0,1337 kWh/kg |
-| Full EO / 100 % fullføring | 8376,2 m² | 1,895 V | 0,9797 | 0,1283 kWh/kg |
+Release `XMEMBRANE-2026-09-02-V10` froze the final English report, governing
+evidence, source and result archives, environment inventory, package manifest,
+checksums, and verification records. Its declared source revision is
+`805ae087a7f3e133444c93f9fbb72856863754bf`. The reconstructed archive passed
+275 tests, skipped 39 evidence-dependent tests with recorded reasons, and had
+zero failures. `verification/V10_STATUS.json` reports `PASS` and
+`publishing_eligible: true`.
 
-Det økende arealet, spenningen og receiver-overflateaktiviteten, sammen med et
-fallende gjenstående SEC-budsjett, viser at den siste delen av plikten blir
-stadig mer krevende. Dette er en dimensjoneringstrajektorie, ikke responsen til
-én fast installert modul.
+V10 closes the model phase and selects direct EO transport within the ERV core
+as the architecture for interpretation. The combined `t_w=50`, `D=1e-10 m²/s`
+case remains a synthetic conditional sensitivity. Experimental qualification
+of the same-sample material vector, sustained electrode mechanism, controlled
+vapour-cell signal, module engineering, and full energy ledger is the handoff
+to the successor phase.
 
-Den fulle transportkjøringen omfattet 720 caser: 306 nådde målet, 289 bestod
-den deklarerte transport-/receiver-gaten, og 0 beholdt positiv lokal
-overflatedrivretning over hele modulen. Step-halvering bestod for 12/12 unike
-best-envelope-/fast-koordinatcaser. Receiverregenerering eller -disponering,
-sluk, varmeavvisning og termisk tilbakekobling er fortsatt uløst; derfor er
-energigevinstene betingede og ingen EO-prosent er ennå et validert
-fullsystemoptimum.
+## 2026-09-03 — Post-V10 handoff supplement
 
-## 2026-08-27 — 1 V-designfront og receiverdiagnostikk etter ERV
-
-Den samplede 1 V-fronten er 76,328125–76,406250 %. O30s beste ≤1 V-case
-bruker `D=1,597880e-14`, `j=0,75`, 24 369,97 m² og 0,985815 V; gevinsten før
-receiver/sluk er 144,90 kW, men lokal minimumsmargin er -0,232696.
-Ved SEC 0/0,05/0,10/0,125/0,13/0,135/0,14/0,15 kWh/kg er beste ≤1 V-andel
-67,5/67,5/62,5/55/50/50/50/50 % og gevinst 148,60/91,58/36,14/11,12/
-6,64/2,42/-1,81/-10,25 kW. RH-tersklene ved 50/60/70 %/O30 er
-0,489133/0,455651/0,422106/0,413122. Auditen ga 1250/1005/1002/0
-primærcaser/mål/gate/positiv retning og 384 receivercaser; alle 160 med
-positiv margin var `negative_voltage_everywhere`, urankbare og uten
-fullsystempåstand. Step-halvering bestod 5/5.
+The selected experimental starting point was consolidated as an integrated
+sealed vapour cell with two equal 500.0 mL net-free-gas chambers, a 50 mm by
+50 mm active region, local 1/2/4 mm gaps (2 mm nominal), and a 5 s-per-segment
+ABBA transient sampled every 0.1 s. The authoritative dimensioning document, numerical
+handoff evidence, and V10-aligned technical presentation were assigned to the
+post-V10 handoff supplement as successor-phase aids. The supplement carries
+its own inventory, checksums, and build notes. It does not amend the V10
+model-phase release.

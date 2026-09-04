@@ -1,0 +1,114 @@
+{
+  "generated_outputs": [
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_boundary_analysis_v1/nominal_cases.csv",
+      "sha256": "8c7cf03003e53e9944a8c4f6d95e2f8317c47d843ae7a8d0d6122e6366b0d84f",
+      "size_bytes": 920
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_boundary_analysis_v1/canonical_solver_crosscheck.csv",
+      "sha256": "6fec9f8719a01e7816ff2bdcf1b9f63ca3fc34743a897bad8a3949aab712b7ba",
+      "size_bytes": 470
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_boundary_analysis_v1/one_factor_boundary_sweeps.csv",
+      "sha256": "d5b358e6405f07f605471be3962f939429412743c200b407cdedd19693e7497e",
+      "size_bytes": 120838
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_boundary_analysis_v1/combined_boundary_scenarios.csv",
+      "sha256": "9ea2ee830f7ba4d16f03c7525e87d3a36b074c39542139fc7f96be1fe09690bb",
+      "size_bytes": 29237183
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_boundary_analysis_v1/combined_sensitivity_rank.csv",
+      "sha256": "9dca4200d99a8dbdb369f8832fa8a4ada01b5f16b320044aef485ad4ae613003",
+      "size_bytes": 47523
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_boundary_analysis_v1/scenario_summary.csv",
+      "sha256": "9c03cc83040448c375d7166c464f19b20db8bd729fa991f45281d8b8b336c5c7",
+      "size_bytes": 2185
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_boundary_analysis_v1/closed_loop_boundary_screen.csv",
+      "sha256": "6e3e92343b68ce6e33fcdf1b5e7379863174dd78dee6d2ca1f5416945b9cde24",
+      "size_bytes": 77046
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_boundary_analysis_v1/aperture_design_identifiability.csv",
+      "sha256": "fad9f1cb2b5f708f15608dd0f38bde4e3ea562988b10005b7aaa86dd2ec1f06d",
+      "size_bytes": 622
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_boundary_analysis_v1/activity_temperature_interaction.csv",
+      "sha256": "807f05f4c295eeef71a6a1e0a6a12b2230e460aaa7ac8c1bf860944a577185b0",
+      "size_bytes": 1212018
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_boundary_analysis_v1/config_used.json",
+      "sha256": "02492ed650bff72debe261c2868f2f541f8884769f1e748743aa93a16cccf0da",
+      "size_bytes": 6986
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_boundary_analysis_v1/audit.json",
+      "sha256": "86465289c15df2deeda7456cc0293ea13c653f4e23a8b54bf611e35fdc2fdc3b",
+      "size_bytes": 536
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_boundary_analysis_v1/SUMMARY.md",
+      "sha256": "4bacdc798db4ebf6df7caa42b361e350ab204b1577dbfb589ef8d14e13aa2ec4",
+      "size_bytes": 5100
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_boundary_analysis_v1/activity_temperature_interaction.png",
+      "sha256": "2a54d0d306ae8c042cb5fc9a3b9d1a3704438eed6b9be3178a90114f4908c72c",
+      "size_bytes": 115732
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_boundary_analysis_v1/closed_loop_time_to_5pa.png",
+      "sha256": "6d18e11724f3350ad5c9cc053d1da61eb963324c3d9968cdc516939564102a37",
+      "size_bytes": 138930
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_boundary_analysis_v1/combined_error_distributions.png",
+      "sha256": "1a737b192f2222f8d51b5da72a31d8b463d40dbeb32cd65f8fd649a592cefa78",
+      "size_bytes": 113929
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_boundary_analysis_v1/combined_sensitivity_rank.png",
+      "sha256": "aeaabcce7621c13231006089c66f9d2f4fcb8b29e07ab2d248185a5050eee9e2",
+      "size_bytes": 95101
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_boundary_analysis_v1/one_factor_boundary_sensitivity.png",
+      "sha256": "d8df2a0f2f4b0ca7ea12305da55031ad9796c0d27b106dd4291c214014d97b64",
+      "size_bytes": 195631
+    }
+  ],
+  "schema_version": 1,
+  "sources": [
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/config/eo_vapor_boundary_analysis_v1.json",
+      "sha256": "9663ff43a14b314c422e522ef78fdf6f3391f4dcf2bb23cd0ee93320ef0e9a17"
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/scripts/analyze_eo_vapor_boundaries_v1.py",
+      "sha256": "9b6d9c95425820d29252160723445d74d654cb079a9161f3723a44f149026bc3"
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/src/heiq/wp1/membrane/local_transport.py",
+      "sha256": "e5830f09f9e7a4f6653f2b0ee13f9a00651a179a8492048f2e1ca8e4cb1008df"
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/heiq_pre_receiver_material_analyses/heiq_pre_receiver_model.py",
+      "sha256": "f538f810ae89e7f5eaff3ad2b8be38c587f11587ea4b1f8558d0a9c278f21f54"
+    }
+  ],
+  "study_id": "eo-vapor-boundary-analysis-v1-2026-08-28",
+  "verification": {
+    "all_combined_cases_solved": true,
+    "canonical_solver_crosscheck_pass": true,
+    "manifest_self_excluded_to_avoid_recursive_hash": true
+  }
+}

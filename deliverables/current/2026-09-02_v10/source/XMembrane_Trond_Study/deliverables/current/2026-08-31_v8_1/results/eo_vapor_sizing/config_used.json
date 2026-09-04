@@ -1,0 +1,268 @@
+{
+  "boundary_activity_mismatch_screen": {
+    "activity_mismatch_rh_percentage_points": [
+      0.01,
+      0.05,
+      0.1,
+      0.2
+    ],
+    "interpretation": "Linear D*C/L screening scale only. Use it to set equal-boundary tolerances, not as a validated passive-flux prediction.",
+    "membrane_thickness_um": 36.91369958200169,
+    "reference_area_cm2": 25.0,
+    "reference_current_densities_a_m2": [
+      3.0,
+      10.0
+    ],
+    "reference_water_transport_number": 1.0,
+    "water_capacity_mol_m3_activity": 10000.0,
+    "water_diffusivities_m2_s": [
+      1.597880133581376e-14,
+      1e-13,
+      1e-12,
+      1e-11,
+      1e-10
+    ]
+  },
+  "detectability_flow_screen": {
+    "candidate_actual_flows_l_min": [
+      0.5,
+      0.7,
+      1.0,
+      2.0,
+      3.0,
+      6.0,
+      12.0
+    ],
+    "interpretation": "Ideal two-stream humidity signal before passive back-diffusion, film losses, leakage, storage and electrode reactions. Low-flow detectability and high-flow film characterization are separate operating modes.",
+    "reference_area_cm2": 25.0,
+    "reference_cases": [
+      {
+        "case_id": "low_drag_signal_floor",
+        "current_density_a_m2": 10.0,
+        "interpretation": "Low-drag gross Faradaic signal floor; not a net membrane prediction.",
+        "water_transport_number": 0.3
+      },
+      {
+        "case_id": "order_unity_reference",
+        "current_density_a_m2": 10.0,
+        "interpretation": "Order-unity gross Faradaic reference; not a net membrane prediction.",
+        "water_transport_number": 1.0
+      },
+      {
+        "case_id": "inverse_design_anchor",
+        "current_density_a_m2": 1.0,
+        "interpretation": "Hypothetical project inverse-design anchor; not a measured material property.",
+        "water_transport_number": 100.06078708377692
+      }
+    ],
+    "reference_gap_mm": 2.0
+  },
+  "faradaic_gas_safety_screen": {
+    "electrons_per_h2_molecule": 2.0,
+    "interpretation": "Conservative diagnostic if the electrode chemistry could evolve hydrogen at 100 percent Faradaic yield. It is not a prediction that this cell will produce hydrogen.",
+    "warning_h2_volume_fraction": 0.04
+  },
+  "fixture_starting_point": {
+    "all_polymer_load_plate_recommended_thickness_mm": 16.0,
+    "aperture_inserts_mm": [
+      {
+        "aperture_id": "square_20",
+        "flow_length_mm": 20.0,
+        "width_mm": 20.0
+      },
+      {
+        "aperture_id": "slot_50_along_flow",
+        "flow_length_mm": 50.0,
+        "width_mm": 8.0
+      },
+      {
+        "aperture_id": "slot_50_across_flow",
+        "flow_length_mm": 8.0,
+        "width_mm": 50.0
+      },
+      {
+        "aperture_id": "square_30",
+        "flow_length_mm": 30.0,
+        "width_mm": 30.0
+      },
+      {
+        "aperture_id": "square_40",
+        "flow_length_mm": 40.0,
+        "width_mm": 40.0
+      },
+      {
+        "aperture_id": "square_50",
+        "flow_length_mm": 50.0,
+        "width_mm": 50.0
+      }
+    ],
+    "guard_groove_width_mm": 2.0,
+    "inner_seal_width_mm": 3.0,
+    "insulating_flow_frame_thickness_mm": [
+      8.0,
+      10.0
+    ],
+    "interchangeable_channel_gaps_mm": [
+      1.0,
+      2.0,
+      4.0
+    ],
+    "mask_inserts_leave_50x50_mm_flow_field_fixed": true,
+    "maximum_active_window_mm": [
+      50.0,
+      50.0
+    ],
+    "maximum_internal_dead_volume_ml_per_side": 1.3,
+    "membrane_coupon_mm": [
+      80.0,
+      80.0
+    ],
+    "metal_load_plate_recommended_thickness_mm": 12.0,
+    "nominal_channel_gap_mm": 2.0,
+    "nominal_channel_velocity_m_s": 1.0,
+    "note": "Starting dimensions only. Final plate thickness is accepted from measured flatness/deflection under the actual gasket, hard-stop and bolt load, not from gas pressure alone.",
+    "outer_plate_mm": [
+      110.0,
+      110.0
+    ],
+    "outer_seal_width_mm": 3.0,
+    "proposed_internal_volume_geometry": {
+      "port_bore_count": 2,
+      "port_bore_inner_diameter_mm": 6.0,
+      "port_bore_length_mm": 8.0,
+      "pressure_tap_volume_ml_total": 0.02,
+      "triangular_header_count": 2,
+      "triangular_header_length_mm": 7.5
+    }
+  },
+  "geometry": {
+    "channel_gaps_mm": [
+      1.0,
+      2.0,
+      4.0
+    ],
+    "channel_velocities_m_s": [
+      0.5,
+      1.0,
+      2.0,
+      4.0
+    ],
+    "edge_strip_width_mm": 1.0,
+    "external_closed_loop_volumes_l": [
+      0.005,
+      0.1,
+      1.0,
+      5.0,
+      10.0,
+      20.0
+    ],
+    "square_active_areas_cm2": [
+      4.0,
+      9.0,
+      25.0
+    ]
+  },
+  "inverse_design_anchor_screen": {
+    "current_densities_a_m2": [
+      0.5,
+      0.75,
+      1.0,
+      2.0,
+      3.0,
+      5.0
+    ],
+    "interpretation": "Hypothetical project inverse-design anchor, not a measured material property.",
+    "water_transport_numbers": [
+      100.06078708377692
+    ]
+  },
+  "material_coupon_screen": {
+    "current_densities_a_m2": [
+      10.0,
+      25.0,
+      50.0,
+      100.0,
+      200.0
+    ],
+    "interpretation": "Order-unity reference scenarios. Gross Faradaic EO transport only; diffusion, gas films, electrode water and leakage are not subtracted.",
+    "water_transport_numbers": [
+      0.3,
+      1.0,
+      2.5
+    ]
+  },
+  "measurement": {
+    "closed_loop_allowed_boundary_drift_rh_percentage_points": 1.0,
+    "closed_loop_run_time_minutes": 60.0,
+    "maximum_blank_fraction_of_minimum_signal": 0.1,
+    "maximum_membrane_differential_pressure_pa": 5.0,
+    "minimum_signal_to_uncertainty_ratio": 5.0,
+    "single_stream_humidity_expanded_uncertainty_rh_percentage_points": 0.1
+  },
+  "membrane_time_scale_screen": {
+    "interpretation": "Hypothetical project anchor thickness and diffusivity sweep. L2/D is a characteristic scale, not a guaranteed equilibration time.",
+    "preconditioning_multiple_of_l2_over_d": 4.0,
+    "thickness_um": 36.91369958200169,
+    "water_diffusivities_m2_s": [
+      1.597880133581376e-14,
+      1e-13,
+      1e-12,
+      1e-11,
+      1e-10
+    ]
+  },
+  "operating_state": {
+    "absolute_pressure_pa": 101325.0,
+    "equal_inlet_water_activity": 0.5,
+    "temperature_c": 32.0
+  },
+  "purpose": "Dimension a modular two-sided EO vapour coupon cell from measurable water rate, gas-film sensitivity and boundary-condition drift.",
+  "schema_version": 1,
+  "structural_screen": {
+    "effective_uniform_load_cases_pa": [
+      {
+        "load_case": "gas_pressure_challenge",
+        "pressure_pa": 50.0
+      },
+      {
+        "load_case": "low_fixture_load_surrogate",
+        "pressure_pa": 50000.0
+      },
+      {
+        "load_case": "moderate_fixture_load_surrogate",
+        "pressure_pa": 200000.0
+      },
+      {
+        "load_case": "high_fixture_load_surrogate",
+        "pressure_pa": 1000000.0
+      }
+    ],
+    "interpretation": "Classical small-deflection plate screen. The equivalent uniform fixture loads are sensitivity coordinates, not calculated gasket contact pressures. Final acceptance requires measured flatness under the real bolt, gasket, hard-stop, port and electrode stack.",
+    "materials": [
+      {
+        "material_id": "PEEK",
+        "poisson_ratio": 0.38,
+        "reference_thickness_mm": 16.0,
+        "youngs_modulus_gpa": 3.6
+      },
+      {
+        "material_id": "Al_6061_T6",
+        "poisson_ratio": 0.33,
+        "reference_thickness_mm": 8.0,
+        "youngs_modulus_gpa": 69.0
+      },
+      {
+        "material_id": "316L_stainless",
+        "poisson_ratio": 0.3,
+        "reference_thickness_mm": 8.0,
+        "youngs_modulus_gpa": 193.0
+      }
+    ],
+    "maximum_bow_fraction_of_smallest_gap": 0.02,
+    "plate_boundary_condition": "simply_supported_square_uniform_load_screen",
+    "plate_coefficient_alpha_q_a4_over_D": 0.00406,
+    "smallest_channel_gap_mm": 1.0,
+    "unsupported_square_span_mm": 50.0
+  },
+  "study_id": "eo-vapor-cell-sizing-v1-2026-08-28"
+}

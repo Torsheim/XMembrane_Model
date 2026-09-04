@@ -1,0 +1,157 @@
+{
+  "ac_study": {
+    "current_density_amplitude_a_m2": 1.0,
+    "cycles": 10,
+    "duty_fraction": 0.5,
+    "frequencies_hz": [
+      0.0001,
+      0.001,
+      0.01,
+      0.1
+    ],
+    "report_last_cycle_only": true,
+    "steps_per_cycle": 240,
+    "waveform": "symmetric_square_current"
+  },
+  "boundary_cases": {
+    "equal_activity_coupon": {
+      "interpretation": "Controlled coupon-cell boundary used to isolate electrode charging from passive diffusion.",
+      "receiver_bulk_activity": 0.5,
+      "source_bulk_activity": 0.5
+    },
+    "frozen_assisting_erv_gradient": {
+      "interpretation": "Frozen inlet-like assisting gradient sensitivity; not an axial or full-core ERV prediction.",
+      "receiver_bulk_activity": 0.5,
+      "source_bulk_activity": 0.8
+    }
+  },
+  "cell": {
+    "absolute_pressure_pa": 101325.0,
+    "active_area_m2": 0.0025,
+    "channel_gap_m": 0.002,
+    "channel_velocity_m_s": 1.0,
+    "film_scale_factor": 1.0,
+    "reference_water_activity": 0.5,
+    "temperature_c": 32.0
+  },
+  "claim_boundary": {
+    "area_is_acceptance_gate": false,
+    "axial_erv_core_modelled": false,
+    "common_1p8v_replay_is_optimistic_upper_bound": true,
+    "constant_phase_element_or_frequency_dispersion_modelled": false,
+    "dual_frozen_erv_voltage_boundary_replay_modelled": true,
+    "dynamic_gas_stream_humidity_modelled": false,
+    "electrode_pair_electrochemical_window_constraint_modelled": false,
+    "frozen_axial_erv_state_replay_modelled": true,
+    "full_system_claim_allowed": false,
+    "individual_electrode_potential_constraints_modelled": false,
+    "measured_electrode_capacitance_used": false,
+    "measured_faradaic_kinetics_used": false,
+    "original_stored_voltage_replay_is_primary": true,
+    "signed_quasisteady_membrane_transport_modelled": true,
+    "transient_electrical_capacitance_modelled": true,
+    "transient_membrane_water_inventory_modelled": false,
+    "validated_electrode_prediction": false
+  },
+  "dc_study": {
+    "current_density_commands_a_m2": [
+      0.5,
+      1.0,
+      5.0
+    ],
+    "duration_h": 24.0,
+    "logarithmic_reporting_points": 600,
+    "minimum_steps_during_nominal_charge": 240,
+    "reporting_horizons_h": [
+      1.0,
+      4.0,
+      24.0
+    ]
+  },
+  "electrical": {
+    "capacitance_status": "unmeasured broad sensitivity coordinate",
+    "current_density_hardware_limit_a_m2": 5.0,
+    "energy_recovery_efficiency_sweep": [
+      0.0,
+      0.9,
+      1.0
+    ],
+    "hard_project_voltage_limit_v": 2.0,
+    "individual_electrode_areal_capacitance_sweep_f_m2": [
+      100.0,
+      1000.0,
+      10000.0
+    ],
+    "interface_esr_sweep_ohm_m2": [
+      0.0,
+      1e-05,
+      0.0001
+    ],
+    "interface_leakage_resistance_sweep_ohm_m2": [
+      null,
+      1.0,
+      0.1
+    ],
+    "leakage_status": "linear diagnostic only; not measured Faradaic kinetics",
+    "maximum_absolute_terminal_voltage_v": 1.8,
+    "reference_energy_recovery_efficiency": 0.9,
+    "reference_individual_electrode_areal_capacitance_f_m2": 10000.0,
+    "reference_interface_esr_ohm_m2": 0.0,
+    "reference_interface_leakage_resistance_ohm_m2": null,
+    "transport_series_asr_ohm_m2": 1e-05
+  },
+  "frozen_erv_replay": {
+    "case_register_csv": "outputs/direct_active_eo_erv_study_v1/study/case_register.csv",
+    "cases": [
+      {
+        "case_id": "case_00104__terminal1_anchor__w8p8858981__v0p025__n8__eps0p75__film1__external_rejection",
+        "case_label": "direct_erv_o30"
+      },
+      {
+        "case_id": "case_00150__terminal1_anchor__w7p2602806__v0p25__n8__eps0p75__film1__external_rejection",
+        "case_label": "direct_erv_full_duty"
+      }
+    ],
+    "electrode_window_interpretation": "The model reports effective electrode-pair capacitor voltage but does not constrain or resolve individual electrode potentials or an electrode-pair electrochemical stability window. The terminal-voltage limit is not an electrode-window limit.",
+    "enabled": true,
+    "interpretation": "Dual frozen replay of stored steady axial segment states. The primary mode retains each case's original terminal-voltage limit. The second mode commands the stored current density until a common 1.8 V terminal ceiling and is an optimistic upper-bound sensitivity. Bulk humidity, temperature, area and films do not respond to the transient loss of EO duty; neither mode is a transient ERV solution.",
+    "reporting_horizons_h": [
+      1.0,
+      4.0,
+      24.0
+    ],
+    "segment_register_csv": "outputs/direct_active_eo_erv_study_v1/study/segment_register.csv.gz",
+    "voltage_limit_modes": [
+      {
+        "diagnostic_role": "primary_same_boundary_duration_diagnostic",
+        "optimistic_upper_bound_sensitivity": false,
+        "uses_original_stored_terminal_voltage": true,
+        "voltage_limit_basis": "original_stored_terminal_voltage"
+      },
+      {
+        "diagnostic_role": "optimistic_upper_bound_sensitivity",
+        "maximum_absolute_terminal_voltage_v": 1.8,
+        "optimistic_upper_bound_sensitivity": true,
+        "uses_original_stored_terminal_voltage": false,
+        "voltage_limit_basis": "common_1p8v_current_commanded_ceiling"
+      }
+    ]
+  },
+  "material": {
+    "capacity_activity_exponent": 0.0,
+    "conductivity_activity_exponent": 4.0,
+    "conductivity_s_m": 23.171886845550485,
+    "diffusivity_activity_exponent": 2.0,
+    "dry_thickness_um": 36.91369958200169,
+    "interpretation": "Hypothetical inverse-design anchor, not a measured membrane.",
+    "material_id": "terminal1_inverse_design_anchor",
+    "validated_material": false,
+    "water_capacity_mol_m3_activity": 10000.0,
+    "water_diffusivity_m2_s": 1.597880133581376e-14,
+    "water_drag": 100.06078708377692
+  },
+  "model_boundary": "fixed bulk water activities and finite gas films -> signed quasi-steady membrane transport -> two blocking capacitive electrodes with optional diagnostic leakage",
+  "schema_version": 1,
+  "study_id": "capacitive-electrode-transient-study-v1-2026-09-02",
+  "title": "Reduced-order transient screen for capacitive electrodes in the 25 cm2 EO vapour cell"
+}

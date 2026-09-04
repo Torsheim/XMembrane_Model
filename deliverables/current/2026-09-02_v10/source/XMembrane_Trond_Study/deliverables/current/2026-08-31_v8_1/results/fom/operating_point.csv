@@ -1,0 +1,15 @@
+parameter,value,unit
+Outdoor/process inlet,32.0,degC
+Outdoor relative humidity,80.0,%
+Supply/return temperature,20.0,degC
+Supply/return relative humidity,50.0,%
+Dry-air mass flow,78.81256451,kg/s
+Outdoor actual volume flow,70.79201956642467,m3/s
+Nominal airflow,150000.0,cfm
+Pressure,101325.0,Pa
+Passive/core sensible effectiveness,0.75,-
+Passive ERV latent effectiveness,0.65,-
+Optimal-vector water diffusivity,1.597880133581376e-14,m2/s
+Optimal-vector water drag number,100.06078708377692,mol H2O/mol charge
+Optimal-vector wet conductivity,23.171886845550485,S/m
+Optimal-vector dry thickness,36.91369958200169,um

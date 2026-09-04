@@ -1,0 +1,23 @@
+{
+  "name": "xmembrane-presentation-build",
+  "version": "0.0.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "packageManager": "npm@11.4.2",
+  "engines": {
+    "node": ">=22 <23",
+    "npm": ">=11 <12"
+  },
+  "scripts": {
+    "build": "npm run build:presentations",
+    "check:presentation": "node --check deliverables/build_xmembrane_peer_review_deck.js",
+    "build:figures:system": "python3 deliverables/build_simulated_system_setup.py",
+    "build:figures:review": "python3 deliverables/build_peer_review_figures.py",
+    "build:figures": "npm run build:figures:system && npm run build:figures:review",
+    "build:deck": "node deliverables/build_xmembrane_peer_review_deck.js",
+    "build:presentations": "npm run build:figures && npm run build:deck"
+  },
+  "dependencies": {
+    "pptxgenjs": "4.0.1"
+  }
+}

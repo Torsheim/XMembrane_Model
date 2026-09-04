@@ -1,0 +1,21 @@
+{
+  "file_sha256": {
+    "source_axial_config": "5b31218605f4f287fdeffefaf5e467c38ba2f6dfb1871e3bdddc1d5c5fac6e1b",
+    "source_material_grid": "cc2b4eeae6fd60f84af2a7d61cd165d062ed8b74742d1d8e44e4d1bc06344965",
+    "source_study_config": "0c53e60a30dc59ba13a11c447e36f1365dc2fbbcdc909bb122578aff9764bf9f",
+    "source_voltage_grid": "797c1b75752dbf459475b46d3a74b2659722f42f6d1eb07290fbae1b1d9c6633",
+    "v11_config": "38698f28a455d75756bd28974caecdd7e7d5cf246cf090d2c56dcd21577daaeb",
+    "v2_default_config": "519b90cc7819a83f607e376add55fe874b376850a49de2fdead32403c2c389a7",
+    "v2_model": "f538f810ae89e7f5eaff3ad2b8be38c587f11587ea4b1f8558d0a9c278f21f54",
+    "v3_axial_script": "333ecf4a5083b57873c6a9035543e206a58f0d0cbcb9ce8795f6918d1f34bf3c",
+    "v8_postprocessor": "fb60e3d007f454e6d8203d7c13b983a1899f9b9cfb8ada66627bca469eeeeedf",
+    "v8_script": "33beb589c3b3ed78f25127ede484e7b95105334c9129d42c929fd1ce45b9ae47"
+  },
+  "source_data_files": [
+    "/home/torsheim/HeiQ/HeiQ_V2/outputs/axial_independent_material_sweep_v8/coarse/axial_free_sweep_all_cases.csv.gz"
+  ],
+  "source_data_selected": "final",
+  "source_directory": "/home/torsheim/HeiQ/HeiQ_V2/outputs/axial_independent_material_sweep_v8/coarse",
+  "source_run_fingerprint": "cd3c427783c419227d75e54063688b2351f0fa58113ff4279462709b5ee2d347",
+  "v2_root": "/home/torsheim/HeiQ/HeiQ_V2/heiq_pre_receiver_material_analyses"
+}

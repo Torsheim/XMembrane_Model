@@ -1,27 +1,48 @@
 # Report map
 
-The controlled English delivery is
-`../deliverables/current/2026-09-02_v10/`. Its final project closeout report is
-the governing model-phase report. It records the direct EO-in-ERV decision,
-the blocking-electrode transient limitation and the final claim boundary.
-The corresponding release gate is
-`../deliverables/current/2026-09-02_v10/verification/V10_STATUS.json`.
+## Governing model-phase report
 
-The following supporting or historical reports are kept outside the governing
-release:
+The controlled English delivery is described by the
+[V10 package guide](../deliverables/current/2026-09-02_v10/README.md). The
+governing report is
+`deliverables/current/2026-09-02_v10/reports/HeiQ_XMembrane_Final_Project_Closeout_2026-09-02_v10.pdf`,
+and its release gate is
+`deliverables/current/2026-09-02_v10/verification/V10_STATUS.json`.
 
-- `model_closure_and_material_handoff_2026-08-31_rev2/` — supporting model
-  closure and the material-property handoff; it does not override the
-  controlled decision report.
-- `material_search_handoff_2026-08-31/` — consolidation of the material search
-  already completed, candidate aliases, evidence gaps and the qualification
-  matrix.
-- `test_cell_erv_scale_note_2026-09-01/` — concise minimum detectable membrane
-  area calculation and reasonableness check against ERV scale.
+V10 records the selected direct EO-in-ERV architecture, the
+blocking-electrode transient limitation, the synthetic combined-sensitivity
+case, and the final claim boundary. Use it whenever another report differs in
+wording, result status, or recommended next phase.
 
-Other locally generated report directories are dated research snapshots. They
-are useful for provenance but should not be presented as the current decision
-without checking the controlled release and its claim boundary.
+## Supporting reports
 
-The V8/V8.1 and V9 reports are retained as historical decision snapshots. V10
-supersedes them for project-closeout status and interpretation.
+- `model_closure_and_material_handoff_2026-08-31_rev2/` documents the
+  model-property handoff that preceded V10.
+- `material_search_handoff_2026-08-31/` consolidates the completed material
+  search, evidence gaps, and qualification matrix.
+- `test_cell_erv_scale_note_2026-09-01/` records the initial detectable-area
+  and ERV-scale calculation.
+
+These reports provide context and provenance; they do not amend V10.
+
+## Post-V10 handoff supplement
+
+`test_cell_handoff_supplement_2026-09-03/` is the sole current source for the
+selected integrated sealed two-chamber vapour cell. It contains the governing
+configuration-linked report, dimensioned source and generated numerical
+evidence. `test_cell_dimensioning_basis_2026-09-02/` is superseded design
+history only. The current handoff copies belong with the technical presentation under
+`deliverables/current/2026-09-03_handoff_v1/`. That supplement has its own
+inventory, checksums, source/build notes, and explicit V10 reference.
+
+## Historical reports
+
+The V8/V8.1 and V9 reports, the August atlases, weekly reports, workshop packs,
+and other dated report directories are research snapshots. Their controlled
+records are retained in Git where explicitly selected and in the frozen V10
+source archive; additional generated copies may remain locally ignored. Identify
+all of them as historical when sharing them. They are not current decision
+documents.
+
+See [the handoff guide](../docs/HANDOFF.md) for reader paths, reproduction
+classes, and transfer checks.

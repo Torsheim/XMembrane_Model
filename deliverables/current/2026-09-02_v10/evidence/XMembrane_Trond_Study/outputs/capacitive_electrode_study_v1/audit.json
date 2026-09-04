@@ -1,0 +1,52 @@
+{
+  "all_pass": true,
+  "checks": {
+    "blocking_ac_cycle_charge_closure": true,
+    "blocking_ac_cycle_eo_closure": true,
+    "blocking_dc_current_decays": true,
+    "dc_charge_balance": true,
+    "declared_25_cm2_area_retained": true,
+    "electrode_window_constraints_explicitly_not_modelled": true,
+    "frozen_erv_dual_voltage_modes_complete": true,
+    "frozen_erv_initial_state_reproduced": true,
+    "frozen_erv_mode_specific_terminal_limits_respected": true,
+    "frozen_erv_optimistic_upper_bound_not_below_primary": true,
+    "frozen_erv_replay_is_fail_closed": true,
+    "frozen_erv_voltage_mode_labels_fail_closed": true,
+    "membrane_inventory_limit_declared": true,
+    "no_full_system_claim": true,
+    "terminal_voltage_within_1p8v": true,
+    "unmeasured_capacitance_declared": true
+  },
+  "claim_boundary": {
+    "area_is_acceptance_gate": false,
+    "axial_erv_core_modelled": false,
+    "common_1p8v_replay_is_optimistic_upper_bound": true,
+    "constant_phase_element_or_frequency_dispersion_modelled": false,
+    "dual_frozen_erv_voltage_boundary_replay_modelled": true,
+    "dynamic_gas_stream_humidity_modelled": false,
+    "electrode_pair_electrochemical_window_constraint_modelled": false,
+    "frozen_axial_erv_state_replay_modelled": true,
+    "full_system_claim_allowed": false,
+    "individual_electrode_potential_constraints_modelled": false,
+    "measured_electrode_capacitance_used": false,
+    "measured_faradaic_kinetics_used": false,
+    "original_stored_voltage_replay_is_primary": true,
+    "signed_quasisteady_membrane_transport_modelled": true,
+    "transient_electrical_capacitance_modelled": true,
+    "transient_membrane_water_inventory_modelled": false,
+    "validated_electrode_prediction": false
+  },
+  "metrics": {
+    "maximum_absolute_terminal_voltage_v": 1.8000000000012497,
+    "maximum_ac_cycle_charge_closure_c_m2": 1.629541634951253e-08,
+    "maximum_ac_cycle_eo_water_closure_mg": 3.2042317835712104e-10,
+    "maximum_dc_charge_identity_residual_c": 2.417300304369263e-09,
+    "maximum_frozen_erv_electrode_pair_voltage_v": 2.252602918477245,
+    "maximum_frozen_erv_initial_net_flux_relative_error": 0.00018605685108008754,
+    "maximum_frozen_erv_initial_terminal_replay_error_v": 5.0054520608827646e-05,
+    "maximum_optimistic_frozen_erv_electrode_pair_voltage_v": 2.252602918477245,
+    "maximum_primary_frozen_erv_electrode_pair_voltage_v": 0.4776029184764408
+  },
+  "status": "PASS"
+}

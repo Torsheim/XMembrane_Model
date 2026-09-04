@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HeiQ / XMembrane — V10 model explainer</title>
+  <style>
+    :root {
+      --navy:#0b1f33; --navy2:#143b59; --ink:#142635; --muted:#5e7080;
+      --cyan:#00afcb; --teal:#00a894; --blue:#347bc8; --orange:#e88436;
+      --red:#d94745; --bg:#f4f7f9; --line:#d5e1e7; --white:#fff;
+      --pale-blue:#e6f0fa; --pale-teal:#e2f5f2; --pale-orange:#fff0e2;
+      --pale-red:#fce9e8;
+    }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); background:var(--bg); font-family:Inter,Arial,sans-serif; }
+    main { max-width:1180px; margin:0 auto; padding:28px 22px 42px; }
+    header { background:var(--navy); color:var(--white); border-top:7px solid var(--cyan); padding:30px 34px; }
+    header .eyebrow { color:var(--cyan); font-size:.77rem; font-weight:800; letter-spacing:.14em; }
+    h1 { margin:.5rem 0 .45rem; font-size:clamp(1.8rem,4vw,3rem); line-height:1.05; }
+    header p { max-width:850px; color:#cbdbe3; line-height:1.55; }
+    .decision { display:grid; grid-template-columns:1fr 1fr; gap:1px; margin-top:22px; background:#31526a; }
+    .decision strong { padding:13px 16px; text-align:center; background:var(--navy2); letter-spacing:.06em; }
+    .decision strong:first-child { color:#6be0d5; }
+    .decision strong:last-child { color:#ffba82; }
+    nav { display:flex; gap:7px; flex-wrap:wrap; padding:20px 0 12px; }
+    button { border:1px solid var(--line); border-radius:999px; padding:9px 15px; background:var(--white); color:var(--navy); cursor:pointer; font:inherit; font-weight:750; }
+    button[aria-selected="true"] { border-color:var(--cyan); background:var(--navy2); color:var(--white); }
+    button:focus-visible { outline:3px solid #8ddbe8; outline-offset:2px; }
+    section[role="tabpanel"] { display:none; min-height:500px; background:var(--white); border:1px solid var(--line); padding:28px; }
+    section[role="tabpanel"].active { display:block; }
+    h2 { color:var(--navy); margin:0 0 8px; font-size:1.55rem; }
+    h3 { color:var(--navy); margin:.15rem 0 .5rem; font-size:1.02rem; }
+    .lead { color:var(--muted); max-width:920px; line-height:1.55; margin:0 0 22px; }
+    .grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+    .grid.two { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .card { border:1px solid var(--line); border-left:5px solid var(--cyan); padding:17px 18px; min-height:128px; line-height:1.48; }
+    .card.blue { border-left-color:var(--blue); background:var(--pale-blue); }
+    .card.teal { border-left-color:var(--teal); background:var(--pale-teal); }
+    .card.orange { border-left-color:var(--orange); background:var(--pale-orange); }
+    .card.red { border-left-color:var(--red); background:var(--pale-red); }
+    .card p { margin:.25rem 0 0; color:#405363; }
+    .metric { font-size:1.7rem; font-weight:850; color:var(--navy); display:block; margin:.15rem 0; }
+    .formula { margin:20px 0; padding:17px; background:#edf3f6; border:1px solid var(--line); text-align:center; font-family:Georgia,"Times New Roman",serif; font-size:clamp(1rem,2.2vw,1.35rem); overflow-wrap:anywhere; }
+    .flow { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin:22px 0; align-items:stretch; }
+    .step { position:relative; padding:16px 12px; background:#f6fafb; border:1px solid var(--line); text-align:center; min-height:105px; }
+    .step:not(:last-child)::after { content:"→"; position:absolute; right:-14px; top:40%; z-index:2; color:var(--cyan); font-size:1.4rem; font-weight:800; }
+    .note { margin-top:20px; padding:14px 17px; color:var(--white); background:var(--navy2); line-height:1.5; }
+    .warning { border:1px solid #eda66f; background:var(--pale-orange); color:var(--navy); padding:14px 17px; margin-top:16px; line-height:1.5; }
+    table { width:100%; border-collapse:collapse; margin:18px 0; font-size:.94rem; }
+    th { color:var(--white); background:var(--navy2); text-align:left; }
+    th,td { border:1px solid var(--line); padding:11px 12px; vertical-align:top; }
+    tbody tr:nth-child(even) { background:#f7f9fa; }
+    .primary-row td { background:var(--pale-teal); font-weight:700; }
+    .upper-row td { background:var(--pale-orange); }
+    .statusline { display:flex; gap:12px; align-items:flex-start; margin:9px 0; line-height:1.45; }
+    .dot { flex:0 0 12px; width:12px; height:12px; border-radius:50%; margin-top:5px; background:var(--red); }
+    .dot.ok { background:var(--teal); }
+    footer { color:var(--muted); font-size:.82rem; margin-top:16px; line-height:1.5; }
+    footer a { color:var(--blue); }
+    @media(max-width:800px) {
+      .decision,.grid,.grid.two,.flow { grid-template-columns:1fr; }
+      .step:not(:last-child)::after { content:"↓"; right:50%; top:auto; bottom:-22px; }
+      section[role="tabpanel"] { padding:21px 17px; }
+      table { display:block; overflow-x:auto; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">HEIQ / XMEMBRANE • VERSION 10 HANDOFF</div>
+    <h1>What the model shows—and what it does not</h1>
+    <p>This explainer is subordinate to the controlled V10 closeout report. It replaces the archived V9 HTML as the current presentation entry point.</p>
+    <div class="decision" aria-label="Decision status">
+      <strong>MODEL PHASE COMPLETE</strong>
+      <strong>TECHNOLOGY NOT VALIDATED</strong>
+    </div>
+  </header>
+
+  <nav role="tablist" aria-label="Model explainer sections">
+    <button id="tab-decision" role="tab" aria-selected="true" aria-controls="decision">1 · Decision</button>
+    <button id="tab-model" role="tab" aria-selected="false" aria-controls="model">2 · Model and control</button>
+    <button id="tab-axial" role="tab" aria-selected="false" aria-controls="axial">3 · Along the membrane</button>
+    <button id="tab-electrode" role="tab" aria-selected="false" aria-controls="electrode">4 · Electrode duration</button>
+    <button id="tab-boundary" role="tab" aria-selected="false" aria-controls="boundary">5 · Claim boundary</button>
+  </nav>
+
+  <section id="decision" role="tabpanel" aria-labelledby="tab-decision" class="active">
+    <h2>The selected modelling architecture is direct EO inside the ERV</h2>
+    <p class="lead">The EO membrane shares the counter-current air passages of the ERV. Post-ERV O30 work remains a coupon-test boundary and historical comparator, not the selected system architecture.</p>
+    <div class="flow" aria-label="Selected model chain">
+      <div class="step"><h3>Air boundaries</h3>Temperature, RH, humidity ratio and dry-air flow</div>
+      <div class="step"><h3>Active ERV</h3>Passive recovery plus direct EO transport</div>
+      <div class="step"><h3>Local membrane</h3>Gas films, diffusion, drag and voltage closure</div>
+      <div class="step"><h3>Axial core</h3>Local states integrated segment by segment</div>
+      <div class="step"><h3>Conditioning ledger</h3>Remaining coil, fans and declared electrical terms</div>
+    </div>
+    <div class="grid">
+      <div class="card teal"><h3>Closed by modelling</h3><p>Equations, numerical residuals, conservation checks, manifests and the V10 release gate.</p></div>
+      <div class="card orange"><h3>Not measured</h3><p>Vapour transport number, RH-resolved resistance, complete electrode behaviour and long-duration performance.</p></div>
+      <div class="card red"><h3>Not claimed</h3><p>No sustained-duty, net-system-saving, commercial-material or product-performance claim.</p></div>
+    </div>
+    <div class="note">V10 is a model-phase closure and a handoff to experiments. Numerical verification is not experimental validation.</div>
+  </section>
+
+  <section id="model" role="tabpanel" aria-labelledby="tab-model">
+    <h2>Voltage is prescribed in the steady axial model; current is solved</h2>
+    <p class="lead">For each axial position, the local humidity and temperature determine surface activities and material properties. The voltage balance is then solved for the local current density.</p>
+    <div class="formula">V<sub>app</sub> = j[ASR<sub>mem</sub>(a<sub>w</sub>) + ASR<sub>series</sub>] + t<sub>w</sub>RT/F · ln(a<sub>r,s</sub>/a<sub>s,s</sub>) + V<sub>fixed</sub></div>
+    <div class="grid">
+      <div class="card blue"><h3>Steady control</h3><span class="metric">V<sub>app</sub></span><p>Constant terminal voltage for one axial case.</p></div>
+      <div class="card teal"><h3>Local response</h3><span class="metric">j(x)</span><p>Current density changes with hydration, films and surface activities.</p></div>
+      <div class="card orange"><h3>Water flux</h3><span class="metric">N<sub>w</sub>(x)</span><p>EO drag and passive back-diffusion are combined locally.</p></div>
+    </div>
+    <div class="formula">N<sub>w</sub> = t<sub>w</sub>j/F − D(a<sub>w</sub>)S(a<sub>w</sub>) · da<sub>w</sub>/dx</div>
+    <div class="warning">The symbols “supply side” and “receiver side” do not mean two independent currents. At a given axial station, the same through-plane current magnitude crosses the membrane; the sign changes only if each surface uses its own outward-normal convention.</div>
+  </section>
+
+  <section id="axial" role="tabpanel" aria-labelledby="tab-axial">
+    <h2>Humidity and current are recalculated along the core</h2>
+    <p class="lead">The counter-current air states evolve along the ERV length. Every segment receives updated bulk states, solves the two gas-film boundaries, solves the membrane, and advances both air-stream water balances.</p>
+    <div class="flow" aria-label="Axial solution steps">
+      <div class="step"><h3>Bulk states</h3>T, w and a<sub>w</sub> on both sides</div>
+      <div class="step"><h3>Gas films</h3>Bulk-to-surface activity drops</div>
+      <div class="step"><h3>Voltage root</h3>Solve local j from V<sub>app</sub></div>
+      <div class="step"><h3>Flux and area</h3>Compute N<sub>w</sub> and local area</div>
+      <div class="step"><h3>Advance</h3>Remove and add the same water rate</div>
+    </div>
+    <div class="grid two">
+      <div class="card blue"><h3>Geometric channel gap</h3><span class="metric">2.0 mm per side</span><p>The model uses this physical gas-channel gap, giving a 4.0 mm hydraulic diameter for the ideal parallel-plate representation.</p></div>
+      <div class="card orange"><h3>Equivalent film scale</h3><span class="metric">D/k ≈ 0.5305 mm</span><p>This correlation-derived resistance length is not a literal free-standing film or GDL thickness.</p></div>
+    </div>
+    <div class="note">The plotted profiles are model outputs for a selected sensitivity case. They show axial variation; they do not constitute measured membrane performance.</div>
+  </section>
+
+  <section id="electrode" role="tabpanel" aria-labelledby="tab-electrode">
+    <h2>Purely blocking electrodes provide a finite startup displacement</h2>
+    <p class="lead">Charge accumulates on the electrode pair until the terminal-voltage clamp limits the current. With ideal blocking electrodes, current and incremental EO transport decay toward zero.</p>
+    <div class="formula">C<sub>pair,A</sub> dη/dt = j − j<sub>F</sub> &nbsp;&nbsp; and &nbsp;&nbsp; V<sub>term</sub> = V<sub>mem</sub> + jR<sub>interface,A</sub> + η</div>
+    <table>
+      <thead><tr><th>Replay</th><th>Terminal-voltage limit</th><th>EO retained at 1 h</th><th>EO retained over 24 h</th><th>Interpretation</th></tr></thead>
+      <tbody>
+        <tr class="primary-row"><td>Primary O30</td><td>Original stored 0.025 V</td><td>16.2%</td><td>0.68%</td><td>Same-boundary duration diagnostic</td></tr>
+        <tr class="upper-row"><td>Separate sensitivity</td><td>1.8 V ceiling</td><td>98.5%</td><td>4.6%</td><td>Optimistic upper bound; not a same-voltage replay</td></tr>
+      </tbody>
+    </table>
+    <div class="grid two">
+      <div class="card red"><h3>Complete-cycle invariant</h3><p>For an ideal symmetric blocking pair with constant drag, a charge-balanced cycle gives zero net EO water transport.</p></div>
+      <div class="card orange"><h3>Model limitation</h3><p>The replay freezes the ERV bulk states and uses an unmeasured capacitance sensitivity. It is a duration diagnostic, not a dynamic ERV prediction.</p></div>
+    </div>
+    <div class="warning">The terminal-voltage limit is not an individual-electrode electrochemical window. Individual electrode potentials and reaction limits are not resolved by this reduced model.</div>
+  </section>
+
+  <section id="boundary" role="tabpanel" aria-labelledby="tab-boundary">
+    <h2>Synthetic parameter combinations are design coordinates—not materials</h2>
+    <p class="lead">The requested t<sub>w</sub> = 50 and D<sub>ref</sub> = 10<sup>−10</sup> m²/s combination was run as a synthetic sensitivity. It helps map the model, but it does not identify a realistic membrane.</p>
+    <div class="grid">
+      <div class="card teal"><h3>Transport closure</h3><span class="metric">4 / 8</span><p>Cases reached the transport target in the prescribed-effectiveness screen.</p></div>
+      <div class="card red"><h3>Full coupled closure</h3><span class="metric">0 / 8</span><p>No case closes the full dynamic hardware and system problem by model contract.</p></div>
+      <div class="card orange"><h3>Scientific status</h3><span class="metric">Synthetic</span><p>t<sub>w</sub> and D<sub>ref</sub> are assumed coordinates, not a measured material vector.</p></div>
+    </div>
+    <div class="statusline"><span class="dot ok"></span><div><strong>Use the model for:</strong> equation review, sensitivity ranking, coupon-test sizing and experimental acceptance criteria.</div></div>
+    <div class="statusline"><span class="dot"></span><div><strong>Do not use it for:</strong> sustained product performance, commercial savings, lifetime, safety or material-availability claims.</div></div>
+    <div class="note">Successor phase: measure vapour t<sub>w</sub>, passive permeability, RH-resolved ASR, electrode charge/reaction behaviour, full-cycle water balance, heat and products under representative conditions.</div>
+  </section>
+
+  <footer>
+    Governing authority: <a href="../../2026-09-02_v10/reports/HeiQ_XMembrane_Final_Project_Closeout_2026-09-02_v10.pdf">HeiQ XMembrane Final Project Closeout, Version 10</a>.
+    Presentation supplement dated 03 September 2026. Archived V9 HTML and decks are historical only.
+  </footer>
+</main>
+<script>
+  (() => {
+    const tabs = [...document.querySelectorAll('[role="tab"]')];
+    const panels = [...document.querySelectorAll('[role="tabpanel"]')];
+    function activate(tab, focus = false) {
+      tabs.forEach(item => item.setAttribute('aria-selected', String(item === tab)));
+      panels.forEach(panel => panel.classList.toggle('active', panel.id === tab.getAttribute('aria-controls')));
+      if (focus) tab.focus();
+    }
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => activate(tab));
+      tab.addEventListener('keydown', event => {
+        if (!['ArrowLeft','ArrowRight','Home','End'].includes(event.key)) return;
+        event.preventDefault();
+        let next = event.key === 'Home' ? 0 : event.key === 'End' ? tabs.length - 1 :
+          (index + (event.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+        activate(tabs[next], true);
+      });
+    });
+  })();
+</script>
+</body>
+</html>
