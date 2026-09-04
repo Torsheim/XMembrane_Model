@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "study_id": "eo-vapor-test-cell-net-transport-volume-v1-2026-09-04",
+  "base_config": "config/eo_vapor_test_cell_design.json",
+  "purpose": "Compare calibrated sealed-cell volumes when the experiment reports net transient water transport rather than holding the humidity change below five percentage points.",
+  "fixed_membrane": {
+    "active_window_mm": [50.0, 50.0],
+    "active_area_cm2": 25.0,
+    "coupon_mm": [80.0, 80.0],
+    "local_membrane_gap_mm": 2.0
+  },
+  "bulk_geometry": {
+    "bulk_depth_mm": 20.0,
+    "component_displacement_upper_bound_ml_per_side": 22.6,
+    "calibration_trim_reserve_ml_per_side": 21.9
+  },
+  "transient": {
+    "segment_duration_s": 5.0,
+    "planning_rh_signal_pp": 10.0,
+    "sensor_tau63_s": 4.0,
+    "note": "Ten percentage points is a comparison target for a net-transient experiment, not a constant-boundary constraint."
+  },
+  "net_volume_cases_ml_per_side": [200.0, 300.0, 500.0],
+  "interpretation": {
+    "fixed_flux_assumption": "All values condition on the base configuration's 208 g/m2/h target flux over the unchanged 25 cm2 active membrane.",
+    "claim_boundary": "The closed cell reports integrated net water movement under evolving humidity conditions. It does not by itself establish a constant-boundary or intrinsic membrane flux."
+  }
+}
