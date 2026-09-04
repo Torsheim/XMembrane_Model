@@ -1,0 +1,888 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{tgtermes}
+\usepackage{tgheros}
+\usepackage{tgcursor}
+\usepackage{microtype}
+\usepackage[a4paper,top=18mm,bottom=20mm,left=18mm,right=18mm]{geometry}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{bookmark}
+\usepackage{ragged2e}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage{needspace}
+\usepackage{textcomp}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{url}
+
+\definecolor{Navy}{HTML}{17324D}
+\definecolor{Teal}{HTML}{008C8C}
+\definecolor{TealLight}{HTML}{E1F2F2}
+\definecolor{Orange}{HTML}{E58B2A}
+\definecolor{OrangeLight}{HTML}{FFF1DE}
+\definecolor{Green}{HTML}{2E7D5B}
+\definecolor{GreenLight}{HTML}{E8F4ED}
+\definecolor{Red}{HTML}{B94A3D}
+\definecolor{RedLight}{HTML}{F9E9E7}
+\definecolor{Slate}{HTML}{607284}
+\definecolor{Light}{HTML}{F2F6F8}
+\definecolor{Line}{HTML}{D8E2E9}
+\definecolor{Ink}{HTML}{172A3A}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=Teal,
+  urlcolor=Teal,
+  pdftitle={HeiQ EO vapour cell -- boundary conditions and sizing v2},
+  pdfauthor={HeiQ Materials AG | XMembrane project},
+  pdfsubject={Quantitative analysis of humidity, temperature, gas films, geometry, operation, and closed-cell behaviour},
+  pdfkeywords={XMembrane, electro-osmosis, water vapour, boundary conditions, experiment design, sizing}
+}
+
+\graphicspath{{../../outputs/eo_vapor_boundary_analysis_v1/}{../../outputs/eo_vapor_cell_sizing_v1/}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\raggedbottom
+\setlist[itemize]{leftmargin=5mm,itemsep=2.5pt,topsep=3pt}
+\setlist[enumerate]{leftmargin=6mm,itemsep=3pt,topsep=3pt}
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+\newcolumntype{C}{>{\Centering\arraybackslash}X}
+\renewcommand{\arraystretch}{1.20}
+\captionsetup{font=small,labelfont={bf,sf,color=Navy}}
+
+\titleformat{\section}
+  {\sffamily\bfseries\color{Navy}\fontsize{18}{21}\selectfont}
+  {\thesection}{8pt}{}
+\titlespacing*{\section}{0pt}{8pt}{6pt}
+\titleformat{\subsection}
+  {\sffamily\bfseries\color{Navy}\fontsize{12.5}{15}\selectfont}
+  {\thesubsection}{7pt}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\sffamily\footnotesize\color{Slate}HEIQ MATERIALS AG · XMEMBRANE}
+\fancyhead[R]{\sffamily\footnotesize\color{Slate}EO VAPOUR CELL · V2}
+\fancyfoot[L]{\sffamily\scriptsize\color{Slate}Internal technical report · 31 August 2026}
+\fancyfoot[R]{\sffamily\scriptsize\color{Slate}Page \thepage\ of \pageref*{LastPage}}
+\renewcommand{\headrulewidth}{0.35pt}
+
+\newtcolorbox{mainbox}[1][]{
+  enhanced,colback=TealLight,colframe=Teal,boxrule=0.8pt,arc=1.5mm,
+  left=4mm,right=4mm,top=3mm,bottom=3mm,#1
+}
+\newtcolorbox{warningbox}[1][]{
+  enhanced,colback=OrangeLight,colframe=Orange,boxrule=0.8pt,arc=1.5mm,
+  left=4mm,right=4mm,top=3mm,bottom=3mm,#1
+}
+\newtcolorbox{stopbox}[1][]{
+  enhanced,colback=RedLight,colframe=Red,boxrule=0.8pt,arc=1.5mm,
+  left=4mm,right=4mm,top=3mm,bottom=3mm,#1
+}
+\newtcolorbox{plainbox}[1][]{
+  enhanced,colback=Light,colframe=Line,boxrule=0.6pt,arc=1.5mm,
+  left=4mm,right=4mm,top=3mm,bottom=3mm,#1
+}
+\newcommand{\eyebrow}[1]{{\sffamily\bfseries\small\color{Teal}\MakeUppercase{#1}}}
+\newcommand{\metric}[3]{%
+  \begin{tcolorbox}[colback=white,colframe=Line,boxrule=0.6pt,arc=1.5mm,
+  left=3mm,right=3mm,top=3mm,bottom=3mm,height=26mm]
+  {\sffamily\bfseries\fontsize{16}{18}\selectfont\color{Navy}#1}\par
+  {\sffamily\small\bfseries\color{Ink}#2}\par
+  {\sffamily\scriptsize\color{Slate}#3}
+  \end{tcolorbox}%
+}
+\newcommand{\reportfigure}[3]{%
+  \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=#1\textwidth]{#2}
+    \caption{#3}
+  \end{figure}%
+}
+
+\begin{document}
+
+% -----------------------------------------------------------------------------
+% Cover
+% -----------------------------------------------------------------------------
+\thispagestyle{empty}
+\pdfbookmark[0]{Cover}{cover}
+\vspace*{-10mm}
+\begin{tcolorbox}[enhanced,colback=Navy,colframe=Navy,boxrule=0pt,
+  arc=0mm,left=11mm,right=11mm,top=13mm,bottom=13mm,width=\textwidth]
+  {\sffamily\bfseries\color{TealLight}\large HEIQ XMEMBRANE PROJECT}\par\vspace{7mm}
+  {\raggedright\sffamily\bfseries\color{white}\fontsize{29}{33}\selectfont
+  Boundary conditions and sizing\par for an EO vapour cell}\par\vspace{4mm}
+  {\sffamily\color{white!85}\fontsize{14}{18}\selectfont
+  Humidity · temperature · gas films · geometry · drift · closed cell}
+\end{tcolorbox}
+
+\vspace{13mm}
+{\sffamily\bfseries\fontsize{16}{20}\selectfont\color{Navy}
+Internal technical report · v2 · 31 August 2026}\par
+\vspace{4mm}
+{\fontsize{12}{17}\selectfont\color{Ink}
+Quantitative screening of how boundary conditions and the measurement system
+affect inference of electro-osmotic water transport in a centimetre-scale
+membrane cell.}
+
+\vspace{7mm}
+\begin{mainbox}
+\textbf{Main conclusion.} Build a modular, once-through fixture around a
+50$\times$50 mm membrane aperture, symmetric 2 mm channels, and a fixed
+50$\times$50 mm flow field. Use 8--10 mm insulating flow bodies backed by
+12 mm metal load plates (or at least 16 mm if the load-bearing plate is PEEK),
+and require measured channel-height variation below 20~$\mu$m. The active gas volume is 5.00 mL
+per side; the proposed headers, ports, and taps raise the swept internal volume
+to 6.22 mL. A small rigid closed cell is a transient demonstrator, not a
+steady-state flux measurement.
+\end{mainbox}
+
+\vfill
+\begin{tabularx}{\textwidth}{@{}p{39mm}Y@{}}
+\textbf{Study basis} & 25 cm\textsuperscript{2}, 2 mm gap per side, 32\textdegree C, $a_w=0.50$, 1 m/s, and 6 actual L/min per side \\
+\textbf{Fixture basis} & 80$\times$80 mm coupon; 110$\times$110 mm outer plate; 6.22 mL proposed swept volume per side \\
+\textbf{Calculations} & 4 material scenarios, 32\,768 combined stress points, and one-factor sweeps \\
+\textbf{Numerical control} & 100\% solver success; exact agreement in the registered cross-check points \\
+\textbf{Validation level} & Model and experiment design; not material, hardware, or product validation \\
+\textbf{Source} & Reproducible Python analysis with configuration, CSV results, figures, and audit file
+\end{tabularx}
+
+\clearpage
+\pdfbookmark[0]{Executive summary}{summary}
+\section*{Executive summary}
+\addcontentsline{toc}{section}{Executive summary}
+
+\begin{tcbraster}[raster columns=2,raster equal height=rows,raster column skip=4mm,raster row skip=3mm]
+\metric{+10.2\%}{Error from +0.1 RH point}{Single direction, high-diffusivity scenario}
+\metric{$-28.9$\%}{Error from +0.1 K}{Single direction, high-diffusivity scenario}
+\metric{12.37 mg/h}{Net from 16.80 mg/h gross}{Gas films and back-diffusion leave 73.6\%}
+\metric{0.063 s}{Time to 5 Pa}{5 mL rigid cell, gas-only limit}
+\end{tcbraster}
+
+\begin{minipage}[t]{0.485\textwidth}
+\begin{tcolorbox}[colback=GreenLight,colframe=Green,colbacktitle=Green,
+title={\sffamily\bfseries What the analysis shows},fonttitle=\color{white}]
+\begin{itemize}
+  \item Static humidity and temperature mismatch is highly damaging to single-direction inference.
+  \item Stable polarity reversal rejects these static terms almost completely in the model.
+  \item Films, gap, flow, and active area are physical transport terms and do not cancel.
+  \item ABBA ideally rejects constant and linear time drift.
+  \item The closed-cell boundary evolves faster than a typical steady-state criterion.
+\end{itemize}
+\end{tcolorbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.485\textwidth}
+\begin{stopbox}[colbacktitle=Red,title={\sffamily\bfseries What the analysis does not show},fonttitle=\color{white}]
+\begin{itemize}
+  \item That any material scenario represents the actual membrane.
+  \item That the declared ranges are measured probability distributions.
+  \item That the 5th/95th stress quantiles are confidence intervals or expected hardware yield.
+  \item That ABBA removes hysteresis, curvature, or polarity-linked settling.
+  \item That electrode reactions, condensation, or local 2D flow are resolved.
+\end{itemize}
+\end{stopbox}
+\end{minipage}
+
+\begin{warningbox}
+\textbf{Decision rule.} Use the once-through cell as the primary measurement
+of EO rate. Use the closed cell to demonstrate reversible pumping and to fit a
+transient mass balance in which EO, passive back-diffusion, wall/membrane inventory,
+and sensor response are estimated together.
+\end{warningbox}
+
+\clearpage
+\tableofcontents
+\clearpage
+
+% -----------------------------------------------------------------------------
+\section{Purpose and model boundary}
+
+The purpose is to distinguish three classes of influence:
+
+\begin{enumerate}
+  \item \textbf{Physical transport terms:} membrane permeance, EO drag, gas
+  films, gap, flow velocity, and active area.
+  \item \textbf{Static boundary conditions:} humidity, temperature, and
+  pressure difference, edge transport, bypass, and sensor zero offset.
+  \item \textbf{Time-dependent measurement terms:} drift, wall/membrane
+  inventory, sensor lag, and changes between polarity segments.
+\end{enumerate}
+
+For a transparent constant-property limit, the net molar water flux is
+
+\begin{equation}
+N_w =
+\frac{n_d j/F + K_m(a_{s,b}-a_{r,b})}
+{1+K_m\left(k_s^{-1}+k_r^{-1}\right)},
+\qquad
+K_m=\frac{D_w C_w}{L}.
+\label{eq:flux}
+\end{equation}
+
+Here $n_dj/F$ is the gross EO flux, $K_m$ is the membrane activity permeance,
+and $k_s,k_r$ are the source- and receiver-side film coefficients. The
+implemented analysis uses the corresponding nonlinear power-law equation and
+iterates the short-channel mean state. The local surrogate reproduces the
+project's canonical finite-film solver with a maximum registered relative
+difference of $0.0$.
+
+The apparent measured rate is represented schematically by
+
+\begin{equation}
+\dot m_{\mathrm{app}} = A_{\mathrm{eff}}M_wN_w
++\dot m_{\mathrm{edge}}+\dot m_{\mathrm{leak}}
++\dot m_{\mathrm{sensor}}+\dot m_{\mathrm{drift}}.
+\label{eq:measurement}
+\end{equation}
+
+The polarity-odd and polarity-even components are
+
+\begin{equation}
+\dot m_{\mathrm{odd}}=\frac{\dot m(+I)-\dot m(-I)}{2},
+\qquad
+\dot m_{\mathrm{even}}=\frac{\dot m(+I)+\dot m(-I)}{2}.
+\label{eq:odd-even}
+\end{equation}
+
+Static terms in Equation~\eqref{eq:measurement} primarily enter the
+even/single-direction channel. Films, gap, axial depletion, active-area error,
+and the residual between polarity segments affect the odd signal.
+
+\subsection{Nominal cell and material scenarios}
+
+\begin{tabularx}{\textwidth}{@{}p{40mm}p{35mm}Y@{}}
+\toprule
+\textbf{Parameter} & \textbf{Nominal value} & \textbf{Role in the analysis} \\
+\midrule
+Active area & 25 cm\textsuperscript{2} & 50 $\times$ 50 mm main aperture \\
+Channel gap & 2 mm per side & Swept at 1, 1.5, 2, 3, and 4 mm \\
+Temperature & 32\textdegree C & Side-to-side mismatch swept from $-0.5$ to $+0.5$ K \\
+Water activity & 0.50 & Common nominal inlet; humidity mismatch is swept \\
+Pressure & 101\,325 Pa & Differential pressure swept from $-50$ to $+50$ Pa \\
+Velocity & 1 m/s & Gives a nominal 6 L/min per side \\
+Film correlation & $Sh=7.54$ & Separate 0.25--4 multiplier for unresolved film/support effects \\
+\bottomrule
+\end{tabularx}
+
+\begin{table}[htbp]
+\centering
+\caption{Declared material scenarios. These points are not fitted to a named membrane.}
+\begin{tabularx}{\textwidth}{@{}Yrrrr@{}}
+\toprule
+\textbf{Scenario} & $n_d$ & $j$ [A/m\textsuperscript{2}] & $D_w$ [m\textsuperscript{2}/s] & \textbf{Role} \\
+\midrule
+Low drag, slow $D$ & 0.3 & 10 & $1.60\cdot10^{-14}$ & Signal floor \\
+Drag 1, slow $D$ & 1.0 & 10 & $1.60\cdot10^{-14}$ & Order-unity reference \\
+Drag 1, fast $D$ & 1.0 & 10 & $1.00\cdot10^{-10}$ & Boundary-sensitive stress point \\
+Inverse-design anchor & 100.06 & 1 & $1.60\cdot10^{-14}$ & Hypothetical project signal \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% -----------------------------------------------------------------------------
+\Needspace{12\baselineskip}
+\section{Nominal response and one-factor sensitivity}
+
+\begin{table}[H]
+\centering
+\caption{Nominal physical response and conditional error in the combined stress design.}
+\begin{tabularx}{\textwidth}{@{}Yrrrrr@{}}
+\toprule
+\textbf{Scenario} & \textbf{Gross} & \textbf{Odd net} & \textbf{Net/gross} & \multicolumn{2}{c}{$q_{0.95}^{\mathrm{stress}}(|e_{\mathrm{odd}}|)$} \\
+ & [mg/h] & [mg/h] & [\%] & [mg/h] & [\%] \\
+\midrule
+Low drag, slow $D$ & 5.041 & 5.041 & 99.99 & 1.25 & 24.80 \\
+Drag 1, slow $D$ & 16.804 & 16.803 & 99.99 & 1.25 & 7.47 \\
+Drag 1, fast $D$ & 16.804 & 12.369 & 73.61 & 2.10 & 16.98 \\
+Inverse-design anchor & 168.146 & 168.136 & 99.99 & 1.71 & 1.01 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The fast-diffusion scenario stands out. High passive permeance makes EO
+sensitive to gas films and back-diffusion, so 26.4\% of the gross EO signal is
+lost even under nominal boundary conditions. In the slow-diffusion scenarios,
+the passive membrane conductance is small and the net value remains close to
+the Faradaic term.
+
+\begin{table}[H]
+\centering
+\caption{Selected one-factor results for the boundary-sensitive fast-diffusion scenario.}
+\begin{tabularx}{\textwidth}{@{}Yrr@{}}
+\toprule
+\textbf{Change from nominal case} & \textbf{Single-direction error} & \textbf{Odd change} \\
+\midrule
+$+0.1$ RH-percentage-point inlet mismatch & $+10.21$\% & $-0.00001$\% \\
+$+0.1$ K side-to-side difference & $-28.87$\% & $-0.00068$\% \\
+Gap 2 $\rightarrow$ 1 mm at 1 m/s & $-1.97$\% & $-1.97$\% \\
+Gap 2 $\rightarrow$ 4 mm at 1 m/s & $-10.06$\% & $-10.06$\% \\
+Flow 6 $\rightarrow$ 3 L/min at 2 mm & $-9.21$\% & $-9.21$\% \\
+Flow 6 $\rightarrow$ 12 L/min at 2 mm & $+5.34$\% & $+5.34$\% \\
+Film multiplier 1 $\rightarrow$ 0.5 & $-13.98$\% & $-13.98$\% \\
+Film multiplier 1 $\rightarrow$ 2 & $+8.85$\% & $+8.85$\% \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\reportfigure{0.98}{one_factor_boundary_sensitivity.png}{One-factor sensitivity for the declared high-diffusivity scenario, normalised to its nominal odd rate. Blue circles show apparent single-direction error and orange squares show the polarity-odd result. The humidity and temperature panels apply the same static mismatch in both polarities and therefore show idealised cancellation; they do not demonstrate robustness to mismatch that evolves through an ABBA block. Film, gap, and flow terms remain in the odd estimator. The film multiplier is an unresolved stress coordinate, not a calibrated uncertainty.}
+\FloatBarrier
+
+% -----------------------------------------------------------------------------
+\section{Humidity, temperature, and polarity sequence}
+
+Two separate humidity generators that both indicate 50\% RH are not
+necessarily equal at the membrane. Activity should be calculated from local
+vapour pressure and local membrane temperature. A small temperature difference
+can therefore appear as a humidity gradient and generate a large passive
+contribution in a single-direction measurement.
+
+For an ABBA block, $+I,-I,-I,+I$, the two positive segments and the two
+negative segments are averaged in Equation~\eqref{eq:odd-even}. Constant and
+linear time drift then have the same average in both polarities and cancel
+ideally. The following can remain:
+
+\begin{itemize}
+  \item curved or piecewise humidity/temperature drift;
+  \item polarity-dependent sensor or electrode settling;
+  \item wall and membrane history that depends on the preceding segment;
+  \item asymmetric heating or flow changes during polarity reversal;
+  \item a timing mismatch between sensor response and the actual water inventory.
+\end{itemize}
+
+The global analysis coordinate labelled ``drift between polarities'' must
+therefore be interpreted as a \emph{non-cancelling ABBA residual}, not as ideal
+linear drift. Its range must be replaced by the residual measured using a foil
+blank, a zero-current membrane, and replicated blocks.
+
+At the nominal flow, the model's humidity conversion is approximately
+124.5 mg/h per RH percentage point, and the odd estimator sees approximately
+half of a residual that arises between the polarity measurements. To keep this
+single contribution below the internal 5\% screen, the model gives the
+following approximate design targets:
+
+\begin{itemize}
+  \item $|\Delta RH_{\mathrm{ABBA,res}}|<0.0041$ percentage points at 5.04 mg/h;
+  \item $|\Delta RH_{\mathrm{ABBA,res}}|<0.0135$ percentage points at 16.80 mg/h;
+  \item $|\Delta RH_{\mathrm{ABBA,res}}|<0.0099$ percentage points at 12.37 mg/h.
+\end{itemize}
+
+These are model-derived control targets, not demonstrated sensor performance.
+\FloatBarrier
+
+% -----------------------------------------------------------------------------
+\section{Combined stress design and rank association}
+
+The combined design contains 8\,192 Latin-hypercube points per material
+scenario, for a total of 32\,768 calculations. It includes small geometric and
+electrical errors, humidity/temperature asymmetry, differential pressure,
+bypass, edge terms, the film multiplier, and residuals between polarity
+segments.
+
+\begin{warningbox}
+The ranges are declared engineering stress intervals. Sampling inside the
+intervals is chosen for space filling, not because it represents probability
+in the future cell. The quantiles and pass fractions below are therefore
+conditional on the configuration and are not confidence limits,
+probabilities, or expected production yield.
+\end{warningbox}
+
+\begin{table}[htbp]
+\centering
+\caption{Conditional performance in the declared combined stress design. The pass fraction is the fraction of sampled stress points with $|$odd error$|\leq5$\%; it is not a probability or expected hardware yield.}
+\begin{tabularx}{\textwidth}{@{}Yrrr@{}}
+\toprule
+\textbf{Scenario} & $q_{0.95}^{\mathrm{stress}}(|e_{\mathrm{odd}}|)$ & \textbf{Max. $|$odd$|$} & \textbf{Sampled pass fraction} \\
+\midrule
+Low drag, slow $D$ & 24.80\% & 30.13\% & 20.7\% \\
+Drag 1, slow $D$ & 7.47\% & 9.27\% & 67.0\% \\
+Drag 1, fast $D$ & 16.98\% & 24.87\% & 41.2\% \\
+Inverse-design anchor & 1.01\% & 1.45\% & 100.0\% \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\reportfigure{0.91}{combined_sensitivity_rank.png}{Absolute Spearman rank correlation between each input and total odd error, calculated from 8\,192 space-filling stress points per scenario. The values rank monotone associations within the declared ranges; they are not Sobol indices, variance shares, causal effects, or a probability-based uncertainty budget. Small differences between low bars should not be finely ranked without resampling.}
+
+\begin{tabularx}{\textwidth}{@{}p{42mm}Yp{23mm}@{}}
+\toprule
+\textbf{Scenario} & \textbf{Leading association} & $|\rho|$ \\
+\midrule
+Low drag, slow $D$ & Residual humidity difference between polarities & 0.98 \\
+Drag 1, slow $D$ & Residual humidity difference between polarities & 0.98 \\
+Drag 1, fast $D$ & Unresolved film multiplier & 0.73 \\
+Inverse-design anchor & Residual humidity difference; then active area & 0.81 / 0.53 \\
+\bottomrule
+\end{tabularx}
+\FloatBarrier
+
+% -----------------------------------------------------------------------------
+\section{Films, gap, flow, and area/perimeter}
+
+The project correlation uses $Sh=7.54$ throughout the laminar range. Its local
+film coefficient is therefore independent of velocity, while velocity still
+changes axial bulk depletion. The real effects of inlet development,
+manifolds, support media, and mixing are not known. This is why the analysis
+retains an explicit film multiplier.
+
+At 32\textdegree C and 2 mm, the nominal activity-based film coefficient is
+$0.09584$ mol m\textsuperscript{$-2$} s\textsuperscript{$-1$} per activity
+unit and $Re=247$. In the fast-diffusion scenario, changing the film multiplier
+from 0.5 to 2 moves the odd signal from $-14.0$ to $+8.8$\% relative to the
+nominal case. Films must therefore be treated as a physical calibration
+variable.
+
+The edge-effect model is
+
+\begin{equation}
+\dot m_{\mathrm{app}}=J_AA+q_{\mathrm{edge}}P+\dot m_0.
+\label{eq:area-perimeter}
+\end{equation}
+
+The original 4, 9, and 25 cm\textsuperscript{2} square apertures give three
+points for the three parameters in Equation~\eqref{eq:area-perimeter}: zero
+residual degrees of freedom and strong area--perimeter correlation.
+
+\begin{table}[htbp]
+\centering
+\caption{Algebraic design metrics for blank, area, and perimeter terms. The values are not predicted measurement precision.}
+\begin{tabularx}{\textwidth}{@{}Yrrrrr@{}}
+\toprule
+\textbf{Aperture set} & $n$ & \textbf{Residual df} & $\mathrm{corr}(A,P)$ & \textbf{VIF} & \textbf{Condition} \\
+\midrule
+4/9/25 cm\textsuperscript{2}, square & 3 & 0 & 0.995 & 93.6 & 57.9 \\
++16 cm\textsuperscript{2}, square & 4 & 1 & 0.992 & 62.3 & 54.6 \\
+Recommended five-insert design & 5 & 2 & 0.960 & 12.7 & 25.6 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{mainbox}
+\textbf{Minimum viable screening design.} Use 20$\times$20, 8$\times$50,
+30$\times$30, 40$\times$40, and 50$\times$50 mm apertures. The first two have
+the same area (4 cm\textsuperscript{2}) but different perimeters. Run the
+8$\times$50 mm slot both parallel and transverse to the flow and replicate the
+complete set. Five inserts do not provide robust edge identification by
+themselves; the design reduces but does not eliminate shape/perimeter and
+hydrodynamic confounding.
+\end{mainbox}
+
+% -----------------------------------------------------------------------------
+\section{Cell dimensions and mechanical sizing}
+
+\eyebrow{Recommended first build}
+
+The following dimensions are the result of a separate, reproducible sizing
+calculation. Geometric and plate-bending relations are physical design
+calculations; the expected EO rates still depend on the hypothetical material
+scenarios declared earlier in this report.
+
+\begin{table}[H]
+\centering
+\caption{Recommended baseline dimensions for the first modular fixture.}
+\begin{tabularx}{\textwidth}{@{}Yp{37mm}Y@{}}
+\toprule
+\textbf{Item} & \textbf{Recommended dimension} & \textbf{Quantitative basis} \\
+\midrule
+Maximum membrane aperture & 50$\times$50 mm (25 cm\textsuperscript{2}) & Largest declared signal and lowest square-mask $P/A=0.80$ cm\textsuperscript{$-1$} \\
+Membrane coupon & 80$\times$80 mm & 15 mm land on every side outside the maximum aperture \\
+Outer fixture plate & 110$\times$110 mm & A further 15 mm per side for bolts, ports, and load transfer \\
+Symmetric gas gap & 2.00 mm per side & 5.00 mL active volume; retain 1 and 4 mm spacers as identification tests \\
+Insulating flow body & 8--10 mm & Accommodates ports and leaves at least 4 mm solid behind a 4 mm cavity \\
+External metal load plate & 12 mm & Exceeds the plate-screen requirement and provides clamp/port margin \\
+All-polymer load plate & at least 16 mm PEEK & Meets the 20~$\mu$m bow screen at the 1 MPa equivalent-load stress point \\
+Loaded gap variation & at most 20~$\mu$m & Two per cent of the smallest 1 mm diagnostic gap \\
+Seal and guard land & 3 + 2 + 3 mm & Inner seal, vented/tracer guard groove, and outer seal \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The 15 mm coupon land accommodates the 8 mm seal/guard stack and leaves 7 mm
+before the coupon edge. The second 15 mm land, between the coupon and the outer
+plate edge, is reserved for bolts and ports. Hard stops, not gasket compression,
+must define the channel height.
+
+For the nominal 50$\times$50$\times$2 mm channel,
+
+\begin{equation}
+V_{\mathrm{active}}=Ag
+=(50\,\mathrm{mm})(50\,\mathrm{mm})(2\,\mathrm{mm})
+=5.00\ \mathrm{mL\ per\ side}.
+\end{equation}
+
+The proposed volume budget adds two 7.5 mm-long triangular headers
+(0.750 mL), two 6 mm-ID by 8 mm port bores (0.452 mL), and 0.020 mL of
+pressure taps. The resulting targets are
+
+\begin{equation}
+V_{\mathrm{dead,proposed}}=1.222\ \mathrm{mL},\qquad
+V_{\mathrm{cell,swept}}=6.222\ \mathrm{mL\ per\ side}.
+\end{equation}
+
+Specify internal dead volume below 1.3 mL per side and measure the assembled
+value. Fittings, cell-to-sensor tubing, and instrument volumes are excluded.
+At 6 L/min, the proposed internal swept volume corresponds to an ideal 62 ms
+residence time, compared with 50 ms for the active parallel-plate region alone.
+
+\subsection{Why the maximum aperture is 25 cm\texorpdfstring{\textsuperscript{2}}{2}}
+
+At fixed current density the gross EO signal scales with area, while an edge
+term scales with perimeter:
+
+\begin{equation}
+\dot m_{\mathrm{app}}=J_AA+q_PP+\dot m_0,
+\qquad
+\frac{\dot m_{\mathrm{edge}}}{\dot m_A}
+=\frac{q_P}{J_A}\frac{P}{A}.
+\end{equation}
+
+The 50 mm square therefore maximises signal and minimises edge sensitivity.
+Smaller inserts are identification tools, not alternative nominal cells.
+
+\begin{table}[H]
+\centering
+\caption{Diagnostic membrane masks. Relative signal assumes equal current density. A 1 mm unrecognised dead edge is shown as a geometric warning, not a prediction.}
+\begin{tabularx}{\textwidth}{@{}Yrrrr@{}}
+\toprule
+\textbf{Exposed membrane shape} & $A$ [cm\textsuperscript{2}] & $P/A$ [cm\textsuperscript{$-1$}] & \textbf{Relative signal} & \textbf{1 mm dead-edge loss} \\
+\midrule
+20$\times$20 mm square & 4 & 2.00 & 0.16 & 19.0\% \\
+8$\times$50 mm slot & 4 & 2.90 & 0.16 & 28.0\% \\
+30$\times$30 mm square & 9 & 1.33 & 0.36 & 12.9\% \\
+40$\times$40 mm square & 16 & 1.00 & 0.64 & 9.75\% \\
+50$\times$50 mm square & 25 & 0.80 & 1.00 & 7.84\% \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The recommended inserts mask membrane exposure while retaining the same
+50$\times$50 mm gas-flow field, 2 mm gap, and nominal 6 L/min per side. This
+keeps the principal channel boundary condition fixed. Run the slot in both
+orientations because local edge/support hydrodynamics can still depend on
+orientation. If the channel itself is narrowed to follow the mask, the same
+slot would require 0.96 or 6.0 L/min at 1 m/s depending on orientation; that
+is a deliberately avoided confounding change.
+
+\subsection{Signal mode and film characterisation}
+
+The declared humidity instruments have 0.1 RH-percentage-point expanded
+uncertainty per stream. The two-stream expanded uncertainty is therefore
+$\sqrt{2}(0.1)=0.141$ RH points, and the declared $S/U=5$ gate requires a
+0.707-point differential signal.
+
+\begin{table}[H]
+\centering
+\caption{Ideal gross-signal detectability for the 25 cm\textsuperscript{2} cell. Passive transport, film loss, storage, leakage, and electrode water are not included.}
+\begin{tabularx}{\textwidth}{@{}Yrrrr@{}}
+\toprule
+\textbf{Reference case} & \textbf{Gross rate} & \textbf{Signal at 6 L/min} & $S/U$ & \textbf{Maximum flow for $S/U=5$} \\
+ & [mg/h] & [RH points] & & [L/min per side] \\
+\midrule
+Low-drag signal floor & 5.041 & 0.0810 & 0.57 & 0.69 \\
+Order-unity reference & 16.804 & 0.2699 & 1.91 & 2.29 \\
+Inverse-design anchor & 168.146 & 2.7005 & 19.10 & 22.91 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Thus 6 L/min is appropriate as the baseline for film/gap characterisation but
+does not resolve the two lower gross signals with the declared humidity
+uncertainty. Use a separately calibrated low-flow mode, a higher safe current,
+or an integrating donor/receiver water balance. Lowering flow is not a free
+sensitivity gain: it also changes films and axial depletion.
+
+\reportfigure{0.98}{gross_signal_envelope_25cm2.png}{Declared gross EO signal for 25 cm\textsuperscript{2} over the configured current and drag coordinates. The figure is an ideal signal envelope, not net flux or material validation.}
+\FloatBarrier
+
+\subsection{Wall and load-plate thickness}
+
+For a simply supported square-plate screen under an equivalent uniform load,
+
+\begin{equation}
+D_p=\frac{Et^3}{12(1-\nu^2)},\qquad
+w_{\max}=\alpha\frac{qa^4}{D_p},\qquad \alpha=0.00406.
+\label{eq:plate-screen}
+\end{equation}
+
+The span is 50 mm and the allowable bow is 20~$\mu$m. The pressure-only force
+on the 25 cm\textsuperscript{2} window is just 0.0125 N at 5 Pa and 0.125 N at
+50 Pa, so gas pressure does not determine wall thickness. Bolt and gasket load,
+port cut-outs, and the electrode/support stack govern the real fixture.
+
+\begin{table}[H]
+\centering
+\caption{Required plate thickness for 20~$\mu$m calculated bow. The 200 kPa and 1 MPa rows are equivalent-uniform-load sensitivity coordinates, not calculated gasket pressures.}
+\begin{tabularx}{\textwidth}{@{}YrrrY@{}}
+\toprule
+\textbf{Material} & \textbf{50 Pa gas} & \textbf{200 kPa surrogate} & \textbf{1 MPa surrogate} & \textbf{Selected starting thickness} \\
+ & [mm] & [mm] & [mm] & \\
+\midrule
+PEEK ($E=3.6$ GPa) & 0.57 & 8.98 & 15.35 & 16 mm if fully load-bearing \\
+Al 6061-T6 ($E=69$ GPa) & 0.21 & 3.40 & 5.81 & 12 mm external load plate \\
+316L ($E=193$ GPa) & 0.15 & 2.43 & 4.16 & 12 mm external load plate \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The selected metal thickness is intentionally above the simple plate result to
+provide practical margin for fasteners, ports, thermal contact, and imperfect
+load distribution. This is still not structural validation. Map the loaded gap
+after tightening the real stack, record the torque pattern, and reject a build
+that exceeds 20~$\mu$m variation.
+
+\reportfigure{0.98}{cell_dimension_tradeoffs.png}{Left: ideal two-stream humidity signal versus actual flow for the declared gross-rate references; the orange line is the declared $S/U=5$ threshold. Right: plate thickness required to keep calculated bow below 20~$\mu$m across a 50 mm square under equivalent uniform loads. The mechanical load axis is a sensitivity screen, not a gasket contact model.}
+\FloatBarrier
+
+% -----------------------------------------------------------------------------
+\section{Closed cell: the boundary condition evolves}
+
+In a rigid closed cell, humidity and pressure are not fixed boundary
+conditions. With $\delta=a_r-a_s$ and an effective water capacity
+$C_{\mathrm{eff}}$ on each side, the linear symmetric limit is
+
+\begin{equation}
+\frac{d\delta}{dt}=\frac{2A}{C_{\mathrm{eff}}}
+\frac{N_{\mathrm{EO}}-K_m\delta}
+{1+K_m(k_s^{-1}+k_r^{-1})}.
+\label{eq:closed}
+\end{equation}
+
+Walls, seals, the membrane, and sensors can make $C_{\mathrm{eff}}$ much larger
+than the gas capacity alone. Until this is measured, the gas-only limit shows
+how quickly the pressure constraint can arise.
+
+\begin{table}[htbp]
+\centering
+\caption{Low-drag scenario at 5.04 mg/h, rigid cell, and gas capacity only.}
+\begin{tabularx}{\textwidth}{@{}Yrr@{}}
+\toprule
+\textbf{Volume per side} & \textbf{Time to 5 Pa} & \textbf{Time to 1 RH point per side} \\
+\midrule
+5 mL active channel & 0.063 s & 1.21 s \\
+6.22 mL proposed swept cell & 0.079 s & 1.50 s \\
+1 L & 12.7 s & 4.02 min \\
+5 L & 63.4 s & 20.1 min \\
+20 L & 254 s & 80.5 min \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\reportfigure{0.91}{closed_loop_time_to_5pa.png}{Gas-only time to a 5 Pa differential pressure in an ideal rigid, closed, leak-free cell at $\Delta T=0$ and with no additional wall or membrane capacity. The curves are scenario results, not measured time constants. Sorption, compliance, and pressure balancing can lengthen the response; electrode gas and thermal transients can alter it.}
+
+A symmetric change of one RH percentage point per side corresponds to
+approximately 95.2 Pa of water-vapour pressure difference. A temperature
+difference of only 0.1 K gives approximately 33.2 Pa of thermal differential
+pressure in a rigid cell. This is already far above the $\pm5$ Pa target.
+
+\begin{warningbox}
+Do not use a gas leak as passive pressure equalisation: it also transports
+water and introduces an unknown bypass term. Use a pressure-balancing bellows,
+piston, or active volume control, or accept that the experiment is transient
+and fit the complete inventory model.
+\end{warningbox}
+
+Leakage, bypass, and pressure-driven transport are not identifiable from the
+EO signal alone. They must be measured with a foil blank, tracer tests, and
+deliberate pressure challenges. Results obtained at unknown $\Delta P$ must
+therefore be reported as a fixture-specific apparent rate, not as intrinsic
+membrane flux.
+\FloatBarrier
+
+% -----------------------------------------------------------------------------
+\Needspace{8\baselineskip}
+\section{Recommended experimental sequence}
+
+\eyebrow{Identify the cell before the material}
+
+\begin{enumerate}
+  \item \textbf{Foil blank:} run humidity steps, flow, temperature,
+  differential pressure, and tracer-leak tests before and after each block.
+  Estimate wall memory and sensor lag.
+  \item \textbf{Zero-current membrane:} run positive and negative humidity
+  gradients to estimate total passive conductance and direction effects.
+  \item \textbf{Film/gap:} run 1, 2, and 4 mm gaps and 0.5$\times$,
+  1$\times$, and 2$\times$ nominal flow with the same material state.
+  \item \textbf{Active ABBA/BAAB:} use one split common inlet, the sequence
+  $+I,-I,-I,+I$, and zero-current intervals. Cross-switch the same humidity
+  reference between channels.
+  \item \textbf{Area/perimeter:} run five aperture types with replicates and
+  both orientations of the slot. Fit Equation~\eqref{eq:area-perimeter}.
+  \item \textbf{Pressure challenge:} run at least 0, $\pm5$, $\pm20$, and
+  $\pm50$ Pa to separate membrane transport from bypass.
+  \item \textbf{Closed transient:} perform only after film, passive
+  conductance, leakage, and water capacity have been estimated in open-flow
+  tests.
+\end{enumerate}
+
+For every segment, report source loss, receiver gain, even component, odd
+component, current, voltage, local temperature, absolute pressure, and flow
+separately. Condensation and Faradaic gases require a separate mass/charge
+balance.
+
+% -----------------------------------------------------------------------------
+\clearpage
+\section{Conclusions and recommended first build}
+
+\begin{mainbox}
+\textbf{Build decision.} Use a 50$\times$50 mm maximum membrane aperture in a
+fixed 50$\times$50 mm flow field, with 2.00 mm channels on both sides. Use an
+80$\times$80 mm membrane coupon, 110$\times$110 mm outer plates, 8--10 mm
+insulating flow bodies, and 12 mm metal load plates. If the load-bearing plate
+is entirely PEEK, use at least 16 mm as the starting thickness. The proposed
+internal volume is 6.22 mL per side, of which 5.00 mL is the active channel and
+1.22 mL is headers, ports, and pressure taps.
+\end{mainbox}
+
+These dimensions are identical to the canonical recommendation in
+\path{outputs/eo_vapor_cell_sizing_v1/audit.json}, which has
+\texttt{all\_pass=true}. The geometry is preferred because the
+25 cm\textsuperscript{2} aperture gives
+the largest available signal and the lowest perimeter-to-area ratio in the
+declared centimetre-scale design. At the nominal 2 mm gap and 1 m/s it requires
+6 actual L/min per side, has approximately 50 ms active residence time, and has
+only 2.9 Pa ideal straight-channel pressure drop. The sizing calculation gives
+$Re=236$ using the exact rectangular hydraulic diameter; the boundary model
+reports $Re=247$ using the inherited $D_h=2g$ parallel-plate approximation.
+This small convention difference is retained explicitly rather than hidden.
+
+The fixture should include:
+
+\begin{itemize}
+  \item interchangeable 1, 2, and 4 mm hard-stop spacers;
+  \item mask inserts for 20$\times$20, 8$\times$50, 30$\times$30,
+  40$\times$40, and 50$\times$50 mm exposed membrane areas while retaining
+  the same gas-flow field;
+  \item a double seal with a vented or tracer-monitored 2 mm guard groove;
+  \item differential-pressure taps at both ends and independent outlet
+  back-pressure control;
+  \item low-sorption wetted surfaces and symmetric, measured support/electrode
+  open area;
+  \item an actual-flow range covering at least 3, 6, and 12 L/min per side,
+  and up to 24 L/min if the 4 mm/2 m/s stress point is retained.
+\end{itemize}
+
+\clearpage
+The dimensional recommendations are conditional engineering starting values,
+not released manufacturing dimensions. Before material conclusions are drawn,
+the assembled fixture must pass the following gates:
+
+\begin{enumerate}
+  \item loaded channel-height variation below 20~$\mu$m, documented with the
+  real gasket, fastener torque, hard stops, ports, and electrode stack;
+  \item measured swept internal dead volume below 1.3 mL per side, with
+  external tubing and sensor volumes reported separately;
+  \item water-equivalent foil-blank rate below 10\% of the minimum intended EO
+  signal, with a 5\% internal target;
+  \item main-test cross-membrane pressure within $\pm5$ Pa and quantified
+  response at 0, $\pm20$, and $\pm50$ Pa;
+  \item donor/receiver mass-balance closure and a measured ABBA/BAAB residual
+  that satisfies the signal-specific uncertainty gate;
+  \item either less than 5\% change under the gap/flow challenge or a validated
+  film correction. Until then, report a geometry-specific effective rate, not
+  an intrinsic membrane coefficient.
+\end{enumerate}
+
+\clearpage
+The nominal 6 L/min humidity-difference measurement does not reach $S/U=5$ for
+the 5.04 or 16.80 mg/h gross reference signals. Their ideal flow limits are
+0.69 and 2.29 L/min per side, respectively. Use those lower flows only as a
+separately calibrated metrology mode; otherwise use integrating water balances
+or gravimetry. Finally, closed operation must use external reservoirs with a
+bellows, piston, or active volume control and must be fitted as a transient
+inventory experiment. Even the proposed 6.22 mL gas-only cell reaches 5 Pa in
+about 0.079 s at 5.04 mg/h.
+
+% -----------------------------------------------------------------------------
+\section{Reproducibility, audit, and claim boundary}
+
+\begin{tabularx}{\textwidth}{@{}p{50mm}Y@{}}
+\toprule
+\textbf{Control} & \textbf{Result} \\
+\midrule
+Combined calculation rows & 32\,768 \\
+Solver success fraction & 1.000 \\
+Canonical cross-check & Maximum absolute relative difference 0.0 \\
+Focused regression and physics tests & 18 passed \\
+Sizing audit & \texttt{all\_pass=true}, 10/10 declared checks \\
+Calibrated probabilities & No \\
+Confidence intervals or expected yield & No \\
+Material, hardware, or product validation & No \\
+\bottomrule
+\end{tabularx}
+
+\begin{stopbox}
+All stress quantiles and sampled pass fractions are conditional on the
+declared intervals and distribution choices. They are not empirical
+probabilities, confidence intervals, or yield forecasts. Gross Faradaic
+transport is not net measured transport. The plate loads are sensitivity
+coordinates, not predicted gasket pressures. Final acceptance requires
+physical blank, mass-balance, flatness, pressure, and leakage tests.
+\end{stopbox}
+
+\subsection{Run the analysis}
+
+\begin{verbatim}
+cd /home/torsheim/HeiQ/XMembrane_Trond_Study
+python3 scripts/analyze_eo_vapor_boundaries_v1.py
+python3 scripts/size_eo_vapor_cell_v1.py
+python3 -m pytest -q -s \
+  tests/test_eo_vapor_boundary_analysis_v1.py \
+  tests/test_eo_vapor_cell_sizing_v1.py
+\end{verbatim}
+
+\subsection{Compile this report}
+
+\begingroup
+\footnotesize
+\begin{verbatim}
+cd /home/torsheim/HeiQ/XMembrane_Trond_Study
+latexmk -cd -pdf -interaction=nonstopmode -halt-on-error \
+  reports/eo_vapor_boundary_analysis_v2_en/\
+  HeiQ_EO_Vapour_Cell_Boundary_Conditions_and_Sizing_2026-08-31_v2.tex
+\end{verbatim}
+\endgroup
+
+\subsection{Traceability files}
+
+\begingroup
+\footnotesize
+\begin{itemize}
+  \item Boundary analysis: \path{scripts/analyze_eo_vapor_boundaries_v1.py}
+  \item Cell sizing: \path{scripts/size_eo_vapor_cell_v1.py}
+  \item Configurations: \path{config/eo_vapor_boundary_analysis_v1.json} and
+  \path{config/eo_vapor_cell_sizing_v1.json}
+  \item Sizing audit and source hashes:
+  \path{outputs/eo_vapor_cell_sizing_v1/audit.json} and
+  \path{outputs/eo_vapor_cell_sizing_v1/source_manifest.json}
+  \item Boundary-analysis output: \path{outputs/eo_vapor_boundary_analysis_v1/}
+  \item Sizing output: \path{outputs/eo_vapor_cell_sizing_v1/}
+  \item Tests: \path{tests/test_eo_vapor_boundary_analysis_v1.py} and
+  \path{tests/test_eo_vapor_cell_sizing_v1.py}
+  \item This report's own freeze:
+  \path{reports/eo_vapor_boundary_analysis_v2_en/source_manifest.json}
+\end{itemize}
+\endgroup
+
+\clearpage
+\appendix
+\section{Supplementary figures}
+
+\reportfigure{0.98}{activity_temperature_interaction.png}{Interaction between static inlet mismatch and temperature difference for the fast-diffusion scenario. The left panel shows large single-direction bias. The right panel has its own, much smaller scale and shows idealised cancellation when exactly the same static mismatch is used in both polarities; the figure does not include time-dependent ABBA hysteresis.}
+
+\reportfigure{0.98}{combined_error_distributions.png}{Box plots of the space-filling stress samples. These are not empirical or probability-calibrated distributions. The shared scale shows why single-direction inference is vulnerable, but compresses differences in the odd panel; the numerical stress quantiles in the main table are decision-relevant.}
+\FloatBarrier
+
+\end{document}

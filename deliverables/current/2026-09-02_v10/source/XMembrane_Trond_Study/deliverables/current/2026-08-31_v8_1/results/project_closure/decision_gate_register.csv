@@ -1,0 +1,16 @@
+gate_id,status,blocks,evidence,interpretation
+G01_THERMODYNAMIC_SIGN,PASS,model_closure,16387/16387 stored valid segments pass; 8357 full constant-drag identities + 8030 variable-drag boundary-energy audits,Surface activity sign is a regime indicator; the applicable dissipation or boundary-energy balance is the hard physics check.
+G02_SURFACE_GATE_RECLASSIFICATION,PASS,claim_correction,0 cases require reclassification because the stored source outputs already use the corrected thermodynamic/non-surface screen,"A zero count is expected after corrected outputs are regenerated. Any reclassified cases remain hypothetical and conditional, not full-system validations."
+G03_COMMON_VOLTAGE_PRIMARY,PASS,material_search_path,3/3 primary 1-V cases pass,"Tests one common bus with local current sharing at 50, 60 and 67.5 percent completion."
+G03B_NO_CURRENT_DENSITY_GATE,PASS,model_closure,"In this closure run, current density is solved/sampled and no A/m2 acceptance ceiling is configured or applied","Voltage, transport, energy and practical consequences remain explicit; historical 21-A/m2 sensitivity replays are not current acceptance gates."
+G04_FULL_DUTY_SINGLE_BUS,OPEN,full_duty_single_bus_claim_only,No feasible point was found on the 0.05-V grid from 0.5 to 2.0 V at the frozen anchor,This 32-segment discrete diagnostic is not a converged proof that every continuous sub-interval is empty and does not imply a general membrane no-go.
+G05_SEGMENT_CONVERGENCE,PASS,model_closure,7/7 closure-relevant replay outcomes stable from 32 to 64 segments,No new broad sweep is required if this gate passes.
+G06_INDEPENDENT_CURRENT_ROOTS,PASS,model_closure,6/6 local roots reproduced with Brent,Independent algorithmic check of the built-in voltage bisection.
+G07_UNIFORM_CURRENT_STEP_REPLAY,PASS,model_closure,3 selected anchors replayed at 20/10/5 m2,Targeted numerical hygiene only; it does not promote uniform current to a physical topology.
+G08_FROZEN_ENERGY_CONTRACT,PASS,model_closure,baseline=543.740564 kW; break-even=0.156700807441 kWh/kg; full-duty sink budget=0.128323175854 kWh/kg,Validates all three frozen energy coordinates against the source percentage study.
+G09_MATERIAL_DATA_SCHEMA,PASS,supplier_data_collection,9 requirement rows found,Candidate values are expected to be empty before material scouting.
+G09B_CANDIDATE_DATA_COMPLETENESS,OPEN,candidate_ranking,0/9 requirement rows complete; one same-sample candidate ID is required,A requirements checklist enables data collection but is not candidate evidence.
+G10_RECEIVER_CONTRACT,OPEN,candidate_ranking_and_system_claim,OPEN_NEXT_PHASE,"Receiver architecture, boundary and measured SEC belong to the next subsystem phase."
+G11_PRACTICAL_LIMITS,OPEN,candidate_ranking,UNRESOLVED_TEAM_INPUT,"Team must set area, pressure-drop, footprint and cost ceilings."
+G12_RUNTIME_ENVIRONMENT,PASS,release_freeze,"Python 3.10.12, NumPy 1.26.4",Checks the closure contract's declared Python and NumPy minima; the final-delivery checker validates the complete project runtime.
+G13_RELEASE_SNAPSHOT,OPEN,release_freeze,revision=29ba6da9a33a50d8771adc6ee28438ab5131eed7; clean=False,"A hash manifest is written, but the working tree must be frozen separately."

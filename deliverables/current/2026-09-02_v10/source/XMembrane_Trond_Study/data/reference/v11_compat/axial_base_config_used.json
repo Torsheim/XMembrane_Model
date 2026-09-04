@@ -1,0 +1,97 @@
+{
+  "air": {
+    "absolute_pressure_pa": 101325.0,
+    "airflow_cfm": 150000.0,
+    "cfm_basis": "actual_inlet",
+    "inlet_relative_humidity": 0.8,
+    "inlet_temperature_c": 32.0,
+    "standard_pressure_pa": 101325.0,
+    "standard_temperature_c": 20.0
+  },
+  "channel": {
+    "active_sides_per_process_channel": 1.0,
+    "film_coefficient_scale_factors": [
+      0.5,
+      1.0,
+      2.0
+    ],
+    "process_fan_efficiency": 0.65,
+    "process_gap_m": 0.002,
+    "process_velocity_m_s": 2.0,
+    "receiver_gap_m": 0.002,
+    "receiver_temperature_c": 32.0,
+    "receiver_velocity_m_s": 2.0
+  },
+  "electrical": {
+    "current_density_caps_a_m2": [
+      500.0,
+      2000.0
+    ],
+    "fixed_loss_voltages_v": [
+      0.0,
+      0.1,
+      0.25
+    ],
+    "power_electronics_efficiencies": [
+      0.9
+    ],
+    "series_area_resistances_ohm_m2": [
+      1e-05
+    ],
+    "terminal_voltages_v": [
+      0.1,
+      0.25
+    ]
+  },
+  "integration": {
+    "area_limit_m2": 6000.0,
+    "area_step_m2": 20.0,
+    "humidity_ratio_absolute_tolerance": 1e-09,
+    "minimum_area_step_m2": 0.3125
+  },
+  "materials": [
+    {
+      "capacity_activity_exponent": 0.0,
+      "conductivity_activity_exponent": 4.0,
+      "conductivity_s_m": 10.0,
+      "diffusivity_activity_exponent": 2.0,
+      "dry_thickness_um": 25.0,
+      "interpretation": "Method-verification material only; not a measured commercial membrane.",
+      "model": "powerlaw",
+      "name": "hypothetical_v2_screening_material",
+      "water_capacity_mol_m3_activity": 50000.0,
+      "water_diffusivity_m2_s": 1e-10,
+      "water_drag": 20.0
+    }
+  ],
+  "receiver_boundaries": {
+    "dry_receiver_80_50": {
+      "water_activity": 0.5
+    },
+    "symmetric_80_80": {
+      "water_activity": 0.8
+    },
+    "wet_receiver_80_95": {
+      "water_activity": 0.95
+    }
+  },
+  "schema_version": 3,
+  "scope_note": "Conditional pre-receiver calculation. Receiver regeneration, water removal, receiver-side fan power, electrodes, degradation and complete module design are excluded.",
+  "targets": {
+    "O30": {
+      "reference_relative_humidity": 0.3,
+      "reference_temperature_c": 32.0
+    },
+    "O50": {
+      "reference_relative_humidity": 0.5,
+      "reference_temperature_c": 32.0
+    }
+  },
+  "thermal": {
+    "cell_power_to_process_air_fraction": 1.0,
+    "modes": [
+      "isothermal",
+      "adiabatic_upper_bound"
+    ]
+  }
+}

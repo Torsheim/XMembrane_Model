@@ -1,0 +1,953 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{tgtermes}
+\usepackage{tgheros}
+\usepackage{microtype}
+\usepackage[a4paper,margin=18mm,headheight=19pt]{geometry}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{titlesec}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
+\usepackage{caption}
+\usepackage{placeins}
+\usepackage{textcomp}
+\usepackage{amsmath}
+\usepackage{longtable}
+
+\definecolor{Navy}{HTML}{173753}
+\definecolor{Teal}{HTML}{008F8C}
+\definecolor{PaleTeal}{HTML}{E5F4F3}
+\definecolor{Orange}{HTML}{F08A24}
+\definecolor{PaleOrange}{HTML}{FFF1E2}
+\definecolor{Red}{HTML}{BB3E35}
+\definecolor{PaleRed}{HTML}{F9E9E7}
+\definecolor{Slate}{HTML}{5B7083}
+\definecolor{Light}{HTML}{F3F6F8}
+\definecolor{Line}{HTML}{D7E0E7}
+\definecolor{Green}{HTML}{2E8B57}
+\definecolor{PaleGreen}{HTML}{EAF5EE}
+
+\renewcommand{\familydefault}{\rmdefault}
+\newcommand{\sans}{\fontfamily{qhv}\selectfont}
+\newcommand{\reportdate}{31 August 2026}
+\newcommand{\reportversion}{Version 8}
+\newcommand{\fom}{\mathrm{FOM}}
+\newcommand{\secpd}{\mathrm{SEC}}
+\newcommand{\evidencepath}[1]{\path{#1}}
+\newcommand{\reportfigure}[3][0.94]{%
+  \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=#1\textwidth]{#2}
+    \caption{#3}
+  \end{figure}%
+}
+
+\hypersetup{
+  pdftitle={HeiQ XMembrane Current Team Result and Decision Report -- Version 8},
+  pdfauthor={HeiQ XMembrane project team},
+  pdfsubject={Integrated model, material and coupon-cell decision basis as of 31 August 2026},
+  pdfkeywords={XMembrane, electro-osmosis, ERV, O30, O50, membrane, material, coupon cell, FOM, decision report}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\sans\footnotesize\color{Slate}HEIQ MATERIALS AG · XMEMBRANE}
+\fancyhead[R]{\sans\footnotesize\color{Slate}TEAM RESULT REPORT · V8}
+\fancyfoot[L]{\sans\scriptsize\color{Slate}Internal modelling and experiment-planning evidence · no product validation}
+\fancyfoot[R]{\sans\scriptsize\color{Slate}Page \thepage\ of \pageref*{LastPage}}
+\renewcommand{\headrulewidth}{0.45pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{Navy}\leaders\hrule height \headrulewidth\hfill}}
+\renewcommand{\footrulewidth}{0pt}
+
+\titleformat{\section}{\sans\bfseries\color{Navy}\fontsize{19}{22}\selectfont}{\thesection}{0.65em}{}
+\titleformat{\subsection}{\sans\bfseries\color{Navy}\fontsize{13}{16}\selectfont}{\thesubsection}{0.55em}{}
+\titleformat{\subsubsection}{\sans\bfseries\color{Teal}\fontsize{11}{13}\selectfont}{\thesubsubsection}{0.45em}{}
+\titlespacing*{\section}{0pt}{7mm}{3mm}
+\titlespacing*{\subsection}{0pt}{5mm}{2mm}
+\titlespacing*{\subsubsection}{0pt}{4mm}{1.5mm}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1.6mm}
+\setlist[itemize]{leftmargin=5mm,itemsep=1mm,topsep=1mm}
+\setlist[enumerate]{leftmargin=6mm,itemsep=1.2mm,topsep=1mm}
+\captionsetup{font=small,labelfont={bf,color=Navy}}
+\renewcommand{\arraystretch}{1.18}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+\newtcolorbox{mainbox}{
+  enhanced,breakable,colback=PaleTeal,colframe=Teal,boxrule=0.7pt,
+  arc=2mm,left=4mm,right=4mm,top=3mm,bottom=3mm
+}
+\newtcolorbox{warningbox}{
+  enhanced,breakable,colback=PaleOrange,colframe=Orange,boxrule=0.7pt,
+  arc=2mm,left=4mm,right=4mm,top=3mm,bottom=3mm
+}
+\newtcolorbox{stopbox}{
+  enhanced,breakable,colback=PaleRed,colframe=Red,boxrule=0.7pt,
+  arc=2mm,left=4mm,right=4mm,top=3mm,bottom=3mm
+}
+\newtcolorbox{gobox}{
+  enhanced,breakable,colback=PaleGreen,colframe=Green,boxrule=0.7pt,
+  arc=2mm,left=4mm,right=4mm,top=3mm,bottom=3mm
+}
+\newtcolorbox{plainbox}{
+  enhanced,breakable,colback=Light,colframe=Line,boxrule=0.5pt,
+  arc=2mm,left=4mm,right=4mm,top=3mm,bottom=3mm
+}
+
+\newcommand{\eyebrow}[1]{%
+  {\sans\bfseries\color{Teal}\MakeUppercase{#1}}\par\vspace{1.5mm}%
+}
+\newcommand{\metric}[3]{%
+  \begin{minipage}[t]{0.30\textwidth}
+    {\sans\bfseries\fontsize{18}{20}\selectfont\color{Navy}#1}\par
+    {\sans\bfseries\small #2}\par
+    {\scriptsize\color{Slate}#3}
+  \end{minipage}%
+}
+
+\begin{document}
+
+\thispagestyle{empty}
+\vspace*{7mm}
+\begin{tcolorbox}[
+  enhanced,colback=Navy,colframe=Navy,boxrule=0pt,arc=0mm,
+  left=12mm,right=12mm,top=12mm,bottom=12mm
+]
+{\sans\bfseries\large\color{white}HEIQ XMEMBRANE PROJECT TEAM}\par
+\vspace{8mm}
+{\sans\bfseries\fontsize{28}{32}\selectfont\color{white}
+Current result and decision\\[-1mm]
+report}\par
+\vspace{2mm}
+{\sans\fontsize{18}{21}\selectfont\color{white}
+Integrated system, membrane, material and coupon-cell evidence}\par
+\vspace{7mm}
+{\sans\large\color{white}\reportdate\quad · \quad\reportversion}
+\end{tcolorbox}
+
+\vspace{10mm}
+{\sans\bfseries\Large\color{Navy}Decision basis for the project team}\par
+\vspace{4mm}
+
+This report consolidates the current model closure, the post-ERV full-duty
+and percentage studies, common-voltage results, system and figure-of-merit
+ledgers, membrane/material screens, and the centimetre-scale vapour-cell
+design. It supersedes earlier team-facing interpretations for current
+decisions, while retaining their machine-readable evidence as provenance.
+
+\begin{mainbox}
+\textbf{Current milestone.} The broad modelling phase has reached its stop
+criterion. The next phase is material and subsystem feasibility: acquire a
+same-sample membrane-property bundle, build the controlled-flow coupon cell,
+and close the receiver/thermal/hardware ledger. No material, module,
+technology or net full-system saving has been validated.
+\end{mainbox}
+
+\vfill
+\begin{tabularx}{\textwidth}{@{}lY@{}}
+\textbf{Primary equal-service reference} & Passive ERV plus remaining AC:
+543.741 kW at the declared O80 outdoor-air duty \\
+\textbf{Leading first experiment} & Post-ERV EO toward O30 in a controlled-flow
+25-cm\textsuperscript{2} coupon cell \\
+\textbf{Architecture status} & O30 is sampled below 2 V on one common bus;
+full remaining post-ERV duty is not demonstrated on one common bus \\
+\textbf{Release status} & Model-phase delivery is internally checkable;
+immutable release snapshot remains open because the working tree is not frozen \\
+\textbf{Claim status} & Conditional model and experiment-planning evidence only \\
+\end{tabularx}
+
+\clearpage
+\pdfbookmark[0]{Abstract}{abstract}
+\section*{Abstract}
+\addcontentsline{toc}{section}{Abstract}
+
+The present evidence supports one clear phase decision: stop broad parameter
+expansion and begin controlled material and subsystem testing. At the
+150,000-cfm O80 duty, the equal-service electrical reference is
+543.741~kW for passive ERV plus the remaining AC load, compared with
+1,166.4~kW for AC alone. A post-ERV, common-voltage O30 coordinate gives a
+known subtotal of 381.327~kW and therefore a conditional 162.414-kW window
+relative to passive ERV+AC. This is not a realised saving because receiver/sink
+energy, EO heat rejection, electrodes, manifolds, leakage, durability and
+measured material performance remain open. O50 requires no post-ERV EO duty
+on the declared absolute-humidity basis; O30 closes 72.700\% of the remaining
+post-ERV moisture gap and is the strongest first experimental target.
+
+The full-duty and percentage studies show that the historical 10\%
+coordinate actually closes 22.193\% of the remaining post-ERV duty. Uniform-
+current sensitivity rows can close full duty below 2~V, but the independent
+one-common-bus replay has no confirmed full-duty point on the sampled
+0.5--2.0-V grid; 21 refined rows are physical no-solutions and 28 remain
+numerical/local unresolved. This is not a global no-go proof. At O30,
+sampled common-bus feasibility survives from $D=10^{-14}$ to
+$10^{-9}$~m\textsuperscript{2}/s, but adverse diffusion erodes the energy
+window and reverses it at the highest sampled diffusivity.
+
+The measured-data requirement is a coupled, same-sample bundle: sorption and
+hysteresis, chemical water mobility/permeance, electro-osmotic drag, wet
+conductivity and compressed ASR, thickness/swelling/mechanics, coupled net
+water flux, and receiver/electrode compatibility. Nafion is a useful numerical
+reference but does not match the required drag-property vector and is not a
+validated candidate. The proposed first fixture uses a 50$\times$50-mm active
+aperture, an approximately 80$\times$80-mm coupon, 110$\times$110-mm outer
+plates, interchangeable 1/2/4-mm gaps and controlled flow. Polarity reversal,
+two-sided water balance, pressure control, blanks and gap/flow repeats are
+required to separate EO transport from static humidity/temperature mismatch,
+films, edge leakage and wall inventory.
+
+\vspace{4mm}
+\begin{tabularx}{\textwidth}{@{}CCC@{}}
+\metric{162.4 kW}{Conditional O30 window}{Known common-voltage subtotal before open losses} &
+\metric{72.70\%}{Remaining duty at O30}{O50 requires no post-ERV EO duty} &
+\metric{25 cm\textsuperscript{2}}{First active aperture}{Controlled flow, ABBA and two-sided balance}
+\end{tabularx}
+
+\clearpage
+\tableofcontents
+\clearpage
+
+\section{Executive conclusion and decision map}
+\eyebrow{What is decided now}
+
+\begin{gobox}
+\textbf{GO: material and coupon work.} Begin a same-sample material search and
+the controlled-flow vapour-cell experiment. Use O30 after the passive ERV as
+the first system-relevant transport target. Continue modelling only to replay
+measured candidate data, pre-register experiments, or close a named subsystem.
+\end{gobox}
+
+\begin{warningbox}
+\textbf{OPEN: architecture and receiver.} Do not yet choose one-bus full duty,
+voltage zoning, staged EO, direct EO inside the ERV, or a liquid/solid sink.
+Those decisions require measured film behaviour, receiver work, heat
+rejection, pressure drop, leakage, electrodes and durability.
+\end{warningbox}
+
+\begin{stopbox}
+\textbf{NO-GO: validation language.} Do not state that 162.4~kW or any larger
+model window has been saved, that full duty is impossible, that Nafion or an
+inverse-design vector is a candidate membrane, or that the technology is
+validated. The working tree must also be frozen before an immutable release
+claim is made.
+\end{stopbox}
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{@{}p{47mm}p{23mm}Y@{}}
+\toprule
+\textbf{Decision or question} & \textbf{Status} & \textbf{Current basis} \\
+\midrule
+Equal-service energy comparator & \textcolor{Green}{\textbf{CLOSED}} &
+Use 543.741~kW passive ERV+AC as the primary reference \\
+O30 common-voltage mechanism below 2 V & \textcolor{Green}{\textbf{SUPPORTED}} &
+Confirmed sampled points, including 1.00~V, with local current sharing \\
+Full post-ERV duty on one bus below 2 V & \textcolor{Orange}{\textbf{OPEN}} &
+No confirmed sampled point; physical and unresolved rows coexist \\
+Broad model phase & \textcolor{Green}{\textbf{STOP}} &
+Core balances, signs, numerical replays and decision coordinates are sufficient for handoff \\
+Material candidate ranking & \textcolor{Orange}{\textbf{NOT READY}} &
+Zero of nine required same-sample data rows is complete \\
+Receiver and thermal contract & \textcolor{Orange}{\textbf{OPEN}} &
+Receiver/sink, disposal/regeneration and EO heat rejection are not closed \\
+Practical module limits & \textcolor{Orange}{\textbf{OPEN}} &
+Team must set area, pressure-drop, footprint, cost and lifetime limits \\
+Net system or product claim & \textcolor{Red}{\textbf{NOT ALLOWED}} &
+No measured full ledger or validated material/module \\
+Material search and coupon cell & \textcolor{Green}{\textbf{GO}} &
+Use the joint-property schema and controlled-flow boundary protocol \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Current integrity state}
+
+The current final-delivery checker classifies the model-phase package as
+deliverable and the material search as ready to start. It keeps the immutable
+release snapshot open because the repository is dirty, and it keeps candidate
+ranking, full-duty single-bus maturity, receiver closure and full-system claims
+open. Audit PASS means declared balances, identities, hashes and schema checks
+passed at that snapshot; it is not a technology pass.
+
+\section{System architecture and equal-service comparison}
+\eyebrow{ERV precedes EO in the leading post-ERV architecture}
+
+The leading near-term chain is
+\[
+  \text{outdoor air}
+  \longrightarrow \text{passive ERV}
+  \longrightarrow \text{EO polishing}
+  \longrightarrow \text{remaining AC sensible/latent service}.
+\]
+EO therefore acts on the finite moisture duty that remains after the ERV.
+This is distinct from direct EO integrated into the ERV core, and from an
+EO-first architecture without a passive latent exchanger.
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{@{}Y r r r Y@{}}
+\toprule
+\textbf{System} & \textbf{AC} & \textbf{Pre-dryer} & \textbf{Total} &
+\textbf{Evidence boundary} \\
+& [kW] & [kW] & [kW] & \\
+\midrule
+AC only & 1,166.400 & 0 & 1,166.400 &
+Calibrated reference anchor \\
+Passive ERV + AC & 509.381 & 34.359 & 543.741 &
+Modelled passive equal-service reference \\
+Passive ERV + post-ERV EO to O30 + AC & 316.910 & 64.417 & 381.327 &
+\textbf{Conditional incomplete ledger}; receiver/sink and several hardware terms omitted \\
+Direct active EO in ERV, full humidity duty + AC & 44.438 & 63.419 & 107.856 &
+\textbf{Conditional architecture screen}; unmeasured inverse-design vector and incomplete coupling \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\reportfigure[0.96]{../../outputs/fom_assessment_v1/figures/system_comparison.pdf}{
+Current combined system comparison on one equal outdoor-to-supply water duty.
+The AC-only and passive-ERV rows are references. Both EO rows are conditional
+ledgers: they include the declared known electrical terms but exclude open
+receiver/sink, thermal and hardware penalties.}
+\FloatBarrier
+
+Relative to passive ERV+AC, the current common-voltage O30 subtotal is lower
+by 162.414~kW, or 29.87\%. Relative to AC alone it is lower by
+785.073~kW. These differences are \emph{available conditional budgets}, not
+measured savings. Every omitted positive load consumes the budget:
+\[
+P_{\mathrm{EO,all-in}}
+=P_{\mathrm{grid}}+P_{\mathrm{module\,fan}}
++P_{\mathrm{receiver/sink}}+P_{\mathrm{heat\,rejection}}
++P_{\mathrm{BOP}}.
+\]
+
+\begin{plainbox}
+\textbf{Why EO follows ERV here.} The passive ERV removes 3,137.65~kg/h from
+the outdoor-to-supply water duty before EO is invoked. This reduces the EO
+duty and makes O50 a zero-EO case. The direct active-ERV architecture remains
+a model-level research alternative, but it has a different boundary,
+different membrane preference and less subsystem closure.
+\end{plainbox}
+
+\section{O50, O30 and the meaning of percentage}
+\eyebrow{Use finite remaining duty, not ambiguous relative humidity labels}
+
+\subsection{O50}
+
+At the frozen O80 outdoor state and passive-ERV reference, the ERV outlet is
+already drier than the O50 absolute-humidity coordinate. O50 therefore
+requires \textbf{no post-ERV EO duty}. The O50 bar is not evidence for an EO
+saving; it is the passive-ERV reference state.
+
+\subsection{O30}
+
+O30 removes 1,228.27~kg/h after the passive ERV and closes 72.7003\% of the
+finite moisture gap between the ERV outlet and the final supply humidity
+ratio. It is the clearest first target because it:
+\begin{itemize}
+  \item creates a large but finite and interpretable water duty;
+  \item has confirmed sampled one-common-bus solutions below 2~V;
+  \item retains a sizeable conditional receiver/sink budget;
+  \item exposes the decisive diffusivity, film and material interactions
+        without requiring the full-duty pinch to close.
+\end{itemize}
+
+\subsection{The historical 10\% point}
+
+The previously named 10\% reduction removes 374.94~kg/h. Relative to the
+finite post-ERV-to-supply duty, it is \textbf{22.1925\% completion}. Both
+coordinates are retained for traceability; the historical result must not be
+silently relabelled.
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{@{}Y r r r r@{}}
+\toprule
+\textbf{Coordinate} & \textbf{EO water} & \textbf{Remaining-duty completion} &
+\textbf{Fixed-trajectory area} & \textbf{Maximum voltage} \\
+& [kg/h] & [\%] & [m\textsuperscript{2}] & [V] \\
+\midrule
+Historical 10\% & 374.94 & 22.1925 & 1,858.5 & 0.503 \\
+O30 & 1,228.27 & 72.7003 & 6,089.1 & 1.314 \\
+Full remaining duty & 1,689.50 & 100.0000 & 8,376.2 & 1.895 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+The area/voltage values above are the fixed Terminal-1 uniform-current
+sizing trajectory. They do not establish a common-bus module. The independent
+common-voltage results are reported separately in Section~\ref{sec:commonbus}.
+
+\section{Increasing EO share after the ERV}
+\eyebrow{The energy trend is conditional and the endpoint changes control regime}
+
+\reportfigure[0.96]{../../outputs/post_erv_eo_percentage_sweep_v1/percentage_energy_saving.png}{
+Conditional energy effect as EO closes an increasing fraction of the
+remaining post-ERV duty. The exact 100\% endpoint is a different coil-control
+regime and must not be connected continuously to the one-sided near-endpoint
+curve.}
+
+Below the exact full-duty endpoint, the screening coil remains on its
+saturated-coil branch. With zero EO process-heat leakage, the conservative
+energy window grows approximately linearly with treated water when all-in EO
+SEC is below 0.1567~kWh/kg, is neutral near that value, and becomes an
+increasing loss above it.
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{@{}Y r r r@{}}
+\toprule
+\textbf{All-in EO SEC} & \textbf{Historical 10\%} & \textbf{O30} &
+\textbf{Full duty} \\
+& \multicolumn{3}{c}{\textbf{Conservative conditional window [kW]}} \\
+\midrule
+0.050 kWh/kg & 40.01 & 131.06 & 180.27 \\
+0.100 kWh/kg & 21.26 & 69.64 & 95.80 \\
+0.150 kWh/kg & 2.51 & 8.23 & 11.32 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+The exact endpoint has a calculated 0.2752-kWh/kg break-even because the
+remaining coil becomes sensible-only. Infinitesimally above the endpoint, the
+screening logic returns to the latent-control branch and the conservative
+budget is 0.1567~kWh/kg. Use the lower one-sided budget for decisions until a
+real coil/control sequence validates the ideal endpoint transition.
+
+\reportfigure[0.95]{../../outputs/post_erv_eo_percentage_sweep_v1/percentage_membrane_receiver.png}{
+Fixed-coordinate membrane area, voltage and receiver activity versus
+remaining-duty completion. This is a re-sized trajectory at each target, not
+one fixed installed module.}
+\FloatBarrier
+
+\subsection{Full-duty uniform-current sensitivity}
+
+The best target-reaching balanced-receiver row in the uniform-current study
+uses 8,376.2~m\textsuperscript{2}, 3.0~A/m\textsuperscript{2} and
+1.895~V. It leaves 216.80~kW on the conservative near-endpoint branch before
+receiver/sink work, or 417.00~kW on the ideal exact-endpoint branch. The
+receiver/sink SEC room is 0.1283~kWh/kg. This is useful as a thermodynamic and
+sizing sensitivity, not evidence that one electrical bus or a practical
+receiver can realise the point.
+
+\reportfigure[0.94]{../../outputs/post_erv_full_eo_study_v1/receiver_and_sink_budget.png}{
+Conditional receiver/sink SEC budget for full post-ERV duty. Every receiver,
+regeneration, disposal, pumping and heat-rejection term must fit inside the
+remaining budget for the energy sign to survive.}
+\FloatBarrier
+
+\section{Common-voltage findings}
+\label{sec:commonbus}
+\eyebrow{One bus with local current sharing is stricter than a uniform-current sweep}
+
+The common-voltage topology applies one terminal voltage while allowing local
+parallel current sharing. No current-density acceptance ceiling and no area
+acceptance cap are used. Feasibility requires endpoint, water, voltage and
+thermodynamic closure.
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{@{}Y r r r r Y@{}}
+\toprule
+\textbf{Replay} & \textbf{Completion} & \textbf{Voltage} & \textbf{Area} &
+\textbf{$j$ range} & \textbf{Status} \\
+& [\%] & [V] & [m\textsuperscript{2}] & [A/m\textsuperscript{2}] & \\
+\midrule
+50\% & 50.000 & 1.000 & 2,468.35 & 3.646--6.879 & Converged target \\
+60\% & 60.000 & 1.000 & 3,708.38 & 2.432--6.322 & Converged target \\
+67.5\% & 67.500 & 1.000 & 5,269.67 & 1.520--5.905 & Converged target \\
+O30 & 72.700 & 1.000 & 7,191.41 & 0.887--5.616 & Converged target \\
+O30 balanced-anchor voltage & 72.700 & 1.314 & 3,461.40 & 3.044--8.427 & Converged target \\
+Full duty & 100.000 & 1.000 & -- & 0.064--10.964 & No physical common-voltage solution at this coordinate \\
+Full duty & 100.000 & 2.000 & -- & 2.358--10.006 & Numerical/local failure; not a no-go proof \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\reportfigure[0.96]{../../outputs/project_closure_check_v1/figures/closure_common_voltage.pdf}{
+Project-closure replay of the common-voltage window. O30 and lower completion
+targets have confirmed sampled points. Full duty has no confirmed sampled
+point in the frozen range and remains an open architecture question.}
+
+\subsection{Diffusivity sensitivity}
+
+The refined one-factor study varies $D$ while freezing the remaining
+inverse-design properties. O30 has confirmed sampled voltages at 1.00--1.25~V
+for all seven $D$ coordinates. At $D=10^{-14}$~m\textsuperscript{2}/s, the
+selected 1.00-V row uses approximately 7,174~m\textsuperscript{2}, consumes
+30.06~kW known EO+fan power and leaves a conditional 162.42-kW window. At
+$D=10^{-9}$~m\textsuperscript{2}/s, the selected known power rises to
+373.89~kW and the conditional window becomes $-181.41$~kW.
+
+\reportfigure[0.96]{../../outputs/workshop_common_voltage_diffusivity_v1/figures/workshop_common_voltage_diffusivity.pdf}{
+Common-voltage diffusivity cross-check. Crosses denote sampled physical
+no-solutions and open triangles unresolved numerical/local high-bracket rows.
+No sampled value is not a global proof of impossibility.}
+
+For full remaining duty, none of 49 refined sampled voltages is confirmed:
+21 are physical no-solutions and 28 are numerical/local unresolved. Across
+both segment counts, 98 flagged rows were retried at a 100-times higher
+configured numerical bound; none recovered full closure. The allowed wording
+is therefore: \emph{no confirmed feasible sampled common-voltage point was
+found below 2~V at the frozen coordinate}. Voltage zoning, staging or changed
+receiver/path physics belongs after measured material data.
+
+\section{Figure of merit and energy budget}
+\eyebrow{FOM is the reciprocal of SEC only after the power boundary is named}
+
+\[
+\fom=\frac{\dot m_{\mathrm{water}}}{P_{\mathrm{device}}}
+\quad[\mathrm{kg/kWh}],
+\qquad
+\secpd=\frac{P_{\mathrm{device}}}{\dot m_{\mathrm{water}}}
+\quad[\mathrm{kWh/kg}],
+\qquad
+\fom=\secpd^{-1}.
+\]
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{@{}Y r r r r Y@{}}
+\toprule
+\textbf{Device coordinate} & \textbf{Water} & \textbf{Known power} &
+\textbf{Known SEC} & \textbf{Known FOM} & \textbf{Boundary} \\
+& [kg/h] & [kW] & [kWh/kg] & [kg/kWh] & \\
+\midrule
+Post-ERV EO to O30, 1.00 V & 1,228.27 & 30.057 & 0.02447 & 40.864 &
+EO grid plus idealised module fan \\
+Direct EO in ERV, full duty, 0.25 V & 4,827.15 & 63.419 & 0.01314 & 76.116 &
+Reclassified active core plus idealised fan \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\reportfigure[0.94]{../../outputs/fom_assessment_v1/figures/device_fom.pdf}{
+Known-core FOM and the minimum all-in FOM needed to retain a positive
+conditional margin. The open gap between known and break-even performance is
+an allowance for missing loads, not evidence that those loads are small.}
+
+For the post-ERV O30 common-voltage point, the minimum break-even all-in FOM is
+6.382~kg/kWh and the unallocated SEC budget is 0.13223~kWh/kg. The current
+known-core FOM is attractive only if the receiver, thermal and balance-of-plant
+terms fit inside that allowance.
+
+Using the complete outdoor-to-supply water duty as a common numerator, the
+system water-energy FOMs are 4.139~kg/kWh for AC only, 8.878 for passive
+ERV+AC, 12.659 for post-ERV EO O30, and 44.755 for the direct active-ERV
+full-duty screen. The EO system values remain conditional incomplete ledgers.
+Twelve of thirteen requested FOMs can be calculated or parameterised; payback
+cannot be stated without CAPEX and incremental maintenance.
+
+\section{Membrane and material findings}
+\eyebrow{The target is a coupled property vector, not one favourable scalar}
+
+\subsection{Direct EO and post-ERV parameter regions}
+
+The direct-EO 2-V screen has 178 membrane-gate passes among 2,508 physical
+coordinates; 108 remain at the preferred 1.8-V boundary. Those are discrete
+sampled supports, not continuous tolerance boxes. With a 0.85-V combined fixed
+loss, none is positive against the modern comparator before receiver energy.
+A deterministic 0.20-V fixed-loss scenario has 15 positive rows, still before
+receiver and balance-of-plant terms.
+
+For EO after the ERV, 646 of 1,122 dense $D$--$j$ rows are conditionally
+energy-positive on the declared coefficient basis. This does not imply that
+646 materials exist: all other properties were frozen.
+
+\reportfigure[0.90]{../../outputs/material_parameter_windows_with_nafion_v1/04_simultaneous_property_gap_vs_nafion.pdf}{
+Simultaneous property gap relative to the declared Nafion reference. Marginal
+axis overlap must not be combined into a fictitious joint material vector.}
+
+\subsection{Nafion interpretation}
+
+Nafion's declared drag envelope is approximately 0.3--2.5 mol
+H$_2$O/mol charge, far below the direct-EO drag region in the current screen.
+Its literature diffusivity can lie on a sampled post-ERV $D$ axis, but its
+conductivity magnitude and activity exponents differ from the frozen
+inverse-design model. The adapter has non-negligible fit errors and some
+active-ERV local states lie outside its declared hydration domain.
+
+A matched zero-current control is especially instructive. At the selected
+Nafion-reference coordinate, the active row attributes 91.63\% of net water
+transfer to diffusion and consumes 0.444~kW for EO. The exact passive control
+requires only 2.653\% more area and uses 0.493~kW less electricity.
+Consequently, that apparent benefit is primarily passive membrane transfer,
+not an EO energy result.
+
+\begin{warningbox}
+\textbf{Material non-gates.} Nafion is not the target. There is no current
+density acceptance gate at 21~A/m\textsuperscript{2}, area is an observation
+rather than a pass/fail cap in this phase, and a drag number near 100 is not
+sufficient by itself. Do not mix properties from different samples,
+conditioning states or literature schemas.
+\end{warningbox}
+
+\subsection{Same-sample data required before ranking}
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{@{}p{19mm}p{48mm}Y@{}}
+\toprule
+\textbf{ID} & \textbf{Property or measurement} & \textbf{Decision role} \\
+\midrule
+MAT-01 & Sorption isotherm, hysteresis and water capacity & Converts RH into
+chemical loading/work and defines the valid domain \\
+MAT-02 & $D(a,T)$ or chemical mobility/permeance with definition & Separates
+kinetics from capacity and quantifies passive co-/back-diffusion \\
+MAT-03 & EO drag $n_d(a,T,j)$ & Sets polarity-odd water transported per charge \\
+MAT-04 & Wet through-plane conductivity & Sets bulk ohmic loss \\
+MAT-05 & Compressed membrane plus contact ASR & Prevents optimism from bulk
+conductivity alone \\
+MAT-06 & Dry/wet thickness, swelling, creep and mechanics & Couples permeance,
+resistance, gap control and lifetime \\
+MAT-07 & Coupled two-sided net water flux & Tests whether the property bundle
+coexists under model-relevant gradients \\
+MAT-08 & Receiver/electrode wetting, corrosion, flooding and drainage & Closes
+interface compatibility and regeneration needs \\
+MAT-09 & Sample, batch, ion form, conditioning and raw-data provenance & Makes
+the candidate auditable and procurable \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+Post-ERV polishing and direct-ERV integration can prefer different materials.
+Post-ERV EO benefits from suppressing adverse chemical permeance. Direct ERV
+can exploit favourable passive transfer before a pinch, so minimising
+permeance indiscriminately can remove useful free transport.
+
+\section{EO vapour coupon-cell dimensions}
+\eyebrow{Centimetre-scale, controlled-flow and reconfigurable}
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{@{}p{47mm}p{43mm}Y@{}}
+\toprule
+\textbf{Element} & \textbf{Starting value} & \textbf{Reason} \\
+\midrule
+Maximum active aperture & 50$\times$50 mm = 25 cm\textsuperscript{2} &
+Maximises signal while retaining a manageable fixture \\
+Additional square masks & 30$\times$30 and 20$\times$20 mm &
+Area scaling and lower-signal checks \\
+Identifiability inserts & 40$\times$40 mm and equal-area 8$\times$50 mm &
+Separates area/perimeter and orientation effects \\
+Membrane coupon & Approximately 80$\times$80 mm &
+15-mm land per side for seals, guard and handling \\
+Outer fixture & Approximately 110$\times$110 mm &
+Additional land for bolts and ports \\
+Symmetric gaps & 1, 2 and 4 mm; begin at 2 mm &
+Direct film and boundary sensitivity \\
+Flow frame & 8--10 mm insulating frame &
+Starting structural and port depth \\
+Backing/load plate & 12 mm metal; 16 mm if load-bearing PEEK &
+Conservative deflection screen pending measured torque/flatness \\
+Nominal high-flow mode & 6 actual L/min per side at 2-mm gap &
+Approximately 1 m/s, Re about 236, ideal straight-channel drop about 2.9 Pa \\
+Swept volume & 5.00 mL active; 6.22 mL with headers/ports &
+Keep added dead volume at or below about 1.3 mL per side \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\reportfigure[0.96]{../../outputs/eo_vapor_cell_sizing_v1/cell_dimension_tradeoffs.png}{
+Coupon-cell dimension trade-offs. The 25-cm\textsuperscript{2}, 2-mm-gap
+fixture is the nominal starting point; interchangeable masks and gaps are part
+of the measurement design, not optional refinements.}
+
+The plate screen limits bow to 20~$\mu$m, or 2\% of the 1-mm gap, across a
+50-mm unsupported square. Gas pressure alone is not governing. Under a
+deliberately conservative 1-MPa equivalent uniform fixture-load surrogate,
+calculated minimum thicknesses are 15.4~mm PEEK, 5.8~mm aluminium and
+4.2~mm 316L. These are screening values, not a gasket-contact calculation;
+the assembled cell needs a torque, loaded-gap and flatness map.
+
+\subsection{Signal and flow modes}
+
+The 25-cm\textsuperscript{2} gross EO signal screen spans approximately
+5.04--840.2~mg/h. With 0.1 RH-percentage-point expanded uncertainty for each
+humidity channel and a signal-to-uncertainty gate of five, low-drag signals
+would require flows below the 6-L/min film-characterisation condition. Use
+separate modes:
+\begin{itemize}
+  \item \textbf{high-flow film mode:} nominally 6~L/min per side, repeated at
+        3 and 12~L/min and at 1/2/4-mm gaps;
+  \item \textbf{low-flow/integrating signal mode:} approximately
+        0.69~L/min for the 5.04-mg/h floor or 2.29~L/min for the
+        16.80-mg/h order-unity reference, unless a more sensitive integrating
+        water measurement is used.
+\end{itemize}
+
+A shallow closed chamber cannot hold fixed RH under transport. In the
+gas-only 5-mL chamber, the low-drag 5.04-mg/h reference reaches a 5-Pa
+differential in 0.063~s. Even a 5-L reservoir extends that ideal time only to
+63.4~s. Closed operation is therefore a transient inventory experiment with
+pressure compliance/control, not a steady boundary.
+
+\section{Boundary sensitivity and error control}
+\eyebrow{Polarity reversal removes static bias, not films or dynamic drift}
+
+\reportfigure[0.95]{../../outputs/eo_vapor_boundary_analysis_v1/combined_sensitivity_rank.png}{
+Ranked boundary and nuisance sensitivities in the declared stress space. The
+ranges are experiment-design scenarios, not calibrated probability
+distributions or confidence limits.}
+
+At the nominal 25-cm\textsuperscript{2}, 2-mm, 32$^\circ$C condition:
+\begin{itemize}
+  \item a static +0.1 RH-percentage-point inlet mismatch changes the
+        fast-diffusion one-way result by about +10.2\%, while the ideal
+        polarity-odd estimator nearly rejects it;
+  \item a +0.1-K side-to-side temperature mismatch changes the same one-way
+        result by about $-28.9$\%, while a stable reversal again nearly
+        rejects the static part;
+  \item changing the gap from 2 to 1~mm shifts the fast-diffusion odd signal
+        by about $-2.0$\%; changing to 4~mm shifts it by about $-10.1$\%;
+  \item high-diffusion cases are dominated by the unresolved film multiplier,
+        while slow-diffusion cases are dominated by humidity drift between
+        polarities.
+\end{itemize}
+
+ABBA ordering rejects static and linear drift only when the boundary is stable
+over the block. Polarity-correlated humidity, wall inventory, nonlinear drift,
+hysteresis and settling can survive the odd estimator and mimic EO. Therefore:
+\begin{enumerate}
+  \item feed both sides from a split common inlet for equal-RH work;
+  \item cross-switch the humidity reference and randomise or mirror ABBA block
+        order;
+  \item record source loss and receiver gain independently and require water
+        closure within combined uncertainty;
+  \item control membrane differential pressure to the declared $\pm5$-Pa
+        target and deliberately challenge it separately;
+  \item run impermeable-foil blanks before and after each block;
+  \item report one-way, polarity-even and polarity-odd rates separately;
+  \item repeat flow and gap, and fit area plus perimeter using at least five
+        inserts including an equal-area/different-perimeter pair.
+\end{enumerate}
+
+The original three square masks alone give zero residual degrees of freedom
+for an area-plus-perimeter fit and an area/perimeter correlation of 0.995.
+The recommended five-insert set yields two residual degrees of freedom and
+reduces, but does not eliminate, the correlation.
+
+\section{Open gates}
+\eyebrow{What still prevents a design or energy claim}
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{@{}p{40mm}p{22mm}Y@{}}
+\toprule
+\textbf{Gate} & \textbf{State} & \textbf{Required closure evidence} \\
+\midrule
+Candidate data completeness & \textcolor{Orange}{\textbf{OPEN}} &
+One same-sample MAT-01--MAT-09 dataset with raw points and provenance \\
+Receiver boundary and SEC & \textcolor{Orange}{\textbf{OPEN}} &
+Chosen gas/liquid/desiccant sink; measured transfer, pumping, regeneration or
+disposal and compatibility \\
+EO heat rejection & \textcolor{Orange}{\textbf{OPEN}} &
+Conjugate energy balance with transported-water enthalpy assigned once \\
+Full-duty common bus & \textcolor{Orange}{\textbf{OPEN}} &
+Measured candidate replay and, if warranted, staged/zoned topology \\
+Films and interfaces & \textcolor{Orange}{\textbf{OPEN}} &
+Flow/gap/temperature-resolved source and receiver exchange coefficients \\
+Hardware/BOP & \textcolor{Orange}{\textbf{OPEN}} &
+Electrodes, contacts, converter topology, manifolds, sealing, leakage and controls \\
+Practical module limits & \textcolor{Orange}{\textbf{OPEN}} &
+Team-defined area, footprint, pressure drop, CAPEX, maintenance and lifetime gates \\
+Durability and safety & \textcolor{Orange}{\textbf{OPEN}} &
+Wet cycling, creep, corrosion, fouling, electrical safety and long-duration mass balance \\
+Immutable release & \textcolor{Orange}{\textbf{OPEN}} &
+Freeze reviewed source/output hashes in a clean commit or equivalent snapshot \\
+Technology validation & \textcolor{Red}{\textbf{NOT ACHIEVED}} &
+Measured coupled material, subsystem and full-system evidence \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Recommended next experiments}
+\eyebrow{Convert the remaining uncertainty into measurements}
+
+\subsection{Experiment 1: fixture qualification and blank closure}
+
+\begin{enumerate}
+  \item Assemble the 50$\times$50-mm aperture cell with 2-mm gaps, metal load
+        plates and double seals.
+  \item Map loaded gap and flatness against bolt torque; measure swept and dead
+        volumes.
+  \item Run foil blanks over 3/6/12~L/min, 1/2/4-mm gaps and the intended
+        pressure envelope.
+  \item Accept the fixture only when leakage, pressure-driven bypass and wall
+        inventory fit within a predeclared fraction of the minimum useful
+        polarity-odd signal.
+\end{enumerate}
+
+\subsection{Experiment 2: EO identification with matched zero-current control}
+
+\begin{enumerate}
+  \item Use a split common inlet and stabilise temperature, RH and pressure.
+  \item Run $+J/0/-J$ and mirrored ABBA blocks at multiple current levels.
+  \item Measure water on both sides, charge, terminal voltage and local
+        temperatures; report odd, even and one-way terms.
+  \item Repeat with flow, gap, aperture area and perimeter changes.
+  \item Treat any current-off transport as the matched passive control, not as
+        background to be assumed negligible.
+\end{enumerate}
+
+\subsection{Experiment 3: same-sample property bundle}
+
+For every candidate, freeze sample ID, batch, ion form, conditioning and wet
+thickness. Measure sorption/hysteresis, activity-resolved chemical mobility,
+EO drag, wet conductivity, compressed ASR, swelling/mechanics and the coupled
+two-sided flux. Candidate ranking begins only when all MAT-01--MAT-09 rows are
+complete for the same sample.
+
+\subsection{Experiment 4: receiver and thermal ledger}
+
+Choose one receiver concept and measure or bound water acceptance, pressure
+drop, pumping, regeneration/disposal, flooding/drainage, electrode
+compatibility and heat rejection. The pass criterion is not receiver SEC
+alone: the complete added ledger must remain inside the O30 conditional
+0.13223-kWh/kg allowance with an uncertainty margin.
+
+\subsection{Experiment 5: measured-data topology replay}
+
+Only after Experiments 1--4, replay:
+\begin{itemize}
+  \item post-ERV O30 on one common bus;
+  \item higher completion with one bus;
+  \item two voltage zones or staged EO if full-duty conflict remains;
+  \item direct active EO in the ERV if measured passive transfer and films
+        justify it.
+\end{itemize}
+The replay must include measured property covariance and uncertainty, not
+independent best-case axes.
+
+\begin{mainbox}
+\textbf{Recommended sequence.} Fixture qualification $\rightarrow$ matched
+passive/active coupon identification $\rightarrow$ same-sample property bundle
+$\rightarrow$ receiver/thermal ledger $\rightarrow$ measured-data topology
+replay. This sequence closes a decision gate at every step and avoids another
+unfocused model sweep.
+\end{mainbox}
+
+\section{Provenance and claim boundary}
+\eyebrow{Canonical machine-readable outputs, not copied report assets}
+
+This v8 report references the current figures and machine-readable evidence
+in place; no output figure or data file is copied into this report directory.
+The principal sources are:
+
+\begin{itemize}
+  \item \evidencepath{outputs/project_closure_check_v1/closure_status.json},
+        \evidencepath{outputs/project_closure_check_v1/decision_gate_register.csv}
+        and \evidencepath{outputs/project_closure_check_v1/source_manifest.json};
+  \item \evidencepath{outputs/final_delivery_check_v1/status.json},
+        \evidencepath{outputs/final_delivery_check_v1/gate_register.csv} and
+        \evidencepath{outputs/final_delivery_check_v1/source_manifest.json};
+  \item \evidencepath{outputs/post_erv_full_eo_study_v1/}:
+        \evidencepath{SUMMARY.md}, energy windows, transport rows and audit;
+  \item \evidencepath{outputs/post_erv_eo_percentage_sweep_v1/}:
+        percentage semantics, energy ledger, fixed-coordinate trajectory and audit;
+  \item \evidencepath{outputs/workshop_common_voltage_diffusivity_v1/}:
+        case register, refined envelope, bracket probe, profiles, audit and source manifest;
+  \item \evidencepath{outputs/fom_assessment_v1/system_fom.csv},
+        \evidencepath{outputs/fom_assessment_v1/device_fom.csv},
+        \evidencepath{outputs/fom_assessment_v1/summary.json},
+        \evidencepath{outputs/fom_assessment_v1/audit.json} and
+        \evidencepath{outputs/fom_assessment_v1/source_manifest.json};
+  \item \evidencepath{outputs/material_parameter_windows_with_nafion_v1/} and
+        \evidencepath{outputs/direct_passive_nafion_erv_control_v1/};
+  \item \evidencepath{outputs/integrated_evidence_v1/material_data_requirements.csv}
+        and \evidencepath{outputs/integrated_evidence_v1/next_study_matrix.csv};
+  \item \evidencepath{outputs/eo_vapor_cell_sizing_v1/audit.json},
+        \evidencepath{outputs/eo_vapor_cell_sizing_v1/source_manifest.json},
+        \evidencepath{outputs/eo_vapor_boundary_analysis_v1/audit.json} and
+        \evidencepath{outputs/eo_vapor_boundary_analysis_v1/source_manifest.json}.
+\end{itemize}
+
+\subsection{Permitted conclusions}
+
+\begin{itemize}
+  \item The model identifies conditional post-ERV and direct-ERV energy windows.
+  \item O30 is a confirmed sampled common-voltage mechanism coordinate and the
+        preferred first system-relevant coupon target.
+  \item O50 needs no post-ERV EO duty at the declared absolute-humidity basis.
+  \item Full post-ERV duty on one common bus below 2~V is not demonstrated in
+        the sampled frozen coordinate and is not proven impossible.
+  \item The material question is whether a coupled property bundle exists in
+        one conditioned and durable sample.
+  \item The model phase is sufficiently closed to begin material and subsystem
+        feasibility work.
+\end{itemize}
+
+\subsection{Prohibited conclusions}
+
+\begin{itemize}
+  \item No listed kW difference is a realised or validated saving.
+  \item No FOM is an all-in product FOM unless every omitted term is added.
+  \item No sampled material coordinate proves a continuous tolerance or a
+        commercially available membrane.
+  \item No current-density or area value is an acceptance limit in the present
+        exploratory phase.
+  \item Audit PASS is not material, module, system or commercial validation.
+\end{itemize}
+
+\begin{stopbox}
+The report is a current decision synthesis, not an immutable release. Before
+external distribution, freeze the reviewed repository state, rerun the final
+delivery check and all declared tests, regenerate the PDF, record hashes and
+package the source with an explicit manifest.
+\end{stopbox}
+
+\appendix
+\section{Compact numerical register}
+
+\begin{longtable}{@{}p{47mm}p{29mm}p{27mm}p{57mm}@{}}
+\toprule
+\textbf{Metric} & \textbf{Value} & \textbf{Evidence class} & \textbf{Canonical source} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Metric} & \textbf{Value} & \textbf{Evidence class} & \textbf{Canonical source} \\
+\midrule
+\endhead
+AC-only equal-service power & 1,166.400 kW & reference anchor &
+\evidencepath{outputs/fom_assessment_v1/system_fom.csv} \\
+Passive ERV+AC power & 543.740564 kW & modelled reference &
+\evidencepath{outputs/fom_assessment_v1/system_fom.csv} \\
+Post-ERV O30 conditional subtotal & 381.326719 kW & incomplete ledger &
+\evidencepath{outputs/fom_assessment_v1/system_fom.csv} \\
+Post-ERV O30 conditional window & 162.413845 kW & incomplete ledger &
+\evidencepath{outputs/fom_assessment_v1/system_fom.csv} \\
+Post-ERV O30 known-core FOM & 40.8641 kg/kWh & known core only &
+\evidencepath{outputs/fom_assessment_v1/device_fom.csv} \\
+O30 common-voltage area at FOM point & 7,173.55 m\textsuperscript{2} & model coordinate &
+\evidencepath{outputs/fom_assessment_v1/device_fom.csv} \\
+O30 all-in break-even SEC & 0.156701 kWh/kg & conditional budget &
+\evidencepath{outputs/post_erv_full_eo_study_v1/break_even_by_target.csv} \\
+O30 remaining-duty completion & 72.7003\% & exact coordinate &
+\evidencepath{outputs/post_erv_eo_percentage_sweep_v1/percentage_coordinates.csv} \\
+Historical 10\% remaining-duty completion & 22.1925\% & traceability coordinate &
+\evidencepath{outputs/post_erv_eo_percentage_sweep_v1/percentage_coordinates.csv} \\
+Full-duty conservative sink budget & 0.128323 kWh/kg & conditional budget &
+\evidencepath{outputs/project_closure_check_v1/closure_status.json} \\
+O30 common-voltage diffusivity span & $10^{-14}$--$10^{-9}$ m\textsuperscript{2}/s sampled &
+one-factor screen &
+\evidencepath{outputs/workshop_common_voltage_diffusivity_v1/diffusivity_envelope.csv} \\
+Full-duty refined sampled outcomes & 21 physical / 28 unresolved & open topology gate &
+\evidencepath{outputs/workshop_common_voltage_diffusivity_v1/diffusivity_envelope.csv} \\
+Active coupon aperture & 50$\times$50 mm & starting fixture &
+\evidencepath{outputs/eo_vapor_cell_sizing_v1/fixture_dimension_basis.csv} \\
+Nominal coupon gap and flow & 2 mm / 6 L min\textsuperscript{-1} side\textsuperscript{-1} &
+film mode &
+\evidencepath{outputs/eo_vapor_cell_sizing_v1/channel_geometry_envelope.csv} \\
+\bottomrule
+\end{longtable}
+
+\medskip
+{\sans\scriptsize\color{Slate}
+End of report. Current interpretation as of 31 August 2026. All EO system
+comparisons remain conditional until measured material, receiver, thermal and
+hardware ledgers close.}
+
+\end{document}

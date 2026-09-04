@@ -1,0 +1,52 @@
+{
+  "all_pass": true,
+  "checks": {
+    "all_declared_output_files_exist_and_nonempty": true,
+    "declared_reference_plates_pass_high_load_screen": true,
+    "fixture_seal_and_guard_stack_fits_coupon_land": true,
+    "low_drag_detectability_requires_flow_below_film_baseline": true,
+    "nominal_flow_is_6_l_min_per_side": true,
+    "order_unity_detectability_requires_flow_below_film_baseline": true,
+    "proposed_internal_dead_volume_meets_declared_limit": true,
+    "screen_remains_nonvalidated_and_conditional": true,
+    "single_50x50mm_25cm2_primary_aperture": true,
+    "single_nominal_25cm2_2mm_1ms_geometry": true
+  },
+  "claim_boundary": {
+    "final_acceptance_requires_blank_mass_balance_flatness_and_pressure_tests": true,
+    "fixture_dimensions_are_starting_values": true,
+    "gross_faradaic_transport_is_not_net_measured_transport": true,
+    "plate_loads_are_sensitivity_coordinates_not_gasket_predictions": true
+  },
+  "recommended_starting_fixture": {
+    "all_polymer_load_plate_starting_thickness_mm": 16.0,
+    "insulating_flow_frame_thickness_mm": [
+      8.0,
+      10.0
+    ],
+    "interchangeable_channel_gaps_mm": [
+      1.0,
+      2.0,
+      4.0
+    ],
+    "maximum_active_area_cm2": 25.0,
+    "maximum_active_window_mm": [
+      50.0,
+      50.0
+    ],
+    "maximum_internal_dead_volume_ml_per_side": 1.3,
+    "membrane_coupon_mm": [
+      80.0,
+      80.0
+    ],
+    "metal_load_plate_starting_thickness_mm": 12.0,
+    "nominal_channel_gap_mm": 2.0,
+    "nominal_flow_l_min_per_side": 6.0,
+    "outer_plate_mm": [
+      110.0,
+      110.0
+    ]
+  },
+  "schema_version": 1,
+  "study_id": "eo-vapor-cell-sizing-v1-2026-08-28"
+}

@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "study_id": "direct-active-erv-tw50-d1e10-v1-2026-09-02",
+  "script_version": "direct-active-eo-erv-study-v1.2-2026-08-31",
+  "created_utc": "2026-09-02T10:49:42.667051+00:00",
+  "mode": "study",
+  "status": "PASS",
+  "audit_scope": "integrity_and_reproducibility_not_design_acceptance",
+  "checks": [
+    {
+      "check_id": "exact_case_count",
+      "passed": true,
+      "detail": "observed=8, expected=8"
+    },
+    {
+      "check_id": "unique_case_ids",
+      "passed": true,
+      "detail": "deterministic case identifiers are unique"
+    },
+    {
+      "check_id": "segment_convergence_pair_count",
+      "passed": true,
+      "detail": "observed=4, expected=4"
+    },
+    {
+      "check_id": "all_terminal_voltages_at_or_below_2v",
+      "passed": true,
+      "detail": "maximum=1 V"
+    },
+    {
+      "check_id": "closed_transport_terminal_voltage_reconstructed",
+      "passed": true,
+      "detail": "all decision-eligible midpoint and boundary states close the requested terminal voltage"
+    },
+    {
+      "check_id": "no_current_density_acceptance_gate",
+      "passed": true,
+      "detail": "current density is diagnostic only"
+    },
+    {
+      "check_id": "no_area_acceptance_gate",
+      "passed": true,
+      "detail": "area and the observation cap are diagnostics only"
+    },
+    {
+      "check_id": "shared_return_stream_mass_and_water_identity",
+      "passed": true,
+      "detail": "the balanced building-return stream is the sole receiver and gains exactly the process-side water loss"
+    },
+    {
+      "check_id": "effective_electrical_losses_match_config",
+      "passed": true,
+      "detail": "effective fixed loss and ASR are explicit in every case row"
+    },
+    {
+      "check_id": "surface_threshold_applied_from_config",
+      "passed": true,
+      "detail": "positive-surface classification is retained only as a passive-gradient assistance diagnostic"
+    },
+    {
+      "check_id": "thermodynamic_gate_replaces_passive_surface_gate",
+      "passed": true,
+      "detail": "active transport is gated by thermodynamic consistency; passive-gradient sign is not a feasibility requirement"
+    },
+    {
+      "check_id": "passive_reference_reproduced",
+      "passed": true,
+      "detail": "observed=543.740564187789 kW, expected=543.740590648886 kW"
+    },
+    {
+      "check_id": "passive_erv_outlet_reproduced",
+      "passed": true,
+      "detail": "23 C and canonical passive-ERV humidity ratio"
+    },
+    {
+      "check_id": "closed_transport_water_balance",
+      "passed": true,
+      "detail": "closed rows=4"
+    },
+    {
+      "check_id": "conditional_power_identity",
+      "passed": true,
+      "detail": "reference - candidate total equals conditional margin"
+    },
+    {
+      "check_id": "nondecision_rows_decision_fields_are_nan",
+      "passed": true,
+      "detail": "decision quantities fail closed"
+    },
+    {
+      "check_id": "full_system_claim_disabled",
+      "passed": true,
+      "detail": "zero full-coupled cases is a valid study result"
+    }
+  ],
+  "sources": {
+    "config": {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_erv_tw50_d1e10_v1/config_tw50_d1e10.json",
+      "sha256": "a469a7a5e91682b59b52f17c7dfc48d37c412925317eedda3a13bd5e8153ee66",
+      "size_bytes": 8177
+    },
+    "runner": {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/scripts/run_direct_eo_erv_study_v1.py",
+      "sha256": "6298fca091d4edf7ebbe57fb45fcc3ead021ee4e070545013ac35a9252e7904f",
+      "size_bytes": 80326
+    },
+    "active_erv_module": {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/src/heiq/wp1/studies/direct_eo_erv.py",
+      "sha256": "9f57b2c44783a7ff5b6a087e8a64d98d0749bc24ea2f459fba64754d9f33ac60",
+      "size_bytes": 51273
+    },
+    "local_state_module": {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/src/heiq/wp1/axial/local_state.py",
+      "sha256": "d068b8d7429e6cdbfca769672cb95986ee6cc8fd89696c4f296aa1f67fb547c5",
+      "size_bytes": 10492
+    },
+    "thermodynamics_module": {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/src/heiq/wp1/membrane/thermodynamics.py",
+      "sha256": "f917a7e108d852403821450e7861dc5e14778264ecc50502d2168f25671f40ed",
+      "size_bytes": 10779
+    },
+    "canonical_v2_model": {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/heiq_pre_receiver_material_analyses/heiq_pre_receiver_model.py",
+      "sha256": "f538f810ae89e7f5eaff3ad2b8be38c587f11587ea4b1f8558d0a9c278f21f54",
+      "size_bytes": 41099
+    },
+    "canonical_v2_config": {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/heiq_pre_receiver_material_analyses/config/default.json",
+      "sha256": "519b90cc7819a83f607e376add55fe874b376850a49de2fdead32403c2c389a7",
+      "size_bytes": 4485
+    }
+  },
+  "outputs": {
+    "study/config_used.json": {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_erv_tw50_d1e10_v1/study/config_used.json",
+      "sha256": "a469a7a5e91682b59b52f17c7dfc48d37c412925317eedda3a13bd5e8153ee66",
+      "size_bytes": 8177
+    },
+    "study/run_contract.json": {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_erv_tw50_d1e10_v1/study/run_contract.json",
+      "sha256": "a28ce691d6be835f50ecea0e1d08a715e450b55d36248fbe2104a8345ba69e05",
+      "size_bytes": 699
+    },
+    "study/case_register.csv": {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_erv_tw50_d1e10_v1/study/case_register.csv",
+      "sha256": "57985e87bb6f79492faa94300ba6db658d145ada749ab3669564e2ac5ef458fd",
+      "size_bytes": 17176
+    },
+    "study/segment_register.csv.gz": {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_erv_tw50_d1e10_v1/study/segment_register.csv.gz",
+      "sha256": "dc17818afc6935ad281801ea617645db243a04b091b10b8e4d905da6124093f3",
+      "size_bytes": 16529
+    },
+    "study/selected_cases.csv": {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_erv_tw50_d1e10_v1/study/selected_cases.csv",
+      "sha256": "c9b01524737fdd6d8d9580f818058a57db78662c4a147c3877664f12c122b9ae",
+      "size_bytes": 5875
+    },
+    "study/target_summary.csv": {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_erv_tw50_d1e10_v1/study/target_summary.csv",
+      "sha256": "9ed74eee6f695bd2f30444c412155b8da670e6d995f479e98515ba0cbd079adc",
+      "size_bytes": 408
+    },
+    "study/gate_counts.csv": {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_erv_tw50_d1e10_v1/study/gate_counts.csv",
+      "sha256": "6a7fec8382162f1a15c16bcf8b06ed7b6988718817875e5b8d6c7951511ee51a",
+      "size_bytes": 619
+    },
+    "study/segment_convergence.csv": {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_erv_tw50_d1e10_v1/study/segment_convergence.csv",
+      "sha256": "00a6f39f2d81b4f6ea5edfa39501aac5d23ddd0870345e9a8c159eee6a08b964",
+      "size_bytes": 1998
+    },
+    "study/DECISION_SUMMARY.json": {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_erv_tw50_d1e10_v1/study/DECISION_SUMMARY.json",
+      "sha256": "4ed418e9441084184d899d93fcf588db5142da5c822a4ce59a8f17ec02837f51",
+      "size_bytes": 2400
+    },
+    "study/SUMMARY.md": {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_erv_tw50_d1e10_v1/study/SUMMARY.md",
+      "sha256": "fdd518f8cc7b90da83a49b1d5966831dfed477d3457076bf892819e113149f47",
+      "size_bytes": 1688
+    },
+    "figures/03_target_area_energy_tradeoff.png": {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_erv_tw50_d1e10_v1/study/figures/03_target_area_energy_tradeoff.png",
+      "sha256": "5393bbe58367da64ea60da34e58ffda7f0702c654fb09f283aaaeacc0ed15437",
+      "size_bytes": 93477
+    },
+    "figures/03_target_area_energy_tradeoff.pdf": {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_erv_tw50_d1e10_v1/study/figures/03_target_area_energy_tradeoff.pdf",
+      "sha256": "dda0ffbc133508be48e648150bc6b69862d0149fa468e3cdfd359ba2aa54c046",
+      "size_bytes": 16738
+    }
+  },
+  "metrics": {
+    "expected_case_count": 8,
+    "observed_case_count": 8,
+    "transport_closed_count": 4,
+    "positive_surface_count": 0,
+    "segment_convergence_pair_count": 4,
+    "segment_decision_convergence_pass_pair_count": 2,
+    "maximum_reported_current_density_a_m2": 56.52901353100812,
+    "full_coupled_gate_count": 0,
+    "robust_physics_count": 4,
+    "thermodynamic_consistency_count": 4,
+    "robust_passive_gradient_assistance_count": 0,
+    "engineering_screen_count": 4,
+    "physics_energy_overlap_count": 4,
+    "physics_energy_segment_converged_count": 4,
+    "robust_energy_overlap_count": 4,
+    "robust_energy_segment_converged_count": 4,
+    "legacy_numeric_current_search_ceiling_case_count": 4,
+    "case_status_counts": {
+      "engineering_screen_pass_not_full_coupled": 4,
+      "transport_solution_incomplete": 4
+    }
+  },
+  "claim_boundary": {
+    "claim_level": "conditional_system",
+    "full_system_claim_allowed": false,
+    "commercial_claim_allowed": false,
+    "omitted_or_unvalidated": [
+      "conjugate local sensible and latent heat-transfer solution",
+      "measured active-membrane material data",
+      "manufacturable electrode and current-collector geometry",
+      "leakage and cross-contamination",
+      "condensation and liquid-film dynamics",
+      "fouling, ageing, safety and lifetime"
+    ]
+  }
+}

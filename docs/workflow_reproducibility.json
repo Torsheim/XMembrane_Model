@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "reviewed_date": "2026-09-04",
+  "purpose": "Machine-readable authority, reproducibility and portability classification for every top-level study configuration.",
+  "classes": {
+    "current_standalone": {
+      "authority": "current",
+      "external_inputs_required": false,
+      "personal_absolute_paths_allowed": false
+    },
+    "current_v10_result_overlay": {
+      "authority": "current_supporting",
+      "external_inputs_required": true,
+      "personal_absolute_paths_allowed": false
+    },
+    "post_v10_handoff": {
+      "authority": "successor_phase_supplement",
+      "external_inputs_required": false,
+      "personal_absolute_paths_allowed": false
+    },
+    "historical_self_contained": {
+      "authority": "historical",
+      "external_inputs_required": false,
+      "personal_absolute_paths_allowed": false
+    },
+    "historical_external": {
+      "authority": "historical",
+      "external_inputs_required": true,
+      "personal_absolute_paths_allowed": true,
+      "exception": "Original host paths are retained only as dated provenance. Supply explicit external roots or a local config copy when replaying these workflows."
+    }
+  },
+  "configurations": [
+    {
+      "path": "config/capacitive_electrode_study_v1.json",
+      "class": "current_v10_result_overlay"
+    },
+    {
+      "path": "config/closed_receiver_system_v12_config.json",
+      "class": "historical_self_contained"
+    },
+    {
+      "path": "config/direct_eo_erv_study_v1.json",
+      "class": "current_standalone"
+    },
+    {
+      "path": "config/direct_eo_low_voltage_study_v1.json",
+      "class": "historical_external"
+    },
+    {
+      "path": "config/direct_erv_gradient_closure_v1.json",
+      "class": "current_v10_result_overlay"
+    },
+    {
+      "path": "config/eo_vapor_boundary_analysis_v1.json",
+      "class": "historical_external"
+    },
+    {
+      "path": "config/eo_vapor_test_cell_design.json",
+      "class": "post_v10_handoff"
+    },
+    {
+      "path": "config/final_delivery_check_v1.json",
+      "class": "historical_external"
+    },
+    {
+      "path": "config/fom_assessment_v1.json",
+      "class": "historical_external"
+    },
+    {
+      "path": "config/material_parameter_windows_with_nafion_v1.json",
+      "class": "historical_external"
+    },
+    {
+      "path": "config/membrane_operating_region_study_v1.json",
+      "class": "historical_external"
+    },
+    {
+      "path": "config/open_questions_analysis_v1.json",
+      "class": "historical_external"
+    },
+    {
+      "path": "config/post_erv_eo_design_frontier_v1.json",
+      "class": "historical_external"
+    },
+    {
+      "path": "config/post_erv_eo_percentage_sweep_v1.json",
+      "class": "historical_external"
+    },
+    {
+      "path": "config/post_erv_full_eo_study_v1.json",
+      "class": "historical_external"
+    },
+    {
+      "path": "config/pre_receiver_axial_v3_config.json",
+      "class": "historical_self_contained"
+    },
+    {
+      "path": "config/project_closure_check_v1.json",
+      "class": "historical_external"
+    },
+    {
+      "path": "config/system_energy_closure_references.json",
+      "class": "historical_external"
+    },
+    {
+      "path": "config/workshop_common_voltage_diffusivity_v1.json",
+      "class": "historical_external"
+    },
+    {
+      "path": "config/workshop_diffusivity_energy_v1.json",
+      "class": "historical_external"
+    }
+  ]
+}

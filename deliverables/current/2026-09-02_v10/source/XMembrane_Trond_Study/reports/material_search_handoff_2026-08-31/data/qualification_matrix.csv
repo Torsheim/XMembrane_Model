@@ -1,0 +1,91 @@
+candidate_id,candidate_name,requirement_id,requirement,evidence_status,complete_for_ranking,sources
+SELEMION_CMVN,Selemion CMVN,MAT-01,"Sorption, desorption and hysteresis",missing,False,HIST-02;HIST-03
+SELEMION_CMVN,Selemion CMVN,MAT-02,Water diffusivity/mobility and chemical permeance,missing,False,HIST-02;HIST-03
+SELEMION_CMVN,Selemion CMVN,MAT-03,Electro-osmotic water drag,same_named_platform_liquid_literature_not_identical_coupon,False,HIST-02;HIST-03
+SELEMION_CMVN,Selemion CMVN,MAT-04,Wet through-plane ionic conductivity,missing,False,HIST-02;HIST-03
+SELEMION_CMVN,Selemion CMVN,MAT-05,Membrane and compressed-stack ASR,missing,False,HIST-02;HIST-03
+SELEMION_CMVN,Selemion CMVN,MAT-06,"Dry/wet thickness, swelling and mechanics",missing,False,HIST-02;HIST-03
+SELEMION_CMVN,Selemion CMVN,MAT-07,Coupled two-sided net water flux and charge,missing,False,HIST-02;HIST-03
+SELEMION_CMVN,Selemion CMVN,MAT-08,Receiver/electrode/interface compatibility,missing,False,HIST-02;HIST-03
+SELEMION_CMVN,Selemion CMVN,MAT-09,"Provenance, grade and availability",named_grade_and_doi_known_availability_unverified,False,HIST-02;HIST-03
+CR61_AZL386,CR61 AZL 386,MAT-01,"Sorption, desorption and hysteresis",missing,False,HIST-02;HIST-03
+CR61_AZL386,CR61 AZL 386,MAT-02,Water diffusivity/mobility and chemical permeance,missing,False,HIST-02;HIST-03
+CR61_AZL386,CR61 AZL 386,MAT-03,Electro-osmotic water drag,partial_liquid_literature_H_and_K,False,HIST-02;HIST-03
+CR61_AZL386,CR61 AZL 386,MAT-04,Wet through-plane ionic conductivity,missing,False,HIST-02;HIST-03
+CR61_AZL386,CR61 AZL 386,MAT-05,Membrane and compressed-stack ASR,missing,False,HIST-02;HIST-03
+CR61_AZL386,CR61 AZL 386,MAT-06,"Dry/wet thickness, swelling and mechanics",missing,False,HIST-02;HIST-03
+CR61_AZL386,CR61 AZL 386,MAT-07,Coupled two-sided net water flux and charge,missing,False,HIST-02;HIST-03
+CR61_AZL386,CR61 AZL 386,MAT-08,Receiver/electrode/interface compatibility,missing,False,HIST-02;HIST-03
+CR61_AZL386,CR61 AZL 386,MAT-09,"Provenance, grade and availability",named_membrane_and_doi_known_availability_unverified,False,HIST-02;HIST-03
+MF4SC,MF-4SC,MAT-01,"Sorption, desorption and hysteresis",missing,False,HIST-02;HIST-03
+MF4SC,MF-4SC,MAT-02,Water diffusivity/mobility and chemical permeance,missing,False,HIST-02;HIST-03
+MF4SC,MF-4SC,MAT-03,Electro-osmotic water drag,missing,False,HIST-02;HIST-03
+MF4SC,MF-4SC,MAT-04,Wet through-plane ionic conductivity,partial_fully_hydrated_literature,False,HIST-02;HIST-03
+MF4SC,MF-4SC,MAT-05,Membrane and compressed-stack ASR,missing,False,HIST-02;HIST-03
+MF4SC,MF-4SC,MAT-06,"Dry/wet thickness, swelling and mechanics",missing,False,HIST-02;HIST-03
+MF4SC,MF-4SC,MAT-07,Coupled two-sided net water flux and charge,missing,False,HIST-02;HIST-03
+MF4SC,MF-4SC,MAT-08,Receiver/electrode/interface compatibility,missing,False,HIST-02;HIST-03
+MF4SC,MF-4SC,MAT-09,"Provenance, grade and availability",named_material_and_doi_known_grade_availability_unverified,False,HIST-02;HIST-03
+NAFION_N117,Nafion N117,MAT-01,"Sorption, desorption and hysteresis",family_literature_function_not_same_batch,False,CUR-04;HIST-02;HIST-14
+NAFION_N117,Nafion N117,MAT-02,Water diffusivity/mobility and chemical permeance,family_literature_function_not_same_batch,False,CUR-04;HIST-02;HIST-14
+NAFION_N117,Nafion N117,MAT-03,Electro-osmotic water drag,partial_literature_scenarios_not_device_specific,False,CUR-04;HIST-02;HIST-14
+NAFION_N117,Nafion N117,MAT-04,Wet through-plane ionic conductivity,partial_literature_near_saturation,False,CUR-04;HIST-02;HIST-14
+NAFION_N117,Nafion N117,MAT-05,Membrane and compressed-stack ASR,model_derived_not_compressed_coupon,False,CUR-04;HIST-02;HIST-14
+NAFION_N117,Nafion N117,MAT-06,"Dry/wet thickness, swelling and mechanics",nominal_product_thickness_only,False,CUR-04;HIST-02;HIST-14
+NAFION_N117,Nafion N117,MAT-07,Coupled two-sided net water flux and charge,missing,False,CUR-04;HIST-02;HIST-14
+NAFION_N117,Nafion N117,MAT-08,Receiver/electrode/interface compatibility,missing,False,CUR-04;HIST-02;HIST-14
+NAFION_N117,Nafion N117,MAT-09,"Provenance, grade and availability",named_grade_and_sources_known,False,CUR-04;HIST-02;HIST-14
+NAFION_NR211,Nafion NR211,MAT-01,"Sorption, desorption and hysteresis",family_literature_function_not_same_batch,False,CUR-04;CUR-06;CUR-07;CUR-31
+NAFION_NR211,Nafion NR211,MAT-02,Water diffusivity/mobility and chemical permeance,family_literature_function_not_same_batch,False,CUR-04;CUR-06;CUR-07;CUR-31
+NAFION_NR211,Nafion NR211,MAT-03,Electro-osmotic water drag,declared_reference_scenarios_not_measurement,False,CUR-04;CUR-06;CUR-07;CUR-31
+NAFION_NR211,Nafion NR211,MAT-04,Wet through-plane ionic conductivity,family_literature_function_not_same_batch,False,CUR-04;CUR-06;CUR-07;CUR-31
+NAFION_NR211,Nafion NR211,MAT-05,Membrane and compressed-stack ASR,L_over_sigma_derived_not_stack_EIS,False,CUR-04;CUR-06;CUR-07;CUR-31
+NAFION_NR211,Nafion NR211,MAT-06,"Dry/wet thickness, swelling and mechanics",nominal_product_thickness_only,False,CUR-04;CUR-06;CUR-07;CUR-31
+NAFION_NR211,Nafion NR211,MAT-07,Coupled two-sided net water flux and charge,missing,False,CUR-04;CUR-06;CUR-07;CUR-31
+NAFION_NR211,Nafion NR211,MAT-08,Receiver/electrode/interface compatibility,missing,False,CUR-04;CUR-06;CUR-07;CUR-31
+NAFION_NR211,Nafion NR211,MAT-09,"Provenance, grade and availability",named_grade_and_sources_known,False,CUR-04;CUR-06;CUR-07;CUR-31
+NAFION_NR212,Nafion NR212,MAT-01,"Sorption, desorption and hysteresis",family_literature_function_not_same_batch,False,CUR-04
+NAFION_NR212,Nafion NR212,MAT-02,Water diffusivity/mobility and chemical permeance,family_literature_function_not_same_batch,False,CUR-04
+NAFION_NR212,Nafion NR212,MAT-03,Electro-osmotic water drag,declared_reference_scenarios_not_measurement,False,CUR-04
+NAFION_NR212,Nafion NR212,MAT-04,Wet through-plane ionic conductivity,family_literature_function_not_same_batch,False,CUR-04
+NAFION_NR212,Nafion NR212,MAT-05,Membrane and compressed-stack ASR,L_over_sigma_derived_not_stack_EIS,False,CUR-04
+NAFION_NR212,Nafion NR212,MAT-06,"Dry/wet thickness, swelling and mechanics",nominal_product_thickness_only,False,CUR-04
+NAFION_NR212,Nafion NR212,MAT-07,Coupled two-sided net water flux and charge,missing,False,CUR-04
+NAFION_NR212,Nafion NR212,MAT-08,Receiver/electrode/interface compatibility,missing,False,CUR-04
+NAFION_NR212,Nafion NR212,MAT-09,"Provenance, grade and availability",named_grade_and_sources_known,False,CUR-04
+NAFION_N115,Nafion N115,MAT-01,"Sorption, desorption and hysteresis",family_literature_function_not_same_batch,False,CUR-04;HIST-14
+NAFION_N115,Nafion N115,MAT-02,Water diffusivity/mobility and chemical permeance,partial_non_device_literature,False,CUR-04;HIST-14
+NAFION_N115,Nafion N115,MAT-03,Electro-osmotic water drag,declared_reference_scenarios_not_measurement,False,CUR-04;HIST-14
+NAFION_N115,Nafion N115,MAT-04,Wet through-plane ionic conductivity,family_literature_function_not_same_batch,False,CUR-04;HIST-14
+NAFION_N115,Nafion N115,MAT-05,Membrane and compressed-stack ASR,L_over_sigma_derived_not_stack_EIS,False,CUR-04;HIST-14
+NAFION_N115,Nafion N115,MAT-06,"Dry/wet thickness, swelling and mechanics",nominal_product_thickness_only,False,CUR-04;HIST-14
+NAFION_N115,Nafion N115,MAT-07,Coupled two-sided net water flux and charge,missing,False,CUR-04;HIST-14
+NAFION_N115,Nafion N115,MAT-08,Receiver/electrode/interface compatibility,missing,False,CUR-04;HIST-14
+NAFION_N115,Nafion N115,MAT-09,"Provenance, grade and availability",named_grade_and_sources_known,False,CUR-04;HIST-14
+NAFION_N112,Nafion N112,MAT-01,"Sorption, desorption and hysteresis",family_literature_function_not_same_batch,False,HIST-14
+NAFION_N112,Nafion N112,MAT-02,Water diffusivity/mobility and chemical permeance,model_adapter_from_literature,False,HIST-14
+NAFION_N112,Nafion N112,MAT-03,Electro-osmotic water drag,model_adapter_from_literature,False,HIST-14
+NAFION_N112,Nafion N112,MAT-04,Wet through-plane ionic conductivity,model_adapter_from_literature,False,HIST-14
+NAFION_N112,Nafion N112,MAT-05,Membrane and compressed-stack ASR,MEA_apparent_resistance_not_membrane_ASR,False,HIST-14
+NAFION_N112,Nafion N112,MAT-06,"Dry/wet thickness, swelling and mechanics",nominal_product_thickness_only,False,HIST-14
+NAFION_N112,Nafion N112,MAT-07,Coupled two-sided net water flux and charge,missing,False,HIST-14
+NAFION_N112,Nafion N112,MAT-08,Receiver/electrode/interface compatibility,missing,False,HIST-14
+NAFION_N112,Nafion N112,MAT-09,"Provenance, grade and availability",named_grade_and_sources_known,False,HIST-14
+NAFION_120,Nafion 120,MAT-01,"Sorption, desorption and hysteresis",missing,False,HIST-02;HIST-03
+NAFION_120,Nafion 120,MAT-02,Water diffusivity/mobility and chemical permeance,partial_liquid_literature_Na_and_K,False,HIST-02;HIST-03
+NAFION_120,Nafion 120,MAT-03,Electro-osmotic water drag,missing,False,HIST-02;HIST-03
+NAFION_120,Nafion 120,MAT-04,Wet through-plane ionic conductivity,missing,False,HIST-02;HIST-03
+NAFION_120,Nafion 120,MAT-05,Membrane and compressed-stack ASR,missing,False,HIST-02;HIST-03
+NAFION_120,Nafion 120,MAT-06,"Dry/wet thickness, swelling and mechanics",missing,False,HIST-02;HIST-03
+NAFION_120,Nafion 120,MAT-07,Coupled two-sided net water flux and charge,missing,False,HIST-02;HIST-03
+NAFION_120,Nafion 120,MAT-08,Receiver/electrode/interface compatibility,missing,False,HIST-02;HIST-03
+NAFION_120,Nafion 120,MAT-09,"Provenance, grade and availability",named_membrane_and_doi_known_availability_unverified,False,HIST-02;HIST-03
+BPSH,BPSH,MAT-01,"Sorption, desorption and hysteresis",missing,False,HIST-02;HIST-03
+BPSH,BPSH,MAT-02,Water diffusivity/mobility and chemical permeance,missing,False,HIST-02;HIST-03
+BPSH,BPSH,MAT-03,Electro-osmotic water drag,partial_vapour_H_form_literature,False,HIST-02;HIST-03
+BPSH,BPSH,MAT-04,Wet through-plane ionic conductivity,missing,False,HIST-02;HIST-03
+BPSH,BPSH,MAT-05,Membrane and compressed-stack ASR,missing,False,HIST-02;HIST-03
+BPSH,BPSH,MAT-06,"Dry/wet thickness, swelling and mechanics",missing,False,HIST-02;HIST-03
+BPSH,BPSH,MAT-07,Coupled two-sided net water flux and charge,missing,False,HIST-02;HIST-03
+BPSH,BPSH,MAT-08,Receiver/electrode/interface compatibility,missing,False,HIST-02;HIST-03
+BPSH,BPSH,MAT-09,"Provenance, grade and availability",family_and_doi_known_exact_grade_availability_missing,False,HIST-02;HIST-03

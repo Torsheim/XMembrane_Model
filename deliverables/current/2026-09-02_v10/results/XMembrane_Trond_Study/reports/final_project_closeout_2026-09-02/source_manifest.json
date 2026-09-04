@@ -1,0 +1,258 @@
+{
+  "schema_version": 1,
+  "report_id": "heiq-xmembrane-final-project-closeout-v10-2026-09-02",
+  "created_utc": "2026-09-02T13:53:22Z",
+  "hash_algorithm": "sha256",
+  "manifest_self_hash_policy": "The manifest is not self-hashed; every report artifact and decision-critical input is hash-bound below.",
+  "authority": {
+    "status": "authoritative_current_closeout",
+    "supersedes_for_current_decisions": "reports/final_team_decision_report_2026-08-31/HeiQ_XMembrane_Final_Result_and_Decision_Report_2026-08-31_v9.pdf",
+    "historical_preservation": "Version 9 and earlier records remain unchanged historical evidence and provenance.",
+    "conflict_rule": "Version 10 governs wherever its current decision interpretation differs from Version 9."
+  },
+  "final_decision": {
+    "model_phase": "complete",
+    "technology_validated": false,
+    "continuous_electrode_mechanism_validated": false,
+    "existing_membrane_validated": false,
+    "module_performance_validated": false,
+    "net_system_saving_validated": false
+  },
+  "architecture": {
+    "selected_modelling_architecture": "direct EO transport inside the ERV membrane/core",
+    "post_erv_o30_status": "coupon-test boundary/control only unless a future controlled decision explicitly selects another architecture"
+  },
+  "key_evidence": {
+    "original_stored_voltage_replay_is_primary": true,
+    "primary_o30": {
+      "terminal_limit_v": 0.025,
+      "eo_retained_1h_pct": 16.2,
+      "eo_retained_24h_pct": 0.68,
+      "equivalent_target_time_h": 0.17,
+      "maximum_pair_capacitor_voltage_v": 0.478
+    },
+    "primary_full_duty": {
+      "terminal_limit_v": 0.25,
+      "eo_retained_1h_pct": 16.5,
+      "eo_retained_24h_pct": 0.69,
+      "equivalent_target_time_h": 0.17,
+      "maximum_pair_capacitor_voltage_v": 0.25
+    },
+    "optimistic_current_commanded_upper_bound": {
+      "terminal_ceiling_v": 1.8,
+      "o30_eo_retained_1h_pct": 98.5,
+      "o30_eo_retained_24h_pct": 4.6,
+      "o30_equivalent_target_time_h": 1.1,
+      "o30_maximum_pair_capacitor_voltage_v": 2.253,
+      "full_duty_eo_retained_1h_pct": 92.3,
+      "full_duty_eo_retained_24h_pct": 5.0,
+      "full_duty_equivalent_target_time_h": 1.2,
+      "full_duty_maximum_pair_capacitor_voltage_v": 1.8
+    },
+    "terminal_cap_is_individual_or_pair_electrochemical_window_constraint": false,
+    "individual_electrode_potentials_resolved": false,
+    "electrode_pair_stability_window_modelled": false,
+    "symmetric_charge_balanced_cycle_net_eo": "zero to numerical precision in the present constant-drag model",
+    "tw50_d1e10_classification": "synthetic sensitivity; not a validated membrane",
+    "tw50_d1e10_transport_closed_rows": 4,
+    "tw50_d1e10_total_rows": 8,
+    "tw50_d1e10_best_available_diagnostic_area_m2": 43019.5,
+    "tw50_d1e10_full_coupled_rows": 0
+  },
+  "technical_reference": {
+    "steady_axial_control": "constant terminal voltage per case; local through-plane current density is solved and varies along x",
+    "local_voltage_balance": "V_app = j(x)*(ASR_mem(x)+ASR_series) + t_w*R*T/F*ln(a_w_receiver_surface/a_w_supply_surface) + V_fixed",
+    "surface_current_sign": "equal physical through-plane current; opposite signs only under the two outward-normal conventions",
+    "supply_channel_gap_mm": 2.0,
+    "receiver_channel_gap_mm": 2.0,
+    "hydraulic_diameter_mm": 4.0,
+    "sherwood_number": 7.54,
+    "derived_effective_film_thickness_mm": 0.5305,
+    "derived_film_warning": "D/k = Dh/Sh is a correlation-equivalent boundary-layer thickness, not a literal film slab or GDL",
+    "supply_film_coefficient_m_s_at_32c": 0.0511,
+    "receiver_film_coefficient_m_s_at_20c": 0.0475,
+    "inverse_anchor_status": "hypothetical, not realistic or validated",
+    "inverse_anchor": {
+      "t_w": 100.0608,
+      "water_diffusivity_m2_s": 1.5979e-14,
+      "conductivity_s_m": 23.1719,
+      "dry_thickness_um": 36.9137
+    }
+  },
+  "claim_boundary": {
+    "claim_level": "model_sensitivity_and_experiment_hypothesis_only",
+    "allowed": [
+      "state that the model phase is complete",
+      "state that direct EO inside the ERV is the selected modelling architecture",
+      "report conditional sensitivities with their assumptions and limits",
+      "report the blocking-electrode transient and zero-net symmetric-cycle findings"
+    ],
+    "prohibited": [
+      "validated existing membrane claim",
+      "demonstrated continuous EO transport claim",
+      "validated electrode or module claim",
+      "net HVAC energy-saving claim",
+      "product or commercial performance claim"
+    ]
+  },
+  "accepted_successor_phase": [
+    "demonstrate a sustainable Faradaic, pseudocapacitive, rectifying or otherwise charge/water-asymmetric electrode mechanism",
+    "complete MAT-01 through MAT-09 on the same identifiable sample or batch",
+    "run matched EO-off/EO-on controlled-flow coupon tests with complete-cycle and two-sided water balance",
+    "close transient membrane, gas-stream, receiver, heat, pressure-drop and auxiliary-energy ledgers",
+    "apply practical area, volume, cost, manufacturability, safety, fouling and lifetime constraints",
+    "replay the model once with measured inputs and hold a new controlled gate review"
+  ],
+  "verification": {
+    "latex_build": "PASS; latexmk with pdflatex and halt-on-error",
+    "pdf_pages": 6,
+    "pdf_page_size": "A4",
+    "latex_undefined_references": 0,
+    "latex_overfull_boxes": 0,
+    "visual_page_review": "PASS; all six corrected rendered pages inspected",
+    "report_content_check": "PASS; primary stored-voltage replay, optimistic 1.8 V upper bound, electrode-window limitation, supersession, architecture, synthetic sensitivity, technical reference, successor phase and claim boundary are explicit",
+    "source_manifest_json_parse": "PASS",
+    "capacitive_study_audit": "PASS; 16 of 16 checks",
+    "capacitive_targeted_test_module": "PASS; 9 passed in 18.53 s",
+    "targeted_release_tests": "PASS; 63 passed in 29.79 s",
+    "full_python_test_suite": "PASS; 313 passed, 1 skipped in 189.45 s",
+    "full_suite_skip": "tests/test_post_erv_eo_design_frontier_v1.py:461; optional design-frontier smoke output is absent",
+    "legacy_final_delivery_check": "scripts/run_final_delivery_check_v1.py is superseded historical and is not a V10 acceptance signal",
+    "governing_package_status_path": "deliverables/current/2026-09-02_v10/verification/V10_STATUS.json",
+    "governing_package_command": "python3 scripts/package_final_closeout_v10.py --expected-source-revision \"$(git rev-parse HEAD)\"",
+    "package_status_claim": "No PASS is claimed here before the fail-closed status file is generated successfully."
+  },
+  "provenance": {
+    "repository_commit_at_creation": "dea0f9c2ea15544f93e7098fa20bb65b65dd3927",
+    "working_tree_state": "dirty; release outputs and uncommitted decision inputs are bound by the hashes below",
+    "path_basis": "All paths are repository-relative to the XMembrane_Trond_Study repository root."
+  },
+  "files": [
+    {
+      "path": "reports/final_project_closeout_2026-09-02/HeiQ_XMembrane_Final_Project_Closeout_2026-09-02_v10.md",
+      "role": "authoritative_markdown_report",
+      "sha256": "c6f0310bd7f661ed62ff06e724f60b47e6aca191fc49d3b4fc5b29c1467eff97",
+      "size_bytes": 13989
+    },
+    {
+      "path": "reports/final_project_closeout_2026-09-02/HeiQ_XMembrane_Final_Project_Closeout_2026-09-02_v10.tex",
+      "role": "authoritative_latex_source",
+      "sha256": "7f8fcdb8a979d2d81435ac25188f84c7ab188c642b1db444a07b5573d03a16a5",
+      "size_bytes": 19713
+    },
+    {
+      "path": "reports/final_project_closeout_2026-09-02/HeiQ_XMembrane_Final_Project_Closeout_2026-09-02_v10.pdf",
+      "role": "authoritative_compiled_report",
+      "sha256": "9ffe07a8e2584086422169a5b03f494f9828cf08e3101e3973e4cb6534ade723",
+      "size_bytes": 237627
+    },
+    {
+      "path": "reports/final_team_decision_report_2026-08-31/HeiQ_XMembrane_Final_Result_and_Decision_Report_2026-08-31_v9.tex",
+      "role": "superseded_historical_v9_source",
+      "sha256": "478ede5081adf89247d120b2186892fa1cef635263259d540523c5eea3b0524b",
+      "size_bytes": 18560
+    },
+    {
+      "path": "reports/final_team_decision_report_2026-08-31/HeiQ_XMembrane_Final_Result_and_Decision_Report_2026-08-31_v9.pdf",
+      "role": "superseded_historical_v9_pdf",
+      "sha256": "2a077c89b7d351b4a718ce279efa436482464709b81a96970251cc4623654e2f",
+      "size_bytes": 476285
+    },
+    {
+      "path": "docs/CAPACITIVE_ELECTRODE_TRANSIENT_STUDY_2026-09-01.md",
+      "role": "decision_source_capacitive_interpretation",
+      "sha256": "9fcf5042e725b2098bf07ae0f6a219ea635a134692e12cda208aa96877281209",
+      "size_bytes": 6967
+    },
+    {
+      "path": "outputs/capacitive_electrode_study_v1/audit.json",
+      "role": "decision_source_capacitive_audit",
+      "sha256": "c14bc33c9323dae16c9437339c651b780b90a7a6fd0e2c22c83570081c4ac88e",
+      "size_bytes": 2450
+    },
+    {
+      "path": "outputs/capacitive_electrode_study_v1/source_manifest.json",
+      "role": "decision_source_capacitive_provenance",
+      "sha256": "0a26cee42944a588fb741c3f55cd0948aa61a3af4ba72ed312c6f93a2aae41bf",
+      "size_bytes": 6985
+    },
+    {
+      "path": "outputs/capacitive_electrode_study_v1/frozen_erv_replay_summary.csv",
+      "role": "decision_source_o30_transient_metrics",
+      "sha256": "a041b8bf60a2da6d2f54b2d0b4139a8036e6a0d698f93a66d9602c7b95a29d5e",
+      "size_bytes": 8623
+    },
+    {
+      "path": "outputs/capacitive_electrode_study_v1/ac_cycle_summary.csv",
+      "role": "decision_source_symmetric_cycle_closure",
+      "sha256": "b48728cdb75bac47b4774f784626910f2b91042bf8422d01e671ffac6cc2c07f",
+      "size_bytes": 20882
+    },
+    {
+      "path": "outputs/direct_active_erv_tw50_d1e10_v1/study/study_audit.json",
+      "role": "decision_source_synthetic_sensitivity_audit",
+      "sha256": "94bffae2a086e49af42ccc5e457e8f8f08129d8bfa523076da25dbde51aa20cd",
+      "size_bytes": 9554
+    },
+    {
+      "path": "outputs/direct_active_erv_tw50_d1e10_v1/study/case_register.csv",
+      "role": "decision_source_synthetic_sensitivity_cases",
+      "sha256": "57985e87bb6f79492faa94300ba6db658d145ada749ab3669564e2ac5ef458fd",
+      "size_bytes": 17176
+    },
+    {
+      "path": "outputs/direct_active_erv_tw50_d1e10_v1/study/DECISION_SUMMARY.json",
+      "role": "decision_source_synthetic_sensitivity_summary",
+      "sha256": "4ed418e9441084184d899d93fcf588db5142da5c822a4ce59a8f17ec02837f51",
+      "size_bytes": 2400
+    },
+    {
+      "path": "outputs/direct_active_erv_tw50_d1e10_v1/study/SUMMARY.md",
+      "role": "decision_source_synthetic_sensitivity_narrative",
+      "sha256": "fdd518f8cc7b90da83a49b1d5966831dfed477d3457076bf892819e113149f47",
+      "size_bytes": 1688
+    },
+    {
+      "path": "outputs/integrated_evidence_v1/material_data_requirements.csv",
+      "role": "decision_source_mat01_mat09_schema",
+      "sha256": "8fc51c0403a0873b5f39bf51f29201096bf1d4cab736e0ba6f8eecccac640771",
+      "size_bytes": 2741
+    },
+    {
+      "path": "src/heiq/wp1/axial/local_state.py",
+      "role": "technical_source_local_voltage_current_coupling",
+      "sha256": "d068b8d7429e6cdbfca769672cb95986ee6cc8fd89696c4f296aa1f67fb547c5",
+      "size_bytes": 10492
+    },
+    {
+      "path": "src/heiq/wp1/airside/properties.py",
+      "role": "technical_source_gas_film_correlation",
+      "sha256": "d5d0fb317680e3d6db76212ef62c4625368991bc5fc569bed288a74716e3e57e",
+      "size_bytes": 8459
+    },
+    {
+      "path": "heiq_pre_receiver_material_analyses/heiq_pre_receiver_model.py",
+      "role": "technical_source_voltage_control_solver",
+      "sha256": "f538f810ae89e7f5eaff3ad2b8be38c587f11587ea4b1f8558d0a9c278f21f54",
+      "size_bytes": 41099
+    },
+    {
+      "path": "config/direct_eo_erv_study_v1.json",
+      "role": "technical_source_axial_geometry_and_inverse_anchor",
+      "sha256": "f91a1c75f5d642d4103e0149223f5c4094c7eed8be84dd2886f5fb1fd2e0c2f3",
+      "size_bytes": 8587
+    },
+    {
+      "path": "outputs/direct_active_erv_tw50_d1e10_v1/study/config_used.json",
+      "role": "technical_source_tw50_d1e10_geometry_and_material_flags",
+      "sha256": "a469a7a5e91682b59b52f17c7dfc48d37c412925317eedda3a13bd5e8153ee66",
+      "size_bytes": 8177
+    },
+    {
+      "path": "reports/material_search_handoff_2026-08-31/data/synthetic_target_register.csv",
+      "role": "technical_source_inverse_anchor_hypothetical_classification",
+      "sha256": "adbe900cd2a6776d1deffc624c014b057bfbd920af53edcca6f3fe127b387697",
+      "size_bytes": 2412
+    }
+  ]
+}

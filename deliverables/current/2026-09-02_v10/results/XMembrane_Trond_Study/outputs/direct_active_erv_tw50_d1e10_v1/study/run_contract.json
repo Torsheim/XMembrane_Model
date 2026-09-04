@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "study_id": "direct-active-erv-tw50-d1e10-v1-2026-09-02",
+  "script_version": "direct-active-eo-erv-study-v1.2-2026-08-31",
+  "mode": "study",
+  "planned_case_count": 8,
+  "maximum_terminal_voltage_v": 1.0,
+  "terminal_voltage_absolute_tolerance_v": 2e-06,
+  "effective_fixed_loss_voltage_v": 0.0,
+  "effective_series_asr_ohm_m2": 1e-05,
+  "engineering_current_density_limit_a_m2": null,
+  "current_density_gate_applied": false,
+  "architecture_id": "shared_core_same_stream",
+  "same_exhaust_stream_used_once": true,
+  "external_receiver_mass_flow_kg_s": 0.0,
+  "full_system_claim_allowed": false,
+  "audit_scope": "integrity_and_reproducibility_not_design_acceptance"
+}

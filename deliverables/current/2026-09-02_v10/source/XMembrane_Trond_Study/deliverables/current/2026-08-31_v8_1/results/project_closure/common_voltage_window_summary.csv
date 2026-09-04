@@ -1,0 +1,6 @@
+remaining_duty_completion_pct,sampled_common_voltage_feasible_point_exists,minimum_feasible_terminal_voltage_v,maximum_feasible_terminal_voltage_v,feasible_voltage_count,tested_voltage_count,sampled_terminal_voltage_step_v,minimum_feasible_area_m2,topology_interpretation
+50.0,True,0.55,1.75,25,31,0.05,1157.354387349736,sampled_single_common_voltage_point_supported
+60.0,True,0.7,1.6,19,31,0.05,1714.6208503336725,sampled_single_common_voltage_point_supported
+67.5,True,0.8,1.45,14,31,0.05,2456.488762607584,sampled_single_common_voltage_point_supported
+72.70030721103439,True,0.9,1.4,11,31,0.05,3062.25830542129,sampled_single_common_voltage_point_supported
+100.0,False,,,0,31,0.05,,no_feasible_sampled_common_voltage_point_at_frozen_anchor

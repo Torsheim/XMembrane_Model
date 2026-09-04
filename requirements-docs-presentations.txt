@@ -1,0 +1,14 @@
+# Python dependencies used by the document and presentation asset builders.
+# Install the editable model separately as documented in docs/HANDOFF.md.
+# Model/test packages resolve to the V10 Python 3.10 constraint set below;
+# this file does not lock LaTeX, LibreOffice, fonts, Node, or the OS platform.
+-c constraints/v10-python-3.10.txt
+
+lxml==5.4.0
+matplotlib==3.9.2
+numpy==1.26.4
+Pillow==10.4.0
+python-docx==1.2.0
+python-pptx==1.0.2
+typing_extensions==4.12.2
+XlsxWriter==3.2.5

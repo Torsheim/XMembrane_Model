@@ -1,0 +1,46 @@
+{
+  "study_id": "fom-assessment-v1-2026-08-30",
+  "script_version": "fom-assessment-v1.1-2026-08-30",
+  "sources": [
+    {
+      "path": "/mnt/c/Users/mariu/Downloads/Technical analysis and plan v1.0 260722.docx.pdf",
+      "sha256": "97dc16c3863462d12229c2906e3a8ef40e61999b6b31f1864b2cfa99cfe14ba1"
+    },
+    {
+      "path": "/mnt/c/Users/mariu/Downloads/FOM etc.docx",
+      "sha256": "131cc8659c58b2c0bb811b716c8f2f92a8c784a93a04e7f4c96d51b85455a58b"
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/config/fom_assessment_v1.json",
+      "sha256": "d7b51368ec7c06bc67ff3414c69f04340919c948343b24e9deec2fed860ccd40"
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/config/direct_active_eo_erv_study_v1.json",
+      "sha256": "f91a1c75f5d642d4103e0149223f5c4094c7eed8be84dd2886f5fb1fd2e0c2f3"
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/workshop_common_voltage_diffusivity_v1/diffusivity_envelope.csv",
+      "sha256": "940bd50f1219084c6c200672f598749d39c241150f5482ce95dda308cc59357e"
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/workshop_common_voltage_diffusivity_v1/cases.csv",
+      "sha256": "ed3cd504210851cddc26afd0f1383f3f4a4252bba8c9a8b862eb8bfebcc35eeb"
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/study/case_register.csv",
+      "sha256": "518362ce34734526d5700974abe2965988f623132f5cec688328febf00503137"
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/project_closure_check_v1/active_erv_reclassification.csv",
+      "sha256": "bbca76e0596d26eaddda555501d1b6b9df449e6a25bf027b809f8b4f7adaaf85"
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/src/heiq/wp1/studies/active_erv.py",
+      "sha256": "7c2ca694ea10e8f58db1c66ab0304db47f627930081e5d2596e44e36ab017d4e"
+    },
+    {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/scripts/calculate_fom_assessment_v1.py",
+      "sha256": "b429b8b354ddd8c916ae220bc18cb3c3d5ef8c43bff94921b9b8b199f9f94995"
+    }
+  ]
+}

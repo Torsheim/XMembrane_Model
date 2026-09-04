@@ -1,0 +1,16 @@
+gate_id,category,required_today,status,evidence
+FINAL-01_MODEL_CLOSURE,TODAY_BLOCKER,True,PASS,project closure status
+FINAL-02_SCIENTIFIC_AUDITS,TODAY_BLOCKER,True,PASS,all top-level and nested audit checks
+FINAL-03_CLOSURE_GATE_SCHEMA,TODAY_BLOCKER,True,PASS,exact 15-gate status contract
+FINAL-04_REPORT_AND_HASHES,TODAY_BLOCKER,True,PASS,final TeX/PDF and report manifest
+FINAL-05_RUNTIME,TODAY_BLOCKER,True,PASS,declared Python dependency versions
+FINAL-06_HANDOFF_TEMPLATES,TODAY_BLOCKER,True,PASS,"material, practical, receiver and architecture schemas"
+FINAL-07_TEST_SUITE,TODAY_BLOCKER,True,PASS,live_pytest
+FINAL-08_WORKSHOP_REPLAY,TODAY_BLOCKER,True,PASS,temporary-output workshop verifier replay
+FINAL-09_COMMON_VOLTAGE_CLAIM_INTEGRITY,TODAY_BLOCKER,True,PASS,selected O30 rows resolved; unresolved rows fail closed; full-duty claim remains OPEN
+FINAL-10_COMMON_VOLTAGE_NUMERIC_CEILING_RETRY,TODAY_BLOCKER,True,PASS,exact all-flagged <=2 V coverage; only full closure may recover a retry
+FINAL-11_RELEASE_SNAPSHOT,RELEASE_FREEZE,False,OPEN,revision=29ba6da9a33a50d8771adc6ee28438ab5131eed7; dirty_lines=96
+G04_FULL_DUTY_SINGLE_BUS,NEXT_PHASE_EMPIRICAL,False,OPEN,accepted next-phase input; does not reopen broad modelling
+G09B_CANDIDATE_DATA_COMPLETENESS,NEXT_PHASE_EMPIRICAL,False,OPEN,accepted next-phase input; does not reopen broad modelling
+G10_RECEIVER_CONTRACT,NEXT_PHASE_EMPIRICAL,False,OPEN,accepted next-phase input; does not reopen broad modelling
+G11_PRACTICAL_LIMITS,NEXT_PHASE_EMPIRICAL,False,OPEN,accepted next-phase input; does not reopen broad modelling

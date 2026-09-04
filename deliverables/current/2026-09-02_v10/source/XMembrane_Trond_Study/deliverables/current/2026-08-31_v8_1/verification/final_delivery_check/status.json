@@ -1,0 +1,2734 @@
+{
+  "accepted_next_phase_open_items": [
+    "material_candidate_ranking_ready",
+    "full_system_claim_allowed",
+    "technology_validated",
+    "full_duty_sampled_common_voltage_point_feasible"
+  ],
+  "blocking_items": [],
+  "candidate_ranking_ready": false,
+  "closure_gate_verification": {
+    "duplicate_gate_ids": [],
+    "gate_count": 15,
+    "gates": [
+      {
+        "blocks": "model_closure",
+        "evidence": "16387/16387 stored valid segments pass; 8357 full constant-drag identities + 8030 variable-drag boundary-energy audits",
+        "gate_id": "G01_THERMODYNAMIC_SIGN",
+        "interpretation": "Surface activity sign is a regime indicator; the applicable dissipation or boundary-energy balance is the hard physics check.",
+        "status": "PASS"
+      },
+      {
+        "blocks": "claim_correction",
+        "evidence": "0 cases require reclassification because the stored source outputs already use the corrected thermodynamic/non-surface screen",
+        "gate_id": "G02_SURFACE_GATE_RECLASSIFICATION",
+        "interpretation": "A zero count is expected after corrected outputs are regenerated. Any reclassified cases remain hypothetical and conditional, not full-system validations.",
+        "status": "PASS"
+      },
+      {
+        "blocks": "material_search_path",
+        "evidence": "3/3 primary 1-V cases pass",
+        "gate_id": "G03_COMMON_VOLTAGE_PRIMARY",
+        "interpretation": "Tests one common bus with local current sharing at 50, 60 and 67.5 percent completion.",
+        "status": "PASS"
+      },
+      {
+        "blocks": "model_closure",
+        "evidence": "In this closure run, current density is solved/sampled and no A/m2 acceptance ceiling is configured or applied",
+        "gate_id": "G03B_NO_CURRENT_DENSITY_GATE",
+        "interpretation": "Voltage, transport, energy and practical consequences remain explicit; historical 21-A/m2 sensitivity replays are not current acceptance gates.",
+        "status": "PASS"
+      },
+      {
+        "blocks": "full_duty_single_bus_claim_only",
+        "evidence": "No feasible point was found on the 0.05-V grid from 0.5 to 2.0 V at the frozen anchor",
+        "gate_id": "G04_FULL_DUTY_SINGLE_BUS",
+        "interpretation": "This 32-segment discrete diagnostic is not a converged proof that every continuous sub-interval is empty and does not imply a general membrane no-go.",
+        "status": "OPEN"
+      },
+      {
+        "blocks": "model_closure",
+        "evidence": "7/7 closure-relevant replay outcomes stable from 32 to 64 segments",
+        "gate_id": "G05_SEGMENT_CONVERGENCE",
+        "interpretation": "No new broad sweep is required if this gate passes.",
+        "status": "PASS"
+      },
+      {
+        "blocks": "model_closure",
+        "evidence": "6/6 local roots reproduced with Brent",
+        "gate_id": "G06_INDEPENDENT_CURRENT_ROOTS",
+        "interpretation": "Independent algorithmic check of the built-in voltage bisection.",
+        "status": "PASS"
+      },
+      {
+        "blocks": "model_closure",
+        "evidence": "3 selected anchors replayed at 20/10/5 m2",
+        "gate_id": "G07_UNIFORM_CURRENT_STEP_REPLAY",
+        "interpretation": "Targeted numerical hygiene only; it does not promote uniform current to a physical topology.",
+        "status": "PASS"
+      },
+      {
+        "blocks": "model_closure",
+        "evidence": "baseline=543.740564 kW; break-even=0.156700807441 kWh/kg; full-duty sink budget=0.128323175854 kWh/kg",
+        "gate_id": "G08_FROZEN_ENERGY_CONTRACT",
+        "interpretation": "Validates all three frozen energy coordinates against the source percentage study.",
+        "status": "PASS"
+      },
+      {
+        "blocks": "supplier_data_collection",
+        "evidence": "9 requirement rows found",
+        "gate_id": "G09_MATERIAL_DATA_SCHEMA",
+        "interpretation": "Candidate values are expected to be empty before material scouting.",
+        "status": "PASS"
+      },
+      {
+        "blocks": "candidate_ranking",
+        "evidence": "0/9 requirement rows complete; one same-sample candidate ID is required",
+        "gate_id": "G09B_CANDIDATE_DATA_COMPLETENESS",
+        "interpretation": "A requirements checklist enables data collection but is not candidate evidence.",
+        "status": "OPEN"
+      },
+      {
+        "blocks": "candidate_ranking_and_system_claim",
+        "evidence": "OPEN_NEXT_PHASE",
+        "gate_id": "G10_RECEIVER_CONTRACT",
+        "interpretation": "Receiver architecture, boundary and measured SEC belong to the next subsystem phase.",
+        "status": "OPEN"
+      },
+      {
+        "blocks": "candidate_ranking",
+        "evidence": "UNRESOLVED_TEAM_INPUT",
+        "gate_id": "G11_PRACTICAL_LIMITS",
+        "interpretation": "Team must set area, pressure-drop, footprint and cost ceilings.",
+        "status": "OPEN"
+      },
+      {
+        "blocks": "release_freeze",
+        "evidence": "Python 3.10.12, NumPy 1.26.4",
+        "gate_id": "G12_RUNTIME_ENVIRONMENT",
+        "interpretation": "Checks the closure contract's declared Python and NumPy minima; the final-delivery checker validates the complete project runtime.",
+        "status": "PASS"
+      },
+      {
+        "blocks": "release_freeze",
+        "evidence": "revision=29ba6da9a33a50d8771adc6ee28438ab5131eed7; clean=False",
+        "gate_id": "G13_RELEASE_SNAPSHOT",
+        "interpretation": "A hash manifest is written, but the working tree must be frozen separately.",
+        "status": "OPEN"
+      }
+    ],
+    "missing_gate_ids": [],
+    "passed": true,
+    "status_mismatches": [],
+    "unexpected_gate_ids": []
+  },
+  "common_voltage_claim_verification": {
+    "blocking_items": [],
+    "delivery_blocking": false,
+    "full_duty_claim_guard": {
+      "allowed_claim": "No confirmed feasible sampled common-voltage point was found; some sampled coordinates remain numerical/local unresolved.",
+      "confirmed_selected_case_count": 0,
+      "expected_envelope_row_count": 7,
+      "failure_count": 0,
+      "failures": [],
+      "observed_envelope_row_count": 7,
+      "prohibited_claims": [
+        "full duty is impossible",
+        "no common-voltage solution exists below 2 V",
+        "all sampled failures are physical no-solutions"
+      ],
+      "refined_numerical_or_local_unresolved_count": 28,
+      "refined_physical_no_solution_count": 21,
+      "target_id": "full_remaining_latent"
+    },
+    "full_duty_maturity_gate": {
+      "delivery_blocking": false,
+      "reason": "28 refined points remain numerical/local unresolved; this limits the full-duty single-bus claim only.",
+      "required_today": false,
+      "status": "OPEN"
+    },
+    "hard_checks": {
+      "full_duty_claim_remains_fail_closed": true,
+      "input_schema": true,
+      "legacy_high_bracket_rows_fail_closed": true,
+      "numeric_ceiling_retry_exact_coverage_and_closure": true,
+      "selected_o30_rows_resolved_and_mapped": true
+    },
+    "high_bracket_fail_closed": {
+      "decision_value_violation_count": 0,
+      "decision_value_violations": [],
+      "diagnostic_transport_values_allowed": true,
+      "failure_count": 0,
+      "failures": [],
+      "legacy_status": "above_internal_current_search_ceiling",
+      "recovered_retry_row_count": 0,
+      "retry_source_row_count": 98,
+      "row_count": 98,
+      "unrecovered_retry_row_count": 98
+    },
+    "local_bracket_probe": {
+      "coverage_contract": "all_flagged_cases_at_or_below_2v",
+      "delivery_blocking": false,
+      "duplicate_source_case_ids": [],
+      "exact_source_coverage": true,
+      "expected_source_case_count": 98,
+      "failures": [],
+      "interpretation": "Every flagged <=2 V source case is retried at the elevated numeric bound. Only full transport, water, voltage and thermodynamic closure permits recovery; all other rows remain numerical/local unresolved.",
+      "maximum_probe_voltage_v": 2.0,
+      "minimum_ceiling_multiplier": 100.0,
+      "missing_columns": [],
+      "missing_source_case_ids": [],
+      "observed_probe_row_count": 98,
+      "passed": true,
+      "recovered_case_count": 0,
+      "unexpected_source_case_ids": [],
+      "unrecovered_case_count": 98
+    },
+    "missing_case_columns": [],
+    "missing_envelope_columns": [],
+    "passed": true,
+    "selected_target": {
+      "expected_envelope_row_count": 7,
+      "failure_count": 0,
+      "failures": [],
+      "observed_envelope_row_count": 7,
+      "target_id": "o30",
+      "unique_selected_case_count": 7
+    },
+    "warnings": [
+      "numeric_ceiling_retries_unrecovered:98"
+    ]
+  },
+  "delivery_ready_today": true,
+  "full_system_claim_allowed": false,
+  "gate_register": [
+    {
+      "category": "TODAY_BLOCKER",
+      "evidence": "project closure status",
+      "gate_id": "FINAL-01_MODEL_CLOSURE",
+      "required_today": true,
+      "status": "PASS"
+    },
+    {
+      "category": "TODAY_BLOCKER",
+      "evidence": "all top-level and nested audit checks",
+      "gate_id": "FINAL-02_SCIENTIFIC_AUDITS",
+      "required_today": true,
+      "status": "PASS"
+    },
+    {
+      "category": "TODAY_BLOCKER",
+      "evidence": "exact 15-gate status contract",
+      "gate_id": "FINAL-03_CLOSURE_GATE_SCHEMA",
+      "required_today": true,
+      "status": "PASS"
+    },
+    {
+      "category": "TODAY_BLOCKER",
+      "evidence": "final TeX/PDF and report manifest",
+      "gate_id": "FINAL-04_REPORT_AND_HASHES",
+      "required_today": true,
+      "status": "PASS"
+    },
+    {
+      "category": "TODAY_BLOCKER",
+      "evidence": "declared Python dependency versions",
+      "gate_id": "FINAL-05_RUNTIME",
+      "required_today": true,
+      "status": "PASS"
+    },
+    {
+      "category": "TODAY_BLOCKER",
+      "evidence": "material, practical, receiver and architecture schemas",
+      "gate_id": "FINAL-06_HANDOFF_TEMPLATES",
+      "required_today": true,
+      "status": "PASS"
+    },
+    {
+      "category": "TODAY_BLOCKER",
+      "evidence": "live_pytest",
+      "gate_id": "FINAL-07_TEST_SUITE",
+      "required_today": true,
+      "status": "PASS"
+    },
+    {
+      "category": "TODAY_BLOCKER",
+      "evidence": "temporary-output workshop verifier replay",
+      "gate_id": "FINAL-08_WORKSHOP_REPLAY",
+      "required_today": true,
+      "status": "PASS"
+    },
+    {
+      "category": "TODAY_BLOCKER",
+      "evidence": "selected O30 rows resolved; unresolved rows fail closed; full-duty claim remains OPEN",
+      "gate_id": "FINAL-09_COMMON_VOLTAGE_CLAIM_INTEGRITY",
+      "required_today": true,
+      "status": "PASS"
+    },
+    {
+      "category": "TODAY_BLOCKER",
+      "evidence": "exact all-flagged <=2 V coverage; only full closure may recover a retry",
+      "gate_id": "FINAL-10_COMMON_VOLTAGE_NUMERIC_CEILING_RETRY",
+      "required_today": true,
+      "status": "PASS"
+    },
+    {
+      "category": "RELEASE_FREEZE",
+      "evidence": "revision=29ba6da9a33a50d8771adc6ee28438ab5131eed7; dirty_lines=96",
+      "gate_id": "FINAL-11_RELEASE_SNAPSHOT",
+      "required_today": false,
+      "status": "OPEN"
+    },
+    {
+      "category": "NEXT_PHASE_EMPIRICAL",
+      "evidence": "accepted next-phase input; does not reopen broad modelling",
+      "gate_id": "G04_FULL_DUTY_SINGLE_BUS",
+      "required_today": false,
+      "status": "OPEN"
+    },
+    {
+      "category": "NEXT_PHASE_EMPIRICAL",
+      "evidence": "accepted next-phase input; does not reopen broad modelling",
+      "gate_id": "G09B_CANDIDATE_DATA_COMPLETENESS",
+      "required_today": false,
+      "status": "OPEN"
+    },
+    {
+      "category": "NEXT_PHASE_EMPIRICAL",
+      "evidence": "accepted next-phase input; does not reopen broad modelling",
+      "gate_id": "G10_RECEIVER_CONTRACT",
+      "required_today": false,
+      "status": "OPEN"
+    },
+    {
+      "category": "NEXT_PHASE_EMPIRICAL",
+      "evidence": "accepted next-phase input; does not reopen broad modelling",
+      "gate_id": "G11_PRACTICAL_LIMITS",
+      "required_today": false,
+      "status": "OPEN"
+    }
+  ],
+  "generated_utc": "2026-08-31T12:23:25.194552+00:00",
+  "git_snapshot": {
+    "git_available": true,
+    "passed": false,
+    "porcelain_line_count": 96,
+    "revision": "29ba6da9a33a50d8771adc6ee28438ab5131eed7",
+    "worktree_clean": false
+  },
+  "manifest_integrity_pass": true,
+  "material_search_can_start": true,
+  "model_phase_complete": true,
+  "model_phase_delivery_ready": true,
+  "next_phase_empirical_ready": false,
+  "optional_checks_pass": {
+    "closure_gate_register": true,
+    "common_voltage_claim_integrity": true,
+    "handoff_templates": true,
+    "nested_source_provenance": true,
+    "runtime_environment": true,
+    "test_suite": true,
+    "workshop_replay": true
+  },
+  "ready_to_archive_today": false,
+  "release_snapshot_ready": false,
+  "remaining_actions": [
+    "Freeze the reviewed repository in a commit/tag or other immutable release snapshot.",
+    "Populate one same-sample MAT-01 through MAT-09 candidate dataset before ranking materials.",
+    "Close REC-01 through REC-10 before claiming receiver, liquid-product or net-system performance.",
+    "Set PRACT-01 through PRACT-10 and complete ARCH-01 through ARCH-08 before selecting the architecture."
+  ],
+  "report_artifacts_pass": true,
+  "report_manifest_verification": {
+    "checked_file_count": 29,
+    "failed_file_count": 0,
+    "files": [
+      {
+        "actual_sha256": "518362ce34734526d5700974abe2965988f623132f5cec688328febf00503137",
+        "declared_path": "../../outputs/direct_active_eo_erv_study_v1/study/case_register.csv",
+        "exists": true,
+        "expected_sha256": "518362ce34734526d5700974abe2965988f623132f5cec688328febf00503137",
+        "passed": true,
+        "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/study/case_register.csv"
+      },
+      {
+        "actual_sha256": "9fc1e169404c26d8579a40504a0b46457b51a8cc68d93eda789874b4b22239de",
+        "declared_path": "../../outputs/direct_active_eo_erv_study_v1/study/study_audit.json",
+        "exists": true,
+        "expected_sha256": "9fc1e169404c26d8579a40504a0b46457b51a8cc68d93eda789874b4b22239de",
+        "passed": true,
+        "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/study/study_audit.json"
+      },
+      {
+        "actual_sha256": "5ef72174495f3089ca0673cb5f7d1336c6ed5ef59511f61099381be6e7569ccc",
+        "declared_path": "../../outputs/direct_erv_gradient_closure_v1/audit.json",
+        "exists": true,
+        "expected_sha256": "5ef72174495f3089ca0673cb5f7d1336c6ed5ef59511f61099381be6e7569ccc",
+        "passed": true,
+        "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_erv_gradient_closure_v1/audit.json"
+      },
+      {
+        "actual_sha256": "54e50859aad97a26dce5ae48cad1c4ed79ae6d0459ceac3a53bc593be94aa516",
+        "declared_path": "../../outputs/direct_erv_gradient_closure_v1/case_summary.csv",
+        "exists": true,
+        "expected_sha256": "54e50859aad97a26dce5ae48cad1c4ed79ae6d0459ceac3a53bc593be94aa516",
+        "passed": true,
+        "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_erv_gradient_closure_v1/case_summary.csv"
+      },
+      {
+        "actual_sha256": "be58acc101608336a9823f5d4d18e538a2c4be48afd5f6cf07dfbec0efab7803",
+        "declared_path": "../../outputs/direct_erv_gradient_closure_v1/source_manifest.json",
+        "exists": true,
+        "expected_sha256": "be58acc101608336a9823f5d4d18e538a2c4be48afd5f6cf07dfbec0efab7803",
+        "passed": true,
+        "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_erv_gradient_closure_v1/source_manifest.json"
+      },
+      {
+        "actual_sha256": "86465289c15df2deeda7456cc0293ea13c653f4e23a8b54bf611e35fdc2fdc3b",
+        "declared_path": "../../outputs/eo_vapor_boundary_analysis_v1/audit.json",
+        "exists": true,
+        "expected_sha256": "86465289c15df2deeda7456cc0293ea13c653f4e23a8b54bf611e35fdc2fdc3b",
+        "passed": true,
+        "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_boundary_analysis_v1/audit.json"
+      },
+      {
+        "actual_sha256": "2d6ce28a546e86172dd24d0f791d35bdf42cfee2970b2c365277a1626a12c9cd",
+        "declared_path": "../../outputs/eo_vapor_boundary_analysis_v1/source_manifest.json",
+        "exists": true,
+        "expected_sha256": "2d6ce28a546e86172dd24d0f791d35bdf42cfee2970b2c365277a1626a12c9cd",
+        "passed": true,
+        "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_boundary_analysis_v1/source_manifest.json"
+      },
+      {
+        "actual_sha256": "12632b20fee31fc817224dd59ccd589558927c1c8da9df39d277092724a45808",
+        "declared_path": "../../outputs/eo_vapor_cell_sizing_v1/audit.json",
+        "exists": true,
+        "expected_sha256": "12632b20fee31fc817224dd59ccd589558927c1c8da9df39d277092724a45808",
+        "passed": true,
+        "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/audit.json"
+      },
+      {
+        "actual_sha256": "1c96a4e92a33be70695b073e22d6a3d5d6acc716c0bc5b33bd001469bb4c6d1c",
+        "declared_path": "../../outputs/eo_vapor_cell_sizing_v1/source_manifest.json",
+        "exists": true,
+        "expected_sha256": "1c96a4e92a33be70695b073e22d6a3d5d6acc716c0bc5b33bd001469bb4c6d1c",
+        "passed": true,
+        "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/source_manifest.json"
+      },
+      {
+        "actual_sha256": "90a34b845762a57f494e8c38107368264748910514abd3bb73bc89371067ee2b",
+        "declared_path": "../../outputs/fom_assessment_v1/audit.json",
+        "exists": true,
+        "expected_sha256": "90a34b845762a57f494e8c38107368264748910514abd3bb73bc89371067ee2b",
+        "passed": true,
+        "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/fom_assessment_v1/audit.json"
+      },
+      {
+        "actual_sha256": "c7d6decfb97fd5be3c2df49d056ad1299cb135d4083e98d20b84860d83a7899f",
+        "declared_path": "../../outputs/fom_assessment_v1/device_fom.csv",
+        "exists": true,
+        "expected_sha256": "c7d6decfb97fd5be3c2df49d056ad1299cb135d4083e98d20b84860d83a7899f",
+        "passed": true,
+        "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/fom_assessment_v1/device_fom.csv"
+      },
+      {
+        "actual_sha256": "12653bd8aef71357378455f0638e5d24d061d8462b40330eed7f21cbe48737a4",
+        "declared_path": "../../outputs/fom_assessment_v1/source_manifest.json",
+        "exists": true,
+        "expected_sha256": "12653bd8aef71357378455f0638e5d24d061d8462b40330eed7f21cbe48737a4",
+        "passed": true,
+        "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/fom_assessment_v1/source_manifest.json"
+      },
+      {
+        "actual_sha256": "bc6585df21153a3143ec58ca8dd95b66eca4859472622bdba60eadcf0e7d81fe",
+        "declared_path": "../../outputs/fom_assessment_v1/system_fom.csv",
+        "exists": true,
+        "expected_sha256": "bc6585df21153a3143ec58ca8dd95b66eca4859472622bdba60eadcf0e7d81fe",
+        "passed": true,
+        "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/fom_assessment_v1/system_fom.csv"
+      },
+      {
+        "actual_sha256": "8fc51c0403a0873b5f39bf51f29201096bf1d4cab736e0ba6f8eecccac640771",
+        "declared_path": "../../outputs/integrated_evidence_v1/material_data_requirements.csv",
+        "exists": true,
+        "expected_sha256": "8fc51c0403a0873b5f39bf51f29201096bf1d4cab736e0ba6f8eecccac640771",
+        "passed": true,
+        "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/integrated_evidence_v1/material_data_requirements.csv"
+      },
+      {
+        "actual_sha256": "e52fe66b0ba3b2f289af740fecdf3a906dafc48dbde4ec423eea6339cf0390d6",
+        "declared_path": "../../outputs/project_closure_check_v1/closure_status.json",
+        "exists": true,
+        "expected_sha256": "e52fe66b0ba3b2f289af740fecdf3a906dafc48dbde4ec423eea6339cf0390d6",
+        "passed": true,
+        "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/project_closure_check_v1/closure_status.json"
+      },
+      {
+        "actual_sha256": "24c2bae3fa6923c537303a7451b6e7780ea73510d4827d1511bb9030f8ade885",
+        "declared_path": "../../outputs/project_closure_check_v1/decision_gate_register.csv",
+        "exists": true,
+        "expected_sha256": "24c2bae3fa6923c537303a7451b6e7780ea73510d4827d1511bb9030f8ade885",
+        "passed": true,
+        "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/project_closure_check_v1/decision_gate_register.csv"
+      },
+      {
+        "actual_sha256": "1d08a09b8e767cc44f7e24dab79fca99d14bc7b720d273b8695964488f175a95",
+        "declared_path": "../../outputs/project_closure_check_v1/source_manifest.json",
+        "exists": true,
+        "expected_sha256": "1d08a09b8e767cc44f7e24dab79fca99d14bc7b720d273b8695964488f175a95",
+        "passed": true,
+        "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/project_closure_check_v1/source_manifest.json"
+      },
+      {
+        "actual_sha256": "24a0ffaced5c540e76f3a762fa28b5ffd3d40c2c3ff2b05a4311e921a9fe3105",
+        "declared_path": "../../outputs/workshop_common_voltage_diffusivity_v1/audit.json",
+        "exists": true,
+        "expected_sha256": "24a0ffaced5c540e76f3a762fa28b5ffd3d40c2c3ff2b05a4311e921a9fe3105",
+        "passed": true,
+        "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/workshop_common_voltage_diffusivity_v1/audit.json"
+      },
+      {
+        "actual_sha256": "ed3cd504210851cddc26afd0f1383f3f4a4252bba8c9a8b862eb8bfebcc35eeb",
+        "declared_path": "../../outputs/workshop_common_voltage_diffusivity_v1/cases.csv",
+        "exists": true,
+        "expected_sha256": "ed3cd504210851cddc26afd0f1383f3f4a4252bba8c9a8b862eb8bfebcc35eeb",
+        "passed": true,
+        "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/workshop_common_voltage_diffusivity_v1/cases.csv"
+      },
+      {
+        "actual_sha256": "940bd50f1219084c6c200672f598749d39c241150f5482ce95dda308cc59357e",
+        "declared_path": "../../outputs/workshop_common_voltage_diffusivity_v1/diffusivity_envelope.csv",
+        "exists": true,
+        "expected_sha256": "940bd50f1219084c6c200672f598749d39c241150f5482ce95dda308cc59357e",
+        "passed": true,
+        "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/workshop_common_voltage_diffusivity_v1/diffusivity_envelope.csv"
+      },
+      {
+        "actual_sha256": "74062b94db9410e354baa59c923f22690cba9cc86e0907eb61bffeb7792017db",
+        "declared_path": "../../outputs/workshop_common_voltage_diffusivity_v1/local_bracket_probe.csv",
+        "exists": true,
+        "expected_sha256": "74062b94db9410e354baa59c923f22690cba9cc86e0907eb61bffeb7792017db",
+        "passed": true,
+        "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/workshop_common_voltage_diffusivity_v1/local_bracket_probe.csv"
+      },
+      {
+        "actual_sha256": "4729bbaa34e80974e551a12c4396f249cb7c167beb5de4465d8ee33ec6ebda87",
+        "declared_path": "../../outputs/workshop_common_voltage_diffusivity_v1/source_manifest.json",
+        "exists": true,
+        "expected_sha256": "4729bbaa34e80974e551a12c4396f249cb7c167beb5de4465d8ee33ec6ebda87",
+        "passed": true,
+        "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/workshop_common_voltage_diffusivity_v1/source_manifest.json"
+      },
+      {
+        "actual_sha256": "a29aa95d6f33489e4007cb267c4f04c32758b5ac1baa8c2312801b970ca84bdf",
+        "declared_path": "../workshop_pack_2026-08-30/MATERIAL_SEARCH_BRIEF.md",
+        "exists": true,
+        "expected_sha256": "a29aa95d6f33489e4007cb267c4f04c32758b5ac1baa8c2312801b970ca84bdf",
+        "passed": true,
+        "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_pack_2026-08-30/MATERIAL_SEARCH_BRIEF.md"
+      },
+      {
+        "actual_sha256": "2de6dcb28dfcd4ecd4b59dfeedea4860aadd0ac40b780a34a9ecfc39628900bf",
+        "declared_path": "../workshop_pack_2026-08-30/verification.json",
+        "exists": true,
+        "expected_sha256": "2de6dcb28dfcd4ecd4b59dfeedea4860aadd0ac40b780a34a9ecfc39628900bf",
+        "passed": true,
+        "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_pack_2026-08-30/verification.json"
+      },
+      {
+        "actual_sha256": "0ca78fa3b264ae838b1047fa1b18acb46dd075849b03c61bdd54211bd893779b",
+        "declared_path": "HeiQ_XMembrane_Model_Closure_and_Material_Handoff_2026-08-31.pdf",
+        "exists": true,
+        "expected_sha256": "0ca78fa3b264ae838b1047fa1b18acb46dd075849b03c61bdd54211bd893779b",
+        "passed": true,
+        "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/model_closure_2026-08-31/HeiQ_XMembrane_Model_Closure_and_Material_Handoff_2026-08-31.pdf"
+      },
+      {
+        "actual_sha256": "0c8326fd33bb99ec2e4cf13540ff9ebe764aaa313b31f78ddba653d10b65e4e9",
+        "declared_path": "HeiQ_XMembrane_Model_Closure_and_Material_Handoff_2026-08-31.tex",
+        "exists": true,
+        "expected_sha256": "0c8326fd33bb99ec2e4cf13540ff9ebe764aaa313b31f78ddba653d10b65e4e9",
+        "passed": true,
+        "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/model_closure_2026-08-31/HeiQ_XMembrane_Model_Closure_and_Material_Handoff_2026-08-31.tex"
+      },
+      {
+        "actual_sha256": "fbcee8355b4247233bf6c40e3300ebbadf69deb3eebbcfe291cd9f06b06be4f6",
+        "declared_path": "README.md",
+        "exists": true,
+        "expected_sha256": "fbcee8355b4247233bf6c40e3300ebbadf69deb3eebbcfe291cd9f06b06be4f6",
+        "passed": true,
+        "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/model_closure_2026-08-31/README.md"
+      },
+      {
+        "actual_sha256": "5886e75c17ad98fbc8f79969e1d1ff065a094e41da984046bc2f63170f838a11",
+        "declared_path": "architecture_decision_register_template.csv",
+        "exists": true,
+        "expected_sha256": "5886e75c17ad98fbc8f79969e1d1ff065a094e41da984046bc2f63170f838a11",
+        "passed": true,
+        "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/model_closure_2026-08-31/architecture_decision_register_template.csv"
+      },
+      {
+        "actual_sha256": "02fafb63719697d826327df2ccc19f1c3957b69350caa02ec85a1684c42fca3d",
+        "declared_path": "receiver_thermal_ledger_template.csv",
+        "exists": true,
+        "expected_sha256": "02fafb63719697d826327df2ccc19f1c3957b69350caa02ec85a1684c42fca3d",
+        "passed": true,
+        "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/model_closure_2026-08-31/receiver_thermal_ledger_template.csv"
+      }
+    ],
+    "manifest_path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/model_closure_2026-08-31/source_manifest.json",
+    "passed": true
+  },
+  "require_clean_git": false,
+  "runtime_verification": {
+    "failed_requirement_count": 0,
+    "passed": true,
+    "requirements": [
+      {
+        "detail": "",
+        "installed_version": "3.10.12",
+        "package": "python",
+        "passed": true,
+        "requirement": ">=3.10"
+      },
+      {
+        "detail": "",
+        "installed_version": "1.26.4",
+        "package": "numpy",
+        "passed": true,
+        "requirement": ">=1.26"
+      },
+      {
+        "detail": "",
+        "installed_version": "2.2.2",
+        "package": "pandas",
+        "passed": true,
+        "requirement": ">=2.1"
+      },
+      {
+        "detail": "",
+        "installed_version": "3.9.2",
+        "package": "matplotlib",
+        "passed": true,
+        "requirement": ">=3.8"
+      },
+      {
+        "detail": "",
+        "installed_version": "1.14.1",
+        "package": "scipy",
+        "passed": true,
+        "requirement": ">=1.11"
+      },
+      {
+        "detail": "",
+        "installed_version": "8.0.0",
+        "package": "CoolProp",
+        "passed": true,
+        "requirement": ">=6.6"
+      }
+    ]
+  },
+  "schema_version": 1,
+  "scientific_audit_verification": {
+    "audit_count": 8,
+    "audits": [
+      {
+        "audit_id": "direct_active_erv_study",
+        "nested_checks_pass": true,
+        "passed": true,
+        "top_level_pass": true
+      },
+      {
+        "audit_id": "direct_active_erv_sensitivity",
+        "nested_checks_pass": true,
+        "passed": true,
+        "top_level_pass": true
+      },
+      {
+        "audit_id": "direct_erv_gradient_closure",
+        "nested_checks_pass": true,
+        "passed": true,
+        "top_level_pass": true
+      },
+      {
+        "audit_id": "common_voltage_diffusivity",
+        "nested_checks_pass": true,
+        "passed": true,
+        "top_level_pass": true
+      },
+      {
+        "audit_id": "fom_assessment",
+        "nested_checks_pass": true,
+        "passed": true,
+        "top_level_pass": true
+      },
+      {
+        "audit_id": "eo_vapor_boundary_analysis",
+        "nested_checks_pass": true,
+        "passed": true,
+        "top_level_pass": true
+      },
+      {
+        "audit_id": "eo_vapor_cell_sizing",
+        "nested_checks_pass": true,
+        "passed": true,
+        "top_level_pass": true
+      },
+      {
+        "audit_id": "workshop_pack",
+        "nested_checks_pass": true,
+        "passed": true,
+        "top_level_pass": true
+      }
+    ],
+    "failed_audit_count": 0,
+    "passed": true
+  },
+  "scientific_gates_pass": true,
+  "script_version": "final-delivery-check-v1.0-2026-08-31",
+  "source_manifest_verification": {
+    "failed_manifest_count": 0,
+    "manifest_count": 9,
+    "manifests": [
+      {
+        "checked_file_count": 23,
+        "failed_file_count": 0,
+        "files": [
+          {
+            "actual_sha256": "f91a1c75f5d642d4103e0149223f5c4094c7eed8be84dd2886f5fb1fd2e0c2f3",
+            "actual_size_bytes": 8587,
+            "exists": true,
+            "expected_sha256": "f91a1c75f5d642d4103e0149223f5c4094c7eed8be84dd2886f5fb1fd2e0c2f3",
+            "expected_size_bytes": 8587,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/config/direct_active_eo_erv_study_v1.json"
+          },
+          {
+            "actual_sha256": "811af6c004b0eb58b82439c8861481e79b57d8dfe2f66b5dfd4aa49df9165e45",
+            "actual_size_bytes": 80310,
+            "exists": true,
+            "expected_sha256": "811af6c004b0eb58b82439c8861481e79b57d8dfe2f66b5dfd4aa49df9165e45",
+            "expected_size_bytes": 80310,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/scripts/run_direct_active_eo_erv_study_v1.py"
+          },
+          {
+            "actual_sha256": "7c2ca694ea10e8f58db1c66ab0304db47f627930081e5d2596e44e36ab017d4e",
+            "actual_size_bytes": 51245,
+            "exists": true,
+            "expected_sha256": "7c2ca694ea10e8f58db1c66ab0304db47f627930081e5d2596e44e36ab017d4e",
+            "expected_size_bytes": 51245,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/src/heiq/wp1/studies/active_erv.py"
+          },
+          {
+            "actual_sha256": "d068b8d7429e6cdbfca769672cb95986ee6cc8fd89696c4f296aa1f67fb547c5",
+            "actual_size_bytes": 10492,
+            "exists": true,
+            "expected_sha256": "d068b8d7429e6cdbfca769672cb95986ee6cc8fd89696c4f296aa1f67fb547c5",
+            "expected_size_bytes": 10492,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/src/heiq/wp1/axial/local_state.py"
+          },
+          {
+            "actual_sha256": "f917a7e108d852403821450e7861dc5e14778264ecc50502d2168f25671f40ed",
+            "actual_size_bytes": 10779,
+            "exists": true,
+            "expected_sha256": "f917a7e108d852403821450e7861dc5e14778264ecc50502d2168f25671f40ed",
+            "expected_size_bytes": 10779,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/src/heiq/wp1/membrane/thermodynamics.py"
+          },
+          {
+            "actual_sha256": "f538f810ae89e7f5eaff3ad2b8be38c587f11587ea4b1f8558d0a9c278f21f54",
+            "actual_size_bytes": 41099,
+            "exists": true,
+            "expected_sha256": "f538f810ae89e7f5eaff3ad2b8be38c587f11587ea4b1f8558d0a9c278f21f54",
+            "expected_size_bytes": 41099,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/heiq_pre_receiver_material_analyses/heiq_pre_receiver_model.py"
+          },
+          {
+            "actual_sha256": "519b90cc7819a83f607e376add55fe874b376850a49de2fdead32403c2c389a7",
+            "actual_size_bytes": 4485,
+            "exists": true,
+            "expected_sha256": "519b90cc7819a83f607e376add55fe874b376850a49de2fdead32403c2c389a7",
+            "expected_size_bytes": 4485,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/heiq_pre_receiver_material_analyses/config/default.json"
+          },
+          {
+            "actual_sha256": "1e3b9177fce250872c9d763a018ae1a9962e9fe017c70416440d4b1259d43417",
+            "actual_size_bytes": 9179,
+            "exists": true,
+            "expected_sha256": "1e3b9177fce250872c9d763a018ae1a9962e9fe017c70416440d4b1259d43417",
+            "expected_size_bytes": 9179,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/study/config_used.json"
+          },
+          {
+            "actual_sha256": "f11b59adc9adfd8f3bb2c5c373b85d9d83c733f9a1d6087bba015349cdbad6fe",
+            "actual_size_bytes": 699,
+            "exists": true,
+            "expected_sha256": "f11b59adc9adfd8f3bb2c5c373b85d9d83c733f9a1d6087bba015349cdbad6fe",
+            "expected_size_bytes": 699,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/study/run_contract.json"
+          },
+          {
+            "actual_sha256": "518362ce34734526d5700974abe2965988f623132f5cec688328febf00503137",
+            "actual_size_bytes": 541320,
+            "exists": true,
+            "expected_sha256": "518362ce34734526d5700974abe2965988f623132f5cec688328febf00503137",
+            "expected_size_bytes": 541320,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/study/case_register.csv"
+          },
+          {
+            "actual_sha256": "8a55ae7c2e5067b776f41530d7b2e5fac9706119fa89e203fc7b0a2608541dfc",
+            "actual_size_bytes": 620901,
+            "exists": true,
+            "expected_sha256": "8a55ae7c2e5067b776f41530d7b2e5fac9706119fa89e203fc7b0a2608541dfc",
+            "expected_size_bytes": 620901,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/study/segment_register.csv.gz"
+          },
+          {
+            "actual_sha256": "6ccb1b6fb2d2b986a6e909f78bb585074d9d22ff9a8e71512f8d5093b1aeb9de",
+            "actual_size_bytes": 20807,
+            "exists": true,
+            "expected_sha256": "6ccb1b6fb2d2b986a6e909f78bb585074d9d22ff9a8e71512f8d5093b1aeb9de",
+            "expected_size_bytes": 20807,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/study/selected_cases.csv"
+          },
+          {
+            "actual_sha256": "5de5debd0023d4955da863f0819a6bd200e76d48000a4b019eb606a0a871722a",
+            "actual_size_bytes": 1032,
+            "exists": true,
+            "expected_sha256": "5de5debd0023d4955da863f0819a6bd200e76d48000a4b019eb606a0a871722a",
+            "expected_size_bytes": 1032,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/study/target_summary.csv"
+          },
+          {
+            "actual_sha256": "f7ed1df8c8002a8ecebe017e16ce39e399114b47e065b4b2df866949a4a71db9",
+            "actual_size_bytes": 713,
+            "exists": true,
+            "expected_sha256": "f7ed1df8c8002a8ecebe017e16ce39e399114b47e065b4b2df866949a4a71db9",
+            "expected_size_bytes": 713,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/study/gate_counts.csv"
+          },
+          {
+            "actual_sha256": "90e9bd636eb46afff510ce0682e1f4668e84f7f84b53d8f5f1fed789050f45c4",
+            "actual_size_bytes": 61993,
+            "exists": true,
+            "expected_sha256": "90e9bd636eb46afff510ce0682e1f4668e84f7f84b53d8f5f1fed789050f45c4",
+            "expected_size_bytes": 61993,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/study/segment_convergence.csv"
+          },
+          {
+            "actual_sha256": "cd32596573e5516d349bd9a49f5d1049015fbacb3dbafeb3c3376378f766222e",
+            "actual_size_bytes": 2418,
+            "exists": true,
+            "expected_sha256": "cd32596573e5516d349bd9a49f5d1049015fbacb3dbafeb3c3376378f766222e",
+            "expected_size_bytes": 2418,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/study/DECISION_SUMMARY.json"
+          },
+          {
+            "actual_sha256": "578a6261f1320d93009afbc19a2e251319c1769c0fe3c713580dbfc0d90b5af7",
+            "actual_size_bytes": 1705,
+            "exists": true,
+            "expected_sha256": "578a6261f1320d93009afbc19a2e251319c1769c0fe3c713580dbfc0d90b5af7",
+            "expected_size_bytes": 1705,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/study/SUMMARY.md"
+          },
+          {
+            "actual_sha256": "021e03c8f2dc81fcc7cfcedf024b78b3c1d58aea4abf6dff523842276cebf5e8",
+            "actual_size_bytes": 132269,
+            "exists": true,
+            "expected_sha256": "021e03c8f2dc81fcc7cfcedf024b78b3c1d58aea4abf6dff523842276cebf5e8",
+            "expected_size_bytes": 132269,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/study/figures/01_axial_gradient_anchor.png"
+          },
+          {
+            "actual_sha256": "b9f013e808ecc9703d0d2e3d42458876f48c4e79e0bb559bea279383d8f945d1",
+            "actual_size_bytes": 25270,
+            "exists": true,
+            "expected_sha256": "b9f013e808ecc9703d0d2e3d42458876f48c4e79e0bb559bea279383d8f945d1",
+            "expected_size_bytes": 25270,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/study/figures/01_axial_gradient_anchor.pdf"
+          },
+          {
+            "actual_sha256": "2edfab1e4223a4ec307f22a76bce966aa8085e573740e19709a2ffd336b08e94",
+            "actual_size_bytes": 113440,
+            "exists": true,
+            "expected_sha256": "2edfab1e4223a4ec307f22a76bce966aa8085e573740e19709a2ffd336b08e94",
+            "expected_size_bytes": 113440,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/study/figures/02_target_voltage_surface_map.png"
+          },
+          {
+            "actual_sha256": "e2b9fbbcdc7bc21d67578b9adcfbed71c0aec6193ba417921fdcae4e94e2b609",
+            "actual_size_bytes": 19334,
+            "exists": true,
+            "expected_sha256": "e2b9fbbcdc7bc21d67578b9adcfbed71c0aec6193ba417921fdcae4e94e2b609",
+            "expected_size_bytes": 19334,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/study/figures/02_target_voltage_surface_map.pdf"
+          },
+          {
+            "actual_sha256": "5cc6a3a8439651e4e4aaff4c748d9a8fe170d66857c5e625eba9ef419ad02a9e",
+            "actual_size_bytes": 149073,
+            "exists": true,
+            "expected_sha256": "5cc6a3a8439651e4e4aaff4c748d9a8fe170d66857c5e625eba9ef419ad02a9e",
+            "expected_size_bytes": 149073,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/study/figures/03_target_area_energy_tradeoff.png"
+          },
+          {
+            "actual_sha256": "4793b87d86ea5053fffe543de4f62ecd280b4379198050e2361abd8960819408",
+            "actual_size_bytes": 17321,
+            "exists": true,
+            "expected_sha256": "4793b87d86ea5053fffe543de4f62ecd280b4379198050e2361abd8960819408",
+            "expected_size_bytes": 17321,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/study/figures/03_target_area_energy_tradeoff.pdf"
+          }
+        ],
+        "manifest_path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/study/study_audit.json",
+        "passed": true
+      },
+      {
+        "checked_file_count": 23,
+        "failed_file_count": 0,
+        "files": [
+          {
+            "actual_sha256": "f91a1c75f5d642d4103e0149223f5c4094c7eed8be84dd2886f5fb1fd2e0c2f3",
+            "actual_size_bytes": 8587,
+            "exists": true,
+            "expected_sha256": "f91a1c75f5d642d4103e0149223f5c4094c7eed8be84dd2886f5fb1fd2e0c2f3",
+            "expected_size_bytes": 8587,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/config/direct_active_eo_erv_study_v1.json"
+          },
+          {
+            "actual_sha256": "811af6c004b0eb58b82439c8861481e79b57d8dfe2f66b5dfd4aa49df9165e45",
+            "actual_size_bytes": 80310,
+            "exists": true,
+            "expected_sha256": "811af6c004b0eb58b82439c8861481e79b57d8dfe2f66b5dfd4aa49df9165e45",
+            "expected_size_bytes": 80310,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/scripts/run_direct_active_eo_erv_study_v1.py"
+          },
+          {
+            "actual_sha256": "7c2ca694ea10e8f58db1c66ab0304db47f627930081e5d2596e44e36ab017d4e",
+            "actual_size_bytes": 51245,
+            "exists": true,
+            "expected_sha256": "7c2ca694ea10e8f58db1c66ab0304db47f627930081e5d2596e44e36ab017d4e",
+            "expected_size_bytes": 51245,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/src/heiq/wp1/studies/active_erv.py"
+          },
+          {
+            "actual_sha256": "d068b8d7429e6cdbfca769672cb95986ee6cc8fd89696c4f296aa1f67fb547c5",
+            "actual_size_bytes": 10492,
+            "exists": true,
+            "expected_sha256": "d068b8d7429e6cdbfca769672cb95986ee6cc8fd89696c4f296aa1f67fb547c5",
+            "expected_size_bytes": 10492,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/src/heiq/wp1/axial/local_state.py"
+          },
+          {
+            "actual_sha256": "f917a7e108d852403821450e7861dc5e14778264ecc50502d2168f25671f40ed",
+            "actual_size_bytes": 10779,
+            "exists": true,
+            "expected_sha256": "f917a7e108d852403821450e7861dc5e14778264ecc50502d2168f25671f40ed",
+            "expected_size_bytes": 10779,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/src/heiq/wp1/membrane/thermodynamics.py"
+          },
+          {
+            "actual_sha256": "f538f810ae89e7f5eaff3ad2b8be38c587f11587ea4b1f8558d0a9c278f21f54",
+            "actual_size_bytes": 41099,
+            "exists": true,
+            "expected_sha256": "f538f810ae89e7f5eaff3ad2b8be38c587f11587ea4b1f8558d0a9c278f21f54",
+            "expected_size_bytes": 41099,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/heiq_pre_receiver_material_analyses/heiq_pre_receiver_model.py"
+          },
+          {
+            "actual_sha256": "519b90cc7819a83f607e376add55fe874b376850a49de2fdead32403c2c389a7",
+            "actual_size_bytes": 4485,
+            "exists": true,
+            "expected_sha256": "519b90cc7819a83f607e376add55fe874b376850a49de2fdead32403c2c389a7",
+            "expected_size_bytes": 4485,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/heiq_pre_receiver_material_analyses/config/default.json"
+          },
+          {
+            "actual_sha256": "1e3b9177fce250872c9d763a018ae1a9962e9fe017c70416440d4b1259d43417",
+            "actual_size_bytes": 9179,
+            "exists": true,
+            "expected_sha256": "1e3b9177fce250872c9d763a018ae1a9962e9fe017c70416440d4b1259d43417",
+            "expected_size_bytes": 9179,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/sensitivity/config_used.json"
+          },
+          {
+            "actual_sha256": "b7ab2c8ecc5380b45cbec0dcc94aaee3c8042fa9668497b4c359c36e43b4b1cc",
+            "actual_size_bytes": 706,
+            "exists": true,
+            "expected_sha256": "b7ab2c8ecc5380b45cbec0dcc94aaee3c8042fa9668497b4c359c36e43b4b1cc",
+            "expected_size_bytes": 706,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/sensitivity/run_contract.json"
+          },
+          {
+            "actual_sha256": "923a8e547f16180c52b1700bf5165ee3d7af301d91dd742a7264b8295e8c8c78",
+            "actual_size_bytes": 2699571,
+            "exists": true,
+            "expected_sha256": "923a8e547f16180c52b1700bf5165ee3d7af301d91dd742a7264b8295e8c8c78",
+            "expected_size_bytes": 2699571,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/sensitivity/case_register.csv"
+          },
+          {
+            "actual_sha256": "f57c8f28d6be157e74529bb25c5636a817345b2494d97edec2957fc12040c7dd",
+            "actual_size_bytes": 2904795,
+            "exists": true,
+            "expected_sha256": "f57c8f28d6be157e74529bb25c5636a817345b2494d97edec2957fc12040c7dd",
+            "expected_size_bytes": 2904795,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/sensitivity/segment_register.csv.gz"
+          },
+          {
+            "actual_sha256": "ac3342c3d3c12c42f82a7aa0e408017e2d2a7900e134651e17451edf32fc1cf2",
+            "actual_size_bytes": 14603,
+            "exists": true,
+            "expected_sha256": "ac3342c3d3c12c42f82a7aa0e408017e2d2a7900e134651e17451edf32fc1cf2",
+            "expected_size_bytes": 14603,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/sensitivity/selected_cases.csv"
+          },
+          {
+            "actual_sha256": "bdf46c5608dfa04153313e06ab363ed744c67c029bcae6041c71cc12296c772b",
+            "actual_size_bytes": 786,
+            "exists": true,
+            "expected_sha256": "bdf46c5608dfa04153313e06ab363ed744c67c029bcae6041c71cc12296c772b",
+            "expected_size_bytes": 786,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/sensitivity/target_summary.csv"
+          },
+          {
+            "actual_sha256": "b795eb6058ae3daa79e898e1773c5c179765e5da98afe9e67b82bf45f5b4cbf6",
+            "actual_size_bytes": 748,
+            "exists": true,
+            "expected_sha256": "b795eb6058ae3daa79e898e1773c5c179765e5da98afe9e67b82bf45f5b4cbf6",
+            "expected_size_bytes": 748,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/sensitivity/gate_counts.csv"
+          },
+          {
+            "actual_sha256": "e3928531b74201f4ea0d44c0dc702beddc51d0c0b4c784c4402c5df0efa94129",
+            "actual_size_bytes": 276098,
+            "exists": true,
+            "expected_sha256": "e3928531b74201f4ea0d44c0dc702beddc51d0c0b4c784c4402c5df0efa94129",
+            "expected_size_bytes": 276098,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/sensitivity/segment_convergence.csv"
+          },
+          {
+            "actual_sha256": "543ee084234dcea0aa45c5724f27750f81e923bf0be7ca1a87b76ee1c2f4f641",
+            "actual_size_bytes": 2412,
+            "exists": true,
+            "expected_sha256": "543ee084234dcea0aa45c5724f27750f81e923bf0be7ca1a87b76ee1c2f4f641",
+            "expected_size_bytes": 2412,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/sensitivity/DECISION_SUMMARY.json"
+          },
+          {
+            "actual_sha256": "95569227b425370e274bd712847afc20e9c8d291a8d0ffe798dc8b2fb33fbaea",
+            "actual_size_bytes": 1709,
+            "exists": true,
+            "expected_sha256": "95569227b425370e274bd712847afc20e9c8d291a8d0ffe798dc8b2fb33fbaea",
+            "expected_size_bytes": 1709,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/sensitivity/SUMMARY.md"
+          },
+          {
+            "actual_sha256": "f208aeee8b992060ef7991631ea769b75a1f64bd2bcb79a3c8cfc557a0eeaf5c",
+            "actual_size_bytes": 134865,
+            "exists": true,
+            "expected_sha256": "f208aeee8b992060ef7991631ea769b75a1f64bd2bcb79a3c8cfc557a0eeaf5c",
+            "expected_size_bytes": 134865,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/sensitivity/figures/01_axial_gradient_anchor.png"
+          },
+          {
+            "actual_sha256": "fa3707b4d12356775f45bed719ba5a429a5ba1cb455e3744964cfa5e8f51ea73",
+            "actual_size_bytes": 25271,
+            "exists": true,
+            "expected_sha256": "fa3707b4d12356775f45bed719ba5a429a5ba1cb455e3744964cfa5e8f51ea73",
+            "expected_size_bytes": 25271,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/sensitivity/figures/01_axial_gradient_anchor.pdf"
+          },
+          {
+            "actual_sha256": "e963a4152d462c3d2b1b890f82aa67ec033ec2eca7698895affdc11a01c347b7",
+            "actual_size_bytes": 97342,
+            "exists": true,
+            "expected_sha256": "e963a4152d462c3d2b1b890f82aa67ec033ec2eca7698895affdc11a01c347b7",
+            "expected_size_bytes": 97342,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/sensitivity/figures/02_target_voltage_surface_map.png"
+          },
+          {
+            "actual_sha256": "ee55e7c13fc61f51e7d0a1fc106b98ff254df9c3ba8cd0c8cb6b057f3d0154dd",
+            "actual_size_bytes": 18041,
+            "exists": true,
+            "expected_sha256": "ee55e7c13fc61f51e7d0a1fc106b98ff254df9c3ba8cd0c8cb6b057f3d0154dd",
+            "expected_size_bytes": 18041,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/sensitivity/figures/02_target_voltage_surface_map.pdf"
+          },
+          {
+            "actual_sha256": "b0043f21d4964ff2c085a6e0022ea9eb4fa6259bace39ddf4020c894ff46fd51",
+            "actual_size_bytes": 149659,
+            "exists": true,
+            "expected_sha256": "b0043f21d4964ff2c085a6e0022ea9eb4fa6259bace39ddf4020c894ff46fd51",
+            "expected_size_bytes": 149659,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/sensitivity/figures/03_target_area_energy_tradeoff.png"
+          },
+          {
+            "actual_sha256": "1405b85800cb98493ae03b1bbb4ff59d8119ae0619a4cbeb4813200ed67cd500",
+            "actual_size_bytes": 17648,
+            "exists": true,
+            "expected_sha256": "1405b85800cb98493ae03b1bbb4ff59d8119ae0619a4cbeb4813200ed67cd500",
+            "expected_size_bytes": 17648,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/sensitivity/figures/03_target_area_energy_tradeoff.pdf"
+          }
+        ],
+        "manifest_path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/sensitivity/study_audit.json",
+        "passed": true
+      },
+      {
+        "checked_file_count": 11,
+        "failed_file_count": 0,
+        "files": [
+          {
+            "actual_sha256": "395f147aceb87da635a4b699d922b8e00fca729ecc889094590ed7142f08522b",
+            "actual_size_bytes": 1482,
+            "exists": true,
+            "expected_sha256": "395f147aceb87da635a4b699d922b8e00fca729ecc889094590ed7142f08522b",
+            "expected_size_bytes": 1482,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/config/direct_erv_gradient_closure_v1.json"
+          },
+          {
+            "actual_sha256": "518362ce34734526d5700974abe2965988f623132f5cec688328febf00503137",
+            "actual_size_bytes": 541320,
+            "exists": true,
+            "expected_sha256": "518362ce34734526d5700974abe2965988f623132f5cec688328febf00503137",
+            "expected_size_bytes": 541320,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/study/case_register.csv"
+          },
+          {
+            "actual_sha256": "8a55ae7c2e5067b776f41530d7b2e5fac9706119fa89e203fc7b0a2608541dfc",
+            "actual_size_bytes": 620901,
+            "exists": true,
+            "expected_sha256": "8a55ae7c2e5067b776f41530d7b2e5fac9706119fa89e203fc7b0a2608541dfc",
+            "expected_size_bytes": 620901,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/study/segment_register.csv.gz"
+          },
+          {
+            "actual_sha256": "f91a1c75f5d642d4103e0149223f5c4094c7eed8be84dd2886f5fb1fd2e0c2f3",
+            "actual_size_bytes": 8587,
+            "exists": true,
+            "expected_sha256": "f91a1c75f5d642d4103e0149223f5c4094c7eed8be84dd2886f5fb1fd2e0c2f3",
+            "expected_size_bytes": 8587,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/config/direct_active_eo_erv_study_v1.json"
+          },
+          {
+            "actual_sha256": "519b90cc7819a83f607e376add55fe874b376850a49de2fdead32403c2c389a7",
+            "actual_size_bytes": 4485,
+            "exists": true,
+            "expected_sha256": "519b90cc7819a83f607e376add55fe874b376850a49de2fdead32403c2c389a7",
+            "expected_size_bytes": 4485,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/heiq_pre_receiver_material_analyses/config/default.json"
+          },
+          {
+            "actual_sha256": "9b6d9c95425820d29252160723445d74d654cb079a9161f3723a44f149026bc3",
+            "actual_size_bytes": 73780,
+            "exists": true,
+            "expected_sha256": "9b6d9c95425820d29252160723445d74d654cb079a9161f3723a44f149026bc3",
+            "expected_size_bytes": 73780,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/scripts/analyze_eo_vapor_boundaries_v1.py"
+          },
+          {
+            "actual_sha256": "cf859e20675576611a714e76a26c95352b56624d13b9aa30125effbf6521cdf5",
+            "actual_size_bytes": 37192,
+            "exists": true,
+            "expected_sha256": "cf859e20675576611a714e76a26c95352b56624d13b9aa30125effbf6521cdf5",
+            "expected_size_bytes": 37192,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/scripts/run_direct_erv_gradient_closure_v1.py"
+          },
+          {
+            "actual_sha256": "c03bb52a868730748ce3776fa80a1f0ebbff7b2dc1373ce191dbea28bd6a672c",
+            "actual_size_bytes": 115332,
+            "exists": true,
+            "expected_sha256": "c03bb52a868730748ce3776fa80a1f0ebbff7b2dc1373ce191dbea28bd6a672c",
+            "expected_size_bytes": 115332,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_erv_gradient_closure_v1/figures/01_film_area_gradient_envelope.png"
+          },
+          {
+            "actual_sha256": "46d70edbdb64594d8a87a1a9a0b2debe26952575b359861c5981cd68f7bee683",
+            "actual_size_bytes": 16548,
+            "exists": true,
+            "expected_sha256": "46d70edbdb64594d8a87a1a9a0b2debe26952575b359861c5981cd68f7bee683",
+            "expected_size_bytes": 16548,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_erv_gradient_closure_v1/figures/01_film_area_gradient_envelope.pdf"
+          },
+          {
+            "actual_sha256": "8b21de6992f35bace93e31eefa57af500204c982fc51682763f11776e94098c0",
+            "actual_size_bytes": 104462,
+            "exists": true,
+            "expected_sha256": "8b21de6992f35bace93e31eefa57af500204c982fc51682763f11776e94098c0",
+            "expected_size_bytes": 104462,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_erv_gradient_closure_v1/figures/02_signed_triplet_ac_null.png"
+          },
+          {
+            "actual_sha256": "55767210a15c282c37ae419b3e20c56ac10df226f6c9a3f97de1e314e50944d4",
+            "actual_size_bytes": 16520,
+            "exists": true,
+            "expected_sha256": "55767210a15c282c37ae419b3e20c56ac10df226f6c9a3f97de1e314e50944d4",
+            "expected_size_bytes": 16520,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_erv_gradient_closure_v1/figures/02_signed_triplet_ac_null.pdf"
+          }
+        ],
+        "manifest_path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_erv_gradient_closure_v1/source_manifest.json",
+        "passed": true
+      },
+      {
+        "checked_file_count": 10,
+        "failed_file_count": 0,
+        "files": [
+          {
+            "actual_sha256": "e0a54dba9835dcad6644dc7d965fb67bc87c4005391a8234e0b248f4e97e1cfe",
+            "actual_size_bytes": 2139,
+            "exists": true,
+            "expected_sha256": "e0a54dba9835dcad6644dc7d965fb67bc87c4005391a8234e0b248f4e97e1cfe",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/config/workshop_common_voltage_diffusivity_v1.json"
+          },
+          {
+            "actual_sha256": "81da253b6edb08e16dc6739b89ef758d2532fe91d515d72fa4787b09c84e0a96",
+            "actual_size_bytes": 5571,
+            "exists": true,
+            "expected_sha256": "81da253b6edb08e16dc6739b89ef758d2532fe91d515d72fa4787b09c84e0a96",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/config/project_closure_check_v1.json"
+          },
+          {
+            "actual_sha256": "86285bf7b783aca4373b0a662b567b28172b9a93a590a9dfb822f9931f1ce085",
+            "actual_size_bytes": 43131,
+            "exists": true,
+            "expected_sha256": "86285bf7b783aca4373b0a662b567b28172b9a93a590a9dfb822f9931f1ce085",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/post_erv_eo_percentage_sweep_v1/percentage_summary.csv"
+          },
+          {
+            "actual_sha256": "f91a1c75f5d642d4103e0149223f5c4094c7eed8be84dd2886f5fb1fd2e0c2f3",
+            "actual_size_bytes": 8587,
+            "exists": true,
+            "expected_sha256": "f91a1c75f5d642d4103e0149223f5c4094c7eed8be84dd2886f5fb1fd2e0c2f3",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/config/direct_active_eo_erv_study_v1.json"
+          },
+          {
+            "actual_sha256": "9ee728f0254d29820a1bdd3d9aae767d3eb5fbf9fa6b01c52f21392aa8ebec84",
+            "actual_size_bytes": 64535,
+            "exists": true,
+            "expected_sha256": "9ee728f0254d29820a1bdd3d9aae767d3eb5fbf9fa6b01c52f21392aa8ebec84",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/scripts/run_workshop_common_voltage_diffusivity_v1.py"
+          },
+          {
+            "actual_sha256": "426fec9289703b6bf7ca102f53c4b9449cefe9ff2a2c21e93ade500ef9978845",
+            "actual_size_bytes": 78981,
+            "exists": true,
+            "expected_sha256": "426fec9289703b6bf7ca102f53c4b9449cefe9ff2a2c21e93ade500ef9978845",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/scripts/run_project_closure_check_v1.py"
+          },
+          {
+            "actual_sha256": "97dfc9014be749639cd1075c03b19b5cbd536df5b1a7b55dbb95d5bf9d501a32",
+            "actual_size_bytes": 136574,
+            "exists": true,
+            "expected_sha256": "97dfc9014be749639cd1075c03b19b5cbd536df5b1a7b55dbb95d5bf9d501a32",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/scripts/analyze_post_erv_inverse_design_v1.py"
+          },
+          {
+            "actual_sha256": "7c2ca694ea10e8f58db1c66ab0304db47f627930081e5d2596e44e36ab017d4e",
+            "actual_size_bytes": 51245,
+            "exists": true,
+            "expected_sha256": "7c2ca694ea10e8f58db1c66ab0304db47f627930081e5d2596e44e36ab017d4e",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/src/heiq/wp1/studies/active_erv.py"
+          },
+          {
+            "actual_sha256": "f917a7e108d852403821450e7861dc5e14778264ecc50502d2168f25671f40ed",
+            "actual_size_bytes": 10779,
+            "exists": true,
+            "expected_sha256": "f917a7e108d852403821450e7861dc5e14778264ecc50502d2168f25671f40ed",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/src/heiq/wp1/membrane/thermodynamics.py"
+          },
+          {
+            "actual_sha256": "f538f810ae89e7f5eaff3ad2b8be38c587f11587ea4b1f8558d0a9c278f21f54",
+            "actual_size_bytes": 41099,
+            "exists": true,
+            "expected_sha256": "f538f810ae89e7f5eaff3ad2b8be38c587f11587ea4b1f8558d0a9c278f21f54",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/HeiQ_V2/heiq_pre_receiver_material_analyses/heiq_pre_receiver_model.py"
+          }
+        ],
+        "manifest_path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/workshop_common_voltage_diffusivity_v1/source_manifest.json",
+        "passed": true
+      },
+      {
+        "checked_file_count": 10,
+        "failed_file_count": 0,
+        "files": [
+          {
+            "actual_sha256": "97dc16c3863462d12229c2906e3a8ef40e61999b6b31f1864b2cfa99cfe14ba1",
+            "actual_size_bytes": 406030,
+            "exists": true,
+            "expected_sha256": "97dc16c3863462d12229c2906e3a8ef40e61999b6b31f1864b2cfa99cfe14ba1",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/mnt/c/Users/mariu/Downloads/Technical analysis and plan v1.0 260722.docx.pdf"
+          },
+          {
+            "actual_sha256": "131cc8659c58b2c0bb811b716c8f2f92a8c784a93a04e7f4c96d51b85455a58b",
+            "actual_size_bytes": 41765,
+            "exists": true,
+            "expected_sha256": "131cc8659c58b2c0bb811b716c8f2f92a8c784a93a04e7f4c96d51b85455a58b",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/mnt/c/Users/mariu/Downloads/FOM etc.docx"
+          },
+          {
+            "actual_sha256": "d7b51368ec7c06bc67ff3414c69f04340919c948343b24e9deec2fed860ccd40",
+            "actual_size_bytes": 1585,
+            "exists": true,
+            "expected_sha256": "d7b51368ec7c06bc67ff3414c69f04340919c948343b24e9deec2fed860ccd40",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/config/fom_assessment_v1.json"
+          },
+          {
+            "actual_sha256": "f91a1c75f5d642d4103e0149223f5c4094c7eed8be84dd2886f5fb1fd2e0c2f3",
+            "actual_size_bytes": 8587,
+            "exists": true,
+            "expected_sha256": "f91a1c75f5d642d4103e0149223f5c4094c7eed8be84dd2886f5fb1fd2e0c2f3",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/config/direct_active_eo_erv_study_v1.json"
+          },
+          {
+            "actual_sha256": "940bd50f1219084c6c200672f598749d39c241150f5482ce95dda308cc59357e",
+            "actual_size_bytes": 4592,
+            "exists": true,
+            "expected_sha256": "940bd50f1219084c6c200672f598749d39c241150f5482ce95dda308cc59357e",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/workshop_common_voltage_diffusivity_v1/diffusivity_envelope.csv"
+          },
+          {
+            "actual_sha256": "ed3cd504210851cddc26afd0f1383f3f4a4252bba8c9a8b862eb8bfebcc35eeb",
+            "actual_size_bytes": 196299,
+            "exists": true,
+            "expected_sha256": "ed3cd504210851cddc26afd0f1383f3f4a4252bba8c9a8b862eb8bfebcc35eeb",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/workshop_common_voltage_diffusivity_v1/cases.csv"
+          },
+          {
+            "actual_sha256": "518362ce34734526d5700974abe2965988f623132f5cec688328febf00503137",
+            "actual_size_bytes": 541320,
+            "exists": true,
+            "expected_sha256": "518362ce34734526d5700974abe2965988f623132f5cec688328febf00503137",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/study/case_register.csv"
+          },
+          {
+            "actual_sha256": "bbca76e0596d26eaddda555501d1b6b9df449e6a25bf027b809f8b4f7adaaf85",
+            "actual_size_bytes": 793,
+            "exists": true,
+            "expected_sha256": "bbca76e0596d26eaddda555501d1b6b9df449e6a25bf027b809f8b4f7adaaf85",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/project_closure_check_v1/active_erv_reclassification.csv"
+          },
+          {
+            "actual_sha256": "7c2ca694ea10e8f58db1c66ab0304db47f627930081e5d2596e44e36ab017d4e",
+            "actual_size_bytes": 51245,
+            "exists": true,
+            "expected_sha256": "7c2ca694ea10e8f58db1c66ab0304db47f627930081e5d2596e44e36ab017d4e",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/src/heiq/wp1/studies/active_erv.py"
+          },
+          {
+            "actual_sha256": "b429b8b354ddd8c916ae220bc18cb3c3d5ef8c43bff94921b9b8b199f9f94995",
+            "actual_size_bytes": 42998,
+            "exists": true,
+            "expected_sha256": "b429b8b354ddd8c916ae220bc18cb3c3d5ef8c43bff94921b9b8b199f9f94995",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/scripts/calculate_fom_assessment_v1.py"
+          }
+        ],
+        "manifest_path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/fom_assessment_v1/source_manifest.json",
+        "passed": true
+      },
+      {
+        "checked_file_count": 21,
+        "failed_file_count": 0,
+        "files": [
+          {
+            "actual_sha256": "8c7cf03003e53e9944a8c4f6d95e2f8317c47d843ae7a8d0d6122e6366b0d84f",
+            "actual_size_bytes": 920,
+            "exists": true,
+            "expected_sha256": "8c7cf03003e53e9944a8c4f6d95e2f8317c47d843ae7a8d0d6122e6366b0d84f",
+            "expected_size_bytes": 920,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_boundary_analysis_v1/nominal_cases.csv"
+          },
+          {
+            "actual_sha256": "6fec9f8719a01e7816ff2bdcf1b9f63ca3fc34743a897bad8a3949aab712b7ba",
+            "actual_size_bytes": 470,
+            "exists": true,
+            "expected_sha256": "6fec9f8719a01e7816ff2bdcf1b9f63ca3fc34743a897bad8a3949aab712b7ba",
+            "expected_size_bytes": 470,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_boundary_analysis_v1/canonical_solver_crosscheck.csv"
+          },
+          {
+            "actual_sha256": "d5b358e6405f07f605471be3962f939429412743c200b407cdedd19693e7497e",
+            "actual_size_bytes": 120838,
+            "exists": true,
+            "expected_sha256": "d5b358e6405f07f605471be3962f939429412743c200b407cdedd19693e7497e",
+            "expected_size_bytes": 120838,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_boundary_analysis_v1/one_factor_boundary_sweeps.csv"
+          },
+          {
+            "actual_sha256": "9ea2ee830f7ba4d16f03c7525e87d3a36b074c39542139fc7f96be1fe09690bb",
+            "actual_size_bytes": 29237183,
+            "exists": true,
+            "expected_sha256": "9ea2ee830f7ba4d16f03c7525e87d3a36b074c39542139fc7f96be1fe09690bb",
+            "expected_size_bytes": 29237183,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_boundary_analysis_v1/combined_boundary_scenarios.csv"
+          },
+          {
+            "actual_sha256": "9dca4200d99a8dbdb369f8832fa8a4ada01b5f16b320044aef485ad4ae613003",
+            "actual_size_bytes": 47523,
+            "exists": true,
+            "expected_sha256": "9dca4200d99a8dbdb369f8832fa8a4ada01b5f16b320044aef485ad4ae613003",
+            "expected_size_bytes": 47523,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_boundary_analysis_v1/combined_sensitivity_rank.csv"
+          },
+          {
+            "actual_sha256": "9c03cc83040448c375d7166c464f19b20db8bd729fa991f45281d8b8b336c5c7",
+            "actual_size_bytes": 2185,
+            "exists": true,
+            "expected_sha256": "9c03cc83040448c375d7166c464f19b20db8bd729fa991f45281d8b8b336c5c7",
+            "expected_size_bytes": 2185,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_boundary_analysis_v1/scenario_summary.csv"
+          },
+          {
+            "actual_sha256": "6e3e92343b68ce6e33fcdf1b5e7379863174dd78dee6d2ca1f5416945b9cde24",
+            "actual_size_bytes": 77046,
+            "exists": true,
+            "expected_sha256": "6e3e92343b68ce6e33fcdf1b5e7379863174dd78dee6d2ca1f5416945b9cde24",
+            "expected_size_bytes": 77046,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_boundary_analysis_v1/closed_loop_boundary_screen.csv"
+          },
+          {
+            "actual_sha256": "fad9f1cb2b5f708f15608dd0f38bde4e3ea562988b10005b7aaa86dd2ec1f06d",
+            "actual_size_bytes": 622,
+            "exists": true,
+            "expected_sha256": "fad9f1cb2b5f708f15608dd0f38bde4e3ea562988b10005b7aaa86dd2ec1f06d",
+            "expected_size_bytes": 622,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_boundary_analysis_v1/aperture_design_identifiability.csv"
+          },
+          {
+            "actual_sha256": "807f05f4c295eeef71a6a1e0a6a12b2230e460aaa7ac8c1bf860944a577185b0",
+            "actual_size_bytes": 1212018,
+            "exists": true,
+            "expected_sha256": "807f05f4c295eeef71a6a1e0a6a12b2230e460aaa7ac8c1bf860944a577185b0",
+            "expected_size_bytes": 1212018,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_boundary_analysis_v1/activity_temperature_interaction.csv"
+          },
+          {
+            "actual_sha256": "02492ed650bff72debe261c2868f2f541f8884769f1e748743aa93a16cccf0da",
+            "actual_size_bytes": 6986,
+            "exists": true,
+            "expected_sha256": "02492ed650bff72debe261c2868f2f541f8884769f1e748743aa93a16cccf0da",
+            "expected_size_bytes": 6986,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_boundary_analysis_v1/config_used.json"
+          },
+          {
+            "actual_sha256": "86465289c15df2deeda7456cc0293ea13c653f4e23a8b54bf611e35fdc2fdc3b",
+            "actual_size_bytes": 536,
+            "exists": true,
+            "expected_sha256": "86465289c15df2deeda7456cc0293ea13c653f4e23a8b54bf611e35fdc2fdc3b",
+            "expected_size_bytes": 536,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_boundary_analysis_v1/audit.json"
+          },
+          {
+            "actual_sha256": "4bacdc798db4ebf6df7caa42b361e350ab204b1577dbfb589ef8d14e13aa2ec4",
+            "actual_size_bytes": 5100,
+            "exists": true,
+            "expected_sha256": "4bacdc798db4ebf6df7caa42b361e350ab204b1577dbfb589ef8d14e13aa2ec4",
+            "expected_size_bytes": 5100,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_boundary_analysis_v1/SUMMARY.md"
+          },
+          {
+            "actual_sha256": "2a54d0d306ae8c042cb5fc9a3b9d1a3704438eed6b9be3178a90114f4908c72c",
+            "actual_size_bytes": 115732,
+            "exists": true,
+            "expected_sha256": "2a54d0d306ae8c042cb5fc9a3b9d1a3704438eed6b9be3178a90114f4908c72c",
+            "expected_size_bytes": 115732,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_boundary_analysis_v1/activity_temperature_interaction.png"
+          },
+          {
+            "actual_sha256": "6d18e11724f3350ad5c9cc053d1da61eb963324c3d9968cdc516939564102a37",
+            "actual_size_bytes": 138930,
+            "exists": true,
+            "expected_sha256": "6d18e11724f3350ad5c9cc053d1da61eb963324c3d9968cdc516939564102a37",
+            "expected_size_bytes": 138930,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_boundary_analysis_v1/closed_loop_time_to_5pa.png"
+          },
+          {
+            "actual_sha256": "1a737b192f2222f8d51b5da72a31d8b463d40dbeb32cd65f8fd649a592cefa78",
+            "actual_size_bytes": 113929,
+            "exists": true,
+            "expected_sha256": "1a737b192f2222f8d51b5da72a31d8b463d40dbeb32cd65f8fd649a592cefa78",
+            "expected_size_bytes": 113929,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_boundary_analysis_v1/combined_error_distributions.png"
+          },
+          {
+            "actual_sha256": "aeaabcce7621c13231006089c66f9d2f4fcb8b29e07ab2d248185a5050eee9e2",
+            "actual_size_bytes": 95101,
+            "exists": true,
+            "expected_sha256": "aeaabcce7621c13231006089c66f9d2f4fcb8b29e07ab2d248185a5050eee9e2",
+            "expected_size_bytes": 95101,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_boundary_analysis_v1/combined_sensitivity_rank.png"
+          },
+          {
+            "actual_sha256": "d8df2a0f2f4b0ca7ea12305da55031ad9796c0d27b106dd4291c214014d97b64",
+            "actual_size_bytes": 195631,
+            "exists": true,
+            "expected_sha256": "d8df2a0f2f4b0ca7ea12305da55031ad9796c0d27b106dd4291c214014d97b64",
+            "expected_size_bytes": 195631,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_boundary_analysis_v1/one_factor_boundary_sensitivity.png"
+          },
+          {
+            "actual_sha256": "9663ff43a14b314c422e522ef78fdf6f3391f4dcf2bb23cd0ee93320ef0e9a17",
+            "actual_size_bytes": 6218,
+            "exists": true,
+            "expected_sha256": "9663ff43a14b314c422e522ef78fdf6f3391f4dcf2bb23cd0ee93320ef0e9a17",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/config/eo_vapor_boundary_analysis_v1.json"
+          },
+          {
+            "actual_sha256": "9b6d9c95425820d29252160723445d74d654cb079a9161f3723a44f149026bc3",
+            "actual_size_bytes": 73780,
+            "exists": true,
+            "expected_sha256": "9b6d9c95425820d29252160723445d74d654cb079a9161f3723a44f149026bc3",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/scripts/analyze_eo_vapor_boundaries_v1.py"
+          },
+          {
+            "actual_sha256": "e5830f09f9e7a4f6653f2b0ee13f9a00651a179a8492048f2e1ca8e4cb1008df",
+            "actual_size_bytes": 1579,
+            "exists": true,
+            "expected_sha256": "e5830f09f9e7a4f6653f2b0ee13f9a00651a179a8492048f2e1ca8e4cb1008df",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/src/heiq/wp1/membrane/local_transport.py"
+          },
+          {
+            "actual_sha256": "f538f810ae89e7f5eaff3ad2b8be38c587f11587ea4b1f8558d0a9c278f21f54",
+            "actual_size_bytes": 41099,
+            "exists": true,
+            "expected_sha256": "f538f810ae89e7f5eaff3ad2b8be38c587f11587ea4b1f8558d0a9c278f21f54",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/heiq_pre_receiver_material_analyses/heiq_pre_receiver_model.py"
+          }
+        ],
+        "manifest_path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_boundary_analysis_v1/source_manifest.json",
+        "passed": true
+      },
+      {
+        "checked_file_count": 21,
+        "failed_file_count": 0,
+        "files": [
+          {
+            "actual_sha256": "f78ada9cbffa7d8f3c1522a6a7fef7d9994636e1cdde2addbc017a1250ebc3de",
+            "actual_size_bytes": 3824,
+            "exists": true,
+            "expected_sha256": "f78ada9cbffa7d8f3c1522a6a7fef7d9994636e1cdde2addbc017a1250ebc3de",
+            "expected_size_bytes": 3824,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/channel_geometry_envelope.csv"
+          },
+          {
+            "actual_sha256": "62f96d0b95400faf1a2f48d40c4b5ef98ce66110bf3870b80205b031e6352e48",
+            "actual_size_bytes": 235492,
+            "exists": true,
+            "expected_sha256": "62f96d0b95400faf1a2f48d40c4b5ef98ce66110bf3870b80205b031e6352e48",
+            "expected_size_bytes": 235492,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/gross_signal_and_detectability_envelope.csv"
+          },
+          {
+            "actual_sha256": "88b3e0180c7eaf167b7572a6f6186ee692416d5ac378d7e959f45e1282ba8b9f",
+            "actual_size_bytes": 332,
+            "exists": true,
+            "expected_sha256": "88b3e0180c7eaf167b7572a6f6186ee692416d5ac378d7e959f45e1282ba8b9f",
+            "expected_size_bytes": 332,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/aperture_edge_sensitivity.csv"
+          },
+          {
+            "actual_sha256": "6f3c79883772b7f1b9d40da88ee520a922e788da4d245867496dc527ecf199ac",
+            "actual_size_bytes": 855,
+            "exists": true,
+            "expected_sha256": "6f3c79883772b7f1b9d40da88ee520a922e788da4d245867496dc527ecf199ac",
+            "expected_size_bytes": 855,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/fixture_dimension_basis.csv"
+          },
+          {
+            "actual_sha256": "4a54843fc9f9fd4dba3699685a7ee3cceeda95e260fc028ebbf673869a2c80c0",
+            "actual_size_bytes": 2427,
+            "exists": true,
+            "expected_sha256": "4a54843fc9f9fd4dba3699685a7ee3cceeda95e260fc028ebbf673869a2c80c0",
+            "expected_size_bytes": 2427,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/aperture_insert_dimensions.csv"
+          },
+          {
+            "actual_sha256": "3b7c9bfd2bcfb3843246d6b5c508ad5d6bb9e5a813bfdf50a048eed5e36c84af",
+            "actual_size_bytes": 651,
+            "exists": true,
+            "expected_sha256": "3b7c9bfd2bcfb3843246d6b5c508ad5d6bb9e5a813bfdf50a048eed5e36c84af",
+            "expected_size_bytes": 651,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/internal_volume_budget.csv"
+          },
+          {
+            "actual_sha256": "3cb8e4c3e65f01652fa5e064c7260088f9dbf7f047e347f74ee76e47afdf0497",
+            "actual_size_bytes": 6359,
+            "exists": true,
+            "expected_sha256": "3cb8e4c3e65f01652fa5e064c7260088f9dbf7f047e347f74ee76e47afdf0497",
+            "expected_size_bytes": 6359,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/detectability_vs_flow.csv"
+          },
+          {
+            "actual_sha256": "f28eaa89ba33d5d766ee8ac2012b744ada05ae9b39228b4375a3d8279db9412e",
+            "actual_size_bytes": 993,
+            "exists": true,
+            "expected_sha256": "f28eaa89ba33d5d766ee8ac2012b744ada05ae9b39228b4375a3d8279db9412e",
+            "expected_size_bytes": 993,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/detectability_flow_limits.csv"
+          },
+          {
+            "actual_sha256": "0a0ec819153ab856ff69fd56d8844a2716630b39f8ab9fb416a54028236b6763",
+            "actual_size_bytes": 5428,
+            "exists": true,
+            "expected_sha256": "0a0ec819153ab856ff69fd56d8844a2716630b39f8ab9fb416a54028236b6763",
+            "expected_size_bytes": 5428,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/plate_deflection_screen.csv"
+          },
+          {
+            "actual_sha256": "e6dc5671202a22f0a782a6b6c2c43ae797d2719fa104a7fac29fbd7980449453",
+            "actual_size_bytes": 5055,
+            "exists": true,
+            "expected_sha256": "e6dc5671202a22f0a782a6b6c2c43ae797d2719fa104a7fac29fbd7980449453",
+            "expected_size_bytes": 5055,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/closed_cell_dimension_screen.csv"
+          },
+          {
+            "actual_sha256": "dc7921ff586ed697ae062451c3da0cc819c1d4f8ea77ae05eee57c025dd8985f",
+            "actual_size_bytes": 11702,
+            "exists": true,
+            "expected_sha256": "dc7921ff586ed697ae062451c3da0cc819c1d4f8ea77ae05eee57c025dd8985f",
+            "expected_size_bytes": 11702,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/closed_loop_gas_inventory_requirement.csv"
+          },
+          {
+            "actual_sha256": "5fcabca995261a42c895f31bbb9879ddbaeb5447ed1bd229117e8b578b94c16f",
+            "actual_size_bytes": 62233,
+            "exists": true,
+            "expected_sha256": "5fcabca995261a42c895f31bbb9879ddbaeb5447ed1bd229117e8b578b94c16f",
+            "expected_size_bytes": 62233,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/closed_loop_drift_time_by_volume.csv"
+          },
+          {
+            "actual_sha256": "ebe8e2191ceb519819dd0ffb850e7a865c8ff585cea23a119d607e3262fcce8b",
+            "actual_size_bytes": 1256,
+            "exists": true,
+            "expected_sha256": "ebe8e2191ceb519819dd0ffb850e7a865c8ff585cea23a119d607e3262fcce8b",
+            "expected_size_bytes": 1256,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/membrane_diffusion_time_scale.csv"
+          },
+          {
+            "actual_sha256": "8f16a1008b3971344548bd6bba6f12beca2cb53e98b7b70722f0bfeb6b85db43",
+            "actual_size_bytes": 9723,
+            "exists": true,
+            "expected_sha256": "8f16a1008b3971344548bd6bba6f12beca2cb53e98b7b70722f0bfeb6b85db43",
+            "expected_size_bytes": 9723,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/boundary_activity_mismatch_screen.csv"
+          },
+          {
+            "actual_sha256": "0b6a264f1076d74fc4f78a4605499eb994fd82de5597a6034e4bf69de0970071",
+            "actual_size_bytes": 7819,
+            "exists": true,
+            "expected_sha256": "0b6a264f1076d74fc4f78a4605499eb994fd82de5597a6034e4bf69de0970071",
+            "expected_size_bytes": 7819,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/config_used.json"
+          },
+          {
+            "actual_sha256": "6d95ec563edefef5b83a38372c952c19f21d2c4b23ae326681d40a5a5e029ca5",
+            "actual_size_bytes": 4658,
+            "exists": true,
+            "expected_sha256": "6d95ec563edefef5b83a38372c952c19f21d2c4b23ae326681d40a5a5e029ca5",
+            "expected_size_bytes": 4658,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/SUMMARY.md"
+          },
+          {
+            "actual_sha256": "3525b9777da26b135cb92fa80f37555c5e7cbbd4bd1e511ef4f074f57f5b210a",
+            "actual_size_bytes": 97053,
+            "exists": true,
+            "expected_sha256": "3525b9777da26b135cb92fa80f37555c5e7cbbd4bd1e511ef4f074f57f5b210a",
+            "expected_size_bytes": 97053,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/gross_signal_envelope_25cm2.png"
+          },
+          {
+            "actual_sha256": "01bc819831d8e4736bd8147031f3867be7e47e641b712acfe31d24bfc4250b09",
+            "actual_size_bytes": 239567,
+            "exists": true,
+            "expected_sha256": "01bc819831d8e4736bd8147031f3867be7e47e641b712acfe31d24bfc4250b09",
+            "expected_size_bytes": 239567,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/cell_dimension_tradeoffs.png"
+          },
+          {
+            "actual_sha256": "12632b20fee31fc817224dd59ccd589558927c1c8da9df39d277092724a45808",
+            "actual_size_bytes": 1660,
+            "exists": true,
+            "expected_sha256": "12632b20fee31fc817224dd59ccd589558927c1c8da9df39d277092724a45808",
+            "expected_size_bytes": 1660,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/audit.json"
+          },
+          {
+            "actual_sha256": "77a73ec801b34a80f11a8009c126d302aa29e9132498d8d1e6af7715a475a6e4",
+            "actual_size_bytes": 6914,
+            "exists": true,
+            "expected_sha256": "77a73ec801b34a80f11a8009c126d302aa29e9132498d8d1e6af7715a475a6e4",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/config/eo_vapor_cell_sizing_v1.json"
+          },
+          {
+            "actual_sha256": "147e90c0545bdf674b653c7e1147f1919822a4cf0bb8831000f42aa299fb0ed0",
+            "actual_size_bytes": 64183,
+            "exists": true,
+            "expected_sha256": "147e90c0545bdf674b653c7e1147f1919822a4cf0bb8831000f42aa299fb0ed0",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/scripts/size_eo_vapor_cell_v1.py"
+          }
+        ],
+        "manifest_path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/source_manifest.json",
+        "passed": true
+      },
+      {
+        "checked_file_count": 47,
+        "failed_file_count": 0,
+        "files": [
+          {
+            "actual_sha256": "88d7d7f8a04f318f1d90d847ec38c918c1dc7b9e640b30575b32ef1e32bd56b9",
+            "actual_size_bytes": 2095,
+            "exists": true,
+            "expected_sha256": "88d7d7f8a04f318f1d90d847ec38c918c1dc7b9e640b30575b32ef1e32bd56b9",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/SUMMARY.md"
+          },
+          {
+            "actual_sha256": "1251a062820950b98c7aeff45694d9bc283cf11ee9f0dcbc094e74253f2e700e",
+            "actual_size_bytes": 846,
+            "exists": true,
+            "expected_sha256": "1251a062820950b98c7aeff45694d9bc283cf11ee9f0dcbc094e74253f2e700e",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/data/break_even_180whkg.csv"
+          },
+          {
+            "actual_sha256": "5fc80694a1043c71b289be05d4f005364c94288612419922f73e3452f282fbcf",
+            "actual_size_bytes": 971,
+            "exists": true,
+            "expected_sha256": "5fc80694a1043c71b289be05d4f005364c94288612419922f73e3452f282fbcf",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/data/common_voltage_diffusivity_audit.json"
+          },
+          {
+            "actual_sha256": "940bd50f1219084c6c200672f598749d39c241150f5482ce95dda308cc59357e",
+            "actual_size_bytes": 4592,
+            "exists": true,
+            "expected_sha256": "940bd50f1219084c6c200672f598749d39c241150f5482ce95dda308cc59357e",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/data/common_voltage_diffusivity_envelope.csv"
+          },
+          {
+            "actual_sha256": "dadac355f0763c65271c28cab0f49024a69cbffb65b1fd9876fe7a9264ba847e",
+            "actual_size_bytes": 37361,
+            "exists": true,
+            "expected_sha256": "dadac355f0763c65271c28cab0f49024a69cbffb65b1fd9876fe7a9264ba847e",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/data/diffusivity_optima_under_2v.csv"
+          },
+          {
+            "actual_sha256": "9444034f874df59a6bea310304cd21db8b04f1cf3cf9cfdd0eb373a38f6b2c6f",
+            "actual_size_bytes": 4773,
+            "exists": true,
+            "expected_sha256": "9444034f874df59a6bea310304cd21db8b04f1cf3cf9cfdd0eb373a38f6b2c6f",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/data/diffusivity_workshop_table.csv"
+          },
+          {
+            "actual_sha256": "f91a1c75f5d642d4103e0149223f5c4094c7eed8be84dd2886f5fb1fd2e0c2f3",
+            "actual_size_bytes": 8587,
+            "exists": true,
+            "expected_sha256": "f91a1c75f5d642d4103e0149223f5c4094c7eed8be84dd2886f5fb1fd2e0c2f3",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/data/direct_active_eo_erv_study_v1.json"
+          },
+          {
+            "actual_sha256": "64a84119be6313c3dd4b6a76828971b787586a13020d602fd22c9adf28de1a92",
+            "actual_size_bytes": 228,
+            "exists": true,
+            "expected_sha256": "64a84119be6313c3dd4b6a76828971b787586a13020d602fd22c9adf28de1a92",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/data/gradient_profile_quadrature_check.csv"
+          },
+          {
+            "actual_sha256": "93e071d5c3c8179c7483b5c3f42c4692e0823150fde4d90a2075d14e0c4ad397",
+            "actual_size_bytes": 857,
+            "exists": true,
+            "expected_sha256": "93e071d5c3c8179c7483b5c3f42c4692e0823150fde4d90a2075d14e0c4ad397",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/data/parameter_register.csv"
+          },
+          {
+            "actual_sha256": "34371f1f7e4a32d80665d99bf45db3b8c432b045f1f2e5d4ce63d6c4d24829f1",
+            "actual_size_bytes": 54707,
+            "exists": true,
+            "expected_sha256": "34371f1f7e4a32d80665d99bf45db3b8c432b045f1f2e5d4ce63d6c4d24829f1",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/data/pri2_eo_first_parallel_paths.csv"
+          },
+          {
+            "actual_sha256": "83da6c34c253899b13c4659951e0a5277ffe9bc03247483c107b28a6812a8c73",
+            "actual_size_bytes": 1156,
+            "exists": true,
+            "expected_sha256": "83da6c34c253899b13c4659951e0a5277ffe9bc03247483c107b28a6812a8c73",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/data/pri2_eo_first_parallel_summary.csv"
+          },
+          {
+            "actual_sha256": "f6ef23ad1fca1c888d5fa5a89f6edc8f5ceebd168265344b2999ec854d90702e",
+            "actual_size_bytes": 1492,
+            "exists": true,
+            "expected_sha256": "f6ef23ad1fca1c888d5fa5a89f6edc8f5ceebd168265344b2999ec854d90702e",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/data/pri2_limiting_cases.csv"
+          },
+          {
+            "actual_sha256": "fa3ac901b1737ab8d84ba07f8443eb515529e042890b966257281ec0483f1686",
+            "actual_size_bytes": 155061,
+            "exists": true,
+            "expected_sha256": "fa3ac901b1737ab8d84ba07f8443eb515529e042890b966257281ec0483f1686",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/data/selected_gradient_profiles.csv"
+          },
+          {
+            "actual_sha256": "31575aa3b0ae92659b3b6a2783637ce723ee69fddb748adf2e622062dbec0623",
+            "actual_size_bytes": 2092,
+            "exists": true,
+            "expected_sha256": "31575aa3b0ae92659b3b6a2783637ce723ee69fddb748adf2e622062dbec0623",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/data/system_bar_data.csv"
+          },
+          {
+            "actual_sha256": "0de1784f1cac906b3d6ffca65186333d0bf5bf2ec0e3b692b61f512c51239aad",
+            "actual_size_bytes": 2275,
+            "exists": true,
+            "expected_sha256": "0de1784f1cac906b3d6ffca65186333d0bf5bf2ec0e3b692b61f512c51239aad",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/data/test_cell_5l_closed_transients.csv"
+          },
+          {
+            "actual_sha256": "e154e2845f2bf7b9b75622e8ee80c73c215d72ae971d39a50884df2d25498df8",
+            "actual_size_bytes": 1390,
+            "exists": true,
+            "expected_sha256": "e154e2845f2bf7b9b75622e8ee80c73c215d72ae971d39a50884df2d25498df8",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/data/test_cell_inverse_anchor_inventory_requirement.csv"
+          },
+          {
+            "actual_sha256": "0edaa5356c79c294f715e56718b75d330636fa3bf72e04ece7fc5d0955b5590d",
+            "actual_size_bytes": 325,
+            "exists": true,
+            "expected_sha256": "0edaa5356c79c294f715e56718b75d330636fa3bf72e04ece7fc5d0955b5590d",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/data/test_cell_nominal_geometry.csv"
+          },
+          {
+            "actual_sha256": "ebc63ae2d5523a2ab3aa0afb3028fe7dbf5414134aa3df6edf69b05d79f30c53",
+            "actual_size_bytes": 1043,
+            "exists": true,
+            "expected_sha256": "ebc63ae2d5523a2ab3aa0afb3028fe7dbf5414134aa3df6edf69b05d79f30c53",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/data/test_cell_transport_rates.csv"
+          },
+          {
+            "actual_sha256": "ebe53e8a7809254e209cdda3273ac7b6d7b0de4acfd51800a33022a9e51c8ea3",
+            "actual_size_bytes": 4639,
+            "exists": true,
+            "expected_sha256": "ebe53e8a7809254e209cdda3273ac7b6d7b0de4acfd51800a33022a9e51c8ea3",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/data/workshop_diffusivity_energy_v1.json"
+          },
+          {
+            "actual_sha256": "93af03d2ae307eee8333bdc351e2375c7533fb675b0c7820f536c5229383da76",
+            "actual_size_bytes": 25486,
+            "exists": true,
+            "expected_sha256": "93af03d2ae307eee8333bdc351e2375c7533fb675b0c7820f536c5229383da76",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/figures/01_ac_only_energy.pdf"
+          },
+          {
+            "actual_sha256": "0b7130e6c76003e6bd0ee2a1f97442008bf675b0dc28067d4ddf509e86f9b501",
+            "actual_size_bytes": 128969,
+            "exists": true,
+            "expected_sha256": "0b7130e6c76003e6bd0ee2a1f97442008bf675b0dc28067d4ddf509e86f9b501",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/figures/01_ac_only_energy.png"
+          },
+          {
+            "actual_sha256": "df365ca1649496eb373771cfa31e53d8ef55de06934a3541ea790fceee49c6f4",
+            "actual_size_bytes": 25116,
+            "exists": true,
+            "expected_sha256": "df365ca1649496eb373771cfa31e53d8ef55de06934a3541ea790fceee49c6f4",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/figures/02_ac_erv_energy.pdf"
+          },
+          {
+            "actual_sha256": "1d067103247bf54b8189a1af51859795939d393acaa22fab24566f401d6ff542",
+            "actual_size_bytes": 116704,
+            "exists": true,
+            "expected_sha256": "1d067103247bf54b8189a1af51859795939d393acaa22fab24566f401d6ff542",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/figures/02_ac_erv_energy.png"
+          },
+          {
+            "actual_sha256": "ff47766f63c8f1150009e55a538663c6064abd5047a61e192225cf9d5028ffea",
+            "actual_size_bytes": 25484,
+            "exists": true,
+            "expected_sha256": "ff47766f63c8f1150009e55a538663c6064abd5047a61e192225cf9d5028ffea",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/figures/03_ac_erv_eo_energy.pdf"
+          },
+          {
+            "actual_sha256": "1a19882e53a114e61fe47e6be50b89e4dd2ece72090aca179bc5bd41516d622c",
+            "actual_size_bytes": 121380,
+            "exists": true,
+            "expected_sha256": "1a19882e53a114e61fe47e6be50b89e4dd2ece72090aca179bc5bd41516d622c",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/figures/03_ac_erv_eo_energy.png"
+          },
+          {
+            "actual_sha256": "1b07a7d562bd75654e477737430b53b325dc3455af117b596a0581ccb86c64b9",
+            "actual_size_bytes": 29390,
+            "exists": true,
+            "expected_sha256": "1b07a7d562bd75654e477737430b53b325dc3455af117b596a0581ccb86c64b9",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/figures/04_diffusivity_energy_saving.pdf"
+          },
+          {
+            "actual_sha256": "787a3150ae38e8f7d775cdbbd0504f9eb0cecb6260d994677ecfd69fdd8d8f34",
+            "actual_size_bytes": 150849,
+            "exists": true,
+            "expected_sha256": "787a3150ae38e8f7d775cdbbd0504f9eb0cecb6260d994677ecfd69fdd8d8f34",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/figures/04_diffusivity_energy_saving.png"
+          },
+          {
+            "actual_sha256": "2920c32299cff3db5169824b649037765985e3c073b96d21141a54b0dc62e948",
+            "actual_size_bytes": 33164,
+            "exists": true,
+            "expected_sha256": "2920c32299cff3db5169824b649037765985e3c073b96d21141a54b0dc62e948",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/figures/05_o30_operating_parameters.pdf"
+          },
+          {
+            "actual_sha256": "570951b40f2e71571e48300a139ffabd7b768a2f22debda04eca7f07a8cbb5c7",
+            "actual_size_bytes": 185467,
+            "exists": true,
+            "expected_sha256": "570951b40f2e71571e48300a139ffabd7b768a2f22debda04eca7f07a8cbb5c7",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/figures/05_o30_operating_parameters.png"
+          },
+          {
+            "actual_sha256": "bf8809660c807d5c37478c985116158927c74719232950a889a6c476dace54c5",
+            "actual_size_bytes": 29987,
+            "exists": true,
+            "expected_sha256": "bf8809660c807d5c37478c985116158927c74719232950a889a6c476dace54c5",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/figures/06_o30_activity_and_flux_gradients.pdf"
+          },
+          {
+            "actual_sha256": "6c58bfc131d94352ed859c583076cd863a01720f6495d38ac37bd469f7d92373",
+            "actual_size_bytes": 209085,
+            "exists": true,
+            "expected_sha256": "6c58bfc131d94352ed859c583076cd863a01720f6495d38ac37bd469f7d92373",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/figures/06_o30_activity_and_flux_gradients.png"
+          },
+          {
+            "actual_sha256": "34f85e68ffd353ac1d034c578b7144f58d4b99ea927548f1ca9064963251c939",
+            "actual_size_bytes": 24382,
+            "exists": true,
+            "expected_sha256": "34f85e68ffd353ac1d034c578b7144f58d4b99ea927548f1ca9064963251c939",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/figures/07_break_even_180whkg.pdf"
+          },
+          {
+            "actual_sha256": "139b5b32fded76d06d95fa72637066be6615a008845a029decbfd12fe77218c6",
+            "actual_size_bytes": 120505,
+            "exists": true,
+            "expected_sha256": "139b5b32fded76d06d95fa72637066be6615a008845a029decbfd12fe77218c6",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/figures/07_break_even_180whkg.png"
+          },
+          {
+            "actual_sha256": "266e0dae152d7db674a93d5248949b256005d890eef797a8eb465c3c92a23630",
+            "actual_size_bytes": 22355,
+            "exists": true,
+            "expected_sha256": "266e0dae152d7db674a93d5248949b256005d890eef797a8eb465c3c92a23630",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/figures/08_coupon_cell_transport_rate.pdf"
+          },
+          {
+            "actual_sha256": "3e341caea2b3a2c79b410c1f40d21a4528699fc52002f124c5d3a3a25312767e",
+            "actual_size_bytes": 90671,
+            "exists": true,
+            "expected_sha256": "3e341caea2b3a2c79b410c1f40d21a4528699fc52002f124c5d3a3a25312767e",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/figures/08_coupon_cell_transport_rate.png"
+          },
+          {
+            "actual_sha256": "cd4aabe4cb266d9109fd743b4aace3cfc538dbba3b51007bfc206f239ed07447",
+            "actual_size_bytes": 28697,
+            "exists": true,
+            "expected_sha256": "cd4aabe4cb266d9109fd743b4aace3cfc538dbba3b51007bfc206f239ed07447",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/figures/09_pri2_eo_first_vs_parallel.pdf"
+          },
+          {
+            "actual_sha256": "5528a4a57185c459b27b59e3544f8c4b688b0df53e0f154ed95502317e8d29ef",
+            "actual_size_bytes": 119314,
+            "exists": true,
+            "expected_sha256": "5528a4a57185c459b27b59e3544f8c4b688b0df53e0f154ed95502317e8d29ef",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/figures/09_pri2_eo_first_vs_parallel.png"
+          },
+          {
+            "actual_sha256": "d3520b25f46ec163de0bae8688dbd8d058294c00eebaf9b3867902405f6decfd",
+            "actual_size_bytes": 33909,
+            "exists": true,
+            "expected_sha256": "d3520b25f46ec163de0bae8688dbd8d058294c00eebaf9b3867902405f6decfd",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/figures/10_common_voltage_diffusivity.pdf"
+          },
+          {
+            "actual_sha256": "ab892e8dd979049f274ae97260af7cb0bba6d2c7d73ee75b6c152eea6e1f3238",
+            "actual_size_bytes": 284626,
+            "exists": true,
+            "expected_sha256": "ab892e8dd979049f274ae97260af7cb0bba6d2c7d73ee75b6c152eea6e1f3238",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/figures/10_common_voltage_diffusivity.png"
+          },
+          {
+            "actual_sha256": "91b96d9a9b89752e01f43eda8d6907d963f3d7aaf999e5f3a10c0b5ad8411861",
+            "actual_size_bytes": 970571,
+            "exists": true,
+            "expected_sha256": "91b96d9a9b89752e01f43eda8d6907d963f3d7aaf999e5f3a10c0b5ad8411861",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/workshop_diffusivity_energy_v1/transport_cases.csv"
+          },
+          {
+            "actual_sha256": "ebe53e8a7809254e209cdda3273ac7b6d7b0de4acfd51800a33022a9e51c8ea3",
+            "actual_size_bytes": 4639,
+            "exists": true,
+            "expected_sha256": "ebe53e8a7809254e209cdda3273ac7b6d7b0de4acfd51800a33022a9e51c8ea3",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/config/workshop_diffusivity_energy_v1.json"
+          },
+          {
+            "actual_sha256": "f91a1c75f5d642d4103e0149223f5c4094c7eed8be84dd2886f5fb1fd2e0c2f3",
+            "actual_size_bytes": 8587,
+            "exists": true,
+            "expected_sha256": "f91a1c75f5d642d4103e0149223f5c4094c7eed8be84dd2886f5fb1fd2e0c2f3",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/config/direct_active_eo_erv_study_v1.json"
+          },
+          {
+            "actual_sha256": "f78ada9cbffa7d8f3c1522a6a7fef7d9994636e1cdde2addbc017a1250ebc3de",
+            "actual_size_bytes": 3824,
+            "exists": true,
+            "expected_sha256": "f78ada9cbffa7d8f3c1522a6a7fef7d9994636e1cdde2addbc017a1250ebc3de",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/channel_geometry_envelope.csv"
+          },
+          {
+            "actual_sha256": "8c7cf03003e53e9944a8c4f6d95e2f8317c47d843ae7a8d0d6122e6366b0d84f",
+            "actual_size_bytes": 920,
+            "exists": true,
+            "expected_sha256": "8c7cf03003e53e9944a8c4f6d95e2f8317c47d843ae7a8d0d6122e6366b0d84f",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_boundary_analysis_v1/nominal_cases.csv"
+          },
+          {
+            "actual_sha256": "6e3e92343b68ce6e33fcdf1b5e7379863174dd78dee6d2ca1f5416945b9cde24",
+            "actual_size_bytes": 77046,
+            "exists": true,
+            "expected_sha256": "6e3e92343b68ce6e33fcdf1b5e7379863174dd78dee6d2ca1f5416945b9cde24",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_boundary_analysis_v1/closed_loop_boundary_screen.csv"
+          },
+          {
+            "actual_sha256": "dc7921ff586ed697ae062451c3da0cc819c1d4f8ea77ae05eee57c025dd8985f",
+            "actual_size_bytes": 11702,
+            "exists": true,
+            "expected_sha256": "dc7921ff586ed697ae062451c3da0cc819c1d4f8ea77ae05eee57c025dd8985f",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/eo_vapor_cell_sizing_v1/closed_loop_gas_inventory_requirement.csv"
+          },
+          {
+            "actual_sha256": "dde1a0fef759f6cd99813741698e33be7a5b4cce88191bc2f731da03a887ad6d",
+            "actual_size_bytes": 118552,
+            "exists": true,
+            "expected_sha256": "dde1a0fef759f6cd99813741698e33be7a5b4cce88191bc2f731da03a887ad6d",
+            "expected_size_bytes": null,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/trond_system_closure_v2_no_current_gate/liquid_local_upper_bound.csv"
+          }
+        ],
+        "manifest_path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_diffusivity_energy_v1/asset_manifest.json",
+        "passed": true
+      },
+      {
+        "checked_file_count": 44,
+        "failed_file_count": 0,
+        "files": [
+          {
+            "actual_sha256": "519b90cc7819a83f607e376add55fe874b376850a49de2fdead32403c2c389a7",
+            "actual_size_bytes": 4485,
+            "exists": true,
+            "expected_sha256": "519b90cc7819a83f607e376add55fe874b376850a49de2fdead32403c2c389a7",
+            "expected_size_bytes": 4485,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/HeiQ_V2/heiq_pre_receiver_material_analyses/config/default.json"
+          },
+          {
+            "actual_sha256": "f538f810ae89e7f5eaff3ad2b8be38c587f11587ea4b1f8558d0a9c278f21f54",
+            "actual_size_bytes": 41099,
+            "exists": true,
+            "expected_sha256": "f538f810ae89e7f5eaff3ad2b8be38c587f11587ea4b1f8558d0a9c278f21f54",
+            "expected_size_bytes": 41099,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/HeiQ_V2/heiq_pre_receiver_material_analyses/heiq_pre_receiver_model.py"
+          },
+          {
+            "actual_sha256": "0a3ad1f9946333d496fb2da777936c7b27e80e9ac85a2029b5df80c7ba19902e",
+            "actual_size_bytes": 35049,
+            "exists": true,
+            "expected_sha256": "0a3ad1f9946333d496fb2da777936c7b27e80e9ac85a2029b5df80c7ba19902e",
+            "expected_size_bytes": 35049,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/HeiQ_V2/outputs/active_eo_erv_terminal1_v2_study/active_eo_erv_manifest.json"
+          },
+          {
+            "actual_sha256": "c878f0146d695f24cac089f97a2db2fdff590efed2971aa7813343627a8ea581",
+            "actual_size_bytes": 11488,
+            "exists": true,
+            "expected_sha256": "c878f0146d695f24cac089f97a2db2fdff590efed2971aa7813343627a8ea581",
+            "expected_size_bytes": 11488,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/HeiQ_V2/outputs/active_eo_erv_terminal1_v2_study/active_eo_erv_status.json"
+          },
+          {
+            "actual_sha256": "b3dab59208aebbeca5ec13e3c0af0dd6e5b74367abc5eaa8c88bde441c25f8cf",
+            "actual_size_bytes": 701,
+            "exists": true,
+            "expected_sha256": "b3dab59208aebbeca5ec13e3c0af0dd6e5b74367abc5eaa8c88bde441c25f8cf",
+            "expected_size_bytes": 701,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/HeiQ_V2/outputs/active_eo_erv_terminal1_v2_study/baseline_reproduction_audit.json"
+          },
+          {
+            "actual_sha256": "32597974e9001fef89a4d02e9d4b2494120ed5a98d854575771da1da4f0bfc5d",
+            "actual_size_bytes": 20986,
+            "exists": true,
+            "expected_sha256": "32597974e9001fef89a4d02e9d4b2494120ed5a98d854575771da1da4f0bfc5d",
+            "expected_size_bytes": 20986,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/HeiQ_V2/outputs/archive_terminal1_post_erv_diffusivity_sensitivity_v1_20260825T084804Z/post_erv_diffusivity_cases.csv"
+          },
+          {
+            "actual_sha256": "eba072ccb6f956177bac33d86d9529081c53d78188d4e7bdea4d838af31d9b6a",
+            "actual_size_bytes": 3767,
+            "exists": true,
+            "expected_sha256": "eba072ccb6f956177bac33d86d9529081c53d78188d4e7bdea4d838af31d9b6a",
+            "expected_size_bytes": 3767,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/HeiQ_V2/outputs/terminal1_post_erv_physics_closure_v1_smoke/detailed_hvac_base_cases_with_pareto_flag.csv"
+          },
+          {
+            "actual_sha256": "333ecf4a5083b57873c6a9035543e206a58f0d0cbcb9ce8795f6918d1f34bf3c",
+            "actual_size_bytes": 58095,
+            "exists": true,
+            "expected_sha256": "333ecf4a5083b57873c6a9035543e206a58f0d0cbcb9ce8795f6918d1f34bf3c",
+            "expected_size_bytes": 58095,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/HeiQ_V2/scripts/make_wp1_pre_receiver_axial_v3.py"
+          },
+          {
+            "actual_sha256": "2035926a58ad8951e6692170f3b8ae235b2e318e7df1b33b00e6790a416c1d73",
+            "actual_size_bytes": 15331,
+            "exists": true,
+            "expected_sha256": "2035926a58ad8951e6692170f3b8ae235b2e318e7df1b33b00e6790a416c1d73",
+            "expected_size_bytes": 15331,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/HeiQ_V2/tools/HeiQ_active_eo_erv_terminal1_v2/active_core.py"
+          },
+          {
+            "actual_sha256": "8481d0997fc99e6252e3281d1046749bd385af8363b5694ec31f0e8ca2bcb19c",
+            "actual_size_bytes": 6289,
+            "exists": true,
+            "expected_sha256": "8481d0997fc99e6252e3281d1046749bd385af8363b5694ec31f0e8ca2bcb19c",
+            "expected_size_bytes": 6289,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/HeiQ_V2/tools/HeiQ_active_eo_erv_terminal1_v2/configs/active_eo_erv_study.json"
+          },
+          {
+            "actual_sha256": "bb67bd2df55e4829e2bd6cb395cda1015506903f7c38579d8ac4a7f829b36e64",
+            "actual_size_bytes": 19946,
+            "exists": true,
+            "expected_sha256": "bb67bd2df55e4829e2bd6cb395cda1015506903f7c38579d8ac4a7f829b36e64",
+            "expected_size_bytes": 19946,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/HeiQ_V2/tools/HeiQ_active_eo_erv_terminal1_v2/system_core.py"
+          },
+          {
+            "actual_sha256": "f91a1c75f5d642d4103e0149223f5c4094c7eed8be84dd2886f5fb1fd2e0c2f3",
+            "actual_size_bytes": 8587,
+            "exists": true,
+            "expected_sha256": "f91a1c75f5d642d4103e0149223f5c4094c7eed8be84dd2886f5fb1fd2e0c2f3",
+            "expected_size_bytes": 8587,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/config/direct_active_eo_erv_study_v1.json"
+          },
+          {
+            "actual_sha256": "f274dabde6d08051470fea228802df9ac6be986d16e19623d3758a13f4acad0f",
+            "actual_size_bytes": 5125,
+            "exists": true,
+            "expected_sha256": "f274dabde6d08051470fea228802df9ac6be986d16e19623d3758a13f4acad0f",
+            "expected_size_bytes": 5125,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/config/membrane_operating_region_study_v1.json"
+          },
+          {
+            "actual_sha256": "81da253b6edb08e16dc6739b89ef758d2532fe91d515d72fa4787b09c84e0a96",
+            "actual_size_bytes": 5571,
+            "exists": true,
+            "expected_sha256": "81da253b6edb08e16dc6739b89ef758d2532fe91d515d72fa4787b09c84e0a96",
+            "expected_size_bytes": 5571,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/config/project_closure_check_v1.json"
+          },
+          {
+            "actual_sha256": "8ba0745959d89d5b030b76f96a8a83a2f30983030754f8b448354952cc3be752",
+            "actual_size_bytes": 2386696,
+            "exists": true,
+            "expected_sha256": "8ba0745959d89d5b030b76f96a8a83a2f30983030754f8b448354952cc3be752",
+            "expected_size_bytes": 2386696,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/nafion_sensitivity/case_register.csv"
+          },
+          {
+            "actual_sha256": "35593dede1f545b43f8471e545d4e12c0e9fecf028124cae5467e34dd49c124a",
+            "actual_size_bytes": 2100116,
+            "exists": true,
+            "expected_sha256": "35593dede1f545b43f8471e545d4e12c0e9fecf028124cae5467e34dd49c124a",
+            "expected_size_bytes": 2100116,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/nafion_sensitivity/segment_register.csv.gz"
+          },
+          {
+            "actual_sha256": "923a8e547f16180c52b1700bf5165ee3d7af301d91dd742a7264b8295e8c8c78",
+            "actual_size_bytes": 2699571,
+            "exists": true,
+            "expected_sha256": "923a8e547f16180c52b1700bf5165ee3d7af301d91dd742a7264b8295e8c8c78",
+            "expected_size_bytes": 2699571,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/sensitivity/case_register.csv"
+          },
+          {
+            "actual_sha256": "f57c8f28d6be157e74529bb25c5636a817345b2494d97edec2957fc12040c7dd",
+            "actual_size_bytes": 2904795,
+            "exists": true,
+            "expected_sha256": "f57c8f28d6be157e74529bb25c5636a817345b2494d97edec2957fc12040c7dd",
+            "expected_size_bytes": 2904795,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/sensitivity/segment_register.csv.gz"
+          },
+          {
+            "actual_sha256": "518362ce34734526d5700974abe2965988f623132f5cec688328febf00503137",
+            "actual_size_bytes": 541320,
+            "exists": true,
+            "expected_sha256": "518362ce34734526d5700974abe2965988f623132f5cec688328febf00503137",
+            "expected_size_bytes": 541320,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/study/case_register.csv"
+          },
+          {
+            "actual_sha256": "8a55ae7c2e5067b776f41530d7b2e5fac9706119fa89e203fc7b0a2608541dfc",
+            "actual_size_bytes": 620901,
+            "exists": true,
+            "expected_sha256": "8a55ae7c2e5067b776f41530d7b2e5fac9706119fa89e203fc7b0a2608541dfc",
+            "expected_size_bytes": 620901,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/study/segment_register.csv.gz"
+          },
+          {
+            "actual_sha256": "8fc51c0403a0873b5f39bf51f29201096bf1d4cab736e0ba6f8eecccac640771",
+            "actual_size_bytes": 2741,
+            "exists": true,
+            "expected_sha256": "8fc51c0403a0873b5f39bf51f29201096bf1d4cab736e0ba6f8eecccac640771",
+            "expected_size_bytes": 2741,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/integrated_evidence_v1/material_data_requirements.csv"
+          },
+          {
+            "actual_sha256": "25d3b71fa696eba57976f62e5b5529c1bcfd649d4293a77447181f8ac6c26470",
+            "actual_size_bytes": 122279,
+            "exists": true,
+            "expected_sha256": "25d3b71fa696eba57976f62e5b5529c1bcfd649d4293a77447181f8ac6c26470",
+            "expected_size_bytes": 122279,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/post_erv_eo_design_frontier_v1/selected_primary_cases.csv"
+          },
+          {
+            "actual_sha256": "8f12d3d52a2305caf5b86ea3522ccdb66b16e1b4ba9e8c39d0bf6d0b47e65e75",
+            "actual_size_bytes": 66961,
+            "exists": true,
+            "expected_sha256": "8f12d3d52a2305caf5b86ea3522ccdb66b16e1b4ba9e8c39d0bf6d0b47e65e75",
+            "expected_size_bytes": 66961,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/post_erv_eo_percentage_sweep_v1/percentage_break_even.csv"
+          },
+          {
+            "actual_sha256": "86285bf7b783aca4373b0a662b567b28172b9a93a590a9dfb822f9931f1ce085",
+            "actual_size_bytes": 43131,
+            "exists": true,
+            "expected_sha256": "86285bf7b783aca4373b0a662b567b28172b9a93a590a9dfb822f9931f1ce085",
+            "expected_size_bytes": 43131,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/post_erv_eo_percentage_sweep_v1/percentage_summary.csv"
+          },
+          {
+            "actual_sha256": "58fe8f47f0ab2804dfca7df237072a742282c6112597d97aa6b79bfc319cbd16",
+            "actual_size_bytes": 56055,
+            "exists": true,
+            "expected_sha256": "58fe8f47f0ab2804dfca7df237072a742282c6112597d97aa6b79bfc319cbd16",
+            "expected_size_bytes": 56055,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/post_erv_eo_percentage_sweep_v1/selected_transport_cases.csv"
+          },
+          {
+            "actual_sha256": "97dfc9014be749639cd1075c03b19b5cbd536df5b1a7b55dbb95d5bf9d501a32",
+            "actual_size_bytes": 136574,
+            "exists": true,
+            "expected_sha256": "97dfc9014be749639cd1075c03b19b5cbd536df5b1a7b55dbb95d5bf9d501a32",
+            "expected_size_bytes": 136574,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/scripts/analyze_post_erv_inverse_design_v1.py"
+          },
+          {
+            "actual_sha256": "9dd95ca212f9ed703822229465fc842ee78442436d323ded40319ea9491d68b3",
+            "actual_size_bytes": 83223,
+            "exists": true,
+            "expected_sha256": "9dd95ca212f9ed703822229465fc842ee78442436d323ded40319ea9491d68b3",
+            "expected_size_bytes": 83223,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/scripts/make_post_erv_eo_design_frontier_v1.py"
+          },
+          {
+            "actual_sha256": "426fec9289703b6bf7ca102f53c4b9449cefe9ff2a2c21e93ade500ef9978845",
+            "actual_size_bytes": 78981,
+            "exists": true,
+            "expected_sha256": "426fec9289703b6bf7ca102f53c4b9449cefe9ff2a2c21e93ade500ef9978845",
+            "expected_size_bytes": 78981,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/scripts/run_project_closure_check_v1.py"
+          },
+          {
+            "actual_sha256": "f917a7e108d852403821450e7861dc5e14778264ecc50502d2168f25671f40ed",
+            "actual_size_bytes": 10779,
+            "exists": true,
+            "expected_sha256": "f917a7e108d852403821450e7861dc5e14778264ecc50502d2168f25671f40ed",
+            "expected_size_bytes": 10779,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/src/heiq/wp1/membrane/thermodynamics.py"
+          },
+          {
+            "actual_sha256": "7c2ca694ea10e8f58db1c66ab0304db47f627930081e5d2596e44e36ab017d4e",
+            "actual_size_bytes": 51245,
+            "exists": true,
+            "expected_sha256": "7c2ca694ea10e8f58db1c66ab0304db47f627930081e5d2596e44e36ab017d4e",
+            "expected_size_bytes": 51245,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/src/heiq/wp1/studies/active_erv.py"
+          },
+          {
+            "actual_sha256": "de54598240b3525a1a1e1f180a7e922c5257a3601c088ea9a33a28d69eabb9fb",
+            "actual_size_bytes": 4256,
+            "exists": true,
+            "expected_sha256": "de54598240b3525a1a1e1f180a7e922c5257a3601c088ea9a33a28d69eabb9fb",
+            "expected_size_bytes": 4256,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/project_closure_check_v1/SUMMARY.md"
+          },
+          {
+            "actual_sha256": "bbca76e0596d26eaddda555501d1b6b9df449e6a25bf027b809f8b4f7adaaf85",
+            "actual_size_bytes": 793,
+            "exists": true,
+            "expected_sha256": "bbca76e0596d26eaddda555501d1b6b9df449e6a25bf027b809f8b4f7adaaf85",
+            "expected_size_bytes": 793,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/project_closure_check_v1/active_erv_reclassification.csv"
+          },
+          {
+            "actual_sha256": "8d379876f78a74c1932c3ba06c6915a13ffba6c71860aa4ffac91b87baed750e",
+            "actual_size_bytes": 6532218,
+            "exists": true,
+            "expected_sha256": "8d379876f78a74c1932c3ba06c6915a13ffba6c71860aa4ffac91b87baed750e",
+            "expected_size_bytes": 6532218,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/project_closure_check_v1/active_erv_thermodynamic_audit.csv.gz"
+          },
+          {
+            "actual_sha256": "e52fe66b0ba3b2f289af740fecdf3a906dafc48dbde4ec423eea6339cf0390d6",
+            "actual_size_bytes": 657,
+            "exists": true,
+            "expected_sha256": "e52fe66b0ba3b2f289af740fecdf3a906dafc48dbde4ec423eea6339cf0390d6",
+            "expected_size_bytes": 657,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/project_closure_check_v1/closure_status.json"
+          },
+          {
+            "actual_sha256": "aee0263b8327951c5672b9f731b1c7d0aafe27352794e9f18a25837b76ea8d7c",
+            "actual_size_bytes": 33097,
+            "exists": true,
+            "expected_sha256": "aee0263b8327951c5672b9f731b1c7d0aafe27352794e9f18a25837b76ea8d7c",
+            "expected_size_bytes": 33097,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/project_closure_check_v1/common_voltage_cases.csv"
+          },
+          {
+            "actual_sha256": "66fb264f7ab3a2c03dc376bdd4632f827a9227cb14c76043cc5503abc3320b74",
+            "actual_size_bytes": 1667,
+            "exists": true,
+            "expected_sha256": "66fb264f7ab3a2c03dc376bdd4632f827a9227cb14c76043cc5503abc3320b74",
+            "expected_size_bytes": 1667,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/project_closure_check_v1/common_voltage_convergence.csv"
+          },
+          {
+            "actual_sha256": "355a7adbde09a4869503bbe0a4a11c7506d0751321282df038a01233975ed1c5",
+            "actual_size_bytes": 420881,
+            "exists": true,
+            "expected_sha256": "355a7adbde09a4869503bbe0a4a11c7506d0751321282df038a01233975ed1c5",
+            "expected_size_bytes": 420881,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/project_closure_check_v1/common_voltage_profiles.csv.gz"
+          },
+          {
+            "actual_sha256": "891e97635f178d44c49bb21dbfb876e15eedd3cd8b921643c1a6673ed658609d",
+            "actual_size_bytes": 16079,
+            "exists": true,
+            "expected_sha256": "891e97635f178d44c49bb21dbfb876e15eedd3cd8b921643c1a6673ed658609d",
+            "expected_size_bytes": 16079,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/project_closure_check_v1/common_voltage_window_scan.csv"
+          },
+          {
+            "actual_sha256": "31ff012dfe9d5c290c64df8cb6b66da4d1d45a7a0364824c2e4f31a093d20767",
+            "actual_size_bytes": 743,
+            "exists": true,
+            "expected_sha256": "31ff012dfe9d5c290c64df8cb6b66da4d1d45a7a0364824c2e4f31a093d20767",
+            "expected_size_bytes": 743,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/project_closure_check_v1/common_voltage_window_summary.csv"
+          },
+          {
+            "actual_sha256": "24c2bae3fa6923c537303a7451b6e7780ea73510d4827d1511bb9030f8ade885",
+            "actual_size_bytes": 3218,
+            "exists": true,
+            "expected_sha256": "24c2bae3fa6923c537303a7451b6e7780ea73510d4827d1511bb9030f8ade885",
+            "expected_size_bytes": 3218,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/project_closure_check_v1/decision_gate_register.csv"
+          },
+          {
+            "actual_sha256": "c0b8e34d283cf8b138795a1e9f47709ec05d7cb7fdcc44be92376964d65df592",
+            "actual_size_bytes": 22950,
+            "exists": true,
+            "expected_sha256": "c0b8e34d283cf8b138795a1e9f47709ec05d7cb7fdcc44be92376964d65df592",
+            "expected_size_bytes": 22950,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/project_closure_check_v1/figures/closure_common_voltage.pdf"
+          },
+          {
+            "actual_sha256": "c18fb00593935950bbadf2a635137eb9516c83eb7bb5d0455ccd28268978aa99",
+            "actual_size_bytes": 176336,
+            "exists": true,
+            "expected_sha256": "c18fb00593935950bbadf2a635137eb9516c83eb7bb5d0455ccd28268978aa99",
+            "expected_size_bytes": 176336,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/project_closure_check_v1/figures/closure_common_voltage.png"
+          },
+          {
+            "actual_sha256": "39ac4bf100b7e98e9fc3115799367551b0c4d7ef5debed3689ecaa94db766812",
+            "actual_size_bytes": 820,
+            "exists": true,
+            "expected_sha256": "39ac4bf100b7e98e9fc3115799367551b0c4d7ef5debed3689ecaa94db766812",
+            "expected_size_bytes": 820,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/project_closure_check_v1/independent_voltage_root_replay.csv"
+          },
+          {
+            "actual_sha256": "a06e9856c9670ba8553fbc1f165572f1483fbcb31e68a8297ab07bd78702156b",
+            "actual_size_bytes": 2168,
+            "exists": true,
+            "expected_sha256": "a06e9856c9670ba8553fbc1f165572f1483fbcb31e68a8297ab07bd78702156b",
+            "expected_size_bytes": 2168,
+            "passed": true,
+            "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/project_closure_check_v1/uniform_current_convergence.csv"
+          }
+        ],
+        "manifest_path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/project_closure_check_v1/source_manifest.json",
+        "passed": true
+      }
+    ],
+    "passed": true
+  },
+  "study_id": "final-delivery-check-v1-2026-08-31",
+  "technology_validated": false,
+  "template_verification": {
+    "checks": [
+      {
+        "duplicate_ids": [],
+        "missing_columns": [],
+        "missing_ids": [],
+        "passed": true,
+        "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/integrated_evidence_v1/material_data_requirements.csv",
+        "row_count": 9,
+        "unexpected_ids": []
+      },
+      {
+        "duplicate_ids": [],
+        "missing_columns": [],
+        "missing_ids": [],
+        "passed": true,
+        "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_pack_2026-08-30/practical_gate_register_template.csv",
+        "row_count": 10,
+        "unexpected_ids": []
+      },
+      {
+        "duplicate_ids": [],
+        "missing_columns": [],
+        "missing_ids": [],
+        "passed": true,
+        "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/model_closure_2026-08-31/receiver_thermal_ledger_template.csv",
+        "row_count": 10,
+        "unexpected_ids": []
+      },
+      {
+        "duplicate_ids": [],
+        "missing_columns": [],
+        "missing_ids": [],
+        "passed": true,
+        "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/model_closure_2026-08-31/architecture_decision_register_template.csv",
+        "row_count": 8,
+        "unexpected_ids": []
+      },
+      {
+        "missing_columns": [],
+        "passed": true,
+        "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/reports/workshop_pack_2026-08-30/material_candidate_register_template.csv"
+      }
+    ],
+    "passed": true,
+    "template_count": 5
+  },
+  "test_verification": {
+    "command": [
+      "/usr/bin/python3",
+      "-m",
+      "pytest",
+      "-q",
+      "-s",
+      "-p",
+      "no:cacheprovider"
+    ],
+    "duration_seconds": 266.50512203603284,
+    "failed_count": 0,
+    "mode": "live_pytest",
+    "output_tail": "...................................................................................................................................................................................................................s...................................................................# Trond system-closure study\n\n## Gas-reference validity\n\nA gas-receiver reference passes the active target, balance, stack, voltage and area gates for conditional system calculations. Current density is reported diagnostically and is not an acceptance gate.\n\n## Break-even\n\nThe legacy no-ERV gross arithmetic gives 180.32 Wh/L.\n\nThis is conditional on one baseline and is not a universal or ERV-adjusted break-even.\n\nThe remaining allowance after the all-gates modeled core is 153.89 Wh/L.\n\n## Power-ledger closure\n\nThe known gas-core subtotal at the site plane is 118.39 kW.\n\nThis is not a complete system total. The unresolved terms are heat_rejection, receiver_regeneration; system saving and system FOMs remain unavailable.\n\n## ERV comparison\n\nThe lowest design-point site power in the official ASHRAE exchanger envelope is 303.61 kW for energy_wheel (high).\n\nThe comparison is based on sensible/latent effectiveness and pressure drop, not generic annual savings percentages.\n\n## EO after ERV\n\nThe least additional transport in the linearized screen is 173.7 kg/h, requiring 2.9 kW site input under the eo_grid_only boundary.\n\n## Liquid receiver\n\nThe best gate-passing gravity/free-heat-sink local screen is 4.22 kW at a_l=0.200 and 0.050 V.\nThis is not a closed system total; condensation heat rejection and low-activity-liquid regeneration can dominate it.\n\n## Geometry\n\nThe lowest-fan engineering-eligible geometry uses 8.0 mm gap, 10000 parallel paths and 0.446 m channel length.\n\n## Diffusivity extension\n\nThe diffusivity sweep explicitly includes D0 = 1e-10 and 1e-9 m2/s.\n\n## Files\n\n- `break_even_register.csv`\n- `erv_industry_grid.csv`\n- `erv_plus_eo_10pct.csv`\n- `liquid_local_upper_bound.csv`\n- `liquid_existing_output_summary.csv`\n- `diffusivity_extension.csv`\n- `geometry_sweep.csv`\n- `power_ledger.csv`\n- `complete_system_power_ledger.csv`\n- `systems_reported_separately.csv`\n- `figures_of_merit.csv`\n- `all_requested_foms.csv`\n- `industry_benchmarks.csv`\n- `grid_loss_sensitivity.csv`\n- `enclosure_foms.csv`\n- `selected_reference_case.csv`\n- `conditions.csv`\n- `terminology.csv`\n\n## Interpretation limits\n\nThe liquid local model is a screening upper bound. It does not close finite liquid-film transport, capillary drainage, flooding, wet-electrode electrochemistry, corrosion, conjugate heat transfer or durability.\n\nOutputs: /mnt/c/Users/mariu/AppData/Local/Temp/pytest-of-torsheim/pytest-37/test_smoke_workflow_does_not_a0/closure\n.# Trond system-closure study\n\n## Gas-reference validity\n\nNo gas-receiver reference passes the active target, balance, stack, voltage and area gates. No current-density acceptance gate is applied unless one is supplied explicitly.\n\nFailed evidence: stack_feasible is not true.\n\nGas-derived EO SEC, ERV+EO requirements, system savings and annual FOMs are therefore reported as not available.\n\n## Break-even\n\nThe legacy no-ERV gross arithmetic gives 180.32 Wh/L.\n\nThis is conditional on one baseline and is not a universal or ERV-adjusted break-even.\n\nThe remaining allowance after an EO core is not available because no all-gates core reference exists.\n\n## ERV comparison\n\nThe lowest design-point site power in the official ASHRAE exchanger envelope is 303.61 kW for energy_wheel (high).\n\nThe comparison is based on sensible/latent effectiveness and pressure drop, not generic annual savings percentages.\n\n## EO after ERV\n\nThe incremental ERV+EO calculation is withheld until an all-gates EO reference exists.\n\n## Liquid receiver\n\nThe best gate-passing gravity/free-heat-sink local screen is 2.56 kW at a_l=0.200 and 0.050 V.\nThis is not a closed system total; condensation heat rejection and low-activity-liquid regeneration can dominate it.\n\n## Geometry\n\nThe lowest-fan diagnostic geometry uses 8.0 mm gap, 10000 parallel paths and 0.265 m channel length.\nIt is a packaging diagnostic around the failed historical gas reference, not an accepted system design.\n\n## Diffusivity extension\n\nThe diffusivity sweep explicitly includes D0 = 1e-10 and 1e-9 m2/s.\n\n## Files\n\n- `break_even_register.csv`\n- `erv_industry_grid.csv`\n- `erv_plus_eo_10pct.csv`\n- `liquid_local_upper_bound.csv`\n- `liquid_existing_output_summary.csv`\n- `diffusivity_extension.csv`\n- `geometry_sweep.csv`\n- `power_ledger.csv`\n- `complete_system_power_ledger.csv`\n- `systems_reported_separately.csv`\n- `figures_of_merit.csv`\n- `all_requested_foms.csv`\n- `industry_benchmarks.csv`\n- `grid_loss_sensitivity.csv`\n- `enclosure_foms.csv`\n- `selected_reference_case.csv`\n- `conditions.csv`\n- `terminology.csv`\n\n## Interpretation limits\n\nThe liquid local model is a screening upper bound. It does not close finite liquid-film transport, capillary drainage, flooding, wet-electrode electrochemistry, corrosion, conjugate heat transfer or durability.\n\nOutputs: /mnt/c/Users/mariu/AppData/Local/Temp/pytest-of-torsheim/pytest-37/test_o50_smoke_uses_o50_refere0/closure_o50\n.....................\n300 passed, 1 skipped in 264.74s (0:04:24)",
+    "passed": true,
+    "passed_count": 300,
+    "return_code": 0,
+    "skipped_count": 1
+  },
+  "workshop_replay_verification": {
+    "check_count": 11,
+    "mode": "temporary_output_replay",
+    "output_tail": " \"check\": \"material_search_template\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"check\": \"workshop_claim_register\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"check\": \"common_voltage_diffusivity_cross_check\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"check\": \"direct_eo_inside_erv_coordinate\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"check\": \"presentation_pdfs\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"check\": \"workshop_asset_hashes\",\n      \"status\": \"PASS\"\n    }\n  ],\n  \"pdf_pages\": {\n    \"reports/workshop_pack_2026-08-30/HeiQ_XMembrane_Workshop_Deck_2026-08-30.pdf\": 10,\n    \"reports/workshop_pack_2026-08-30/HeiQ_XMembrane_Workshop_Handout_2026-08-30.pdf\": 2,\n    \"reports/workshop_diffusivity_energy_v1/HeiQ_XMembrane_Workshop_Decision_Report_2026-08-30_v2.pdf\": 18\n  },\n  \"sha256\": {\n    \"reports/workshop_pack_2026-08-30/README.md\": \"3e04e4ec448b175fd0249af2864d3326f2a67853ef0843718e2a35164ec67a2c\",\n    \"reports/workshop_pack_2026-08-30/WORKSHOP_DECISION_SHEET.md\": \"06cf70df95fb6cb71fbf31d3369b29c7066baac547d2ec43352522f6f7c247d1\",\n    \"reports/workshop_pack_2026-08-30/WORKSHOP_CLAIM_REGISTER.csv\": \"849703f955cd396b9bb7b477b2a6f484c91758d375e5f2034ec327ebb1882ba1\",\n    \"reports/workshop_pack_2026-08-30/MATERIAL_SEARCH_BRIEF.md\": \"a29aa95d6f33489e4007cb267c4f04c32758b5ac1baa8c2312801b970ca84bdf\",\n    \"reports/workshop_pack_2026-08-30/material_candidate_register_template.csv\": \"68521779b7200805f0dad16ec08eebbeb999ec1412e0f41f4b91d23a5092a4a3\",\n    \"reports/workshop_pack_2026-08-30/practical_gate_register_template.csv\": \"64def758cdd86898d0f6e882ddedc9e1ee9767df7010fe244cf0a4da4d550dc3\",\n    \"outputs/workshop_common_voltage_diffusivity_v1/diffusivity_envelope.csv\": \"940bd50f1219084c6c200672f598749d39c241150f5482ce95dda308cc59357e\",\n    \"outputs/workshop_common_voltage_diffusivity_v1/audit.json\": \"24a0ffaced5c540e76f3a762fa28b5ffd3d40c2c3ff2b05a4311e921a9fe3105\",\n    \"outputs/workshop_common_voltage_diffusivity_v1/source_manifest.json\": \"4729bbaa34e80974e551a12c4396f249cb7c167beb5de4465d8ee33ec6ebda87\",\n    \"reports/workshop_pack_2026-08-30/HeiQ_XMembrane_Workshop_Deck_2026-08-30.tex\": \"abb2c5dfbde3aa98b37ecee44a090360335b2b3f580c7793ad3082611ffa3715\",\n    \"reports/workshop_pack_2026-08-30/HeiQ_XMembrane_Workshop_Deck_2026-08-30.pdf\": \"5e7983cd79ebd59139800d2c24d644cf3c205e350f71b63a5fff72d5ad625512\",\n    \"reports/workshop_pack_2026-08-30/HeiQ_XMembrane_Workshop_Handout_2026-08-30.tex\": \"eda28fc60cf3d25b8031de2dbd687a2e448cc3a0b6a2a011ae68dcf24446f40b\",\n    \"reports/workshop_pack_2026-08-30/HeiQ_XMembrane_Workshop_Handout_2026-08-30.pdf\": \"81f4517855129517e92f4705172ea4f8932551aaa4bad3d518c0cb66dc597f1f\",\n    \"reports/workshop_diffusivity_energy_v1/HeiQ_XMembrane_Workshop_Decision_Report_2026-08-30_v2.tex\": \"b198297a934efe37e26b2c57011d6b7b0b19ca1e1020fe384d6112c1ce8943f3\",\n    \"reports/workshop_diffusivity_energy_v1/HeiQ_XMembrane_Workshop_Decision_Report_2026-08-30_v2.pdf\": \"087a072de74f4894f190fe15acc8aea9bf577315a5b2df4fe352eb389908c161\"\n  }\n}\n",
+    "passed": true,
+    "return_code": 0,
+    "status": "PASS"
+  }
+}

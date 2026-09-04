@@ -1,0 +1,14 @@
+{
+  "broad_modelling_can_stop": true,
+  "full_duty_sampled_common_voltage_point_feasible": false,
+  "full_duty_single_bus_claim_status": "OPEN_UNCONVERGED_SAMPLED_DIAGNOSTIC",
+  "full_system_claim_allowed": false,
+  "generated_utc": "2026-08-31T09:25:23.227544+00:00",
+  "material_candidate_ranking_ready": false,
+  "material_data_collection_ready": true,
+  "newly_reclassified_conditional_active_erv_cases": 0,
+  "recommended_phase_label": "MODEL STUDY COMPLETE - MATERIAL AND SUBSYSTEM FEASIBILITY STARTS",
+  "script_version": "project-closure-check-v1.1-2026-08-28",
+  "study_id": "project-closure-check-v1-2026-08-28",
+  "technology_validated": false
+}

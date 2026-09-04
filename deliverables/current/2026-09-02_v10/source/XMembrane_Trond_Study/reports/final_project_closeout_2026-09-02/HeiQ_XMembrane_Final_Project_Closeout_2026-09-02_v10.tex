@@ -1,0 +1,417 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{tgtermes,tgheros,microtype}
+\usepackage[a4paper,margin=18mm,headheight=19pt]{geometry}
+\usepackage{xcolor,booktabs,tabularx,array,enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr,lastpage,titlesec}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl,amsmath}
+
+\definecolor{Navy}{HTML}{173753}
+\definecolor{Teal}{HTML}{008F8C}
+\definecolor{PaleTeal}{HTML}{E5F4F3}
+\definecolor{Orange}{HTML}{F08A24}
+\definecolor{PaleOrange}{HTML}{FFF1E2}
+\definecolor{Red}{HTML}{BB3E35}
+\definecolor{PaleRed}{HTML}{F9E9E7}
+\definecolor{Green}{HTML}{2E8B57}
+\definecolor{PaleGreen}{HTML}{EAF5EE}
+\definecolor{Slate}{HTML}{5B7083}
+\definecolor{Light}{HTML}{F3F6F8}
+\definecolor{Line}{HTML}{D7E0E7}
+
+\newcommand{\sans}{\fontfamily{qhv}\selectfont}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+
+\hypersetup{
+  pdftitle={HeiQ XMembrane Final Project Closeout -- Version 10},
+  pdfauthor={HeiQ XMembrane project team},
+  pdfsubject={Authoritative model-phase closeout and claim boundary},
+  pdfkeywords={XMembrane, closeout, EO, ERV, capacitive electrode, claim boundary}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\sans\footnotesize\color{Slate}HEIQ MATERIALS AG · XMEMBRANE}
+\fancyhead[R]{\sans\footnotesize\color{Slate}FINAL PROJECT CLOSEOUT · V10}
+\fancyfoot[L]{\sans\scriptsize\color{Slate}Model phase complete · technology not validated}
+\fancyfoot[R]{\sans\scriptsize\color{Slate}Page \thepage\ of \pageref*{LastPage}}
+\renewcommand{\headrulewidth}{0.45pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{Navy}\leaders\hrule height \headrulewidth\hfill}}
+\renewcommand{\footrulewidth}{0pt}
+
+\titleformat{\section}{\sans\bfseries\color{Navy}\fontsize{18}{21}\selectfont}{\thesection}{0.65em}{}
+\titleformat{\subsection}{\sans\bfseries\color{Navy}\fontsize{12.5}{15}\selectfont}{\thesubsection}{0.55em}{}
+\titlespacing*{\section}{0pt}{6mm}{2.5mm}
+\titlespacing*{\subsection}{0pt}{4mm}{1.5mm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1.55mm}
+\setlist[itemize]{leftmargin=5mm,itemsep=0.8mm,topsep=1mm}
+\setlist[enumerate]{leftmargin=6mm,itemsep=1.2mm,topsep=1mm}
+\renewcommand{\arraystretch}{1.18}
+
+\newtcolorbox{mainbox}{enhanced,breakable,colback=PaleTeal,colframe=Teal,boxrule=0.7pt,arc=2mm,left=4mm,right=4mm,top=3mm,bottom=3mm}
+\newtcolorbox{warningbox}{enhanced,breakable,colback=PaleOrange,colframe=Orange,boxrule=0.7pt,arc=2mm,left=4mm,right=4mm,top=3mm,bottom=3mm}
+\newtcolorbox{stopbox}{enhanced,breakable,colback=PaleRed,colframe=Red,boxrule=0.7pt,arc=2mm,left=4mm,right=4mm,top=3mm,bottom=3mm}
+\newtcolorbox{gobox}{enhanced,breakable,colback=PaleGreen,colframe=Green,boxrule=0.7pt,arc=2mm,left=4mm,right=4mm,top=3mm,bottom=3mm}
+\newtcolorbox{plainbox}{enhanced,breakable,colback=Light,colframe=Line,boxrule=0.5pt,arc=2mm,left=4mm,right=4mm,top=3mm,bottom=3mm}
+\newcommand{\eyebrow}[1]{{\sans\bfseries\color{Teal}\MakeUppercase{#1}}\par\vspace{1.2mm}}
+
+\begin{document}
+\thispagestyle{empty}
+\vspace*{8mm}
+\begin{tcolorbox}[enhanced,colback=Navy,colframe=Navy,boxrule=0pt,arc=0mm,left=12mm,right=12mm,top=12mm,bottom=12mm]
+{\sans\bfseries\large\color{white}HEIQ XMEMBRANE PROJECT TEAM}\par
+\vspace{9mm}
+{\sans\bfseries\fontsize{28}{32}\selectfont\color{white}Final project closeout}\par
+\vspace{2mm}
+{\sans\fontsize{18}{21}\selectfont\color{white}Authoritative model-phase decision\\and claim boundary}\par
+\vspace{8mm}
+{\sans\large\color{white}2 September 2026\quad · \quad Version 10}
+\end{tcolorbox}
+
+\vspace{9mm}
+\begin{stopbox}
+{\sans\bfseries\Large\color{Red}MODEL PHASE COMPLETE}\par
+{\sans\bfseries\Large\color{Red}TECHNOLOGY NOT VALIDATED}\par
+\vspace{2mm}
+No existing membrane, continuous electrode mechanism, module-scale performance
+or net system saving has been validated. Positive energy results remain
+conditional model sensitivities and are not product or commercial claims.
+\end{stopbox}
+
+\vspace{5mm}
+\begin{tabularx}{\textwidth}{@{}p{43mm}Y@{}}
+\textbf{Decision authority} & Current project-closeout basis; V10 governs current decisions \\
+\textbf{Supersession} & Supersedes V9 for current decisions; V9 remains unchanged as historical evidence \\
+\textbf{Selected model architecture} & Direct EO transport inside the ERV membrane/core \\
+\textbf{Post-ERV O30} & Coupon-test boundary/control only unless explicitly reselected later \\
+\textbf{Continuation} & Separate measured-data experimental and engineering phase only \\
+\textbf{Release contents} & Markdown, LaTeX, compiled PDF and SHA-256 source manifest \\
+\end{tabularx}
+
+\vfill
+{\sans\scriptsize\color{Slate}Controlled closeout report. Version 9 and
+earlier records are preserved as historical provenance and are not modified.}
+
+\clearpage
+\section*{Executive decision}
+\addcontentsline{toc}{section}{Executive decision}
+
+This report supersedes Version~9 for all current project decisions. Version~9
+documented conditional steady-state energy windows. The later
+capacitive-electrode transient study materially changes their interpretation:
+those windows cannot be applied to long-duration operation with purely
+blocking electrodes. Where the reports differ, Version~10 governs.
+
+At the original stored O30 terminal limit of 0.025~V, the primary replay
+retains only \textbf{16.2\%} of counterfactual steady EO after one hour and
+\textbf{0.68\%} over 24 hours. The former 98.5\%/4.6\% result used a separate
+1.8-V current-commanded ceiling and is retained only as an optimistic upper
+bound.
+
+The modelling is sufficiently mature to stop broad hypothetical parameter
+sweeps. It has delivered internally audited transport models, explicit
+architecture and comparison rules, useful sensitivity coordinates and a
+falsifiable coupon-test plan. It has not demonstrated a real membrane,
+sustainable electrode mechanism, manufacturable module or net system saving.
+
+\begin{mainbox}
+\textbf{Final decision.} The XMembrane model phase is complete. No further
+modelling is required to close this phase. Any continuation is a separately
+gated experimental and engineering phase driven by measured data.
+\end{mainbox}
+
+\section*{Governing architecture}
+\addcontentsline{toc}{section}{Governing architecture}
+
+The selected modelling architecture is \textbf{direct EO transport inside the
+ERV membrane/core}. Local through-plane current density and water flux are
+evaluated along the supply and receiver channels; downstream conditioning
+removes any remaining load.
+
+The historical \textbf{post-ERV O30} configuration is not a selected product
+or system architecture. It may be used only as a prescribed coupon-test
+boundary, control or benchmark, and must be labelled that way, unless a future
+controlled decision document explicitly selects another architecture. O30 is
+a humidity target coordinate, not evidence that a downstream EO module is
+preferred.
+
+\begin{warningbox}
+\textbf{Interpretation rule.} Historical post-ERV calculations remain
+provenance. They do not override the direct EO-in-ERV architecture selected for
+current modelling decisions.
+\end{warningbox}
+
+\clearpage
+\section{Decisive new evidence}
+\subsection{Purely blocking capacitive electrodes are transient}
+
+For two purely blocking capacitive electrodes, charge accumulates until the
+terminal-voltage limit is reached; current and incremental EO transport then
+decay toward zero. The transient solver is current-commanded with an absolute
+terminal-voltage clamp, unlike the voltage-controlled steady axial model. The
+primary replay therefore preserves each stored case's original terminal limit:
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{@{}Yrrrrr@{}}
+\toprule
+\textbf{Stored case} & \textbf{Limit} & \textbf{EO 1 h} & \textbf{EO 24 h} & \textbf{Eq. time} & \textbf{Max pair V} \\
+\midrule
+O30 & 0.025 V & \textbf{16.2\%} & \textbf{0.68\%} & \textbf{0.17 h} & \textbf{0.478 V} \\
+Full humidity duty & 0.250 V & \textbf{16.5\%} & \textbf{0.69\%} & \textbf{0.17 h} & \textbf{0.250 V} \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+The separate 1.8-V current-commanded replay is an optimistic upper-bound
+sensitivity, not a same-voltage replay:
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{@{}Yrrrrr@{}}
+\toprule
+\textbf{Stored case} & \textbf{Ceiling} & \textbf{EO 1 h} & \textbf{EO 24 h} & \textbf{Eq. time} & \textbf{Max pair V} \\
+\midrule
+O30 upper bound & 1.800 V & \textbf{98.5\%} & \textbf{4.6\%} & \textbf{1.10 h} & \textbf{2.253 V} \\
+Full-duty upper bound & 1.800 V & \textbf{92.3\%} & \textbf{5.0\%} & \textbf{1.20 h} & \textbf{1.800 V} \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+The percentages are relative to counterfactual continuous-current EO
+displacement. The replay freezes the bulk states, gas films and installed area
+while current collapses. It is a duration diagnostic, not a dynamic,
+mass-balanced ERV prediction and not a revised HVAC-saving result. The
+reference 10,000-F/m\textsuperscript{2} capacitance per electrode was an
+unmeasured sensitivity assumption.
+
+\begin{warningbox}
+\textbf{Electrode-window limit.} The terminal-voltage clamp is not an
+individual-electrode or electrode-pair electrochemical-window constraint. The
+model resolves neither individual electrode potentials nor a pair stability
+window. A reported pair-capacitor state may therefore exceed the terminal
+clamp when membrane polarisation is negative, as in the 2.253-V O30 upper
+bound. These are model states, not validated safe operating limits.
+\end{warningbox}
+
+Symmetric, charge-balanced cycling gives \textbf{zero net EO water transport
+over a complete cycle} in the present constant-drag model, to numerical
+precision. Water moved during one half-cycle is returned during the other.
+A sustainable result requires a measured asymmetry or another physical
+mechanism; it cannot be inferred from capacitance alone.
+
+\begin{stopbox}
+\textbf{Decision consequence.} Earlier steady energy windows must not be
+reported as sustained performance for purely blocking electrodes.
+\end{stopbox}
+
+\subsection{The recent combined material case is synthetic}
+
+The recent joint \(t_w=50\), \(D=1.0\times10^{-10}\)~m\textsuperscript{2}/s
+run is retained as a sensitivity result, not a candidate membrane.
+
+\begin{center}
+\begin{tabularx}{0.86\textwidth}{@{}YR@{}}
+\toprule
+\textbf{Item} & \textbf{Result} \\
+\midrule
+Transport-closed rows & \textbf{4 of 8} \\
+Best available eight-segment diagnostic area & \textbf{43,019.5 m\textsuperscript{2}} \\
+Voltage at that diagnostic & \textbf{0.10 V} \\
+Full-coupled/full-system rows & \textbf{0} \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+The audit passed integrity and reproducibility checks only. The joint property
+vector was not measured on an identifiable membrane; the material-validation
+flag is false. Area is diagnostic and the conditional energy arithmetic omits
+unvalidated subsystems. The run therefore does not establish a realistic
+material, practical module or system-energy claim.
+
+\subsection{Status of earlier energy windows}
+
+Version~9's integrated-ERV O30 result and other positive energy differences
+remain useful records of what the steady model predicted under its declared
+assumptions. They are historical conditional evidence. They must not be
+reported as sustained performance because continuous electrodes, same-sample
+membrane properties, receiver/thermal coupling and practical hardware remain
+unvalidated.
+
+\clearpage
+\section{Technical reference for the frozen axial model}
+
+The steady axial calculations are \textbf{voltage controlled}: terminal
+voltage is held constant for a case, while current is not. Each segment solves
+its local through-plane current density \(j(x)\), coupled to gas films and net
+water flux, from
+\[
+V_{\mathrm{app}}=j(x)\!\left(\mathrm{ASR}_{\mathrm{mem}}(x)+
+\mathrm{ASR}_{\mathrm{series}}\right)
++t_w\frac{RT}{F}\ln\!\left(\frac{a_{w,r}^{s}}{a_{w,s}^{s}}\right)
++V_{\mathrm{fixed}}.
+\]
+Activities, resistance and flux vary along the channel, so \(j(x)\) varies
+with axial position. This is through-plane current sampled along \(x\), not a
+solved in-plane current-collector current. It has equal physical magnitude on
+both membrane faces; its sign reverses only when written using each face's own
+outward normal.
+
+Both channel gaps are 2.0~mm, so \(D_h=4.0\)~mm. The model has no literal
+gas-film slab. At film scale factor 1, \(Sh=7.54\) gives the \textbf{derived
+effective film thickness}
+\[
+\delta_{\mathrm{eff}}=\frac{D}{k}=\frac{D_h}{Sh}=0.5305\ \mathrm{mm}
+\]
+on each side. At 32/20~\textdegree C, supply/receiver
+\(k\approx0.0511/0.0475\)~m/s. The 0.5305-mm value is a correlation-equivalent
+boundary layer, not a physical GDL or manufactured film.
+
+The inverse-design anchor is hypothetical: \(t_w=100.0608\),
+\(D=1.5979\times10^{-14}\)~m\textsuperscript{2}/s,
+\(\sigma=23.1719\)~S/m and dry \(L=36.9137\)~\(\mu\)m. It must not be called
+a realistic membrane. The \(t_w=50\), \(D=10^{-10}\)~m\textsuperscript{2}/s
+vector is likewise synthetic.
+
+\clearpage
+\section{Final claim boundary}
+\eyebrow{What may and may not be stated}
+
+The following statements are supported:
+\begin{itemize}
+  \item the model phase is complete;
+  \item direct EO inside the ERV is the selected modelling architecture;
+  \item the models identify conditional sensitivities and experimental hypotheses;
+  \item purely blocking capacitive electrodes provide finite startup
+  displacement, not demonstrated continuous EO duty;
+  \item the original-voltage O30 replay retains 16.2\% after one hour and
+  0.68\% over 24 hours; the 1.8-V replay is only an optimistic
+  current-commanded upper bound;
+  \item the \(t_w=50\), \(D=10^{-10}\)~m\textsuperscript{2}/s run is a
+  synthetic, partially closed sensitivity screen.
+\end{itemize}
+
+The following statements are \textbf{not supported} and must not be made:
+\begin{itemize}
+  \item an existing or procurable membrane meets the model property bundle;
+  \item continuous EO transport has been demonstrated;
+  \item a Faradaic, pseudocapacitive or rectifying electrode architecture is validated;
+  \item membrane, module, receiver, current collector or full-system
+  performance has been experimentally validated;
+  \item a net HVAC energy saving, commercial advantage, lifetime, cost or
+  manufacturability target has been achieved.
+\end{itemize}
+
+\begin{stopbox}
+\textbf{Controlled closeout statement.} The model phase is complete. No
+existing membrane, continuous electrode mechanism, module-scale performance or
+net system saving has been validated. All positive energy results remain
+conditional model sensitivities and must not be presented as product or
+commercial claims.
+\end{stopbox}
+
+\section{Accepted successor phase}
+\eyebrow{Measured evidence before another design claim}
+
+Only the following work is accepted if the technology is continued:
+
+\begin{enumerate}
+  \item \textbf{Demonstrate a sustainable electrode mechanism.} Measure a
+  Faradaic, pseudocapacitive, rectifying, flow-switched or other charge/water-
+  asymmetric mechanism. Quantify separate electrode potentials, reaction
+  products, kinetics, overpotential, energy recovery, self-discharge and lifetime.
+  \item \textbf{Complete MAT-01--MAT-09 on the same identifiable sample or
+  batch.} Measure sorption/hysteresis, mobility/permeance, EO drag, wet
+  through-plane conductivity, membrane/contact ASR, thickness/swelling/
+  mechanics, coupled net water flux, interface compatibility and provenance.
+  \item \textbf{Run a controlled-flow coupon test.} Use matched EO-off/EO-on,
+  ABBA polarity reversal, two-sided water balance, pressure control, film/gap
+  repeats and complete charge/discharge cycles. Post-ERV O30 may be used only
+  as the declared boundary/control.
+  \item \textbf{Close the dynamic and full-system ledgers.} Couple transient
+  membrane inventory and gas streams, receiver operation, heat, pressure drop,
+  fans, power electronics, heat rejection, leakage and cross-contamination.
+  \item \textbf{Apply product constraints.} Set accepted limits for active
+  area, volume, pressure drop, current collection, cost, manufacturability,
+  safety, fouling, lifetime and end-of-life handling.
+  \item \textbf{Replay once with measured inputs and hold a new gate review.}
+  Do not restart broad hypothetical sweeps. Any new model or product claim
+  requires a controlled successor report.
+\end{enumerate}
+
+\clearpage
+\section{Closeout register}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}Yp{57mm}@{}}
+\toprule
+\textbf{Workstream} & \textbf{Closeout status} \\
+\midrule
+Mathematical/model development & \textcolor{Green}{\textbf{Complete for this phase}} \\
+Sensitivity and architecture screening & \textcolor{Green}{\textbf{Complete for this phase}} \\
+Real material qualification & \textcolor{Orange}{\textbf{Not validated; successor phase}} \\
+Sustainable electrode operation & \textcolor{Orange}{\textbf{Not validated; successor phase}} \\
+Coupled module/full-system closure & \textcolor{Orange}{\textbf{Not validated; successor phase}} \\
+Product/commercial decision & \textcolor{Red}{\textbf{No claim permitted}} \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{gobox}
+\textbf{Administrative closeout.} The scientific modelling phase can be
+closed without executing the successor experimental programme. The open items
+are accepted future-phase gates, not incomplete deliverables of this model
+phase.
+\end{gobox}
+
+\subsection*{Release verification}
+
+The regenerated capacitive audit passes \textbf{16 of 16} checks and its
+targeted module passes \textbf{9 of 9} tests. The corrected targeted release
+suite passes \textbf{63 tests}; the full suite passes \textbf{313 tests with 1
+skipped}. The sole skip is the optional design-frontier smoke test because its
+output is absent. These are code and integrity results, not technology
+validation; the governing package result remains the V10 status file.
+
+\path{scripts/run_final_delivery_check_v1.py} is a superseded historical
+checker. It predates the September evidence and fails on stale August report
+and nested-manifest assumptions, so its result is not a V10 acceptance signal.
+The sole governing release status is the new fail-closed package verification
+at
+\path{deliverables/current/2026-09-02_v10/verification/V10_STATUS.json},
+produced by:
+
+\begin{plainbox}
+{\small\ttfamily python3 scripts/package\_final\_closeout\_v10.py\par
+\hspace*{5mm}--expected-source-revision ``\$(git rev-parse HEAD)''}
+\end{plainbox}
+
+This report does not claim that package verification passes before that status
+file has been generated successfully.
+
+\section{Controlled evidence basis}
+
+\begin{itemize}
+  \item \path{reports/final_team_decision_report_2026-08-31/HeiQ_XMembrane_Final_Result_and_Decision_Report_2026-08-31_v9.tex} --- preserved historical V9 report;
+  \item \path{docs/CAPACITIVE_ELECTRODE_TRANSIENT_STUDY_2026-09-01.md} and
+  \path{outputs/capacitive_electrode_study_v1/} --- transient study and audit;
+  \item \path{outputs/direct_active_erv_tw50_d1e10_v1/study/} --- combined
+  synthetic sensitivity and audit;
+  \item \path{outputs/integrated_evidence_v1/material_data_requirements.csv}
+  --- MAT-01--MAT-09 qualification schema;
+  \item \path{src/heiq/wp1/axial/local_state.py},
+  \path{src/heiq/wp1/airside/properties.py} and
+  \path{heiq_pre_receiver_material_analyses/heiq_pre_receiver_model.py} ---
+  local voltage/current and gas-film model basis;
+  \item \path{reports/final_project_closeout_2026-09-02/source_manifest.json}
+  --- SHA-256 bindings for this release and decision-critical sources.
+\end{itemize}
+
+\vfill
+{\sans\scriptsize\color{Slate}End of controlled Version~10 closeout. V9 and
+earlier files remain available as historical provenance. V10 governs current
+project decisions.}
+\end{document}

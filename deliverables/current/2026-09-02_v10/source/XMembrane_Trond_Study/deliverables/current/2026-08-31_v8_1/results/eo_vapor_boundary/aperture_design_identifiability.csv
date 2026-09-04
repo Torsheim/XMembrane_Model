@@ -1,0 +1,4 @@
+design_id,specimen_count,parameters_blank_area_perimeter,design_matrix_rank,residual_degrees_of_freedom,area_perimeter_correlation,area_perimeter_variance_inflation_factor,scaled_design_condition_number,specimens,both_flow_orientations_required
+current_4_9_25_square,3,3,3,0,0.9946433500242824,93.59259259259585,57.8726564887123,2x2 cm; 3x3 cm; 5x5 cm,False
+add_16_square,4,3,3,1,0.9919353522139874,62.249999999999226,54.57608667587749,2x2 cm; 3x3 cm; 4x4 cm; 5x5 cm,False
+recommended_with_equal_area_rectangle,5,3,3,2,0.9598929265768711,12.721744861885071,25.593146279426435,2x2 cm; 0.8x5 cm; 3x3 cm; 4x4 cm; 5x5 cm,True

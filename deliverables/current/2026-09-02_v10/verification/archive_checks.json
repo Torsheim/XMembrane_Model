@@ -1,0 +1,60 @@
+{
+  "passed": true,
+  "result_selection": {
+    "capacitive_manifest_bound_count": 27,
+    "explicit_allowlist_count": 22,
+    "frozen_active_erv_scope": {
+      "excluded_unallowlisted_file_count": 15,
+      "excluded_unallowlisted_path_digest_sha256": "4beb0b5d7f697963f300fe25a4024604094b5d62ae2f7bfe97e09bab7f1daf67",
+      "path": "outputs/direct_active_eo_erv_study_v1/study",
+      "selected_file_count": 2
+    },
+    "profile_scope": {
+      "excluded_unallowlisted_file_count": 11,
+      "excluded_unallowlisted_path_digest_sha256": "90bcd4b603a1e28b7211468bd95335c7f52defe83da33abcd789f111cf0d3266",
+      "path": "outputs/direct_active_erv_transport_sensitivity_2v/study",
+      "selected_file_count": 8
+    },
+    "report_manifest_bound_count": 21,
+    "selected_unique_file_count": 67,
+    "selection_policy": "exact union of report-manifest records, nested scientific-manifest records, and the explicit V10 profile/frozen-study allowlist",
+    "strict_scopes": {
+      "outputs/capacitive_electrode_study_v1": {
+        "actual_file_count": 23,
+        "allowlisted_file_count": 23,
+        "unexpected_file_count": 0
+      },
+      "outputs/direct_active_erv_tw50_d1e10_v1": {
+        "actual_file_count": 14,
+        "allowlisted_file_count": 14,
+        "unexpected_file_count": 0
+      }
+    },
+    "tw50_manifest_bound_count": 19
+  },
+  "results": {
+    "archive": "HeiQ_XMembrane_2026-09-02_v10_results.zip",
+    "file_member_count": 67,
+    "member_hash_failures": [],
+    "missing_members": [],
+    "passed": true,
+    "sha256": "67cd38f1a8214e8346c0cb4ebf77efda6c95ad203925a7bf98b14cd1909a6b91",
+    "size_bytes": 2852754,
+    "unexpected_members": []
+  },
+  "source": {
+    "archive": "HeiQ_XMembrane_2026-09-02_v10_source.zip",
+    "file_member_count": 333,
+    "member_hash_failures": [],
+    "missing_members": [],
+    "passed": true,
+    "sha256": "89ffe61959bd2d6b258003d00a549edd2547c92bca810b218887a7db5fc1b4d7",
+    "size_bytes": 9165597,
+    "unexpected_members": []
+  },
+  "source_result_overlay": {
+    "mismatched_member_count": 0,
+    "passed": true,
+    "shared_member_count": 19
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "study_id": "final-delivery-check-v1-2026-08-31",
+  "paths": {
+    "closure_status": "outputs/project_closure_check_v1/closure_status.json",
+    "closure_gates": "outputs/project_closure_check_v1/decision_gate_register.csv",
+    "closure_source_manifest": "outputs/project_closure_check_v1/source_manifest.json",
+    "common_voltage_cases": "outputs/workshop_common_voltage_diffusivity_v1/cases.csv",
+    "common_voltage_envelope": "outputs/workshop_common_voltage_diffusivity_v1/diffusivity_envelope.csv",
+    "common_voltage_local_probe": "outputs/workshop_common_voltage_diffusivity_v1/local_bracket_probe.csv",
+    "report_manifest": "reports/model_closure_2026-08-31/source_manifest.json",
+    "report_tex": "reports/model_closure_2026-08-31/HeiQ_XMembrane_Model_Closure_and_Material_Handoff_2026-08-31.tex",
+    "report_pdf": "reports/model_closure_2026-08-31/HeiQ_XMembrane_Model_Closure_and_Material_Handoff_2026-08-31.pdf",
+    "material_requirements": "outputs/integrated_evidence_v1/material_data_requirements.csv",
+    "material_candidate_template": "reports/workshop_pack_2026-08-30/material_candidate_register_template.csv",
+    "practical_gate_template": "reports/workshop_pack_2026-08-30/practical_gate_register_template.csv",
+    "receiver_thermal_ledger_template": "reports/model_closure_2026-08-31/receiver_thermal_ledger_template.csv",
+    "architecture_decision_template": "reports/model_closure_2026-08-31/architecture_decision_register_template.csv"
+  },
+  "scientific_audits": [
+    {
+      "audit_id": "direct_active_erv_study",
+      "path": "outputs/direct_active_eo_erv_study_v1/study/study_audit.json",
+      "source_manifest_path": "outputs/direct_active_eo_erv_study_v1/study/study_audit.json"
+    },
+    {
+      "audit_id": "direct_active_erv_sensitivity",
+      "path": "outputs/direct_active_eo_erv_study_v1/sensitivity/study_audit.json",
+      "source_manifest_path": "outputs/direct_active_eo_erv_study_v1/sensitivity/study_audit.json"
+    },
+    {
+      "audit_id": "direct_erv_gradient_closure",
+      "path": "outputs/direct_erv_gradient_closure_v1/audit.json",
+      "source_manifest_path": "outputs/direct_erv_gradient_closure_v1/source_manifest.json"
+    },
+    {
+      "audit_id": "common_voltage_diffusivity",
+      "path": "outputs/workshop_common_voltage_diffusivity_v1/audit.json",
+      "source_manifest_path": "outputs/workshop_common_voltage_diffusivity_v1/source_manifest.json"
+    },
+    {
+      "audit_id": "fom_assessment",
+      "path": "outputs/fom_assessment_v1/audit.json",
+      "source_manifest_path": "outputs/fom_assessment_v1/source_manifest.json"
+    },
+    {
+      "audit_id": "eo_vapor_boundary_analysis",
+      "path": "outputs/eo_vapor_boundary_analysis_v1/audit.json",
+      "source_manifest_path": "outputs/eo_vapor_boundary_analysis_v1/source_manifest.json"
+    },
+    {
+      "audit_id": "eo_vapor_cell_sizing",
+      "path": "outputs/eo_vapor_cell_sizing_v1/audit.json",
+      "source_manifest_path": "outputs/eo_vapor_cell_sizing_v1/source_manifest.json"
+    },
+    {
+      "audit_id": "workshop_pack",
+      "path": "reports/workshop_pack_2026-08-30/verification.json"
+    }
+  ],
+  "additional_source_manifests": [
+    "reports/workshop_diffusivity_energy_v1/asset_manifest.json"
+  ],
+  "required_model_gate_status": {
+    "G01_THERMODYNAMIC_SIGN": "PASS",
+    "G02_SURFACE_GATE_RECLASSIFICATION": "PASS",
+    "G03_COMMON_VOLTAGE_PRIMARY": "PASS",
+    "G03B_NO_CURRENT_DENSITY_GATE": "PASS",
+    "G05_SEGMENT_CONVERGENCE": "PASS",
+    "G06_INDEPENDENT_CURRENT_ROOTS": "PASS",
+    "G07_UNIFORM_CURRENT_STEP_REPLAY": "PASS",
+    "G08_FROZEN_ENERGY_CONTRACT": "PASS",
+    "G09_MATERIAL_DATA_SCHEMA": "PASS",
+    "G12_RUNTIME_ENVIRONMENT": "PASS"
+  },
+  "accepted_next_phase_gate_status": {
+    "G04_FULL_DUTY_SINGLE_BUS": "OPEN",
+    "G09B_CANDIDATE_DATA_COMPLETENESS": "OPEN",
+    "G10_RECEIVER_CONTRACT": "OPEN",
+    "G11_PRACTICAL_LIMITS": "OPEN"
+  },
+  "release_gate": {
+    "gate_id": "G13_RELEASE_SNAPSHOT",
+    "accepted_status_for_model_delivery": "OPEN",
+    "required_status_for_archival_release": "PASS"
+  },
+  "common_voltage_claim_integrity": {
+    "selected_target_id": "o30",
+    "full_duty_target_id": "full_remaining_latent",
+    "selected_segment_count": 16,
+    "expected_selected_target_envelope_rows": 7,
+    "expected_full_duty_envelope_rows": 7,
+    "local_probe_coverage": "all_flagged_cases_at_or_below_2v",
+    "maximum_local_probe_voltage_v": 2.0,
+    "minimum_local_probe_ceiling_multiplier": 100.0,
+    "confirmed_selection_status": "NUMERICALLY_CONFIRMED_FEASIBLE_VOLTAGE",
+    "full_duty_open_selection_status": "NO_FEASIBLE_SAMPLED_VOLTAGE_WITH_UNRESOLVED_POINTS",
+    "converged_resolution_class": "CONVERGED_TARGET",
+    "unresolved_resolution_class": "NUMERICAL_OR_LOCAL_SOLUTION_FAILURE",
+    "physical_no_solution_resolution_class": "PHYSICAL_NO_COMMON_VOLTAGE_AT_THIS_COORDINATE",
+    "legacy_high_bracket_status": "above_internal_current_search_ceiling",
+    "feasible_case_status": "COMMON_VOLTAGE_FEASIBLE",
+    "unresolved_case_decision_value_columns": [
+      "module_fan_power_kw",
+      "known_eo_grid_and_module_fan_power_kw",
+      "known_eo_grid_and_module_fan_sec_kwh_per_kg",
+      "conditional_conservative_total_power_kw",
+      "conditional_conservative_saving_kw_vs_erv_ac",
+      "conditional_receiver_sink_sec_budget_kwh_per_kg",
+      "conditional_exact_endpoint_total_power_kw",
+      "conditional_exact_endpoint_saving_kw_vs_erv_ac"
+    ],
+    "selected_numeric_field_mapping": {
+      "selected_common_terminal_voltage_v": "common_terminal_voltage_v",
+      "selected_required_active_area_m2": "required_active_area_m2",
+      "selected_known_eo_grid_and_module_fan_power_kw": "known_eo_grid_and_module_fan_power_kw",
+      "selected_conditional_conservative_total_power_kw": "conditional_conservative_total_power_kw",
+      "selected_conditional_conservative_saving_kw_vs_erv_ac": "conditional_conservative_saving_kw_vs_erv_ac"
+    },
+    "numeric_match_relative_tolerance": 1e-9,
+    "numeric_match_absolute_tolerance": 1e-9
+  },
+  "required_material_ids": [
+    "MAT-01", "MAT-02", "MAT-03", "MAT-04", "MAT-05",
+    "MAT-06", "MAT-07", "MAT-08", "MAT-09"
+  ],
+  "required_practical_gate_ids": [
+    "PRACT-01", "PRACT-02", "PRACT-03", "PRACT-04", "PRACT-05",
+    "PRACT-06", "PRACT-07", "PRACT-08", "PRACT-09", "PRACT-10"
+  ],
+  "required_receiver_ledger_ids": [
+    "REC-01", "REC-02", "REC-03", "REC-04", "REC-05",
+    "REC-06", "REC-07", "REC-08", "REC-09", "REC-10"
+  ],
+  "required_architecture_criterion_ids": [
+    "ARCH-01", "ARCH-02", "ARCH-03", "ARCH-04", "ARCH-05",
+    "ARCH-06", "ARCH-07", "ARCH-08"
+  ],
+  "runtime_requirements": {
+    "python": ">=3.10",
+    "numpy": ">=1.26",
+    "pandas": ">=2.1",
+    "matplotlib": ">=3.8",
+    "scipy": ">=1.11",
+    "CoolProp": ">=6.6"
+  },
+  "claim_boundary": {
+    "model_delivery_can_finish_before_candidate_measurements": true,
+    "open_next_phase_gates_are_not_model_delivery_failures": true,
+    "full_system_claim_allowed": false,
+    "technology_validated": false
+  }
+}

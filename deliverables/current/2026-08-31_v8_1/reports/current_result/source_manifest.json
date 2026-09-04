@@ -1,0 +1,205 @@
+{
+  "canonical_basename": "HeiQ_XMembrane_Current_Result_and_Decision_Report_2026-08-31_v8",
+  "canonical_source_records": {
+    "outputs/direct_active_eo_erv_study_v1/study/study_audit.json": {
+      "path": "outputs/direct_active_eo_erv_study_v1/study/study_audit.json",
+      "sha256": "9fc1e169404c26d8579a40504a0b46457b51a8cc68d93eda789874b4b22239de",
+      "size_bytes": 10899
+    },
+    "outputs/direct_erv_gradient_closure_v1/source_manifest.json": {
+      "path": "outputs/direct_erv_gradient_closure_v1/source_manifest.json",
+      "sha256": "be58acc101608336a9823f5d4d18e538a2c4be48afd5f6cf07dfbec0efab7803",
+      "size_bytes": 2916
+    },
+    "outputs/direct_passive_nafion_erv_control_v1/audit.json": {
+      "path": "outputs/direct_passive_nafion_erv_control_v1/audit.json",
+      "sha256": "92d6a38a9831d942862bd4231583b0e7f438e369fd781e822c1d45f9aea237ab",
+      "size_bytes": 3579
+    },
+    "outputs/eo_vapor_boundary_analysis_v1/audit.json": {
+      "path": "outputs/eo_vapor_boundary_analysis_v1/audit.json",
+      "sha256": "86465289c15df2deeda7456cc0293ea13c653f4e23a8b54bf611e35fdc2fdc3b",
+      "size_bytes": 536
+    },
+    "outputs/eo_vapor_boundary_analysis_v1/source_manifest.json": {
+      "path": "outputs/eo_vapor_boundary_analysis_v1/source_manifest.json",
+      "sha256": "2d6ce28a546e86172dd24d0f791d35bdf42cfee2970b2c365277a1626a12c9cd",
+      "size_bytes": 5320
+    },
+    "outputs/eo_vapor_cell_sizing_v1/audit.json": {
+      "path": "outputs/eo_vapor_cell_sizing_v1/audit.json",
+      "sha256": "12632b20fee31fc817224dd59ccd589558927c1c8da9df39d277092724a45808",
+      "size_bytes": 1660
+    },
+    "outputs/eo_vapor_cell_sizing_v1/source_manifest.json": {
+      "path": "outputs/eo_vapor_cell_sizing_v1/source_manifest.json",
+      "sha256": "1c96a4e92a33be70695b073e22d6a3d5d6acc716c0bc5b33bd001469bb4c6d1c",
+      "size_bytes": 5225
+    },
+    "outputs/final_delivery_check_v1/gate_register.csv": {
+      "path": "outputs/final_delivery_check_v1/gate_register.csv",
+      "sha256": "07126e8f37b000abe9c387bb7fffea40b059b929a9c29540218bbe01e73e992d",
+      "size_bytes": 1609
+    },
+    "outputs/final_delivery_check_v1/source_manifest.json": {
+      "path": "outputs/final_delivery_check_v1/source_manifest.json",
+      "sha256": "fc43ef8ec8dd16fc60d73cf523ed01f5446f7e77546c7e1aa47870696054ebb0",
+      "size_bytes": 8114
+    },
+    "outputs/final_delivery_check_v1/status.json": {
+      "path": "outputs/final_delivery_check_v1/status.json",
+      "sha256": "102249d895e8f88fbf73d7b6bd7b4f37ccbe72e0b8a9cfd3412a96179561a86c",
+      "size_bytes": 138761
+    },
+    "outputs/fom_assessment_v1/audit.json": {
+      "path": "outputs/fom_assessment_v1/audit.json",
+      "sha256": "90a34b845762a57f494e8c38107368264748910514abd3bb73bc89371067ee2b",
+      "size_bytes": 362
+    },
+    "outputs/fom_assessment_v1/device_fom.csv": {
+      "path": "outputs/fom_assessment_v1/device_fom.csv",
+      "sha256": "c7d6decfb97fd5be3c2df49d056ad1299cb135d4083e98d20b84860d83a7899f",
+      "size_bytes": 1949
+    },
+    "outputs/fom_assessment_v1/source_manifest.json": {
+      "path": "outputs/fom_assessment_v1/source_manifest.json",
+      "sha256": "12653bd8aef71357378455f0638e5d24d061d8462b40330eed7f21cbe48737a4",
+      "size_bytes": 2110
+    },
+    "outputs/fom_assessment_v1/summary.json": {
+      "path": "outputs/fom_assessment_v1/summary.json",
+      "sha256": "8c7da0dc057fca005637b0e73ea48b300991dcf86a7fcdcf4c6cbe110866dac4",
+      "size_bytes": 5308
+    },
+    "outputs/fom_assessment_v1/system_fom.csv": {
+      "path": "outputs/fom_assessment_v1/system_fom.csv",
+      "sha256": "bc6585df21153a3143ec58ca8dd95b66eca4859472622bdba60eadcf0e7d81fe",
+      "size_bytes": 1971
+    },
+    "outputs/integrated_evidence_v1/material_data_requirements.csv": {
+      "path": "outputs/integrated_evidence_v1/material_data_requirements.csv",
+      "sha256": "8fc51c0403a0873b5f39bf51f29201096bf1d4cab736e0ba6f8eecccac640771",
+      "size_bytes": 2741
+    },
+    "outputs/integrated_evidence_v1/source_manifest.json": {
+      "path": "outputs/integrated_evidence_v1/source_manifest.json",
+      "sha256": "e7b52549600f8b16276d8728305e946ca7f8ba4a99fd3fee12deffeb9c8533cf",
+      "size_bytes": 3649
+    },
+    "outputs/material_parameter_windows_with_nafion_v1/audit.json": {
+      "path": "outputs/material_parameter_windows_with_nafion_v1/audit.json",
+      "sha256": "b56523e3f73766803c8181c16fb707199a82e1e1cc981967cc21fb5f930a679d",
+      "size_bytes": 16299
+    },
+    "outputs/post_erv_eo_percentage_sweep_v1/audit.json": {
+      "path": "outputs/post_erv_eo_percentage_sweep_v1/audit.json",
+      "sha256": "205f33e62be46cda7cbe255a9da0a3ba67d9c1811d699bed815edae1425604f4",
+      "size_bytes": 5852
+    },
+    "outputs/post_erv_full_eo_study_v1/audit.json": {
+      "path": "outputs/post_erv_full_eo_study_v1/audit.json",
+      "sha256": "3145d3ad4f79aff9e976fd054416b7f44d3370efc7587ccbcacddfe87e77964e",
+      "size_bytes": 3032
+    },
+    "outputs/project_closure_check_v1/closure_status.json": {
+      "path": "outputs/project_closure_check_v1/closure_status.json",
+      "sha256": "e52fe66b0ba3b2f289af740fecdf3a906dafc48dbde4ec423eea6339cf0390d6",
+      "size_bytes": 657
+    },
+    "outputs/project_closure_check_v1/decision_gate_register.csv": {
+      "path": "outputs/project_closure_check_v1/decision_gate_register.csv",
+      "sha256": "24c2bae3fa6923c537303a7451b6e7780ea73510d4827d1511bb9030f8ade885",
+      "size_bytes": 3218
+    },
+    "outputs/project_closure_check_v1/source_manifest.json": {
+      "path": "outputs/project_closure_check_v1/source_manifest.json",
+      "sha256": "1d08a09b8e767cc44f7e24dab79fca99d14bc7b720d273b8695964488f175a95",
+      "size_bytes": 11456
+    },
+    "outputs/workshop_common_voltage_diffusivity_v1/audit.json": {
+      "path": "outputs/workshop_common_voltage_diffusivity_v1/audit.json",
+      "sha256": "24a0ffaced5c540e76f3a762fa28b5ffd3d40c2c3ff2b05a4311e921a9fe3105",
+      "size_bytes": 1249
+    },
+    "outputs/workshop_common_voltage_diffusivity_v1/source_manifest.json": {
+      "path": "outputs/workshop_common_voltage_diffusivity_v1/source_manifest.json",
+      "sha256": "4729bbaa34e80974e551a12c4396f249cb7c167beb5de4465d8ee33ec6ebda87",
+      "size_bytes": 2285
+    }
+  },
+  "claim_boundary": "Internal model and experiment-planning synthesis; EO energy differences are conditional ledgers, not validated savings.",
+  "external_outputs_copied": false,
+  "generated_utc": "2026-08-31T10:33:57+00:00",
+  "hash_algorithm": "sha256",
+  "referenced_figures": {
+    "outputs/eo_vapor_boundary_analysis_v1/combined_sensitivity_rank.png": {
+      "path": "outputs/eo_vapor_boundary_analysis_v1/combined_sensitivity_rank.png",
+      "sha256": "aeaabcce7621c13231006089c66f9d2f4fcb8b29e07ab2d248185a5050eee9e2",
+      "size_bytes": 95101
+    },
+    "outputs/eo_vapor_cell_sizing_v1/cell_dimension_tradeoffs.png": {
+      "path": "outputs/eo_vapor_cell_sizing_v1/cell_dimension_tradeoffs.png",
+      "sha256": "01bc819831d8e4736bd8147031f3867be7e47e641b712acfe31d24bfc4250b09",
+      "size_bytes": 239567
+    },
+    "outputs/fom_assessment_v1/figures/device_fom.pdf": {
+      "path": "outputs/fom_assessment_v1/figures/device_fom.pdf",
+      "sha256": "fdb13b8813cbc40cdc66c0c257e7d9ce34d230c9c039503179e14ca5e21248c0",
+      "size_bytes": 17792
+    },
+    "outputs/fom_assessment_v1/figures/system_comparison.pdf": {
+      "path": "outputs/fom_assessment_v1/figures/system_comparison.pdf",
+      "sha256": "c957ae4ddb87da66c3331aed4bd705c65acc3e44508bdd57f464b7f7a7b7b218",
+      "size_bytes": 19999
+    },
+    "outputs/material_parameter_windows_with_nafion_v1/04_simultaneous_property_gap_vs_nafion.pdf": {
+      "path": "outputs/material_parameter_windows_with_nafion_v1/04_simultaneous_property_gap_vs_nafion.pdf",
+      "sha256": "d1f3daca89c3fdbf0e16a44d1f1836f85d03dc1fc24aed2c5638ba0bf1d80de7",
+      "size_bytes": 50376
+    },
+    "outputs/post_erv_eo_percentage_sweep_v1/percentage_energy_saving.png": {
+      "path": "outputs/post_erv_eo_percentage_sweep_v1/percentage_energy_saving.png",
+      "sha256": "be27851dedb73da7123bea5a12364f9f5cedf41904f4058178e35b47ea95c65d",
+      "size_bytes": 154823
+    },
+    "outputs/post_erv_eo_percentage_sweep_v1/percentage_membrane_receiver.png": {
+      "path": "outputs/post_erv_eo_percentage_sweep_v1/percentage_membrane_receiver.png",
+      "sha256": "b231af579af9ece48fe1afc9849e7c6754622dd08caaa655112b1002ff5efbb5",
+      "size_bytes": 231806
+    },
+    "outputs/post_erv_full_eo_study_v1/receiver_and_sink_budget.png": {
+      "path": "outputs/post_erv_full_eo_study_v1/receiver_and_sink_budget.png",
+      "sha256": "2a16507515689ffabf67829915ce7d7ca882f04a154d4caeb487b025f0fe183a",
+      "size_bytes": 141730
+    },
+    "outputs/project_closure_check_v1/figures/closure_common_voltage.pdf": {
+      "path": "outputs/project_closure_check_v1/figures/closure_common_voltage.pdf",
+      "sha256": "c0b8e34d283cf8b138795a1e9f47709ec05d7cb7fdcc44be92376964d65df592",
+      "size_bytes": 22950
+    },
+    "outputs/workshop_common_voltage_diffusivity_v1/figures/workshop_common_voltage_diffusivity.pdf": {
+      "path": "outputs/workshop_common_voltage_diffusivity_v1/figures/workshop_common_voltage_diffusivity.pdf",
+      "sha256": "ce470d4abb773a6dd406b19d4bb358c0f078e35f2bd2f93de9759ae1338e4f0c",
+      "size_bytes": 33909
+    }
+  },
+  "report_files": {
+    "HeiQ_XMembrane_Current_Result_and_Decision_Report_2026-08-31_v8.pdf": {
+      "path": "reports/team_result_atlas_v8/HeiQ_XMembrane_Current_Result_and_Decision_Report_2026-08-31_v8.pdf",
+      "sha256": "26abb43769fdf0b28e86d4369da1b409cfb1ce45b59b228728edb3daf7c60216",
+      "size_bytes": 1092450
+    },
+    "HeiQ_XMembrane_Current_Result_and_Decision_Report_2026-08-31_v8.tex": {
+      "path": "reports/team_result_atlas_v8/HeiQ_XMembrane_Current_Result_and_Decision_Report_2026-08-31_v8.tex",
+      "sha256": "0b0afdb066eff7d0fdd981908de4cbcb20365b3dc9445804051075599fcf6c82",
+      "size_bytes": 44730
+    },
+    "README.md": {
+      "path": "reports/team_result_atlas_v8/README.md",
+      "sha256": "3328b2261184d6faedcfb35fc2cd30266c1eedc9fec0518ba219a6d72da3fa43",
+      "size_bytes": 1099
+    }
+  },
+  "report_id": "team-result-atlas-v8-2026-08-31",
+  "schema_version": 1
+}

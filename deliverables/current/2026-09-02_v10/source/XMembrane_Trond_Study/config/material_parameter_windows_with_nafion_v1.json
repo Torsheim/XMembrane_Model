@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "study_id": "material-parameter-windows-with-nafion-v1-2026-08-27",
+  "title": "Direct EO and EO+ERV parameter windows with Nafion reference",
+  "sources": {
+    "direct_low_voltage_cap_register": "outputs/direct_eo_low_voltage_study_v1/analysis/low_voltage_cap_register.csv",
+    "direct_fixed_loss_sensitivity": "outputs/direct_eo_low_voltage_study_v1/analysis/fixed_loss_sensitivity.csv",
+    "direct_analysis_audit": "outputs/direct_eo_low_voltage_study_v1/analysis/analysis_audit.json",
+    "direct_broad_material_register": "outputs/membrane_operating_region_study_v1/direct_eo_analysis/per_cap_robust_register.csv",
+    "direct_broad_analysis_audit": "outputs/membrane_operating_region_study_v1/direct_eo_analysis/audit.json",
+    "operating_region_study_audit": "outputs/membrane_operating_region_study_v1/study_audit.json",
+    "post_erv_dense_register": "outputs/membrane_operating_region_study_v1/post_erv/post_erv_dense_dj_cases.csv",
+    "post_erv_audit": "outputs/membrane_operating_region_study_v1/post_erv/audit.json",
+    "nafion_reference_module": "/home/torsheim/HeiQ/HeiQ_V2/tools/HeiQ_membrane_sensitivity_nafion_v1/nafion_reference.py",
+    "nafion_reference_documentation": "/home/torsheim/HeiQ/HeiQ_V2/tools/HeiQ_membrane_sensitivity_nafion_v1/NAFION_REFERENCE.md",
+    "nafion_reference_bibliography": "/home/torsheim/HeiQ/HeiQ_V2/tools/HeiQ_membrane_sensitivity_nafion_v1/references.bib",
+    "internal_v5_pfsa_law_source": "/home/torsheim/HeiQ/HeiQ_V2/scripts/make_wp1_countercurrent_geometry_gate_v41.py"
+  },
+  "expected_source_sha256": {
+    "direct_low_voltage_cap_register": "d7507e279481fa25a14448578938fe3dd9becd8a5bbc0e347ab41658b1391732",
+    "direct_fixed_loss_sensitivity": "26f2bda40dbbb42e49f4e765477dd9df2387b62501abc9d348af5394473ba56b",
+    "direct_analysis_audit": "408a9934406e8f7b9c06fa9c150584c633d9a761b7750e04d4d29dcc9bbe04e1",
+    "direct_broad_material_register": "b59790c15e5533a7dd7648c6a2d46ff66b3efa74a64ea1b811abc022503593de",
+    "direct_broad_analysis_audit": "1547982ed30ac3258ecf460cf018330319cfb8df5dfb815ebcedad84e162b4ab",
+    "operating_region_study_audit": "6a0cce4a73acf7af42a0d1a5e58c73fb083dafa98915a22364a599bc924d5e9f",
+    "post_erv_dense_register": "d74e39cc4dad3b322f1f53439efcb59f6e51f00c8e94481441ba9e00a2ec0978",
+    "post_erv_audit": "1b8b5f620b31ea1e479e0d3bc37c2290c0c9aeae5f162a6c7938b4d7711692f3",
+    "nafion_reference_module": "1b4e6cb573b0e721e9c7b0a7c1be52467369d2d50e7d26e6828373bc869d639e",
+    "nafion_reference_documentation": "f083f9425f3efc0bf541d16fe93e12c0cc736d7d9ed86308581d00b84c58ba3b",
+    "nafion_reference_bibliography": "6e653022d8d543ce9ce905e3466f8c0452879ae362bcc2816333c88849881070",
+    "internal_v5_pfsa_law_source": "c7be83ceee2cca48fbd1284ffaf1ba9578602ad7f3af1ed4fe073a45d51ac434"
+  },
+  "direct_eo": {
+    "primary_voltage_cap_v": 2.0,
+    "preferred_voltage_cap_v": 1.8,
+    "baseline_combined_fixed_loss_v": 0.85,
+    "aspirational_combined_fixed_loss_v": 0.2,
+    "modern_comparator_kw": 543.740564,
+    "receiver_power_for_energy_window_kw": 0.0,
+    "observed_full_discrete_cores": {
+      "2.0": {
+        "transport_number_reference_t_w": [30.0, 35.0],
+        "current_density_a_m2": [60.0, 75.0, 100.0],
+        "diffusivity_axis": "all_tested",
+        "expected_rows": 72
+      },
+      "1.8": {
+        "transport_number_reference_t_w": [25.0, 30.0],
+        "current_density_a_m2": [75.0, 100.0],
+        "diffusivity_axis": "all_tested",
+        "expected_rows": 48
+      }
+    }
+  },
+  "nafion_reference": {
+    "activity_min": 0.33,
+    "activity_max": 0.72,
+    "temperature_c": 32.0,
+    "adapter_reference_activity": 0.8,
+    "lambda_reference": 8.0,
+    "lambda_scale_interval_min": 4.0,
+    "lambda_scale_interval_max": 9.0238,
+    "retention_factor_vs_internal_pfsa_sorption": 1.0,
+    "interpretation": "Literature-function reference envelope used by the local Nafion preview. It is not a Chemours device-performance guarantee or one universal drag coefficient.",
+    "direct_d_scale_mapping": "Cross-schema equal-lambda diagnostic over the declared V5-valid lambda interval. This is not a jointly simulated Nafion coordinate."
+  },
+  "internal_v5_pfsa_normalization": {
+    "lambda_reference": 8.0,
+    "minimum_water_content_equivalent": 4.0,
+    "direct_screen_retention_factor": 1.25,
+    "interpretation": "V5 D-scale and drag-scale are normalized to internal hydration-dependent screening laws, not to a measured commercial Nafion batch."
+  },
+  "expected": {
+    "direct_physical_coordinates": 2508,
+    "direct_2v_membrane_passes": 178,
+    "direct_1p8v_membrane_passes": 108,
+    "direct_baseline_modern_positive_before_receiver": 0,
+    "direct_0p2v_loss_modern_positive_before_receiver": 15,
+    "direct_broad_global_v53_rows": 11520,
+    "direct_broad_2v_membrane_passes": 1296,
+    "direct_broad_1p8v_membrane_passes": 1116,
+    "direct_broad_1p8v_full_core_rows": 384,
+    "post_erv_dense_rows": 1122,
+    "post_erv_conditional_energy_passes": 646,
+    "post_erv_positive_surface_direction_passes": 0,
+    "nafion_reference_cases": 12,
+    "nafion_grade_count": 4,
+    "nafion_adapter_reference_activity": 0.8,
+    "nafion_adapter_diffusivity_ref_m2_s": 1.2803084564002419e-10,
+    "nafion_adapter_diffusivity_exponent": -1.53238701042103,
+    "nafion_adapter_conductivity_ref_s_m": 2.5695340057747007,
+    "nafion_adapter_conductivity_exponent": 0.997284990686209
+  },
+  "claim_boundary": {
+    "full_system_claim_allowed": false,
+    "parameter_marginal_extrema_may_be_combined": false,
+    "nafion_is_validated_for_heiq_device": false,
+    "post_erv_conditional_energy_region_is_material_validation": false,
+    "note": "The figures compare hash-bound inverse-design screens with a declared Nafion reference. Only joint coordinates are joint results; fixed or marginal parameter ranges are not a material recipe."
+  },
+  "plot": {
+    "dpi": 220,
+    "language": "no",
+    "png": true,
+    "pdf": true
+  }
+}

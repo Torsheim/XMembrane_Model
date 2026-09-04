@@ -50,6 +50,7 @@ def make_context():
         receiver_band="bridge_40_to_60",
         receiver_temperature_c=None,
         area_max_m2=9000.0,
+        current_cap_a_m2=21.0,
     )
 
     return workflow.build_context(
@@ -121,3 +122,13 @@ def test_workflow_material_builder_preserves_canonical_columns():
 
     for name in workflow.MATERIAL_COLUMNS:
         assert name in material
+
+def test_workflow_context_uses_requested_current_gate():
+    ctx = make_context()
+
+    assert (
+        ctx["cfg12"]["operating"][
+            "current_density_cap_a_m2"
+        ]
+        == 21.0
+    )

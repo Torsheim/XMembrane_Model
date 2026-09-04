@@ -1,0 +1,13 @@
+{
+  "all_pass": true,
+  "checks": {
+    "ac_only_power_anchor": true,
+    "passive_erv_power_anchor": true,
+    "all_system_water_identities": true,
+    "all_device_fom_sec_reciprocals": true,
+    "positive_open_sec_budgets": true,
+    "thirteen_foms_per_architecture": true,
+    "payback_fail_closed": true,
+    "claim_boundary_remains_conditional": true
+  }
+}

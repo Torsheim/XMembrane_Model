@@ -1,0 +1,26 @@
+{
+  "created_utc": "2026-09-02T14:07:03.895454+00:00",
+  "determinism_scope": "Only the source and result ZIP payloads are deterministic for fixed inputs. The complete package intentionally records time-, host-, and test-run-specific evidence.",
+  "git": {
+    "branch": "study/eo-erv-system-closure",
+    "changed_tracked_files": [],
+    "excluded_untracked_file_count": 1046,
+    "excluded_untracked_path_digest_sha256": "7e4b85362c4d1a63bc58d6c49a377b6d40d044a9368032dcc013c2f98e04983e",
+    "package_time_revision": "805ae087a7f3e133444c93f9fbb72856863754bf",
+    "release_artifact_revision": null,
+    "release_artifact_revision_note": "The commit/tag containing generated release artifacts is created after packaging and cannot be self-recorded; bind it in the annotated tag.",
+    "source_and_package_time_revision_match": true,
+    "source_revision": "805ae087a7f3e133444c93f9fbb72856863754bf",
+    "tracked_files_match_source_revision": true,
+    "tracked_source_file_count": 333,
+    "untracked_files_are_excluded_from_source_archive": true
+  },
+  "machine": "x86_64",
+  "operating_system": "posix",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+  "processor": "x86_64",
+  "python_executable": "/usr/bin/python3",
+  "python_version": "3.10.12 (main, Mar  3 2026, 11:56:32) [GCC 11.4.0]",
+  "release_id": "XMEMBRANE-2026-09-02-V10",
+  "script_version": "xmembrane-final-closeout-v10-packager-1.0"
+}

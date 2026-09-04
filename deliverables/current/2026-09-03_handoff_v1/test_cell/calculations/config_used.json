@@ -1,0 +1,199 @@
+{
+  "integrated_sealed_cell": {
+    "chamber_net_free_gas_volumes_ml": {
+      "A": 500.0,
+      "B": 500.0
+    },
+    "differential_pressure_target_pa": 5.0,
+    "engineering_register": [
+      {
+        "closure_evidence": "Configuration-controlled 500.0 +/- 5.0 mL net free-gas acceptance target per assembled side",
+        "item": "net_free_gas_volume_target",
+        "status": "defined"
+      },
+      {
+        "closure_evidence": "Released cavity geometry and dimensional inspection",
+        "item": "gross_empty_cavity_volume_and_depth",
+        "status": "open"
+      },
+      {
+        "closure_evidence": "Displacement inventory for fan, probes, baffles and ports",
+        "item": "installed_component_displacement",
+        "status": "open"
+      },
+      {
+        "closure_evidence": "Selected materials and thicknesses supported by structural calculation and loaded-deflection inspection",
+        "item": "end_wall_and_central_divider_structural_sizing",
+        "status": "open"
+      },
+      {
+        "closure_evidence": "Released interface specification covering threads, seals and feedthroughs plus an assembled leak test",
+        "item": "fluidic_and_electrical_port_interfaces",
+        "status": "open"
+      },
+      {
+        "closure_evidence": "Selected fan, envelope and mount with measured heat load and chamber displacement",
+        "item": "internal_fan_selection_and_mounting",
+        "status": "open"
+      },
+      {
+        "closure_evidence": "Released baffle CAD and mounting details supported by the chamber mixing test",
+        "item": "baffle_geometry_and_mounting",
+        "status": "open"
+      },
+      {
+        "closure_evidence": "Transient pressure test across the full polarity sequence",
+        "item": "differential_pressure_management",
+        "status": "open"
+      },
+      {
+        "closure_evidence": "Released external mounting interface, bolt-load calculation and torque map",
+        "item": "fixture_mounting_fastener_pattern_and_preload",
+        "status": "open"
+      },
+      {
+        "closure_evidence": "Seal supplier limits and compression inspection",
+        "item": "seal_geometry_and_compression",
+        "status": "open"
+      },
+      {
+        "closure_evidence": "Released datum and tolerance scheme with completed dimensional inspection",
+        "item": "drawing_datums_and_dimensional_tolerances",
+        "status": "open"
+      },
+      {
+        "closure_evidence": "Mapped 1, 2 and 4 mm gaps under operating preload",
+        "item": "loaded_flatness_and_gap_uniformity",
+        "status": "open"
+      },
+      {
+        "closure_evidence": "Humidity step-response test in each chamber",
+        "item": "internal_mixing_time",
+        "status": "open"
+      },
+      {
+        "closure_evidence": "Traceable measured 500.0 +/- 5.0 mL free-gas volume calibration for each assembled side",
+        "item": "net_volume_calibration",
+        "status": "open"
+      }
+    ],
+    "fabrication_release": {
+      "gate_rule": "Ready may become true only after every required register item has status closed and cites its closure evidence.",
+      "ready": false,
+      "required_register_items": [
+        "gross_empty_cavity_volume_and_depth",
+        "installed_component_displacement",
+        "end_wall_and_central_divider_structural_sizing",
+        "fluidic_and_electrical_port_interfaces",
+        "internal_fan_selection_and_mounting",
+        "baffle_geometry_and_mounting",
+        "differential_pressure_management",
+        "fixture_mounting_fastener_pattern_and_preload",
+        "seal_geometry_and_compression",
+        "drawing_datums_and_dimensional_tolerances",
+        "loaded_flatness_and_gap_uniformity",
+        "internal_mixing_time",
+        "net_volume_calibration"
+      ],
+      "unresolved_dimensions": {
+        "baffle_geometry_and_mounting": null,
+        "central_divider_thickness_mm": null,
+        "drawing_datum_and_tolerance_scheme": null,
+        "electrical_feedthrough_specification": null,
+        "end_wall_thickness_mm": null,
+        "external_fixture_mounting_interface": null,
+        "fluidic_port_thread_and_seal_specification": null,
+        "gross_cavity_depth_mm_per_side": null,
+        "internal_fan_part_envelope_mount_and_heat_load": null
+      }
+    },
+    "gross_cavity_accounting": {
+      "gross_cavity_depth_mm_per_side": null,
+      "gross_empty_cavity_volume_ml_per_side": null,
+      "identity": "gross_empty_cavity_volume = calibrated_net_free_gas_volume + installed_component_displacement",
+      "installed_component_displacement_ml_per_side": null
+    },
+    "interconnect_header_port_budget": {
+      "maximum_volume_ml_per_side": 1.3,
+      "pressure_tap_volume_ml_per_side": 0.02,
+      "triangular_header_count_per_side": 2,
+      "triangular_header_length_mm": 7.5
+    },
+    "mechanical_starting_values": {
+      "clear_chamber_face_mm": [
+        100.0,
+        100.0
+      ],
+      "guard_groove_width_mm": 2.0,
+      "housing_face_mm": [
+        140.0,
+        140.0
+      ],
+      "inner_seal_width_mm": 3.0,
+      "insulating_frame_thickness_mm": [
+        8.0,
+        10.0
+      ],
+      "membrane_coupon_mm": [
+        80.0,
+        80.0
+      ],
+      "metal_load_plate_thickness_mm": 12.0,
+      "outer_plate_mm": [
+        110.0,
+        110.0
+      ],
+      "outer_seal_width_mm": 3.0,
+      "peek_load_plate_minimum_thickness_mm": 16.0,
+      "port_bore_count_per_side": 2,
+      "port_bore_inner_diameter_mm": 6.0,
+      "port_bore_length_mm": 8.0
+    },
+    "membrane_region": {
+      "height_mm": 50.0,
+      "local_gap_options_mm": [
+        1.0,
+        2.0,
+        4.0
+      ],
+      "nominal_gap_mm": 2.0,
+      "width_mm": 50.0
+    },
+    "model_assumptions": {
+      "boundary": "rigid sealed two-chamber water inventory",
+      "gas_phase": "ideal water vapour at uniform chamber temperature",
+      "mixing": "each chamber is spatially well mixed at every reported time",
+      "pressure_diagnostic": "water-vapour partial-pressure difference from the transferred gas-phase inventory",
+      "transfer": "constant signed water rate within each polarity segment"
+    },
+    "net_volume_calibration_tolerance_ml_per_side": 5.0,
+    "status": "Engineering concept; not released for fabrication while required register items remain open.",
+    "system_id": "integrated-sealed-two-chamber-concept-2026-09-03",
+    "transient_protocol": {
+      "polarity_sequence": [
+        1,
+        -1,
+        -1,
+        1
+      ],
+      "positive_polarity_water_direction": "A_to_B",
+      "sample_interval_s": 0.1,
+      "segment_duration_s": 5.0
+    },
+    "volume_sizing_basis": {
+      "half_cycle_duration_s": 5.0,
+      "maximum_single_chamber_rh_change_percentage_points": 5.0,
+      "selected_net_free_gas_volume_ml_per_side": 500.0,
+      "switching_frequency_hz": 0.1,
+      "target_net_water_flux_g_m2_h": 208.0
+    }
+  },
+  "operating_state": {
+    "absolute_pressure_pa": 101325.0,
+    "initial_relative_humidity_percent": 50.0,
+    "temperature_c": 32.0
+  },
+  "purpose": "Dimension the integrated sealed two-chamber EO vapour test-cell concept from a declared water-transfer rate, switching time and humidity-drift limit.",
+  "schema_version": 2,
+  "study_id": "eo-vapor-integrated-sealed-cell-v2-2026-09-03"
+}

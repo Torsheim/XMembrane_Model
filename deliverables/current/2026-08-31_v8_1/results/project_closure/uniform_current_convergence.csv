@@ -1,0 +1,10 @@
+anchor_id,source_target_id,source_selection,area_step_m2,status,target_reached,required_active_area_m2,maximum_required_terminal_voltage_signed_v,minimum_surface_activity_margin,water_balance_relative_error,conditional_saving_kw_vs_passive_erv,area_relative_difference_from_selected,area_convergence_pass
+completion_50pct_best_conditional,completion_50pct,best_conditional_saving,20.0,target_reached,True,4187.524061567143,0.9176140523020134,-0.22793253347422826,8.074820244348555e-16,116.45915863648355,1.4964061109161378e-10,True
+completion_50pct_best_conditional,completion_50pct,best_conditional_saving,10.0,target_reached,True,4187.524062092621,0.9165959242058046,-0.22780382993307302,-1.0093525305435702e-14,116.45917431543472,2.4154085750108073e-11,True
+completion_50pct_best_conditional,completion_50pct,best_conditional_saving,5.0,target_reached,True,4187.524062193766,0.9165959242372193,-0.2278038299370465,-1.0497266317653129e-14,116.45917714355801,0.0,True
+o30_best_under_1v,o30,best_under_1v,20.0,target_reached,True,24369.971872563394,0.9860949004319196,-0.23272903525369532,-4.442798416743404e-15,144.90469124267287,3.338808539636496e-11,True
+o30_best_under_1v,o30,best_under_1v,10.0,target_reached,True,24369.97187331144,0.9858145393606036,-0.23269644994080446,6.664197625115062e-15,144.9046926742853,2.6927344054101608e-12,True
+o30_best_under_1v,o30,best_under_1v,5.0,target_reached,True,24369.97187337706,0.9858145393690583,-0.2326964499417873,-7.0344308265103894e-15,144.90469274291803,0.0,True
+full_duty_best_conditional,full_remaining_latent,best_conditional_saving,20.0,target_reached,True,8376.249508247565,1.8948879077989982,-0.39568802306364875,-2.6916067481161885e-15,416.9994577113142,1.0519248096864163e-10,True
+full_duty_best_conditional,full_remaining_latent,best_conditional_saving,10.0,target_reached,True,8376.249508869178,1.8948879084071693,-0.3956880231050533,-2.1532853984929506e-15,416.9994797008035,3.0981183520626047e-11,True
+full_duty_best_conditional,full_remaining_latent,best_conditional_saving,5.0,target_reached,True,8376.249509128684,1.89488790855922,-0.3956880231154051,-1.6149640488697132e-15,416.9994882385224,0.0,True

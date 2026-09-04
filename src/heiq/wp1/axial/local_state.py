@@ -78,6 +78,8 @@ def solve_local_state(
     config: dict[str, Any],
     process_film_scale_factor: float | None = None,
     receiver_film_scale_factor: float | None = None,
+    receiver_temperature_c: float | None = None,
+    membrane_temperature_c: float | None = None,
 ) -> dict[str, Any]:
     air = config["air"]
     channel = config["channel"]
@@ -113,10 +115,19 @@ def solve_local_state(
         pressure_pa=pressure_pa,
         scale_factor=process_scale_factor,
     )
-    receiver_temperature_c = float(channel["receiver_temperature_c"])
+    receiver_film_temperature_c = (
+        float(channel["receiver_temperature_c"])
+        if receiver_temperature_c is None
+        else float(receiver_temperature_c)
+    )
+    local_membrane_temperature_c = (
+        source_temperature_c
+        if membrane_temperature_c is None
+        else float(membrane_temperature_c)
+    )
     receiver_film = calculate_film_state(
         side="receiver",
-        temperature_c=receiver_temperature_c,
+        temperature_c=receiver_film_temperature_c,
         velocity_m_s=float(channel["receiver_velocity_m_s"]),
         gap_m=float(channel["receiver_gap_m"]),
         pressure_pa=pressure_pa,
@@ -124,7 +135,7 @@ def solve_local_state(
     )
     local_config = make_local_config(
         v2_config,
-        temperature_c=source_temperature_c,
+        temperature_c=local_membrane_temperature_c,
         source_activity=source_activity,
         receiver_activity=receiver_activity,
         source_film=source_film,
@@ -165,7 +176,7 @@ def solve_local_state(
         record, _ = v2.solve_nafion_voltage_state(
             source_bulk_activity=source_activity,
             receiver_bulk_activity=receiver_activity,
-            temperature_c=source_temperature_c,
+            temperature_c=local_membrane_temperature_c,
             dry_thickness_um=float(material["dry_thickness_um"]),
             applied_voltage_v=terminal_voltage_v,
             drag_scale_factor=float(material.get("drag_scale_factor", 1.0)),

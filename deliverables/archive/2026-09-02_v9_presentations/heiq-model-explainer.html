@@ -1,0 +1,83 @@
+<div id="heiq-model-explainer-fixed">
+  <style>
+    #heiq-model-explainer-fixed{font-family:Inter,ui-sans-serif,system-ui,sans-serif;color:var(--foreground);width:100%;}
+    #heiq-model-explainer-fixed *{box-sizing:border-box}
+    #heiq-model-explainer-fixed h2{font-size:20px;margin:0 0 4px}
+    #heiq-model-explainer-fixed .sub{font-size:12px;opacity:.7;margin-bottom:14px}
+    #heiq-model-explainer-fixed .nav{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px}
+    #heiq-model-explainer-fixed button{background:transparent;color:var(--foreground);border:0;border-bottom:2px solid transparent;padding:5px 0;font:inherit;font-size:12px;cursor:pointer;opacity:.65}
+    #heiq-model-explainer-fixed button[aria-pressed="true"]{border-color:var(--viz-series-1);font-weight:700;opacity:1}
+    #heiq-model-explainer-fixed .frame{border:1px solid var(--border);padding:16px;min-height:470px}
+    #heiq-model-explainer-fixed .view{display:none}.view.on{display:block}
+    #heiq-model-explainer-fixed .title{font-size:15px;font-weight:750;margin-bottom:14px}
+    #heiq-model-explainer-fixed .chain{display:flex;align-items:stretch;gap:7px}
+    #heiq-model-explainer-fixed .box{flex:1;border:1px solid var(--border);padding:11px;background:color-mix(in srgb,var(--viz-series-1) 7%,transparent);font-size:11px;line-height:1.4;min-width:0}
+    #heiq-model-explainer-fixed .box b{display:block;font-size:12px;margin-bottom:5px}
+    #heiq-model-explainer-fixed .arrow{display:flex;align-items:center;opacity:.45}
+    #heiq-model-explainer-fixed .eq{font-family:Georgia,"Times New Roman",serif;text-align:center;font-size:17px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:10px 5px;margin:15px 0}
+    #heiq-model-explainer-fixed .three{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    #heiq-model-explainer-fixed .fact{border-left:3px solid var(--viz-series-1);padding:5px 9px;font-size:11px}.fact b{display:block;font-size:17px;margin-bottom:3px}
+    #heiq-model-explainer-fixed .mem{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:10px;align-items:stretch}
+    #heiq-model-explainer-fixed .gas{border:1px solid var(--border);padding:13px;font-size:11px;line-height:1.5;display:flex;align-items:center}
+    #heiq-model-explainer-fixed .slab{border:2px solid var(--viz-series-2);padding:13px;background:color-mix(in srgb,var(--viz-series-2) 8%,transparent)}
+    #heiq-model-explainer-fixed .row{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:11px}.row:last-child{border:0}
+    #heiq-model-explainer-fixed .segments{display:grid;grid-template-columns:repeat(8,1fr);gap:4px;margin:12px 0}
+    #heiq-model-explainer-fixed .seg{border:1px solid var(--border);min-height:160px;padding:7px 4px;text-align:center;display:flex;flex-direction:column;justify-content:space-between;font-size:10px;background:color-mix(in srgb,var(--viz-series-3) 7%,transparent)}
+    #heiq-model-explainer-fixed .bars{height:270px;display:flex;align-items:flex-end;gap:24px;border-bottom:1px solid var(--border);padding:10px 12px 0}
+    #heiq-model-explainer-fixed .bw{flex:1;text-align:center;font-size:11px}.bar{width:min(110px,80%);margin:auto;padding-top:7px;font-weight:750;border:1px solid var(--border)}
+    #heiq-model-explainer-fixed .a{height:230px;background:color-mix(in srgb,var(--viz-series-4) 50%,transparent)}
+    #heiq-model-explainer-fixed .b{height:107px;background:color-mix(in srgb,var(--viz-series-2) 46%,transparent)}
+    #heiq-model-explainer-fixed .c{height:83px;background:color-mix(in srgb,var(--viz-series-1) 50%,transparent)}
+    #heiq-model-explainer-fixed .bw span{display:block;margin-top:6px}
+    @media(max-width:680px){#heiq-model-explainer-fixed .frame{min-height:610px}#heiq-model-explainer-fixed .chain{display:grid}.arrow{justify-content:center;transform:rotate(90deg)}#heiq-model-explainer-fixed .three,.mem{grid-template-columns:1fr}#heiq-model-explainer-fixed .segments{grid-template-columns:repeat(4,1fr)}.seg{min-height:100px}.bars{gap:5px;padding-inline:0}}
+  </style>
+  <h2>HeiQ / XMembrane model</h2>
+  <div class="sub">Four presentation figures: system, membrane physics, axial integration and energy comparison</div>
+  <div class="nav" role="group" aria-label="Select model figure">
+    <button type="button" data-id="system" aria-pressed="true">1 · System</button>
+    <button type="button" data-id="membrane" aria-pressed="false">2 · Membrane</button>
+    <button type="button" data-id="integration" aria-pressed="false">3 · Integration</button>
+    <button type="button" data-id="energy" aria-pressed="false">4 · Energy</button>
+  </div>
+  <div class="frame">
+    <section class="view on" data-view="system">
+      <div class="title">Figure 1 · Complete calculation chain</div>
+      <div class="chain">
+        <div class="box"><b>Air boundary</b>T, RH, humidity ratio w, enthalpy h and dry-air flow</div><div class="arrow">→</div>
+        <div class="box"><b>ERV</b>Sensible heat recovery and water transfer to exhaust</div><div class="arrow">→</div>
+        <div class="box"><b>EO membrane</b>Voltage-controlled current, EO drag, diffusion and gas films</div><div class="arrow">→</div>
+        <div class="box"><b>Axial core</b>Eight local segments integrated to area and power</div><div class="arrow">→</div>
+        <div class="box"><b>Coil + energy</b>Remaining cooling, COP, reheat, fans and EO power</div>
+      </div>
+      <div class="eq">ṁ<sub>w</sub> = ṁ<sub>da</sub>(w<sub>in</sub> − w<sub>out</sub>) &nbsp;&nbsp; | &nbsp;&nbsp; Q̇<sub>cool</sub> = ṁ<sub>da</sub>(h<sub>in</sub> − h<sub>off-coil</sub>)</div>
+      <div class="three"><div class="fact"><b>4,365.9 kg/h</b>Total active-core water transfer</div><div class="fact"><b>1,228.3 kg/h</b>Increment above passive ERV</div><div class="fact"><b>5,899 m²</b>Selected O30 area at 1 V</div></div>
+    </section>
+    <section class="view" data-view="membrane">
+      <div class="title">Figure 2 · Local membrane calculation</div>
+      <div class="mem">
+        <div class="gas"><div><b>Process bulk gas</b><br>a<sub>s,bulk</sub><br><br>N<sub>w</sub> = K<sub>s</sub>(a<sub>s,bulk</sub> − a<sub>s,surface</sub>)</div></div>
+        <div class="slab"><div class="row"><span><b>EO flux</b><br>t<sub>w</sub>j/F</span><span>driven by charge</span></div><div class="row"><span><b>Diffusion</b><br>−D(a)S(a) da/dx</span><span>may oppose EO</span></div><div class="eq">N<sub>w</sub> = t<sub>w</sub>j/F − D(a)S(a) da/dx</div><div class="row"><span><b>Voltage gradient</b><br>j/σ(a) + t<sub>w</sub>RT/F · d ln(a)/dx</span><span>solves j</span></div></div>
+        <div class="gas"><div><b>Receiver bulk gas</b><br>a<sub>r,bulk</sub><br><br>N<sub>w</sub> = K<sub>r</sub>(a<sub>r,surface</sub> − a<sub>r,bulk</sub>)</div></div>
+      </div>
+      <div class="eq">V<sub>terminal</sub> = V<sub>ohmic</sub> + V<sub>water</sub> + j·ASR<sub>series</sub> + V<sub>fixed</sub></div>
+      <div class="three"><div class="fact"><b>t<sub>w</sub></b>Water carried per unit charge</div><div class="fact"><b>D(a), S(a)</b>Passive chemical water transport</div><div class="fact"><b>σ(a), L</b>Resistance and attainable current</div></div>
+    </section>
+    <section class="view" data-view="integration">
+      <div class="title">Figure 3 · Segment-by-segment integration</div>
+      <div class="segments">
+        <div class="seg"><b>1</b><span>Local T, a<sub>w</sub><br>solve j, N<sub>w</sub></span><span>A₁, P₁</span></div><div class="seg"><b>2</b><span>Update gas states</span><span>A₂, P₂</span></div><div class="seg"><b>3</b><span>Update films</span><span>A₃, P₃</span></div><div class="seg"><b>4</b><span>Update σ, D, S</span><span>A₄, P₄</span></div><div class="seg"><b>5</b><span>Update current</span><span>A₅, P₅</span></div><div class="seg"><b>6</b><span>Back-diffusion</span><span>A₆, P₆</span></div><div class="seg"><b>7</b><span>Wet-end limit</span><span>A₇, P₇</span></div><div class="seg"><b>8</b><span>Endpoint audit</span><span>A₈, P₈</span></div>
+      </div>
+      <div class="eq">A<sub>i</sub> = ṅ<sub>w,i</sub>/N<sub>w,i</sub> &nbsp;&nbsp; | &nbsp;&nbsp; A<sub>total</sub> = ΣA<sub>i</sub> &nbsp;&nbsp; | &nbsp;&nbsp; P<sub>EO</sub> = Σ(V<sub>i</sub>j<sub>i</sub>A<sub>i</sub>)</div>
+      <div class="three"><div class="fact"><b>Water closure</b>Process loss equals receiver gain</div><div class="fact"><b>Nonlinear area</b>Voltage can lower area but raise power</div><div class="fact"><b>Reduced order</b>Segmented screen, not full CFD</div></div>
+    </section>
+    <section class="view" data-view="energy">
+      <div class="title">Figure 4 · Equal-service power comparison</div>
+      <div class="bars"><div class="bw"><div class="bar a">1,166.4 kW</div><span>AC only</span></div><div class="bw"><div class="bar b">543.7 kW</div><span>Passive ERV + AC</span></div><div class="bw"><div class="bar c">418.4 kW</div><span>Active ERV + EO + AC</span></div></div>
+      <div class="eq">Incremental EO window = 543.741 − 418.400 = 125.340 kW = 23.05%</div>
+      <div class="three"><div class="fact"><b>622.7 kW</b>Passive ERV reduction vs AC only</div><div class="fact"><b>125.3 kW</b>EO-specific conditional window</div><div class="fact"><b>Not net yet</b>Omitted subsystem loads must fit inside the window</div></div>
+    </section>
+  </div>
+  <script>
+    (()=>{const r=document.getElementById('heiq-model-explainer-fixed');const bs=[...r.querySelectorAll('button[data-id]')];const vs=[...r.querySelectorAll('[data-view]')];bs.forEach(b=>b.addEventListener('click',()=>{bs.forEach(x=>x.setAttribute('aria-pressed',String(x===b)));vs.forEach(v=>v.classList.toggle('on',v.dataset.view===b.dataset.id));}));})();
+  </script>
+</div>

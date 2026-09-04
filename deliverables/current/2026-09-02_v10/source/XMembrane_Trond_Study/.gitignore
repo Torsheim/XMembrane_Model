@@ -1,0 +1,47 @@
+# Python environments and caches
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.tmp/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Packaging
+build/
+dist/
+
+# Generated simulation results
+outputs/*
+!outputs/axial_independent_material_sweep_v8/
+!outputs/axial_independent_material_sweep_v8/coarse/
+!outputs/axial_independent_material_sweep_v8/coarse/voltage_refinement_v11/
+!outputs/axial_independent_material_sweep_v8/coarse/voltage_refinement_v11/source_manifest.json
+!outputs/axial_independent_material_sweep_v8/coarse/voltage_refinement_v11/axial_base_config_used.json
+!outputs/axial_independent_material_sweep_v8/coarse/voltage_refinement_v11/candidate_materials.csv
+
+# Temporary / transfer files
+.DS_Store
+*:Zone.Identifier
+*:mshield
+*.bak
+*.bak_*
+
+# Archives
+*.zip
+*.tar.gz
+
+# Scientific document build artefacts
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.nav
+*.snm

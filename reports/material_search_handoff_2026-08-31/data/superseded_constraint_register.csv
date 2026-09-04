@@ -1,0 +1,10 @@
+constraint_id,legacy_statement,current_treatment,reason,sources
+AREA_20_M2,Area <=20 m2 used in V12-V15 probability summaries,Diagnostic only; no exploratory membrane-area acceptance cap,User removed the area limit and current closure treats area as a scale-up output,CUR-00;CUR-01;HIST-01;HIST-04;HIST-08
+AREA_100_M2,Area <=100 m2 in the legacy Nafion-derived v7 stage gate,Superseded,Older system basis and explicitly removed area acceptance cap,ARCH-01
+CURRENT_21_A_M2,21 A/m2 discussed as a possible limitation,No such gate; report solved current density,"Current-density values are operating/diagnostic coordinates, not a material acceptance ceiling",CUR-00;CUR-01;CUR-03
+CURRENT_2000_A_M2,2000 A/m2 cap in V12-V15 dense-ionomer screens,"Historical numerical/screening bound, not a current acceptance rule",Keep only when interpreting those legacy probabilities,HIST-01;HIST-04;HIST-06
+VOLTAGE_5_V,Earlier sweeps extended to 5 V or above,Preferred material work is below 2 V,Current direct-EO window is reported at 1.8 and 2.0 V; active-ERV target is lower,CUR-00;CUR-01;CUR-02;CUR-03
+NAFION_TARGET,Nafion-derived multipliers used as a design language,"Nafion/PFSA is a reference/control, not the target material",Its drag and joint material vector do not match the current inverse targets,CUR-00;CUR-01;CUR-02;CUR-04
+POSITIVE_SURFACE_GRADIENT,Positive passive surface direction used as a feasibility gate,Regime diagnostic only,Active EO can transport uphill when thermodynamic coupling and dissipation close,CUR-00;CUR-01;CUR-07
+LOW_D_ALONE,Low scalar D treated as an independently sufficient material direction,"Rank the coupled chemical-permeance bundle D(dCw/da)/L plus drag, conductivity, ASR and films",The focused D study froze the other properties,CUR-01;CUR-03;CUR-08
+HISTORICAL_SEC,50-100 Wh/kg water (sometimes 150 Wh/kg) black-box target,Order-of-magnitude context only,The modern comparator and receiver/BOP ledger are different and incomplete,HIST-13;CUR-00;CUR-01

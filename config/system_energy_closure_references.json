@@ -1,0 +1,19 @@
+{
+  "official_erv_reference": {
+    "source": "ASHRAE Handbook 2024, Chapter 26",
+    "note": "Use effectiveness and pressure-drop ranges; do not substitute generic whole-building savings percentages."
+  },
+  "rating_reference": {
+    "source": "AHRI 1060/1061-2023",
+    "note": "Defines testing and rating of air-to-air energy recovery exchangers."
+  },
+  "airjoule_status": {
+    "source": "Official AirJoule and Carrier public material reviewed August 2026",
+    "verified_generic_hvac_saving_percent": null,
+    "note": "Public official material supports qualitative efficiency/dehumidification claims, not a generic commercial-building percentage."
+  },
+  "grid_loss_default": {
+    "grid_to_device_efficiency": 0.98,
+    "note": "Configurable screening assumption, not a universal transformer efficiency claim."
+  }
+}

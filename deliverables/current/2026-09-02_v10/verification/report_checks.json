@@ -1,0 +1,53 @@
+{
+  "live_input_preflight": {
+    "markdown": {
+      "path": "reports/final_project_closeout_2026-09-02/HeiQ_XMembrane_Final_Project_Closeout_2026-09-02_v10.md",
+      "sha256": "c6f0310bd7f661ed62ff06e724f60b47e6aca191fc49d3b4fc5b29c1467eff97",
+      "size_bytes": 13989
+    },
+    "passed": true,
+    "pdf": {
+      "path": "reports/final_project_closeout_2026-09-02/HeiQ_XMembrane_Final_Project_Closeout_2026-09-02_v10.pdf",
+      "sha256": "9ffe07a8e2584086422169a5b03f494f9828cf08e3101e3973e4cb6534ade723",
+      "size_bytes": 237627
+    },
+    "pdfinfo": {
+      "available": true,
+      "pages": 6
+    },
+    "required_terms": {
+      "10^{-10}": true,
+      "capacitive": true,
+      "not validated": true,
+      "synthetic": true,
+      "t_w=50": true,
+      "transient": true
+    }
+  },
+  "passed": true,
+  "reconstructed_archive": {
+    "markdown": {
+      "path": "reports/final_project_closeout_2026-09-02/HeiQ_XMembrane_Final_Project_Closeout_2026-09-02_v10.md",
+      "sha256": "c6f0310bd7f661ed62ff06e724f60b47e6aca191fc49d3b4fc5b29c1467eff97",
+      "size_bytes": 13989
+    },
+    "passed": true,
+    "pdf": {
+      "path": "reports/final_project_closeout_2026-09-02/HeiQ_XMembrane_Final_Project_Closeout_2026-09-02_v10.pdf",
+      "sha256": "9ffe07a8e2584086422169a5b03f494f9828cf08e3101e3973e4cb6534ade723",
+      "size_bytes": 237627
+    },
+    "pdfinfo": {
+      "available": true,
+      "pages": 6
+    },
+    "required_terms": {
+      "10^{-10}": true,
+      "capacitive": true,
+      "not validated": true,
+      "synthetic": true,
+      "t_w=50": true,
+      "transient": true
+    }
+  }
+}

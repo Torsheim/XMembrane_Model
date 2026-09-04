@@ -1,0 +1,45 @@
+{
+  "study_id": "workshop-common-voltage-diffusivity-v1-2026-08-30",
+  "files": {
+    "study_config": {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/config/workshop_common_voltage_diffusivity_v1.json",
+      "sha256": "e0a54dba9835dcad6644dc7d965fb67bc87c4005391a8234e0b248f4e97e1cfe"
+    },
+    "project_closure_config": {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/config/project_closure_check_v1.json",
+      "sha256": "81da253b6edb08e16dc6739b89ef758d2532fe91d515d72fa4787b09c84e0a96"
+    },
+    "percentage_summary": {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/outputs/post_erv_eo_percentage_sweep_v1/percentage_summary.csv",
+      "sha256": "86285bf7b783aca4373b0a662b567b28172b9a93a590a9dfb822f9931f1ce085"
+    },
+    "active_erv_config": {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/config/direct_active_eo_erv_study_v1.json",
+      "sha256": "f91a1c75f5d642d4103e0149223f5c4094c7eed8be84dd2886f5fb1fd2e0c2f3"
+    },
+    "runner": {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/scripts/run_workshop_common_voltage_diffusivity_v1.py",
+      "sha256": "9ee728f0254d29820a1bdd3d9aae767d3eb5fbf9fa6b01c52f21392aa8ebec84"
+    },
+    "closure_runner": {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/scripts/run_project_closure_check_v1.py",
+      "sha256": "426fec9289703b6bf7ca102f53c4b9449cefe9ff2a2c21e93ade500ef9978845"
+    },
+    "post_erv_analyzer": {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/scripts/analyze_post_erv_inverse_design_v1.py",
+      "sha256": "97dfc9014be749639cd1075c03b19b5cbd536df5b1a7b55dbb95d5bf9d501a32"
+    },
+    "active_erv_module": {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/src/heiq/wp1/studies/active_erv.py",
+      "sha256": "7c2ca694ea10e8f58db1c66ab0304db47f627930081e5d2596e44e36ab017d4e"
+    },
+    "thermodynamic_module": {
+      "path": "/home/torsheim/HeiQ/XMembrane_Trond_Study/src/heiq/wp1/membrane/thermodynamics.py",
+      "sha256": "f917a7e108d852403821450e7861dc5e14778264ecc50502d2168f25671f40ed"
+    },
+    "v2_model": {
+      "path": "/home/torsheim/HeiQ/HeiQ_V2/heiq_pre_receiver_material_analyses/heiq_pre_receiver_model.py",
+      "sha256": "f538f810ae89e7f5eaff3ad2b8be38c587f11587ea4b1f8558d0a9c278f21f54"
+    }
+  }
+}

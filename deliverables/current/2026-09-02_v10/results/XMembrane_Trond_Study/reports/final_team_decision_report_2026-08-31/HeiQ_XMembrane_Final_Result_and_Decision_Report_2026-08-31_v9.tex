@@ -1,0 +1,363 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{tgtermes,tgheros,microtype}
+\usepackage[a4paper,margin=18mm,headheight=19pt]{geometry}
+\usepackage{xcolor,graphicx,booktabs,tabularx,array,enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr,lastpage,titlesec}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl,caption,placeins,textcomp,amsmath,longtable}
+
+\definecolor{Navy}{HTML}{173753}
+\definecolor{Teal}{HTML}{008F8C}
+\definecolor{PaleTeal}{HTML}{E5F4F3}
+\definecolor{Orange}{HTML}{F08A24}
+\definecolor{PaleOrange}{HTML}{FFF1E2}
+\definecolor{Red}{HTML}{BB3E35}
+\definecolor{PaleRed}{HTML}{F9E9E7}
+\definecolor{Slate}{HTML}{5B7083}
+\definecolor{Light}{HTML}{F3F6F8}
+\definecolor{Line}{HTML}{D7E0E7}
+\definecolor{Green}{HTML}{2E8B57}
+\definecolor{PaleGreen}{HTML}{EAF5EE}
+
+\newcommand{\sans}{\fontfamily{qhv}\selectfont}
+\newcommand{\reportdate}{31 August 2026}
+\newcommand{\reportversion}{Version 9}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+\hypersetup{
+  pdftitle={HeiQ XMembrane Final Result and Decision Report -- Version 9},
+  pdfauthor={HeiQ XMembrane project team},
+  pdfsubject={Final integrated ERV+EO model, experiment and delivery basis},
+  pdfkeywords={XMembrane, EO, ERV, integrated membrane, O30, break-even, 9000 m2, vapour cell}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\sans\footnotesize\color{Slate}HEIQ MATERIALS AG · XMEMBRANE}
+\fancyhead[R]{\sans\footnotesize\color{Slate}FINAL RESULT REPORT · V9}
+\fancyfoot[L]{\sans\scriptsize\color{Slate}Conditional modelling and experiment-planning evidence · no product validation}
+\fancyfoot[R]{\sans\scriptsize\color{Slate}Page \thepage\ of \pageref*{LastPage}}
+\renewcommand{\headrulewidth}{0.45pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{Navy}\leaders\hrule height \headrulewidth\hfill}}
+\renewcommand{\footrulewidth}{0pt}
+
+\titleformat{\section}{\sans\bfseries\color{Navy}\fontsize{19}{22}\selectfont}{\thesection}{0.65em}{}
+\titleformat{\subsection}{\sans\bfseries\color{Navy}\fontsize{13}{16}\selectfont}{\thesubsection}{0.55em}{}
+\titlespacing*{\section}{0pt}{7mm}{3mm}
+\titlespacing*{\subsection}{0pt}{5mm}{2mm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1.6mm}
+\setlist[itemize]{leftmargin=5mm,itemsep=1mm,topsep=1mm}
+\captionsetup{font=small,labelfont={bf,color=Navy}}
+\renewcommand{\arraystretch}{1.18}
+
+\newtcolorbox{mainbox}{enhanced,breakable,colback=PaleTeal,colframe=Teal,boxrule=0.7pt,arc=2mm,left=4mm,right=4mm,top=3mm,bottom=3mm}
+\newtcolorbox{warningbox}{enhanced,breakable,colback=PaleOrange,colframe=Orange,boxrule=0.7pt,arc=2mm,left=4mm,right=4mm,top=3mm,bottom=3mm}
+\newtcolorbox{stopbox}{enhanced,breakable,colback=PaleRed,colframe=Red,boxrule=0.7pt,arc=2mm,left=4mm,right=4mm,top=3mm,bottom=3mm}
+\newtcolorbox{gobox}{enhanced,breakable,colback=PaleGreen,colframe=Green,boxrule=0.7pt,arc=2mm,left=4mm,right=4mm,top=3mm,bottom=3mm}
+\newtcolorbox{plainbox}{enhanced,breakable,colback=Light,colframe=Line,boxrule=0.5pt,arc=2mm,left=4mm,right=4mm,top=3mm,bottom=3mm}
+\newcommand{\eyebrow}[1]{{\sans\bfseries\color{Teal}\MakeUppercase{#1}}\par\vspace{1.5mm}}
+\newcommand{\metric}[3]{\begin{minipage}[t]{0.30\textwidth}{\sans\bfseries\fontsize{18}{20}\selectfont\color{Navy}#1}\par{\sans\bfseries\small #2}\par{\scriptsize\color{Slate}#3}\end{minipage}}
+
+\begin{document}
+\thispagestyle{empty}
+\vspace*{7mm}
+\begin{tcolorbox}[enhanced,colback=Navy,colframe=Navy,boxrule=0pt,arc=0mm,left=12mm,right=12mm,top=12mm,bottom=12mm]
+{\sans\bfseries\large\color{white}HEIQ XMEMBRANE PROJECT TEAM}\par
+\vspace{8mm}
+{\sans\bfseries\fontsize{28}{32}\selectfont\color{white}Final result and decision\\[-1mm]report}\par
+\vspace{2mm}
+{\sans\fontsize{18}{21}\selectfont\color{white}EO integrated only in the ERV membrane/core}\par
+\vspace{7mm}
+{\sans\large\color{white}\reportdate\quad · \quad\reportversion}
+\end{tcolorbox}
+
+\vspace{10mm}
+{\sans\bfseries\Large\color{Navy}Controlled final project basis}\par
+\vspace{4mm}
+This report supersedes Version~8 and all earlier architecture comparisons for
+current decisions. The proposed EO function is located \textbf{inside the ERV
+membrane/core}; no downstream or post-ERV EO module is part of the selected
+architecture. Older calculations are retained only as provenance.
+
+\begin{mainbox}
+\textbf{Final model-phase conclusion.} The matched model identifies a
+conditional incremental energy window for EO integrated in the ERV. O30 is
+reachable below the 9,000-m\textsuperscript{2} area gate at 5,899~m\textsuperscript{2},
+with 418.400~kW known power and a 125.340-kW (23.05\%) window versus the same
+passive ERV+AC system with EO off. This is strong enough to justify material
+and coupon testing, but not a validated net-system saving.
+\end{mainbox}
+
+\vfill
+\begin{tabularx}{\textwidth}{@{}lY@{}}
+\textbf{Fixed service} & O80 inlet at 32~$^\circ$C/80\% RH to 20~$^\circ$C/50\% RH supply \\
+\textbf{Primary comparator} & Passive ERV+AC = 543.741~kW; AC only = 1,166.400~kW \\
+\textbf{Selected integrated point} & O30, 1.00~V, 5,899~m\textsuperscript{2}, 418.400~kW known subtotal \\
+\textbf{Calculated EO break-even} & 51.955~Wh/kg all-in active-core energy \\
+\textbf{Release status} & Controlled V9; source, selected results, manifest and SHA256 checksums packaged \\
+\textbf{Claim status} & Conditional model evidence; no validated membrane, module or commercial saving \\
+\end{tabularx}
+
+\clearpage
+\section*{Executive summary}
+\addcontentsline{toc}{section}{Executive summary}
+
+The largest established model reduction comes from the passive ERV: the
+equal-service subtotal falls from 1,166.400~kW for AC alone to 543.741~kW for
+passive ERV+AC. EO must therefore be judged incrementally against the same ERV
+with EO off. Crediting the entire AC-to-active-system difference to EO would
+overstate its contribution.
+
+Passive ERV already reaches 13.215~g/kg, below the O50 coordinate of
+14.952~g/kg. O50 therefore has zero EO duty in the matched model. At O30
+(8.886~g/kg), the selected area-constrained integrated ERV+EO point uses
+5,899~m\textsuperscript{2}. It combines 316.910~kW of remaining AC with
+101.490~kW of known active-core power, for 418.400~kW total. The incremental
+window is 125.340~kW versus passive ERV+AC and 747.999~kW versus AC alone; only
+the former is the EO-specific comparison.
+
+The O30 break-even is calculated, not assumed:
+\[
+e_{\mathrm{BE}}=
+\frac{P_{\mathrm{passive\ ERV+AC}}-P_{\mathrm{remaining\ AC}}}
+{\dot m_{\mathrm{water,integrated\ core}}}
+=51.955~\mathrm{Wh/kg}.
+\]
+The known active-core SEC is 23.246~Wh/kg, leaving 28.709~Wh/kg or 125.340~kW
+for omitted receiver, heat-rejection and hardware loads before the incremental
+advantage disappears. The historical 180-Wh/kg shorthand is not the
+architecture-specific break-even.
+
+Full humidity removal is not available below the current area gate. The
+minimum valid screened full-duty point requires approximately
+17,253~m\textsuperscript{2} and 113.7~kW known total power. The lowest-power
+stored full-duty mechanism coordinate uses 34,425~m\textsuperscript{2} and
+107.856~kW. Both are outside the accepted area envelope. The practical
+opportunity is therefore partial active enhancement of the ERV, with O30 the
+best current under-gate coordinate, rather than forcing EO to complete all
+dehumidification.
+
+\begin{center}
+\metric{5,899 m\textsuperscript{2}}{Selected O30 area}{Inside the 9,000-m\textsuperscript{2} gate}\hfill
+\metric{125.3 kW}{Incremental window}{Versus the same ERV with EO off}\hfill
+\metric{52.0 Wh/kg}{Calculated break-even}{Known active core: 23.2 Wh/kg}
+\end{center}
+
+\clearpage
+\tableofcontents
+\clearpage
+
+\section{Architecture and comparison discipline}
+\eyebrow{One inlet, one endpoint, one matched passive control}
+
+The active and passive cases share the same outdoor inlet, supply endpoint,
+airflow and sensible-effectiveness basis. EO acts only across the active
+membrane inside the ERV core. The downstream coil removes the remaining
+sensible and latent load; at the full humidity endpoint it is sensible only.
+O50 and O30 are intermediate humidity-ratio coordinates, not alternative
+weather states and not supply-air definitions.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.98\textwidth]{../../outputs/integrated_erv_eo_opportunity_plots_v2/integrated_power_ladder.pdf}
+  \caption{Matched equal-service architectures. EO exists only in the ERV membrane/core. The O30 selection is below 9,000~m\textsuperscript{2}; the full-duty point is an unconstrained mechanism coordinate.}
+\end{figure}
+\FloatBarrier
+
+\begin{warningbox}
+\textbf{Comparator rule.} Use AC+ERV versus AC to quantify passive recovery.
+Use AC+ERV+EO versus the same AC+ERV case to quantify incremental EO benefit.
+The AC-only comparison may be reported separately, but must not be labelled as
+an EO-only saving.
+\end{warningbox}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.97\textwidth]{../../outputs/integrated_erv_eo_opportunity_plots_v2/integrated_pairwise_reductions.pdf}
+  \caption{Pairwise conditional reductions with the comparator named explicitly.}
+\end{figure}
+\FloatBarrier
+
+\section{Results below the 9,000-m\textsuperscript{2} gate}
+\eyebrow{Five distinct achieved humidity targets retain conditional savings}
+
+Twelve converged eight-segment engineering-screen cases lie at or below the
+area gate. Selecting the lowest known total power for each achieved humidity
+ratio gives the following frontier.
+
+\begin{center}\small
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+\textbf{Core outlet} & \textbf{Voltage} & \textbf{Area} & \textbf{Known total} & \textbf{Saving vs ERV+AC} & \textbf{Break-even} \\
+ & [V] & [m\textsuperscript{2}] & [kW] & [kW / \%] & [Wh/kg] \\
+\midrule
+12.000~g/kg & 0.10 & 6,519 & 490.475 & 53.265 / 9.80 & 25.379 \\
+11.000~g/kg & 0.10 & 8,669 & 446.484 & 97.257 / 17.89 & 35.272 \\
+10.000~g/kg & 0.50 & 7,066 & 429.256 & 114.485 / 21.06 & 43.779 \\
+9.000~g/kg & 1.00 & 5,758 & 422.938 & 120.802 / 22.22 & 51.172 \\
+O30 (8.886~g/kg) & 1.00 & 5,899 & 418.400 & 125.340 / 23.05 & 51.955 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.99\textwidth]{../../outputs/integrated_erv_eo_under_9000_v1/under_9000_power_and_saving.pdf}
+  \caption{Best integrated ERV+EO point at each achieved humidity ratio below 9,000~m\textsuperscript{2}.}
+\end{figure}
+\FloatBarrier
+
+Deeper drying does not require monotonically increasing area because the
+selected voltage changes. Increasing voltage raises flux and can reduce area,
+but it also increases active-core power. The selected frontier is therefore a
+joint voltage--area--energy result, not an area-only trend.
+
+The 8.000-g/kg target needs at least approximately 12,735~m\textsuperscript{2}
+among the valid eight-segment cases, while the full supply-humidity target
+needs at least 17,253~m\textsuperscript{2}. Neither is accepted under the
+current gate.
+
+\section{Break-even and system-loss budget}
+\eyebrow{The omitted-load allowance is finite and architecture-specific}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.99\textwidth]{../../outputs/integrated_erv_eo_under_9000_v1/under_9000_area_and_break_even.pdf}
+  \caption{Conditional saving and calculated active-core break-even for the selected under-gate cases. Orange is known active-core SEC; hatching is the remaining allowance.}
+\end{figure}
+\FloatBarrier
+
+For O30, any combination of omitted receiver, heat-rejection, conversion,
+electrode, manifold and incremental fan loads above 125.340~kW removes the
+incremental advantage over passive ERV+AC. This power ceiling is equivalent to
+the 28.709-Wh/kg gap between known active-core SEC and calculated break-even.
+The limit must be treated as a design budget, not as a prediction that the
+missing subsystems will fit inside it.
+
+\begin{stopbox}
+\textbf{No net-saving claim yet.} Every positive value in this section is a
+known-power conditional window. The full-coupled-system gate is still open for
+all selected under-9,000-m\textsuperscript{2} cases.
+\end{stopbox}
+
+\section{Model closure and membrane interpretation}
+\eyebrow{The remaining uncertainty is empirical and subsystem-specific}
+
+The model phase has resolved several interpretation errors:
+\begin{itemize}
+  \item a negative passive surface activity direction is not a thermodynamic
+  rejection of electrically driven uphill EO transport;
+  \item current density and membrane area are solved coordinates and must not
+  be used as undocumented universal acceptance gates;
+  \item water diffusivity alone does not select a membrane; the relevant
+  quantity is a coupled bundle including sorption derivative, chemical water
+  mobility/permeance, thickness, electro-osmotic drag, wet conductivity and
+  compressed-stack resistance;
+  \item a symmetric quasi-static $+J/0/-J$ replay produces no useful mean EO
+  pumping beyond the passive state in the present constant-drag model;
+  asymmetry, rectification or memory would require measured physics not yet in
+  the model.
+\end{itemize}
+
+The direct active-core cases close the signed thermodynamic audit and the
+selected under-gate cases pass the current transport, robust-physics and
+engineering screens. They do not close receiver operation, conjugate thermal
+feedback, real manifolds, leakage, durability or product-scale current
+collection. A hypothetical joint material vector is therefore an experiment
+target, not a procurement specification.
+
+\begin{gobox}
+\textbf{Phase decision: GO for evidence generation.} Stop unfocused parameter
+sweeps. Acquire same-sample material data and run a matched EO-off/EO-on
+integrated-ERV coupon experiment. Replay the model only after measured
+properties and subsystem power replace the open assumptions.
+\end{gobox}
+
+\section{Vapour-cell experiment}
+\eyebrow{Centimetre-scale controlled flow, not a shallow closed steady cell}
+
+The recommended first fixture uses a 50$\times$50-mm active aperture
+(25~cm\textsuperscript{2}), an approximately 80$\times$80-mm membrane coupon
+and 110$\times$110-mm outer plates. Use interchangeable symmetric 1/2/4-mm
+gaps, with 2~mm nominal. At 1~m/s the nominal flow is 6.0 actual L/min per
+side. Use low-flow acquisition separately when humidity-sensor detectability
+requires it. Start with 8--10-mm insulating flow frames plus 12-mm metal
+backing/load plates; a load-bearing PEEK plate should start near 16~mm and be
+accepted only after loaded flatness and gap mapping.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.78\textwidth]{../../outputs/eo_vapor_cell_sizing_v1/cell_dimension_tradeoffs.png}
+  \caption{Coupon-cell dimension trade-offs supporting the 25-cm\textsuperscript{2}, 2-mm-gap starting fixture.}
+\end{figure}
+\FloatBarrier
+
+The main experimental controls are a split common inlet, ABBA polarity
+reversal, two-sided water balance, foil blanks, pressure control, gap/flow
+repeats, reference cross-switching and multiple aperture/perimeter inserts.
+Static temperature or RH mismatch can dominate a one-direction estimate;
+polarity-odd analysis rejects the static component but not nonlinear or
+polarity-correlated drift. Closed chambers are transient inventory experiments
+and must not be described as fixed-boundary steady-state measurements.
+
+\section{Final decision and handoff}
+\eyebrow{What is ready, what is not, and what happens next}
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{@{}p{54mm}p{22mm}Y@{}}
+\toprule
+\textbf{Decision} & \textbf{Status} & \textbf{Basis} \\
+\midrule
+Use passive ERV as primary control & \textcolor{Green}{\textbf{GO}} & Matched 543.741-kW equal-service reference \\
+Test EO integrated inside ERV to O30 & \textcolor{Green}{\textbf{GO}} & 5,899~m\textsuperscript{2}; 125.340-kW conditional window \\
+Use EO for O50 in this duty & \textcolor{Slate}{\textbf{NO DUTY}} & Passive ERV already passes O50 \\
+Claim full EO dehumidification below 9,000~m\textsuperscript{2} & \textcolor{Red}{\textbf{NO-GO}} & Minimum valid screened full-duty area is about 17,253~m\textsuperscript{2} \\
+Claim measured net energy saving & \textcolor{Orange}{\textbf{NOT YET}} & Receiver, heat rejection and hardware ledger remain open \\
+Select a commercial membrane/module & \textcolor{Orange}{\textbf{NOT YET}} & Same-sample coupled properties and durability are unmeasured \\
+Build controlled-flow coupon fixture & \textcolor{Green}{\textbf{GO}} & Geometry, controls and error mechanisms are specified \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+The highest-value next actions are:
+\begin{enumerate}
+  \item measure the same membrane's sorption, mobility/permeance, drag, wet
+  conductivity, compressed ASR, thickness and mechanics;
+  \item run matched EO-off/EO-on ABBA tests at controlled film conditions;
+  \item close receiver, thermal, conversion and hydraulic power inside the
+  125.340-kW O30 allowance;
+  \item replay the integrated ERV model with measured data and decide whether
+  the O30 window remains positive.
+\end{enumerate}
+
+\begin{mainbox}
+\textbf{Final project conclusion.} The project has identified a credible
+conditional opportunity and a concrete experiment capable of falsifying it.
+The correct claim is not that EO has already saved energy, but that EO
+integrated in the ERV can retain a 23.05\% known-power window at O30 within the
+9,000-m\textsuperscript{2} gate, provided all omitted subsystem loads remain
+below the calculated allowance. This is ready for technical handoff and
+experimental continuation.
+\end{mainbox}
+
+\section{Controlled evidence basis}
+\begin{itemize}
+  \item \path{outputs/direct_active_eo_erv_study_v1/study/} --- integrated active-core case register and audits;
+  \item \path{outputs/integrated_erv_eo_opportunity_plots_v2/} --- matched architecture, pairwise saving and full-duty screens;
+  \item \path{outputs/integrated_erv_eo_under_9000_v1/} --- selected under-gate cases and calculated break-even;
+  \item \path{outputs/eo_vapor_cell_sizing_v1/} and \path{outputs/eo_vapor_boundary_analysis_v1/} --- fixture sizing and boundary-condition analysis;
+  \item \path{reports/weekly_findings_2026-08-24_to_2026-08-30/} --- Revision~4 weekly evidence chronology;
+  \item \path{reports/eo_vapor_boundary_analysis_v2_en/} --- canonical English vapour-cell report.
+\end{itemize}
+
+\vfill
+{\sans\scriptsize\color{Slate}End of controlled Version~9 report. All
+positive energy differences are conditional model windows and do not
+constitute material, module, product or commercial validation.}
+\end{document}

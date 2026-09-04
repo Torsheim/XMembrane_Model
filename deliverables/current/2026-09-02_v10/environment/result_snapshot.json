@@ -1,0 +1,441 @@
+{
+  "file_count": 67,
+  "files": [
+    {
+      "archive_member": "XMembrane_Trond_Study/config/capacitive_electrode_study_v1.json",
+      "path": "config/capacitive_electrode_study_v1.json",
+      "sha256": "aee511c82c6540ebfd23c40b1d9d420b53616d2d87af92ca0c09dc1cbd468e9d",
+      "size_bytes": 5887
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/config/direct_eo_erv_study_v1.json",
+      "path": "config/direct_eo_erv_study_v1.json",
+      "sha256": "f91a1c75f5d642d4103e0149223f5c4094c7eed8be84dd2886f5fb1fd2e0c2f3",
+      "size_bytes": 8587
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/docs/CAPACITIVE_ELECTRODE_TRANSIENT_STUDY_2026-09-01.md",
+      "path": "docs/CAPACITIVE_ELECTRODE_TRANSIENT_STUDY_2026-09-01.md",
+      "sha256": "9fcf5042e725b2098bf07ae0f6a219ea635a134692e12cda208aa96877281209",
+      "size_bytes": 6967
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/heiq_pre_receiver_material_analyses/config/default.json",
+      "path": "heiq_pre_receiver_material_analyses/config/default.json",
+      "sha256": "519b90cc7819a83f607e376add55fe874b376850a49de2fdead32403c2c389a7",
+      "size_bytes": 4485
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/heiq_pre_receiver_material_analyses/heiq_pre_receiver_model.py",
+      "path": "heiq_pre_receiver_material_analyses/heiq_pre_receiver_model.py",
+      "sha256": "f538f810ae89e7f5eaff3ad2b8be38c587f11587ea4b1f8558d0a9c278f21f54",
+      "size_bytes": 41099
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/capacitive_electrode_study_v1/SUMMARY.md",
+      "path": "outputs/capacitive_electrode_study_v1/SUMMARY.md",
+      "sha256": "167fb903b2459e0553a8c89665250fb7a39cc019f28d0042b072381fe2403a73",
+      "size_bytes": 3370
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/capacitive_electrode_study_v1/ac_cycle_summary.csv",
+      "path": "outputs/capacitive_electrode_study_v1/ac_cycle_summary.csv",
+      "sha256": "b48728cdb75bac47b4774f784626910f2b91042bf8422d01e671ffac6cc2c07f",
+      "size_bytes": 20882
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/capacitive_electrode_study_v1/audit.json",
+      "path": "outputs/capacitive_electrode_study_v1/audit.json",
+      "sha256": "c14bc33c9323dae16c9437339c651b780b90a7a6fd0e2c22c83570081c4ac88e",
+      "size_bytes": 2450
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/capacitive_electrode_study_v1/config_used.json",
+      "path": "outputs/capacitive_electrode_study_v1/config_used.json",
+      "sha256": "bb523b693858871eff8a1eea5dff57690c591e34bc7b40604bc953a7176eafdf",
+      "size_bytes": 6085
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/capacitive_electrode_study_v1/dc_horizon_summary.csv",
+      "path": "outputs/capacitive_electrode_study_v1/dc_horizon_summary.csv",
+      "sha256": "751be7fb8164c1810a8f52d3684acdc6a273846fed768d415d2403069630fa6b",
+      "size_bytes": 20249
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/capacitive_electrode_study_v1/figures/01_blocking_dc_transient.pdf",
+      "path": "outputs/capacitive_electrode_study_v1/figures/01_blocking_dc_transient.pdf",
+      "sha256": "757b450ab73e9e29a116ff334500dbd92f125493e58566e6421270b068a6409b",
+      "size_bytes": 17408
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/capacitive_electrode_study_v1/figures/01_blocking_dc_transient.png",
+      "path": "outputs/capacitive_electrode_study_v1/figures/01_blocking_dc_transient.png",
+      "sha256": "ec1784f4cc92460e07a3d4c51c5546e281e7e3e73998cd9c0ba93f771ffe84d4",
+      "size_bytes": 127880
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/capacitive_electrode_study_v1/figures/02_dc_retention_vs_capacitance.pdf",
+      "path": "outputs/capacitive_electrode_study_v1/figures/02_dc_retention_vs_capacitance.pdf",
+      "sha256": "2611a847085d3a783789d1569081b91416c2117c620cd89674d2509def42e4a3",
+      "size_bytes": 19041
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/capacitive_electrode_study_v1/figures/02_dc_retention_vs_capacitance.png",
+      "path": "outputs/capacitive_electrode_study_v1/figures/02_dc_retention_vs_capacitance.png",
+      "sha256": "14bbf1519f928f4c52b992fc4b6e260a54cb84af801c02722207e8d8d505f744",
+      "size_bytes": 127966
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/capacitive_electrode_study_v1/figures/03_symmetric_ac_cycle.pdf",
+      "path": "outputs/capacitive_electrode_study_v1/figures/03_symmetric_ac_cycle.pdf",
+      "sha256": "95c12adf25ec2aa403f6fd098d5c82359409c5f964a397c80503717eddde6335",
+      "size_bytes": 20660
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/capacitive_electrode_study_v1/figures/03_symmetric_ac_cycle.png",
+      "path": "outputs/capacitive_electrode_study_v1/figures/03_symmetric_ac_cycle.png",
+      "sha256": "843ef1ad4b4130ec9d2b099af99629d182bd34a757f2c994ea34be2a9f3f17d9",
+      "size_bytes": 142974
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/capacitive_electrode_study_v1/figures/04_leakage_sensitivity.pdf",
+      "path": "outputs/capacitive_electrode_study_v1/figures/04_leakage_sensitivity.pdf",
+      "sha256": "7719e0d7f7939131592320ad6cc54c69b78ed3b8d1c470abe156c2aa8767083f",
+      "size_bytes": 17891
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/capacitive_electrode_study_v1/figures/04_leakage_sensitivity.png",
+      "path": "outputs/capacitive_electrode_study_v1/figures/04_leakage_sensitivity.png",
+      "sha256": "8cdf0758b0b2fb5488ced86fb733fe2cfcd4bd51acbe9a7fb2a20128a5913fb1",
+      "size_bytes": 103511
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/capacitive_electrode_study_v1/figures/05_reference_ac_waveform.pdf",
+      "path": "outputs/capacitive_electrode_study_v1/figures/05_reference_ac_waveform.pdf",
+      "sha256": "56c9f70058b761ac45b1e49194ca5838931a121079a425db1159c537ccf21a23",
+      "size_bytes": 16730
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/capacitive_electrode_study_v1/figures/05_reference_ac_waveform.png",
+      "path": "outputs/capacitive_electrode_study_v1/figures/05_reference_ac_waveform.png",
+      "sha256": "aec915b3eacd5644079bc0720e392e6946b0d649bf0c6b04cf390656c7801c67",
+      "size_bytes": 132930
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/capacitive_electrode_study_v1/figures/06_frozen_erv_capacity_duration.pdf",
+      "path": "outputs/capacitive_electrode_study_v1/figures/06_frozen_erv_capacity_duration.pdf",
+      "sha256": "fb155438bf349a3035d2a4c7a70056049cc37b9f754a72303dfa6f570f0d4e8a",
+      "size_bytes": 21829
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/capacitive_electrode_study_v1/figures/06_frozen_erv_capacity_duration.png",
+      "path": "outputs/capacitive_electrode_study_v1/figures/06_frozen_erv_capacity_duration.png",
+      "sha256": "655072d96c7d34bcb9dc52cde6f38a473822ba22b0ba264076fff611fe7ee2c0",
+      "size_bytes": 188505
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/capacitive_electrode_study_v1/frozen_erv_replay_summary.csv",
+      "path": "outputs/capacitive_electrode_study_v1/frozen_erv_replay_summary.csv",
+      "sha256": "a041b8bf60a2da6d2f54b2d0b4139a8036e6a0d698f93a66d9602c7b95a29d5e",
+      "size_bytes": 8623
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/capacitive_electrode_study_v1/interface_esr_sensitivity.csv",
+      "path": "outputs/capacitive_electrode_study_v1/interface_esr_sensitivity.csv",
+      "sha256": "17099416cc5ce5848ce03de8e4142dc4e6c94951236cfd18e015517b8c2f59d2",
+      "size_bytes": 350
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/capacitive_electrode_study_v1/leakage_sensitivity.csv",
+      "path": "outputs/capacitive_electrode_study_v1/leakage_sensitivity.csv",
+      "sha256": "13fb0554b4198da48af23cdd8b328bfaf5ba8faa03c9d9ec8a46a6c706fe840c",
+      "size_bytes": 1234
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/capacitive_electrode_study_v1/reference_ac_cycle.csv",
+      "path": "outputs/capacitive_electrode_study_v1/reference_ac_cycle.csv",
+      "sha256": "f8679233bab380df2baa9d452557bf9bb5e083065960709a736491037970e83c",
+      "size_bytes": 128882
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/capacitive_electrode_study_v1/reference_dc_timeseries.csv",
+      "path": "outputs/capacitive_electrode_study_v1/reference_dc_timeseries.csv",
+      "sha256": "d03888ac58a21c0a5b4de6381ac477b7f0d149b9461caa6ed8f0c6a0251fb7e9",
+      "size_bytes": 435001
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/capacitive_electrode_study_v1/source_manifest.json",
+      "path": "outputs/capacitive_electrode_study_v1/source_manifest.json",
+      "sha256": "0a26cee42944a588fb741c3f55cd0948aa61a3af4ba72ed312c6f93a2aae41bf",
+      "size_bytes": 6985
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/study/case_register.csv",
+      "path": "outputs/direct_active_eo_erv_study_v1/study/case_register.csv",
+      "sha256": "518362ce34734526d5700974abe2965988f623132f5cec688328febf00503137",
+      "size_bytes": 541320
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/direct_active_eo_erv_study_v1/study/segment_register.csv.gz",
+      "path": "outputs/direct_active_eo_erv_study_v1/study/segment_register.csv.gz",
+      "sha256": "8a55ae7c2e5067b776f41530d7b2e5fac9706119fa89e203fc7b0a2608541dfc",
+      "size_bytes": 620901
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/direct_active_erv_transport_sensitivity_2v/study/figures/selected_membrane_current_profile.csv",
+      "path": "outputs/direct_active_erv_transport_sensitivity_2v/study/figures/selected_membrane_current_profile.csv",
+      "sha256": "b3e3a7f268f02345c0cd1129946f40515f30b7891d18c27bb44053098f4d3fea",
+      "size_bytes": 682
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/direct_active_erv_transport_sensitivity_2v/study/figures/selected_membrane_current_profile_over_under.png",
+      "path": "outputs/direct_active_erv_transport_sensitivity_2v/study/figures/selected_membrane_current_profile_over_under.png",
+      "sha256": "08bc1808c54df6f2f727693a6864df89c8a02617cd1f70af727ed1e17d511a7a",
+      "size_bytes": 136401
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/direct_active_erv_transport_sensitivity_2v/study/figures/selected_membrane_current_profile_over_under.svg",
+      "path": "outputs/direct_active_erv_transport_sensitivity_2v/study/figures/selected_membrane_current_profile_over_under.svg",
+      "sha256": "3edd89af44432b256f07179c115e48bb794024135741f5061738dc3e4a9a475c",
+      "size_bytes": 54496
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/direct_active_erv_transport_sensitivity_2v/study/figures/selected_membrane_humidity_profile.csv",
+      "path": "outputs/direct_active_erv_transport_sensitivity_2v/study/figures/selected_membrane_humidity_profile.csv",
+      "sha256": "dc34b3234eddf1703f39a477ce686831c37026e028c7e1cab3deeed25f5d48df",
+      "size_bytes": 441
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/direct_active_erv_transport_sensitivity_2v/study/figures/selected_membrane_humidity_profile.png",
+      "path": "outputs/direct_active_erv_transport_sensitivity_2v/study/figures/selected_membrane_humidity_profile.png",
+      "sha256": "d4800f22a5f85fb9701bad693c3e62b098be95de64bcda479162e33e1f98c30f",
+      "size_bytes": 145478
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/direct_active_erv_transport_sensitivity_2v/study/figures/selected_membrane_humidity_profile.svg",
+      "path": "outputs/direct_active_erv_transport_sensitivity_2v/study/figures/selected_membrane_humidity_profile.svg",
+      "sha256": "3441657fb5e920135496afbfbb27b1069eec434fc72e0df396c65399d4b2878e",
+      "size_bytes": 49304
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/direct_active_erv_transport_sensitivity_2v/study/segment_register.csv.gz",
+      "path": "outputs/direct_active_erv_transport_sensitivity_2v/study/segment_register.csv.gz",
+      "sha256": "3d93fa86c784ebb8068a8c680675eda9fcc640f3913a5ce815a438ec1952904d",
+      "size_bytes": 64082
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/direct_active_erv_transport_sensitivity_2v/study/selected_cases.csv",
+      "path": "outputs/direct_active_erv_transport_sensitivity_2v/study/selected_cases.csv",
+      "sha256": "63fe840aa2a1f4e8869e2f881af7b146d5af0c183f3594ae938931a22346f03e",
+      "size_bytes": 5923
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/direct_active_erv_tw50_d1e10_v1/config_tw50_d1e10.json",
+      "path": "outputs/direct_active_erv_tw50_d1e10_v1/config_tw50_d1e10.json",
+      "sha256": "a469a7a5e91682b59b52f17c7dfc48d37c412925317eedda3a13bd5e8153ee66",
+      "size_bytes": 8177
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/direct_active_erv_tw50_d1e10_v1/study/DECISION_SUMMARY.json",
+      "path": "outputs/direct_active_erv_tw50_d1e10_v1/study/DECISION_SUMMARY.json",
+      "sha256": "4ed418e9441084184d899d93fcf588db5142da5c822a4ce59a8f17ec02837f51",
+      "size_bytes": 2400
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/direct_active_erv_tw50_d1e10_v1/study/SUMMARY.md",
+      "path": "outputs/direct_active_erv_tw50_d1e10_v1/study/SUMMARY.md",
+      "sha256": "fdd518f8cc7b90da83a49b1d5966831dfed477d3457076bf892819e113149f47",
+      "size_bytes": 1688
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/direct_active_erv_tw50_d1e10_v1/study/case_register.csv",
+      "path": "outputs/direct_active_erv_tw50_d1e10_v1/study/case_register.csv",
+      "sha256": "57985e87bb6f79492faa94300ba6db658d145ada749ab3669564e2ac5ef458fd",
+      "size_bytes": 17176
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/direct_active_erv_tw50_d1e10_v1/study/config_used.json",
+      "path": "outputs/direct_active_erv_tw50_d1e10_v1/study/config_used.json",
+      "sha256": "a469a7a5e91682b59b52f17c7dfc48d37c412925317eedda3a13bd5e8153ee66",
+      "size_bytes": 8177
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/direct_active_erv_tw50_d1e10_v1/study/figures/03_target_area_energy_tradeoff.pdf",
+      "path": "outputs/direct_active_erv_tw50_d1e10_v1/study/figures/03_target_area_energy_tradeoff.pdf",
+      "sha256": "dda0ffbc133508be48e648150bc6b69862d0149fa468e3cdfd359ba2aa54c046",
+      "size_bytes": 16738
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/direct_active_erv_tw50_d1e10_v1/study/figures/03_target_area_energy_tradeoff.png",
+      "path": "outputs/direct_active_erv_tw50_d1e10_v1/study/figures/03_target_area_energy_tradeoff.png",
+      "sha256": "5393bbe58367da64ea60da34e58ffda7f0702c654fb09f283aaaeacc0ed15437",
+      "size_bytes": 93477
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/direct_active_erv_tw50_d1e10_v1/study/gate_counts.csv",
+      "path": "outputs/direct_active_erv_tw50_d1e10_v1/study/gate_counts.csv",
+      "sha256": "6a7fec8382162f1a15c16bcf8b06ed7b6988718817875e5b8d6c7951511ee51a",
+      "size_bytes": 619
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/direct_active_erv_tw50_d1e10_v1/study/run_contract.json",
+      "path": "outputs/direct_active_erv_tw50_d1e10_v1/study/run_contract.json",
+      "sha256": "a28ce691d6be835f50ecea0e1d08a715e450b55d36248fbe2104a8345ba69e05",
+      "size_bytes": 699
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/direct_active_erv_tw50_d1e10_v1/study/segment_convergence.csv",
+      "path": "outputs/direct_active_erv_tw50_d1e10_v1/study/segment_convergence.csv",
+      "sha256": "00a6f39f2d81b4f6ea5edfa39501aac5d23ddd0870345e9a8c159eee6a08b964",
+      "size_bytes": 1998
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/direct_active_erv_tw50_d1e10_v1/study/segment_register.csv.gz",
+      "path": "outputs/direct_active_erv_tw50_d1e10_v1/study/segment_register.csv.gz",
+      "sha256": "dc17818afc6935ad281801ea617645db243a04b091b10b8e4d905da6124093f3",
+      "size_bytes": 16529
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/direct_active_erv_tw50_d1e10_v1/study/selected_cases.csv",
+      "path": "outputs/direct_active_erv_tw50_d1e10_v1/study/selected_cases.csv",
+      "sha256": "c9b01524737fdd6d8d9580f818058a57db78662c4a147c3877664f12c122b9ae",
+      "size_bytes": 5875
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/direct_active_erv_tw50_d1e10_v1/study/study_audit.json",
+      "path": "outputs/direct_active_erv_tw50_d1e10_v1/study/study_audit.json",
+      "sha256": "94bffae2a086e49af42ccc5e457e8f8f08129d8bfa523076da25dbde51aa20cd",
+      "size_bytes": 9554
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/direct_active_erv_tw50_d1e10_v1/study/target_summary.csv",
+      "path": "outputs/direct_active_erv_tw50_d1e10_v1/study/target_summary.csv",
+      "sha256": "9ed74eee6f695bd2f30444c412155b8da670e6d995f479e98515ba0cbd079adc",
+      "size_bytes": 408
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/outputs/integrated_evidence_v1/material_data_requirements.csv",
+      "path": "outputs/integrated_evidence_v1/material_data_requirements.csv",
+      "sha256": "8fc51c0403a0873b5f39bf51f29201096bf1d4cab736e0ba6f8eecccac640771",
+      "size_bytes": 2741
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/final_project_closeout_2026-09-02/HeiQ_XMembrane_Final_Project_Closeout_2026-09-02_v10.md",
+      "path": "reports/final_project_closeout_2026-09-02/HeiQ_XMembrane_Final_Project_Closeout_2026-09-02_v10.md",
+      "sha256": "c6f0310bd7f661ed62ff06e724f60b47e6aca191fc49d3b4fc5b29c1467eff97",
+      "size_bytes": 13989
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/final_project_closeout_2026-09-02/HeiQ_XMembrane_Final_Project_Closeout_2026-09-02_v10.pdf",
+      "path": "reports/final_project_closeout_2026-09-02/HeiQ_XMembrane_Final_Project_Closeout_2026-09-02_v10.pdf",
+      "sha256": "9ffe07a8e2584086422169a5b03f494f9828cf08e3101e3973e4cb6534ade723",
+      "size_bytes": 237627
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/final_project_closeout_2026-09-02/HeiQ_XMembrane_Final_Project_Closeout_2026-09-02_v10.tex",
+      "path": "reports/final_project_closeout_2026-09-02/HeiQ_XMembrane_Final_Project_Closeout_2026-09-02_v10.tex",
+      "sha256": "7f8fcdb8a979d2d81435ac25188f84c7ab188c642b1db444a07b5573d03a16a5",
+      "size_bytes": 19713
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/final_project_closeout_2026-09-02/source_manifest.json",
+      "path": "reports/final_project_closeout_2026-09-02/source_manifest.json",
+      "sha256": "200efdefbd7e1e7fa53196a3e39626b709a918d484819f59b1bcc07329d7b693",
+      "size_bytes": 12576
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/final_team_decision_report_2026-08-31/HeiQ_XMembrane_Final_Result_and_Decision_Report_2026-08-31_v9.pdf",
+      "path": "reports/final_team_decision_report_2026-08-31/HeiQ_XMembrane_Final_Result_and_Decision_Report_2026-08-31_v9.pdf",
+      "sha256": "2a077c89b7d351b4a718ce279efa436482464709b81a96970251cc4623654e2f",
+      "size_bytes": 476285
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/final_team_decision_report_2026-08-31/HeiQ_XMembrane_Final_Result_and_Decision_Report_2026-08-31_v9.tex",
+      "path": "reports/final_team_decision_report_2026-08-31/HeiQ_XMembrane_Final_Result_and_Decision_Report_2026-08-31_v9.tex",
+      "sha256": "478ede5081adf89247d120b2186892fa1cef635263259d540523c5eea3b0524b",
+      "size_bytes": 18560
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/reports/material_search_handoff_2026-08-31/data/synthetic_target_register.csv",
+      "path": "reports/material_search_handoff_2026-08-31/data/synthetic_target_register.csv",
+      "sha256": "adbe900cd2a6776d1deffc624c014b057bfbd920af53edcca6f3fe127b387697",
+      "size_bytes": 2412
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/run_capacitive_electrode_study_v1.py",
+      "path": "scripts/run_capacitive_electrode_study_v1.py",
+      "sha256": "3711bbe0a90e9be5fc0c3392f3659268845c8bd07853144f8df4fdc790d5d3ac",
+      "size_bytes": 78340
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/scripts/run_direct_eo_erv_study_v1.py",
+      "path": "scripts/run_direct_eo_erv_study_v1.py",
+      "sha256": "6298fca091d4edf7ebbe57fb45fcc3ead021ee4e070545013ac35a9252e7904f",
+      "size_bytes": 80326
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/src/heiq/wp1/airside/properties.py",
+      "path": "src/heiq/wp1/airside/properties.py",
+      "sha256": "d5d0fb317680e3d6db76212ef62c4625368991bc5fc569bed288a74716e3e57e",
+      "size_bytes": 8459
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/src/heiq/wp1/axial/local_state.py",
+      "path": "src/heiq/wp1/axial/local_state.py",
+      "sha256": "d068b8d7429e6cdbfca769672cb95986ee6cc8fd89696c4f296aa1f67fb547c5",
+      "size_bytes": 10492
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/src/heiq/wp1/electrodes/capacitive.py",
+      "path": "src/heiq/wp1/electrodes/capacitive.py",
+      "sha256": "f96e3fb21c332bfb102d2d7ec3516f02a55e39ceea2983c34c9d51e3d654827c",
+      "size_bytes": 26770
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/src/heiq/wp1/membrane/thermodynamics.py",
+      "path": "src/heiq/wp1/membrane/thermodynamics.py",
+      "sha256": "f917a7e108d852403821450e7861dc5e14778264ecc50502d2168f25671f40ed",
+      "size_bytes": 10779
+    },
+    {
+      "archive_member": "XMembrane_Trond_Study/src/heiq/wp1/studies/direct_eo_erv.py",
+      "path": "src/heiq/wp1/studies/direct_eo_erv.py",
+      "sha256": "9f57b2c44783a7ff5b6a087e8a64d98d0749bc24ea2f459fba64754d9f33ac60",
+      "size_bytes": 51273
+    }
+  ],
+  "schema_version": 1,
+  "selection": {
+    "capacitive_manifest_bound_count": 27,
+    "explicit_allowlist_count": 22,
+    "frozen_active_erv_scope": {
+      "excluded_unallowlisted_file_count": 15,
+      "excluded_unallowlisted_path_digest_sha256": "4beb0b5d7f697963f300fe25a4024604094b5d62ae2f7bfe97e09bab7f1daf67",
+      "path": "outputs/direct_active_eo_erv_study_v1/study",
+      "selected_file_count": 2
+    },
+    "profile_scope": {
+      "excluded_unallowlisted_file_count": 11,
+      "excluded_unallowlisted_path_digest_sha256": "90bcd4b603a1e28b7211468bd95335c7f52defe83da33abcd789f111cf0d3266",
+      "path": "outputs/direct_active_erv_transport_sensitivity_2v/study",
+      "selected_file_count": 8
+    },
+    "report_manifest_bound_count": 21,
+    "selected_unique_file_count": 67,
+    "selection_policy": "exact union of report-manifest records, nested scientific-manifest records, and the explicit V10 profile/frozen-study allowlist",
+    "strict_scopes": {
+      "outputs/capacitive_electrode_study_v1": {
+        "actual_file_count": 23,
+        "allowlisted_file_count": 23,
+        "unexpected_file_count": 0
+      },
+      "outputs/direct_active_erv_tw50_d1e10_v1": {
+        "actual_file_count": 14,
+        "allowlisted_file_count": 14,
+        "unexpected_file_count": 0
+      }
+    },
+    "tw50_manifest_bound_count": 19
+  },
+  "snapshot_type": "allowlisted_working_tree_results"
+}

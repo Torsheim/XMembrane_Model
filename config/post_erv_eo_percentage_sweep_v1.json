@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "study_id": "post-erv-eo-percentage-sweep-v1-2026-08-27",
+  "purpose": "Quantify what changes as EO removes an increasing percentage of the post-ERV humidity ratio, from the historical 10 percent case to the full remaining latent duty.",
+  "base_study_config": "config/post_erv_full_eo_study_v1.json",
+  "percentage_definition": {
+    "historical_relative_reduction": "100 * (w_ERV_out - w_after_EO) / w_ERV_out",
+    "remaining_duty_completion": "100 * (w_ERV_out - w_after_EO) / (w_ERV_out - w_supply)",
+    "legacy_relative_reduction_pct": 10.0,
+    "interpretation": "The earlier 10 percent study used a 10 percent relative reduction in post-ERV humidity ratio. It therefore completes more than 10 percent of the finite remaining duty. Both coordinates are reported to avoid silently changing the old definition."
+  },
+  "energy_percentage_grid": {
+    "start_remaining_duty_completion_pct": 0.0,
+    "stop_remaining_duty_completion_pct": 99.0,
+    "step_remaining_duty_completion_pct": 1.0,
+    "near_endpoint_completion_pct": [99.5, 99.9, 99.99],
+    "all_in_sec_scenarios_kwh_per_kg": [0.05, 0.1, 0.15]
+  },
+  "transport_remaining_duty_completion_pct": [
+    10.0,
+    22.192500901195075,
+    40.0,
+    50.0,
+    60.0,
+    72.70030721103439,
+    80.0,
+    90.0,
+    95.0,
+    99.0,
+    99.9,
+    100.0
+  ],
+  "smoke_remaining_duty_completion_pct": [
+    10.0,
+    22.192500901195075,
+    50.0,
+    72.70030721103439,
+    90.0,
+    99.9,
+    100.0
+  ],
+  "special_targets": [
+    {
+      "target_id": "o30",
+      "label": "O30 humidity coordinate",
+      "humidity_ratio_kg_kg_da": 0.0088858981051461,
+      "run_transport": true,
+      "interpretation": "Exact O30 absolute-humidity bridge."
+    },
+    {
+      "target_id": "full_remaining_latent",
+      "label": "Full remaining latent duty",
+      "use_supply_humidity_ratio": true,
+      "run_transport": true,
+      "interpretation": "EO reaches the supply humidity ratio; the exact screening endpoint is sensible-only."
+    }
+  ],
+  "transport_overrides": {
+    "receiver_to_process_dry_air_ratio": [1.0],
+    "smoke_receiver_to_process_dry_air_ratio": [1.0],
+    "smoke_uniform_current_density_a_m2": [1.5, 3.0, 5.0, 15.0],
+    "receiver_capacity_sweep_target_ids": [],
+    "convergence_selection": "best_conditional_saving"
+  },
+  "fixed_design_trajectory": {
+    "use_terminal1_anchor_diffusivity": true,
+    "uniform_current_density_a_m2": 3.0,
+    "receiver_to_process_dry_air_ratio": 1.0,
+    "interpretation": "A fixed D/j/R sizing trajectory is reported alongside the best-energy envelope so design switching cannot masquerade as a smooth physical response. Active area is re-sized independently at each target; this is not the response of one fixed installed module."
+  },
+  "audit_tolerances": {
+    "percentage_absolute": 1e-9,
+    "identity_absolute_kw": 1e-8,
+    "monotonic_absolute": 1e-9
+  },
+  "claim_policy": {
+    "full_system_claim_allowed": false,
+    "interpretation": "Percentage curves remain conditional until receiver regeneration or disposal, heat rejection, thermal feedback and rankable module pressure drop are closed."
+  }
+}

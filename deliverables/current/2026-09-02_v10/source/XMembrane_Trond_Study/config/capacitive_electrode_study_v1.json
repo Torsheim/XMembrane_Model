@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "study_id": "capacitive-electrode-transient-study-v1-2026-09-02",
+  "title": "Reduced-order transient screen for capacitive electrodes in the 25 cm2 EO vapour cell",
+  "model_boundary": "fixed bulk water activities and finite gas films -> signed quasi-steady membrane transport -> two blocking capacitive electrodes with optional diagnostic leakage",
+  "cell": {
+    "active_area_m2": 0.0025,
+    "temperature_c": 32.0,
+    "absolute_pressure_pa": 101325.0,
+    "channel_velocity_m_s": 1.0,
+    "channel_gap_m": 0.002,
+    "film_scale_factor": 1.0,
+    "reference_water_activity": 0.5
+  },
+  "boundary_cases": {
+    "equal_activity_coupon": {
+      "source_bulk_activity": 0.5,
+      "receiver_bulk_activity": 0.5,
+      "interpretation": "Controlled coupon-cell boundary used to isolate electrode charging from passive diffusion."
+    },
+    "frozen_assisting_erv_gradient": {
+      "source_bulk_activity": 0.8,
+      "receiver_bulk_activity": 0.5,
+      "interpretation": "Frozen inlet-like assisting gradient sensitivity; not an axial or full-core ERV prediction."
+    }
+  },
+  "material": {
+    "material_id": "terminal1_inverse_design_anchor",
+    "water_drag": 100.06078708377692,
+    "water_diffusivity_m2_s": 1.597880133581376e-14,
+    "conductivity_s_m": 23.171886845550485,
+    "dry_thickness_um": 36.91369958200169,
+    "water_capacity_mol_m3_activity": 10000.0,
+    "diffusivity_activity_exponent": 2.0,
+    "conductivity_activity_exponent": 4.0,
+    "capacity_activity_exponent": 0.0,
+    "validated_material": false,
+    "interpretation": "Hypothetical inverse-design anchor, not a measured membrane."
+  },
+  "electrical": {
+    "maximum_absolute_terminal_voltage_v": 1.8,
+    "hard_project_voltage_limit_v": 2.0,
+    "current_density_hardware_limit_a_m2": 5.0,
+    "transport_series_asr_ohm_m2": 1e-05,
+    "reference_interface_esr_ohm_m2": 0.0,
+    "interface_esr_sweep_ohm_m2": [0.0, 1e-05, 0.0001],
+    "individual_electrode_areal_capacitance_sweep_f_m2": [100.0, 1000.0, 10000.0],
+    "reference_individual_electrode_areal_capacitance_f_m2": 10000.0,
+    "interface_leakage_resistance_sweep_ohm_m2": [null, 1.0, 0.1],
+    "reference_interface_leakage_resistance_ohm_m2": null,
+    "energy_recovery_efficiency_sweep": [0.0, 0.9, 1.0],
+    "reference_energy_recovery_efficiency": 0.9,
+    "capacitance_status": "unmeasured broad sensitivity coordinate",
+    "leakage_status": "linear diagnostic only; not measured Faradaic kinetics"
+  },
+  "dc_study": {
+    "current_density_commands_a_m2": [0.5, 1.0, 5.0],
+    "reporting_horizons_h": [1.0, 4.0, 24.0],
+    "duration_h": 24.0,
+    "minimum_steps_during_nominal_charge": 240,
+    "logarithmic_reporting_points": 600
+  },
+  "ac_study": {
+    "current_density_amplitude_a_m2": 1.0,
+    "frequencies_hz": [0.0001, 0.001, 0.01, 0.1],
+    "cycles": 10,
+    "steps_per_cycle": 240,
+    "waveform": "symmetric_square_current",
+    "duty_fraction": 0.5,
+    "report_last_cycle_only": true
+  },
+  "frozen_erv_replay": {
+    "enabled": true,
+    "case_register_csv": "outputs/direct_active_eo_erv_study_v1/study/case_register.csv",
+    "segment_register_csv": "outputs/direct_active_eo_erv_study_v1/study/segment_register.csv.gz",
+    "reporting_horizons_h": [1.0, 4.0, 24.0],
+    "voltage_limit_modes": [
+      {
+        "voltage_limit_basis": "original_stored_terminal_voltage",
+        "diagnostic_role": "primary_same_boundary_duration_diagnostic",
+        "uses_original_stored_terminal_voltage": true,
+        "optimistic_upper_bound_sensitivity": false
+      },
+      {
+        "voltage_limit_basis": "common_1p8v_current_commanded_ceiling",
+        "diagnostic_role": "optimistic_upper_bound_sensitivity",
+        "uses_original_stored_terminal_voltage": false,
+        "optimistic_upper_bound_sensitivity": true,
+        "maximum_absolute_terminal_voltage_v": 1.8
+      }
+    ],
+    "cases": [
+      {
+        "case_label": "direct_erv_o30",
+        "case_id": "case_00104__terminal1_anchor__w8p8858981__v0p025__n8__eps0p75__film1__external_rejection"
+      },
+      {
+        "case_label": "direct_erv_full_duty",
+        "case_id": "case_00150__terminal1_anchor__w7p2602806__v0p25__n8__eps0p75__film1__external_rejection"
+      }
+    ],
+    "interpretation": "Dual frozen replay of stored steady axial segment states. The primary mode retains each case's original terminal-voltage limit. The second mode commands the stored current density until a common 1.8 V terminal ceiling and is an optimistic upper-bound sensitivity. Bulk humidity, temperature, area and films do not respond to the transient loss of EO duty; neither mode is a transient ERV solution.",
+    "electrode_window_interpretation": "The model reports effective electrode-pair capacitor voltage but does not constrain or resolve individual electrode potentials or an electrode-pair electrochemical stability window. The terminal-voltage limit is not an electrode-window limit."
+  },
+  "claim_boundary": {
+    "transient_electrical_capacitance_modelled": true,
+    "signed_quasisteady_membrane_transport_modelled": true,
+    "measured_electrode_capacitance_used": false,
+    "measured_faradaic_kinetics_used": false,
+    "constant_phase_element_or_frequency_dispersion_modelled": false,
+    "transient_membrane_water_inventory_modelled": false,
+    "dynamic_gas_stream_humidity_modelled": false,
+    "frozen_axial_erv_state_replay_modelled": true,
+    "dual_frozen_erv_voltage_boundary_replay_modelled": true,
+    "original_stored_voltage_replay_is_primary": true,
+    "common_1p8v_replay_is_optimistic_upper_bound": true,
+    "individual_electrode_potential_constraints_modelled": false,
+    "electrode_pair_electrochemical_window_constraint_modelled": false,
+    "axial_erv_core_modelled": false,
+    "validated_electrode_prediction": false,
+    "full_system_claim_allowed": false,
+    "area_is_acceptance_gate": false
+  }
+}

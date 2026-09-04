@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "study_id": "fom-assessment-v1-2026-08-30",
+  "fom_source_documents": [
+    "/mnt/c/Users/mariu/Downloads/Technical analysis and plan v1.0 260722.docx.pdf",
+    "/mnt/c/Users/mariu/Downloads/FOM etc.docx"
+  ],
+  "active_erv_config": "config/direct_active_eo_erv_study_v1.json",
+  "common_voltage_envelope": "outputs/workshop_common_voltage_diffusivity_v1/diffusivity_envelope.csv",
+  "common_voltage_cases": "outputs/workshop_common_voltage_diffusivity_v1/cases.csv",
+  "direct_active_selected_cases": "outputs/direct_active_eo_erv_study_v1/study/case_register.csv",
+  "thermodynamic_reclassification": "outputs/project_closure_check_v1/active_erv_reclassification.csv",
+  "post_erv": {
+    "target_id": "o30",
+    "water_diffusivity_m2_s": 1.597880133581376e-14
+  },
+  "direct_active_case_ids": {
+    "o30": "case_00104__terminal1_anchor__w8p8858981__v0p025__n8__eps0p75__film1__external_rejection",
+    "full": "case_00150__terminal1_anchor__w7p2602806__v0p25__n8__eps0p75__film1__external_rejection"
+  },
+  "liquid_water_density_kg_l": 0.997,
+  "economic_sensitivity": {
+    "equivalent_full_load_hours_per_year": [1000, 2000, 4000],
+    "electricity_price_chf_per_kwh": [0.10, 0.20, 0.25, 0.30],
+    "illustrative_hours_per_year": 4000,
+    "illustrative_electricity_price_chf_per_kwh": 0.25,
+    "capex_chf": null,
+    "annual_incremental_maintenance_chf": null
+  },
+  "claim_boundary": {
+    "receiver_and_sink_energy_modelled": false,
+    "eo_heat_rejection_closed": false,
+    "measured_material": false,
+    "full_system_claim_allowed": false
+  }
+}

@@ -1,0 +1,10 @@
+case_id,case_role,model_closure_relevant,coarse_segment_count,refined_segment_count,coarse_resolution_status,refined_resolution_status,coarse_area_m2,refined_area_m2,area_relative_change,resolution_stable,numerical_failure_present,convergence_pass
+screen_50pct_1v,primary_screen,True,32,64,CONVERGED_TARGET,CONVERGED_TARGET,2468.2790367983257,2468.349305350129,2.8467831376541297e-05,True,False,True
+screen_60pct_1v,primary_screen,True,32,64,CONVERGED_TARGET,CONVERGED_TARGET,3708.1121638841387,3708.3844319201044,7.34195822909081e-05,True,False,True
+screen_67p5pct_1v,primary_screen,True,32,64,CONVERGED_TARGET,CONVERGED_TARGET,5268.683070983958,5269.668227013815,0.00018694839739764746,True,False,True
+frontier_low_76p328125pct_1v,one_volt_frontier_bracket,True,32,64,CONVERGED_TARGET,CONVERGED_TARGET,9822.035110323772,9839.476701623735,0.0017726137099430004,True,False,True
+frontier_high_76p40625pct_1v,one_volt_frontier_bracket,True,32,64,CONVERGED_TARGET,CONVERGED_TARGET,9907.860226435285,9926.169126691275,0.0018445081906531026,True,False,True
+o30_1v,stress_point,True,32,64,CONVERGED_TARGET,CONVERGED_TARGET,7187.777673526973,7191.407156213848,0.0005046971486990726,True,False,True
+o30_balanced_anchor_voltage,uniform_current_anchor_comparison,True,32,64,CONVERGED_TARGET,CONVERGED_TARGET,3461.100814677775,3461.399300533144,8.623271384007441e-05,True,False,True
+full_duty_1v,negative_control,False,32,64,PHYSICAL_NO_COMMON_VOLTAGE_AT_THIS_COORDINATE,PHYSICAL_NO_COMMON_VOLTAGE_AT_THIS_COORDINATE,,,,True,False,True
+full_duty_2v,hard_voltage_stress_point,False,32,64,NUMERICAL_OR_LOCAL_SOLUTION_FAILURE,NUMERICAL_OR_LOCAL_SOLUTION_FAILURE,,,,True,True,False

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "study_id": "direct-erv-gradient-closure-v1-2026-08-31",
+  "case_register_csv": "outputs/direct_active_eo_erv_study_v1/study/case_register.csv",
+  "segment_register_csv": "outputs/direct_active_eo_erv_study_v1/study/segment_register.csv.gz",
+  "active_erv_config": "config/direct_active_eo_erv_study_v1.json",
+  "v2_config": "heiq_pre_receiver_material_analyses/config/default.json",
+  "signed_flux_source": "scripts/analyze_eo_vapor_boundaries_v1.py",
+  "cases": [
+    {
+      "case_label": "direct_erv_o30",
+      "case_id": "case_00104__terminal1_anchor__w8p8858981__v0p025__n8__eps0p75__film1__external_rejection",
+      "interpretation": "Direct EO inside the ERV to the O30 humidity coordinate"
+    },
+    {
+      "case_label": "direct_erv_full_duty",
+      "case_id": "case_00150__terminal1_anchor__w7p2602806__v0p25__n8__eps0p75__film1__external_rejection",
+      "interpretation": "Direct EO inside the ERV to the final supply humidity ratio"
+    }
+  ],
+  "film_or_area_multiplier_grid": {
+    "minimum": 0.5,
+    "maximum": 4.0,
+    "count": 281
+  },
+  "robust_passive_assistance_margin": 0.02,
+  "identity_absolute_tolerance": 1e-10,
+  "rectification_fraction_tolerance": 1e-5,
+  "claim_boundary": {
+    "quasistatic_only": true,
+    "zero_mean_current_not_zero_mean_voltage": true,
+    "transient_ac_predicted": false,
+    "material_gradient_modelled": false,
+    "area_is_acceptance_gate": false,
+    "full_system_claim_allowed": false
+  }
+}

@@ -1,0 +1,338 @@
+{
+  "schema_version": 1,
+  "release_id": "XMEMBRANE-2026-09-03-HANDOFF-V1",
+  "authority": "post-V10 supplemental handoff; controlled V10 remains governing",
+  "governing_v10_release": "XMEMBRANE-2026-09-02-V10",
+  "governing_v10_source_revision": "805ae087a7f3e133444c93f9fbb72856863754bf",
+  "determinism_scope": "MANIFEST.json and SHA256SUMS are byte-deterministic for identical allowlisted payload and build-input bytes; the presentation/PDF generators may vary across tools",
+  "excluded_local_scratch": [
+    "presentations/rendered/"
+  ],
+  "presentation_structure": {
+    "pptx_slides": 31,
+    "pdf_pages": 31
+  },
+  "source_bindings": [
+    {
+      "path": "constraints/v10-python-3.10.txt",
+      "bytes": 959,
+      "sha256": "f5b77db228a07a6fbc11e8dca233a3b7b9835ae3f3b081a3ea174b3c1d5fe563"
+    },
+    {
+      "path": "deliverables/build_peer_review_figures.py",
+      "bytes": 13902,
+      "sha256": "4a2781244c3519532cb532d6218fa090ccb52ea47f0212028887e73d7a9e5592"
+    },
+    {
+      "path": "deliverables/build_simulated_system_setup.py",
+      "bytes": 8073,
+      "sha256": "fdf2283e864d49381d7858b39b5cd746556f4dfd6c7dd6a719073d08e62b0895"
+    },
+    {
+      "path": "deliverables/build_xmembrane_peer_review_deck.js",
+      "bytes": 58616,
+      "sha256": "d4e4104447390fff5c358b118656da84309ad3d5c68a2bbfc5ad433998204220"
+    },
+    {
+      "path": "package-lock.json",
+      "bytes": 6922,
+      "sha256": "40ef5d482848168e9286ec343a50d0b164bc5a38da9138bd142a92e60fb73dc5"
+    },
+    {
+      "path": "package.json",
+      "bytes": 816,
+      "sha256": "2535371f45a2daf7e7ba125425276c556ec39d575e4f667fa8aa038fe58fde94"
+    },
+    {
+      "path": "requirements-docs-presentations.txt",
+      "bytes": 481,
+      "sha256": "155c614ec709c6ac151d21e2232105b8b6841610952ce576d4e2004234c42bcc"
+    },
+    {
+      "path": "config/eo_vapor_test_cell_design.json",
+      "bytes": 7106,
+      "sha256": "e8f460f53474c91a648a331cf7252e5dead5755dac6299c60b74ddc8540d2b5e"
+    },
+    {
+      "path": "docs/EO_VAPOR_TEST_CELL_DESIGN.md",
+      "bytes": 4616,
+      "sha256": "96fdf840cd3b4a42c37bd3ac4a2617f6cd794d3565a8e25a7966d43a78afea26"
+    },
+    {
+      "path": "scripts/design_eo_vapor_test_cell.py",
+      "bytes": 26945,
+      "sha256": "e89894393f242e3c806df40fc81e06c4ddac0f40692a4323f767440f7a557309"
+    },
+    {
+      "path": "scripts/package_handoff_supplement_v1.py",
+      "bytes": 23079,
+      "sha256": "af61f4d9aae88ae8cf61447cbfc7f7d6c8362d8e3ca5a4c44b53f923ee8bf208"
+    },
+    {
+      "path": "tests/test_eo_vapor_test_cell_design.py",
+      "bytes": 10214,
+      "sha256": "179496da2eb7285f54cf973124b16b07f6cee1b2ef3936b6e2497df821e0c20a"
+    }
+  ],
+  "files": [
+    {
+      "path": "PRESENTATION_BUILD.md",
+      "role": "presentation_build_record",
+      "bytes": 4242,
+      "sha256": "2c5685cd3723bdb836a8ac5886e2f1c8824c4441b7512c7fb8eeb1ea5125a7c7",
+      "mode": "0644"
+    },
+    {
+      "path": "README.md",
+      "role": "handoff_guide",
+      "bytes": 5357,
+      "sha256": "a016c5ecc1c2d62aee2f039e59d5bfde95b74a78a80438daa5c8ebf535a075a4",
+      "mode": "0644"
+    },
+    {
+      "path": "figures/model_review/00_simulated_system_setup.png",
+      "role": "presentation_figure",
+      "bytes": 306450,
+      "sha256": "d1fa4fb02f0157d599e146f7eb896fe232795976f6646f1bd483531a5f5c9957",
+      "mode": "0644"
+    },
+    {
+      "path": "figures/model_review/00_simulated_system_setup.svg",
+      "role": "presentation_figure_source",
+      "bytes": 109610,
+      "sha256": "87350a8507aa0a1caee760a77b627e8ba15d99c31b3bad8f4e21983ace07eb59",
+      "mode": "0644"
+    },
+    {
+      "path": "figures/model_review/01_model_hierarchy.png",
+      "role": "presentation_figure",
+      "bytes": 163451,
+      "sha256": "3479a0e09c1414fe835324ed1cd0046de98d2f78ae0f9ba472323d756fbeb2f6",
+      "mode": "0644"
+    },
+    {
+      "path": "figures/model_review/01_model_hierarchy.svg",
+      "role": "presentation_figure_source",
+      "bytes": 68479,
+      "sha256": "b332439a036a9a6c36579318f3dc3a69457e92e17d9b3a85b598dc3498daee19",
+      "mode": "0644"
+    },
+    {
+      "path": "figures/model_review/02_local_membrane_control_volume.png",
+      "role": "presentation_figure",
+      "bytes": 141454,
+      "sha256": "579515d7c4842d3e263876e7178398f584befcd974e9c1e53d42e379cb3d1af0",
+      "mode": "0644"
+    },
+    {
+      "path": "figures/model_review/02_local_membrane_control_volume.svg",
+      "role": "presentation_figure_source",
+      "bytes": 68523,
+      "sha256": "2d0bdab72a0ed6983b75a8ba76a4889172d35b33678cdf3747cbeee5f3ee0492",
+      "mode": "0644"
+    },
+    {
+      "path": "figures/model_review/03_voltage_to_current_algorithm.png",
+      "role": "presentation_figure",
+      "bytes": 174617,
+      "sha256": "53c30a3ca34b04a5d690f0c8c55d967d0c271f238fa69a5d8d094be988ff6980",
+      "mode": "0644"
+    },
+    {
+      "path": "figures/model_review/03_voltage_to_current_algorithm.svg",
+      "role": "presentation_figure_source",
+      "bytes": 76502,
+      "sha256": "4250aaec0f8f1ac6ada4078f0589d6650b5a02ab3a4406895ec0318acbcde6b5",
+      "mode": "0644"
+    },
+    {
+      "path": "figures/model_review/04_two_integration_paths.png",
+      "role": "presentation_figure",
+      "bytes": 228315,
+      "sha256": "c1d59086d7c828f8e21745651c27f66bc430643a0cc351068aeded99198e6d4c",
+      "mode": "0644"
+    },
+    {
+      "path": "figures/model_review/04_two_integration_paths.svg",
+      "role": "presentation_figure_source",
+      "bytes": 84582,
+      "sha256": "0801937aeeb99b514fa213ed2a3c0346be9148a2774c91f6b661510dbcd29ab2",
+      "mode": "0644"
+    },
+    {
+      "path": "figures/model_review/05_countercurrent_state_evolution.png",
+      "role": "presentation_figure",
+      "bytes": 187528,
+      "sha256": "227205a6b9f4cd0b740cd9a4065da9b87b91da80189b09f37b0e16ca22378241",
+      "mode": "0644"
+    },
+    {
+      "path": "figures/model_review/05_countercurrent_state_evolution.svg",
+      "role": "presentation_figure_source",
+      "bytes": 75288,
+      "sha256": "5c1164cfeb1402fe5da7a71d7be1dec1323f57d4044952c8f9e5c87004de5220",
+      "mode": "0644"
+    },
+    {
+      "path": "figures/model_review/06_evidence_ladder.png",
+      "role": "presentation_figure",
+      "bytes": 203824,
+      "sha256": "01b3586e65d6f3721b945b3a97c67544d7c4f6d9f2c3ac0f130788ef5cf8d097",
+      "mode": "0644"
+    },
+    {
+      "path": "figures/model_review/06_evidence_ladder.svg",
+      "role": "presentation_figure_source",
+      "bytes": 70434,
+      "sha256": "839d171156a8e91685c64038d0da58e997683a4e6a3958630ec9d8015c821271",
+      "mode": "0644"
+    },
+    {
+      "path": "figures/model_review/07_electrode_transient_boundary.png",
+      "role": "presentation_figure",
+      "bytes": 255534,
+      "sha256": "da430366d78818a454bd27496e5c3ee75b8f797f689e5ff7b803fd03e04269c3",
+      "mode": "0644"
+    },
+    {
+      "path": "figures/model_review/07_electrode_transient_boundary.svg",
+      "role": "presentation_figure_source",
+      "bytes": 109706,
+      "sha256": "d7cb80abd7677465be5ec16cf0445f44538fc3ff5ffc2c6689da02f227e496f0",
+      "mode": "0644"
+    },
+    {
+      "path": "figures/model_review/contact_sheet.png",
+      "role": "presentation_figure_contact_sheet",
+      "bytes": 443577,
+      "sha256": "3894ebdc5c190644ccdb28a6f6d5cd15b724436c513a9ee9186630116dc47ae4",
+      "mode": "0644"
+    },
+    {
+      "path": "presentations/HeiQ_XMembrane_Model_Explainer_V10_2026-09-03.html",
+      "role": "current_v10_interactive_explainer",
+      "bytes": 15393,
+      "sha256": "50ea21a1371b38b59b75d2e4dfd84613e2d32593df1c4642fa28281c8fd41ce2",
+      "mode": "0644"
+    },
+    {
+      "path": "presentations/HeiQ_XMembrane_Technical_Model_Peer_Review_V10_2026-09-03.pdf",
+      "role": "current_v10_peer_review_pdf",
+      "bytes": 503758,
+      "sha256": "5c5d46df4701c2e34e3fc2ee83f87969e2692051e5993d6b9a7e97d9adecc88e",
+      "mode": "0644"
+    },
+    {
+      "path": "presentations/HeiQ_XMembrane_Technical_Model_Peer_Review_V10_2026-09-03.pptx",
+      "role": "current_v10_peer_review_deck",
+      "bytes": 1247338,
+      "sha256": "cb101e5f561c5a5db4d0ea7458c62f6012eb4469aebb021faf263b8e8f3c29e0",
+      "mode": "0644"
+    },
+    {
+      "path": "test_cell/HeiQ_Integrated_EO_Vapour_Test_Cell_Handoff_2026-09-03_v1.docx",
+      "role": "test_cell_handoff_document",
+      "bytes": 502649,
+      "sha256": "715ca4cd136f7545404443fc95e09cb468d1e4568c87f88086d516cf3c7eb81f",
+      "mode": "0644"
+    },
+    {
+      "path": "test_cell/README.md",
+      "role": "test_cell_authoritative_guide",
+      "bytes": 1948,
+      "sha256": "bd293dd1bb7fe88fa680aece49ac9bc30f4c4e218746f87dade1f1907227b394",
+      "mode": "0644"
+    },
+    {
+      "path": "test_cell/calculations/SUMMARY.md",
+      "role": "test_cell_calculation_summary",
+      "bytes": 2397,
+      "sha256": "293593e9fbeca73819b7515c748f4a05bd313e488fd01b1f8e41ee6ea412b37d",
+      "mode": "0644"
+    },
+    {
+      "path": "test_cell/calculations/audit.json",
+      "role": "test_cell_audit",
+      "bytes": 1223,
+      "sha256": "95bef62c9ac8a4671e92862b0ea6462a28e2a7838d84e69de03300fd0f723d86",
+      "mode": "0644"
+    },
+    {
+      "path": "test_cell/calculations/config_used.json",
+      "role": "test_cell_configuration",
+      "bytes": 7298,
+      "sha256": "082e4d1f8df2d04733205d913a438e39fc0d6b380c77b6a01eeb26dbe72efc4b",
+      "mode": "0644"
+    },
+    {
+      "path": "test_cell/calculations/integrated_sealed_cell_engineering_register.csv",
+      "role": "test_cell_engineering_release_gates",
+      "bytes": 1594,
+      "sha256": "9b4ef2713b8593c8d01fc31e78b5d44c769d7d1636c6f48379331fc71572e416",
+      "mode": "0644"
+    },
+    {
+      "path": "test_cell/calculations/integrated_sealed_cell_transient.csv",
+      "role": "test_cell_transient_register",
+      "bytes": 35531,
+      "sha256": "a0b4325b97c99c2af59a2e18e5c9ad5afe6755f90b1a079fff9cb2b1d0a7fdaf",
+      "mode": "0644"
+    },
+    {
+      "path": "test_cell/calculations/integrated_sealed_cell_transient.png",
+      "role": "test_cell_transient_figure",
+      "bytes": 192637,
+      "sha256": "0fb286cdd03a96d835777755640833e06a71a0b4e5cfdbcc3740310446e7c213",
+      "mode": "0644"
+    },
+    {
+      "path": "test_cell/calculations/integrated_sealed_cell_volume_basis.csv",
+      "role": "test_cell_volume_basis",
+      "bytes": 1178,
+      "sha256": "94e7dc202a36df007116638841fda7f181047c727cbb1a86b6a7a5b6fed22507",
+      "mode": "0644"
+    },
+    {
+      "path": "test_cell/calculations/interconnect_header_port_volume_budget.csv",
+      "role": "test_cell_interconnect_volume_budget",
+      "bytes": 357,
+      "sha256": "8907fbd08862b95b04d72065396caa581b514fb5cfc6881fa57a8543fe642467",
+      "mode": "0644"
+    },
+    {
+      "path": "test_cell/calculations/source_manifest.json",
+      "role": "test_cell_source_manifest",
+      "bytes": 1908,
+      "sha256": "55926798f409edb46d646a89817c484521fa5fba8b2d5a0c1a132446adb61f46",
+      "mode": "0644"
+    },
+    {
+      "path": "test_cell/figures/eo_vapour_integrated_two_chamber_dimensioned_views.pdf",
+      "role": "test_cell_dimensioned_drawing",
+      "bytes": 101252,
+      "sha256": "8ae0f0eec53c02238d7c753d4c8ff44e179b5758c8215081e4a3c4a908567096",
+      "mode": "0644"
+    },
+    {
+      "path": "test_cell/figures/eo_vapour_integrated_two_chamber_dimensioned_views.png",
+      "role": "test_cell_dimensioned_drawing_preview",
+      "bytes": 479389,
+      "sha256": "cd19da456038dbfb9765213de33d8dfa558cc078819c52972dac57bdf51054ad",
+      "mode": "0644"
+    },
+    {
+      "path": "test_cell/figures/eo_vapour_integrated_two_chamber_dimensioned_views.tex",
+      "role": "test_cell_dimensioned_drawing_source",
+      "bytes": 15795,
+      "sha256": "6583466ea0393519726ce7a692e0edf5b9f21b5cad3a07ee9a693b47eb0bc7d3",
+      "mode": "0644"
+    },
+    {
+      "path": "test_cell/figures/eo_vapour_integrated_two_chamber_exterior_render.png",
+      "role": "test_cell_exterior_concept_render",
+      "bytes": 2167980,
+      "sha256": "4332a8aec63ea67536e878ad80fdc3ac6978fbefd8a6e69bc40e0913ce044d19",
+      "mode": "0644"
+    }
+  ]
+}

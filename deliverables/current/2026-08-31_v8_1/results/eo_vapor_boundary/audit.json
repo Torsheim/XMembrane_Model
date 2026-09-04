@@ -1,0 +1,10 @@
+{
+  "canonical_crosscheck_max_abs_relative_difference": 0.0,
+  "canonical_crosscheck_pass": true,
+  "claim_boundary": "Screening and experiment-design model. Material coordinates and nuisance ranges are declared scenarios, not fitted probability distributions or validated hardware uncertainties.",
+  "combined_ranges_are_calibrated_probabilities": false,
+  "combined_sample_rows": 32768,
+  "combined_solver_success_fraction": 1.0,
+  "outputs_are_confidence_intervals": false,
+  "study_id": "eo-vapor-boundary-analysis-v1-2026-08-28"
+}
