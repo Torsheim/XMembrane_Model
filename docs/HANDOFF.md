@@ -227,6 +227,13 @@ presentation belong under `deliverables/current/2026-09-03_handoff_v1/`. The
 supplement carries an explicit allowlisted inventory and checksums. Review every
 presentation claim against the V10 report before release.
 
+The later `reports/test_cell_20mm_channel_study_2026-09-04/` directory is a
+post-release geometry sensitivity, not part of handoff-v1. It treats 20 mm as
+bulk cavity depth, retains the 2 mm local membrane gap, compares the existing
+100 mm clear face with a 165 mm alternative, and records an assessment of all
+13 fabrication gates. Reproduce it with
+`python3 scripts/analyze_eo_vapor_test_cell_20mm.py`.
+
 The rendered-document toolchain is broader than `pyproject.toml`. Its Python
 versions are declared in `requirements-docs-presentations.txt` with the V10
 constraints file, and its Node dependency is locked by `package-lock.json`.

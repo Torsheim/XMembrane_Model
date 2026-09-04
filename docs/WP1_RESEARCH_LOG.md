@@ -568,3 +568,22 @@ handoff evidence, and V10-aligned technical presentation were assigned to the
 post-V10 handoff supplement as successor-phase aids. The supplement carries
 its own inventory, checksums, and build notes. It does not amend the V10
 model-phase release.
+
+## 2026-09-04 — Post-V10 20 mm bulk-depth sensitivity
+
+A requested 20 mm channel depth was interpreted as bulk cavity depth per side;
+the 2 mm nominal local membrane gap was retained. A literal 100 x 100 x 20 mm
+cavity provides only 200.0 mL gross per side and fails the original 5 s humidity
+drift basis: the predicted single-chamber change is 10.689 percentage points and
+the rigid chamber-to-chamber pressure diagnostic is 1017.1 Pa. With an early
+22.6 mL component bounding-volume allowance, a 165 x 165 x 20 mm clear cavity
+provides 521.9 mL before calibration trim. The selected engineering starting
+point uses removable inserts and requires measured adjustment to 500.0 +/- 5.0
+mL per assembled side.
+
+The study also screens load-plate pressure response, port dead volume, fan
+turnover and heat, seal-gland dimensions, fastener preload, diaphragm travel,
+sensor bandwidth and the alternate interpretation of a 20 mm local membrane
+gap. All 13 physical fabrication gates remain open pending their stated
+measurement, inspection or released-CAD evidence. This sensitivity is separate
+from and does not amend V10 or the checksum-bound 2026-09-03 handoff-v1 package.

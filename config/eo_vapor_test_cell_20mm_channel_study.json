@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "study_id": "eo-vapor-test-cell-20mm-bulk-depth-v1-2026-09-04",
+  "authority": "Post-V10 engineering sensitivity. This study does not amend the frozen V10 release or the 2026-09-03 handoff-v1 package.",
+  "base_config": "config/eo_vapor_test_cell_design.json",
+  "interpretation": {
+    "requested_channel_depth_mm": 20.0,
+    "meaning": "Bulk chamber cavity depth normal to the clear chamber face, per side.",
+    "local_membrane_gap_remains_mm": 2.0,
+    "alternate_interpretation_screened": "A separate sensitivity reports what would happen if 20 mm instead meant the local membrane gap."
+  },
+  "geometry": {
+    "existing_clear_face_mm": [
+      100.0,
+      100.0
+    ],
+    "current_housing_face_mm": [
+      140.0,
+      140.0
+    ],
+    "recommended_clear_face_mm": [
+      165.0,
+      165.0
+    ],
+    "recommended_outer_plate_face_mm": [
+      205.0,
+      205.0
+    ],
+    "target_net_free_gas_volume_ml_per_side": 500.0,
+    "component_displacement_upper_bound_ml_per_side": {
+      "fan_bounding_envelope": 17.6,
+      "sensors_and_internal_wiring": 2.0,
+      "baffles": 2.0,
+      "port_and_feedthrough_intrusions": 1.0
+    }
+  },
+  "mechanical_screen": {
+    "proof_differential_pressure_pa": 5000.0,
+    "aluminium_load_plate": {
+      "material": "EN AW-6082-T6 aluminium",
+      "thickness_mm": 12.0,
+      "elastic_modulus_gpa": 70.0,
+      "poisson_ratio": 0.33
+    },
+    "peek_insulating_plate": {
+      "material": "Unfilled PEEK",
+      "thickness_mm": 16.0,
+      "elastic_modulus_gpa": 4.2,
+      "poisson_ratio": 0.4
+    },
+    "plate_model": {
+      "boundary_condition": "Conservative simply-supported square thin-plate pressure screen over the full 165 mm clear span.",
+      "deflection_coefficient": 0.00406,
+      "stress_method": "Navier double-series centre bending moment with material-specific Poisson ratio.",
+      "stress_series_max_odd_index": 199,
+      "limitations": "Pressure-only linear-elastic screen. Bolt-point loads, seal compression, holes, creep, thermal gradients and local membrane-frame loads are excluded."
+    },
+    "fasteners": {
+      "count": 16,
+      "choice": "16 x M5 A4 stainless fasteners at approximately 45-50 mm perimeter spacing, with hard compression stops and spring washers.",
+      "nominal_torque_nm_each": 1.0,
+      "nut_factor": 0.2,
+      "nominal_diameter_mm": 5.0
+    },
+    "seal": {
+      "choice": "Two continuous EPDM 70 Shore A static face seals separated by the existing vented guard groove.",
+      "o_ring_cross_section_mm": 2.0,
+      "target_squeeze_fraction": 0.25,
+      "maximum_gland_fill_fraction": 0.85,
+      "recommended_groove_width_mm": 2.9,
+      "screened_minimum_effective_gland_depth_mm": 1.4,
+      "recommended_gas_seal_surface_roughness_rq_um": 0.4
+    },
+    "drawing_starting_tolerances": {
+      "primary_datum": "A = membrane/seal plane; B and C = orthogonal cavity centre planes.",
+      "cavity_depth_mm": 20.0,
+      "cavity_depth_tolerance_mm": 0.05,
+      "seal_face_flatness_mm": 0.05,
+      "opposed_face_parallelism_mm": 0.05,
+      "local_gap_tolerance_mm": 0.05
+    }
+  },
+  "flow_and_instrumentation_screen": {
+    "ports": {
+      "choice": "Candidate: two 316 stainless 6 mm-OD bulkhead compression fittings per side with 4 mm-ID flow path, isolated by valves during the sealed transient.",
+      "count_per_side": 2,
+      "bore_inner_diameter_mm": 4.0,
+      "screened_wall_bore_length_mm": 8.0,
+      "volume_boundary": "The calculation includes only the existing header, pressure tap and two ideal cylindrical wall bores. Actual fitting, tube and isolation-valve volumes require CAD or measurement."
+    },
+    "fan": {
+      "screening_part": "Noctua NF-A4x10 5V PWM",
+      "dimensions_mm": [
+        40.0,
+        40.0,
+        11.0
+      ],
+      "maximum_airflow_m3_h": 8.9,
+      "maximum_static_pressure_pa": 19.1,
+      "typical_power_w": 0.3,
+      "maximum_power_w": 0.35,
+      "minimum_effective_flow_fraction_for_screen": 0.2,
+      "choice": "One identical PWM fan per chamber, recessed or edge-mounted, operated continuously and symmetrically after thermal equilibration."
+    },
+    "baffle": {
+      "choice": "Two removable 1 mm PEEK turning/diffuser vanes per side, at least 60% open area and no more than 2.0 mL total solid displacement.",
+      "maximum_solid_displacement_ml_per_side": 2.0,
+      "minimum_open_area_fraction": 0.6
+    },
+    "humidity_sensor": {
+      "screening_part": "Sensirion SHT45",
+      "typical_accuracy_rh_percentage_points": 1.0,
+      "response_time_tau63_s": 4.0,
+      "use_boundary": "Suitable for quasi-static/end-point checks, but not sufficient by itself to resolve the model's 0.1 s samples or prove sub-segment mixing."
+    },
+    "electrical_feedthrough": {
+      "choice": "Removable six-pin hermetic glass-to-metal or ceramic bulkhead feedthrough; avoid an unqualified potted cable gland in the measurement volume.",
+      "weakness": "Higher cost and larger intrusion than a potted gland; metal shells require deliberate electrical isolation/grounding."
+    }
+  },
+  "pressure_management": {
+    "choice": "Two symmetric gas-tight compliant diaphragms referenced to the same external pressure, or one low-stiction double-acting diaphragm. Do not directly cross-connect the humid chambers.",
+    "target_differential_pressure_pa": 5.0,
+    "weakness": "Diaphragm stiffness, hysteresis, permeation and added calibrated volume must be measured; a gas cross-connection would corrupt the humidity inventory."
+  },
+  "sources": [
+    {
+      "id": "hydro-6082",
+      "title": "Hydro EN AW-6082 technical datasheet",
+      "url": "https://www.hydro.com/Document/Index?id=7824&name=Hydro+EN+AW+6082.PDF",
+      "used_for": "70 GPa aluminium elastic modulus"
+    },
+    {
+      "id": "ensinger-peek",
+      "title": "Ensinger TECAPEEK natural material data",
+      "url": "https://www.ensingerplastics.com/en-gb/shapes/peek-tecapeek-natural",
+      "used_for": "4.2 GPa unfilled-PEEK elastic/flexural modulus"
+    },
+    {
+      "id": "parker-o-ring",
+      "title": "Parker O-Ring Handbook ORD 5700",
+      "url": "https://www.parker.com/content/dam/Parker-com/Literature/O-Ring-Division-Literature/ORD-5700.pdf",
+      "used_for": "Static face-seal design, gas-seal surface finish and EPDM screening"
+    },
+    {
+      "id": "noctua-fan",
+      "title": "Noctua NF-A4x10 5V PWM specifications",
+      "url": "https://www.noctua.at/en/products/nf-a4x10-5v-pwm/specifications",
+      "used_for": "Fan size, airflow and input power"
+    },
+    {
+      "id": "sensirion-sht45",
+      "title": "Sensirion SHT45 specifications",
+      "url": "https://sensirion.com/products/catalog/SHT45",
+      "used_for": "Humidity accuracy and response-time limitation"
+    },
+    {
+      "id": "swagelok-6mm-bulkhead",
+      "title": "Swagelok SS-6M0-61 6 mm bulkhead union specifications",
+      "url": "https://products.swagelok.com/en/c/straights/p/SS-6M0-61",
+      "used_for": "316 stainless 6 mm-OD bulkhead fitting choice"
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "generated_outputs": [
+    {
+      "path": "scenario_comparison.csv",
+      "sha256": "8f78e9395893b6dd98c8a443a88731e3a748cf151ef030e9cd23dea788723762",
+      "size_bytes": 1935
+    },
+    {
+      "path": "geometry_sweep.csv",
+      "sha256": "7d34b2f1c215320b2151785f2b747e12feef31caf5904421e38dc6c1164688b5",
+      "size_bytes": 5926
+    },
+    {
+      "path": "local_gap_interpretation.csv",
+      "sha256": "eede69be94e33df48fdf6decf2d01fcee0648ab75afa6429dfe54743017872a3",
+      "size_bytes": 1502
+    },
+    {
+      "path": "plate_pressure_screen.csv",
+      "sha256": "6894a98ff154096be374f0265ffa7ff19d83cf9fc4e77624e96b5c471d261228",
+      "size_bytes": 876
+    },
+    {
+      "path": "engineering_gate_assessment.csv",
+      "sha256": "3b706ce515d7f66c8560ca8f55ff6d32bc3fc845e5a7fd0944d7cd36971dbc82",
+      "size_bytes": 7020
+    },
+    {
+      "path": "decision_summary.json",
+      "sha256": "87750661a7b9829493e5a8ce979c66329288d8e1596dd193da5a13b3df954402",
+      "size_bytes": 4528
+    },
+    {
+      "path": "REPORT.md",
+      "sha256": "1ad967a5ea514dae5c8e2a5669b9839ecd77529538680c523004779ccda310ce",
+      "size_bytes": 14452
+    },
+    {
+      "path": "channel_depth_tradeoff.png",
+      "sha256": "7aa85c0f243d6df755af1878aab2c53509ff6a7de27d0dd9dd7052610cf42645",
+      "size_bytes": 177785
+    },
+    {
+      "path": "audit.json",
+      "sha256": "d6c3e246e821c45d5b8626328a25eb9deda723c8be34fc299b51a99d5ec38eda",
+      "size_bytes": 1743
+    }
+  ],
+  "schema_version": 1,
+  "sources": [
+    {
+      "path": "config/eo_vapor_test_cell_20mm_channel_study.json",
+      "sha256": "1da7706b82502a758950b545a2be5bf6029392e647dc96ff0b6817e3578cc899"
+    },
+    {
+      "path": "config/eo_vapor_test_cell_design.json",
+      "sha256": "e8f460f53474c91a648a331cf7252e5dead5755dac6299c60b74ddc8540d2b5e"
+    },
+    {
+      "path": "scripts/design_eo_vapor_test_cell.py",
+      "sha256": "e89894393f242e3c806df40fc81e06c4ddac0f40692a4323f767440f7a557309"
+    },
+    {
+      "path": "scripts/analyze_eo_vapor_test_cell_20mm.py",
+      "sha256": "ade7eae275cf8a2f2ddc817b71db55afe06fea651ef00cda3c15934a0649addc"
+    },
+    {
+      "path": "deliverables/current/2026-09-02_v10/SHA256SUMS",
+      "sha256": "c66192c03002a7fa2be674a26dc7ec027a6b6db2410fe929907e4152e14494d3"
+    },
+    {
+      "path": "deliverables/current/2026-09-03_handoff_v1/SHA256SUMS",
+      "sha256": "223787ad95b6697aef0928450c179d06fc6cd6c1df8b743dcd3100f69d7db8ac"
+    }
+  ],
+  "study_id": "eo-vapor-test-cell-20mm-bulk-depth-v1-2026-09-04",
+  "verification": {
+    "audit_all_pass": true,
+    "frozen_v10_and_handoff_v1_unchanged": true,
+    "manifest_self_excluded_to_avoid_recursive_hash": true,
+    "release_checksum_verification": {
+      "handoff_v1": {
+        "all_pass": true,
+        "checksum_file": "SHA256SUMS",
+        "entries_checked": 38,
+        "failures": [],
+        "path": "deliverables/current/2026-09-03_handoff_v1"
+      },
+      "v10": {
+        "all_pass": true,
+        "checksum_file": "SHA256SUMS",
+        "entries_checked": 430,
+        "failures": [],
+        "path": "deliverables/current/2026-09-02_v10"
+      }
+    }
+  }
+}

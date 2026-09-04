@@ -1,0 +1,101 @@
+{
+  "design_alternatives": {
+    "compact_cell_with_revised_protocol": {
+      "conservative_installed_net_volume_ml_per_side": 177.4,
+      "maximum_flux_g_m2_h": 86.30172228914611,
+      "maximum_segment_duration_s": 2.074560631950628,
+      "minimum_switching_frequency_hz": 0.2410148887911122,
+      "strength": "Keeps the original compact cavity without external volume.",
+      "weakness": "Changes the experimental basis and becomes faster than the screened humidity sensor response."
+    },
+    "external_plenum_at_100mm_face": {
+      "minimum_external_volume_ml_per_side": 322.6,
+      "strength": "Preserves the compact 100 x 100 mm clear face.",
+      "weakness": "Adds tubing/plenum dead volume, surface adsorption and a mixing delay to a five-second test."
+    }
+  },
+  "fan_screen": {
+    "five_second_adiabatic_temperature_rise_at_typical_power_k": 2.580533527771947,
+    "five_second_adiabatic_temperature_rise_upper_bound_k": 3.0106224490672715,
+    "maximum_static_pressure_pa": 19.1,
+    "nominal_ideal_turnover_time_s": 0.20224719101123595,
+    "sensor_tau63_s": 4.0,
+    "turnover_time_at_20_percent_effective_flow_s": 1.0112359550561796
+  },
+  "fastener_screen": {
+    "fastener_count": 16,
+    "nominal_preload_n_each": 1000.0,
+    "nominal_total_preload_n": 16000.0,
+    "preload_to_proof_pressure_force_ratio": 117.53902662993572,
+    "proof_pressure_separation_force_n": 136.125
+  },
+  "geometry_thresholds": {
+    "minimum_square_side_for_500ml_with_displacement_bound_mm": 161.6477652180815,
+    "minimum_square_side_for_500ml_without_hardware_mm": 158.11388300841898,
+    "minimum_square_side_for_rh_limit_with_displacement_bound_mm": 150.026733070382,
+    "required_depth_at_100mm_face_with_displacement_bound_mm": 52.26
+  },
+  "interconnect_screen": {
+    "actual_fitting_tube_and_valve_volume_included": false,
+    "header_volume_ml_per_side": 0.75,
+    "idealized_4mm_wall_bore_volume_ml_per_side": 0.20106192982974677,
+    "idealized_bore_screen_passes_budget": true,
+    "idealized_header_tap_and_wall_bore_volume_ml_per_side": 0.9710619298297468,
+    "maximum_budget_ml_per_side": 1.3,
+    "physical_budget_status": "UNRESOLVED pending CAD or measured fitting-to-isolation-valve volume",
+    "unallocated_idealized_margin_ml_per_side": 0.3289380701702532
+  },
+  "literal_100mm_case": {
+    "gross_volume_ml_per_side": 200.0,
+    "maximum_flux_g_m2_h": 97.2961919832538,
+    "maximum_segment_duration_s": 2.3388507688282165,
+    "minimum_switching_frequency_hz": 0.2137802063577165,
+    "passes_original_5s_rh_criterion": false,
+    "pressure_difference_pa": 1017.1321691328133,
+    "rh_change_pp_per_chamber": 10.689010317885824
+  },
+  "pressure_management": {
+    "minimum_full_stroke_ul_per_side": 1982.9897256242466,
+    "minimum_travel_from_nominal_ul_per_side": 991.5193260458082,
+    "one_double_acting_diaphragm_minimum_compliance_nl_per_pa": 198303.86520916162,
+    "rigid_chamber_to_chamber_difference_pa": 406.8528676531253,
+    "rigid_single_side_pressure_change_pa": 203.42643382656266,
+    "target_chamber_to_chamber_difference_pa": 5.0,
+    "two_external_reference_diaphragms_minimum_compliance_nl_per_pa_each": 396607.73041832325
+  },
+  "recommended_geometry": {
+    "bulk_depth_mm": 20.0,
+    "clear_face_mm": [
+      165.0,
+      165.0
+    ],
+    "component_displacement_upper_bound_ml_per_side": 22.6,
+    "final_acceptance_requires_measured_net_volume_ml": 500.0,
+    "final_acceptance_tolerance_ml": 5.0,
+    "gross_volume_ml_per_side": 544.5,
+    "minimum_available_trim_capacity_ml_per_side": 44.5,
+    "nominal_removable_trim_insert_ml_per_side": 21.899999999999977,
+    "outer_plate_face_mm": [
+      205.0,
+      205.0
+    ],
+    "pretrim_net_volume_ml_per_side": 521.9,
+    "required_trim_range_for_zero_to_bounded_component_displacement_ml_per_side": [
+      21.899999999999977,
+      44.5
+    ]
+  },
+  "seal_screen": {
+    "cross_section_mm": 2.0,
+    "depth_only_worst_gland_fill_fraction": 0.7737912939876338,
+    "gas_seal_surface_roughness_rq_um": 0.4,
+    "groove_depth_mm_for_25_percent_squeeze": 1.5,
+    "maximum_screened_squeeze_fraction": 0.30000000000000004,
+    "minimum_groove_width_mm_at_85_percent_fill": 2.463994238109642,
+    "recommended_groove_width_mm": 2.9,
+    "resulting_gland_fill_fraction": 0.7222052077217915,
+    "screened_minimum_effective_gland_depth_mm": 1.4
+  },
+  "selected_interpretation": "Bulk chamber cavity depth normal to the clear chamber face, per side.",
+  "study_id": "eo-vapor-test-cell-20mm-bulk-depth-v1-2026-09-04"
+}
