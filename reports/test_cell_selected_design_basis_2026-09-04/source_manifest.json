@@ -3,33 +3,33 @@
   "generated_outputs": [
     {
       "path": "calculation_basis.json",
-      "sha256": "c686ce0d347b516ffb48fd8577d69a1b2cbac860e28e77b218bf15b77223c298",
-      "size_bytes": 1691
+      "sha256": "4b3f78c9cdb8f0f7b007968df0229c4e740358f3829562f64ea0f867719b6ab2",
+      "size_bytes": 2694
     },
     {
       "path": "HeiQ_EO_Vapour_Test_Cell_Selected_Design_Basis_2026-09-04.md",
-      "sha256": "c3b6ec3f36e45b0652c4822347349d4a9edc19727e7c3987de3718e0e1ec5022",
-      "size_bytes": 3838
+      "sha256": "7f72be391012d8db06bdc11bf57a0f6fae6400a9a321247848bb844c364017e3",
+      "size_bytes": 5139
     },
     {
       "path": "figures/eo_vapour_test_cell_engineering_blueprint.png",
-      "sha256": "c2aa979476b9acb77db1c985b4fad0fbc55b9385ef370d6959827883ac2bf55f",
-      "size_bytes": 257082
+      "sha256": "bb56a6000fc999bca4c36b02bc888384e567e94eaefe88296cccffa8ddadc4c9",
+      "size_bytes": 266496
     },
     {
       "path": "figures/eo_vapour_test_cell_engineering_blueprint.svg",
-      "sha256": "628c03b30c9d497ac19e1f7c072ef5fbb12b222f6c17125964ca747e5a6bebe3",
-      "size_bytes": 74922
+      "sha256": "8dabe21a361194f316cf8affd915d23b920aeff38e59ec6ab1be7d1ff8148bae",
+      "size_bytes": 76413
     },
     {
       "path": "HeiQ_EO_Vapour_Test_Cell_Selected_Design_Basis_2026-09-04.docx",
-      "sha256": "7c2e56f27d1868190b222f3f50ab9af72fe2aa428c59f4ffcc17c3267ddac64d",
-      "size_bytes": 278893
+      "sha256": "02dde052b1b454232d880dbcfc7441a26a9e19a9b141068e470e49e1b43035b1",
+      "size_bytes": 288963
     },
     {
       "path": "HeiQ_EO_Vapour_Test_Cell_Selected_Design_Basis_2026-09-04.pdf",
-      "sha256": "2da3c60c0ad55ef3a30cb13dd7ae8fefaefb498a171c0b4c98905dfc3bf29a65",
-      "size_bytes": 289572
+      "sha256": "2bebf989d27aed18f6eb9306717ded5859974aa69d9eae8bb3c2cf0391141a94",
+      "size_bytes": 304413
     }
   ],
   "schema_version": 1,
@@ -51,8 +51,12 @@
       "sha256": "606b040a8135f1f40a97b06d7cb7915a24883d8ca82649d317a2937b4f31057d"
     },
     {
+      "path": "reports/test_cell_error_control_design_2026-09-04/decision_summary.json",
+      "sha256": "9ee888438fce7a9cdd386665678bba06f93ae8fa93fee98531359df93aefedf3"
+    },
+    {
       "path": "scripts/build_eo_vapour_test_cell_selected_basis.py",
-      "sha256": "5511033c92eb2b1634d404627545f59aa6dc7172a07d6293671bc650eccfd2be"
+      "sha256": "5b57d920cd461e1b8d40eb6959e4ce611e08f0a2c2764dd79f331b7e97ddf479"
     }
   ]
 }

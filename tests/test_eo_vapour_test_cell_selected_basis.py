@@ -33,6 +33,10 @@ def test_selected_basis_reproduces_the_design_numbers() -> None:
     assert math.isclose(values["transferred_mg"], 26.0 / 15.0)
     assert math.isclose(values["rh_change_pp"], 10.261449905170393)
     assert math.isclose(values["rigid_dp_pa"], 976.446882367501)
+    assert math.isclose(values["outer_wall_thickness_mm"], 12.0)
+    assert math.isclose(values["insulating_plate_thickness_mm"], 20.0)
+    assert math.isclose(values["loaded_gap_tolerance_mm"], 0.02)
+    assert math.isclose(values["planning_rss_error_percent"], 3.3634060117684275)
 
 
 def test_selected_geometry_closes_at_the_calibrated_volume() -> None:
@@ -88,6 +92,7 @@ def test_cli_writes_editable_source_and_word_document(
     assert "FUNCTIONAL SECTION" in blueprint_text
     assert "REMOVABLE MEMBRANE CARTRIDGE" in blueprint_text
     assert "DIFFERENTIAL PRESSURE" in blueprint_text
+    assert "removable low-sorption liner" in blueprint_text
     if MODULE.DOCX_AVAILABLE:
         assert (output / f"{MODULE.DOCUMENT_STEM}.docx").is_file()
     assert (output / "calculation_basis.json").is_file()
@@ -96,3 +101,5 @@ def test_cli_writes_editable_source_and_word_document(
     assert "50 x 50 mm = 25 cm²" in text
     assert "500 ± 5 mL per side" in text
     assert "12 s segments" in text
+    assert "Error-controlled construction" in text
+    assert "12 mm EN AW-6082-T6 aluminium" in text

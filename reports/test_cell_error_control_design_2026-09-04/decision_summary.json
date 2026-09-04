@@ -1,0 +1,83 @@
+{
+  "claim_boundary": "The calculations screen known error mechanisms. Edge, adsorption, leakage, mixing and preload terms are accepted only through the specified physical blanks and validation tests.",
+  "edge_control": {
+    "acceptance": "At the primary 50 x 50 mm window, the fitted perimeter term plus regression uncertainty must be at most 1.5% of the corrected net signal.",
+    "characterisation_apertures_mm": [
+      30.0,
+      40.0,
+      50.0
+    ],
+    "one_mm_band_fraction_percent": 7.84,
+    "primary_window_mm": [
+      50.0,
+      50.0
+    ]
+  },
+  "instrumentation_acceptance": {
+    "humidity_temperature_sensors_per_chamber": 2,
+    "maximum_chamber_temperature_difference_k": 0.05,
+    "maximum_net_volume_measurement_uncertainty_ml": 1.0,
+    "maximum_spatial_rh_disagreement_pp": 0.15,
+    "pairwise_relative_calibration_target_rh_pp": 0.1
+  },
+  "mandatory_run_sequence": [
+    "Individual chamber volume calibration after all internals are installed.",
+    "Pressure-decay and monitored-guard leak test.",
+    "Impermeable-coupon wall-storage and thermal blank with fans running.",
+    "Zero-current membrane diffusion blank.",
+    "Three-aperture edge regression at matched conditions.",
+    "Randomised ABBA polarity blocks with both sensor locations logged.",
+    "Post-run zero-current and impermeable-coupon drift checks."
+  ],
+  "measurement_controls": {
+    "cross_leak_flow_screen_l_min_at_peak_rh_difference": 0.00625,
+    "ideal_rh_change_pp_per_chamber": 10.261449905170393,
+    "maximum_rh_difference_pp": 20.522899810340785,
+    "pressure_compensation_volume_fraction_percent": 0.48,
+    "relative_calibration_fraction_of_signal_percent": 0.9745211536784234,
+    "spatial_disagreement_fraction_of_signal_percent": 1.4617817305176353,
+    "volume_measurement_scale_uncertainty_percent": 0.2
+  },
+  "planning_root_sum_square_error_percent": 3.3634060117684275,
+  "planning_worst_case_sum_percent": 8.75,
+  "seal_design": {
+    "acceptance": "Guard signal and blank-derived leakage correction must each remain within the allocated leakage error; otherwise reject the run.",
+    "design": "Two continuous EPDM 70 Shore A static face seals separated by a vented and monitored guard groove.",
+    "gas_seal_surface_roughness_rq_um": 0.4,
+    "groove_depth_mm": 1.5,
+    "groove_width_mm": 2.9,
+    "maximum_gland_fill_fraction": 0.85,
+    "nominal_squeeze_fraction": 0.25,
+    "o_ring_cross_section_mm": 2.0
+  },
+  "selected_construction": {
+    "insulating_cartridge_plate": {
+      "calculated_minimum_for_5um_screen_mm": 19.329666038119722,
+      "material": "Unfilled PEEK",
+      "pressure_only_deflection_um": 4.51391180625,
+      "thickness_mm": 20.0
+    },
+    "loaded_local_gap_mm": 2.0,
+    "loaded_local_gap_tolerance_mm": 0.02,
+    "outer_load_plate": {
+      "calculated_minimum_for_5um_screen_mm": 7.717746095561717,
+      "material": "EN AW-6082-T6 aluminium",
+      "pressure_only_deflection_um": 1.3301411410546882,
+      "thickness_mm": 12.0
+    },
+    "wetted_surface": "Structural aluminium outside the gas boundary; removable smooth non-porous metal liner on bulk wetted surfaces. Keep exposed PEEK to the minimum required insulating cartridge land."
+  },
+  "status": "BUILD BASIS; fabrication release still requires physical validation",
+  "study_id": "eo-vapor-test-cell-error-controlled-design-v1-2026-09-04",
+  "wall_storage": {
+    "allowed_equivalent_reversible_water_film_change_nm": 0.25622074402562206,
+    "allowed_wall_storage_blank_mg": 0.017333333333333333,
+    "conditional_segment_signal_mg": 1.7333333333333332,
+    "conservative_internal_surface_area_m2_per_side": 0.06765,
+    "fractional_saturation_density_sensitivity_per_k": 0.05328040581706597,
+    "one_nm_equivalent_water_film_mg": 0.06765000000000002,
+    "saturated_water_density_kg_m3": 0.033783399994185344,
+    "surface_to_net_volume_ratio_m2_m3": 135.3,
+    "temperature_scale_error_percent_at_selected_delta_t": 0.2664020290853299
+  }
+}

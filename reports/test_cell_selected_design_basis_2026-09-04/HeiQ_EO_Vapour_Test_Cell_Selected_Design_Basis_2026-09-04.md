@@ -49,6 +49,21 @@ The 500 mL inventory prevents the response from becoming excessively fast while 
 
 The rigid-cell gas diagnostic is 976 Pa after one segment, far above the 5 Pa differential-pressure target. Under the same ideal-gas screen, pressure management therefore needs approximately ±2.40 mL travel per side and 4.79 mL full stroke. This requirement must be verified with the real diaphragm, fan, seals and ports.
 
+## Error-controlled construction
+
+| Control | Selected design or acceptance criterion |
+| --- | --- |
+| Structural walls | 12 mm EN AW-6082-T6 aluminium; 1.33 µm pressure-only deflection at the proof screen. |
+| Insulating cartridge plate | 20 mm Unfilled PEEK; 4.51 µm pressure-only deflection. |
+| Loaded membrane gap | 2.00 ± 0.02 mm with hard stops and a loaded gap map. |
+| Wetted surfaces | Removable smooth non-porous metal liners; exposed PEEK limited to the required insulating land. |
+| Edge effects | Retain the 50 mm primary aperture and use 30, 40, 50 mm inserts to fit area and perimeter terms. A hypothetical 1 mm edge band already covers 7.84% of the active area. |
+| Wall-storage blank | No more than 0.01733 mg per segment (0.256 nm equivalent reversible film). |
+| Sensors and mixing | 2 T/RH positions per chamber; pair calibration ≤ 0.10 RH point and spatial disagreement ≤ 0.15 RH point. |
+| State control | Chamber ΔT ≤ 0.05 K, measured volume uncertainty ≤ 1.0 mL and cross-leak screen ≤ 6.25 mL/min at peak RH difference. |
+
+The planning root-sum-square error allocation is 3.36% of the corrected segment signal. This is not a claimed accuracy: impermeable-coupon, zero-current, leakage, mixing and aperture-scaling tests must pass before results are accepted.
+
 ## Measurement interpretation
 
 The reported quantity is integrated **net water movement through the membrane during each segment** under evolving RH conditions. It includes EO-driven transport together with opposing diffusion and other real membrane effects. The symmetric sequence lasts 48 s and returns the ideal closed-cell inventory to its initial state after a complete block. It does not demonstrate sustained dehumidification.

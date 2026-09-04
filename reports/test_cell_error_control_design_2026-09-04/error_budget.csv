@@ -1,0 +1,10 @@
+source,allocation_percent
+volume_calibration,0.25
+temperature_state,0.5
+relative_humidity_calibration,1.0
+spatial_mixing,1.5
+leakage_residual,0.5
+wall_storage_blank_residual,1.0
+pressure_volume_correction,0.5
+edge_regression,1.5
+repeatability,2.0
