@@ -64,7 +64,7 @@ present.
 | V10 result overlay | Audits that replay the frozen direct-ERV case and segment registers | `scripts/run_direct_erv_gradient_closure_v1.py`; `scripts/run_capacitive_electrode_study_v1.py` |
 | External `HeiQ_V2` evidence | Integrated August studies and report builders that consume a sibling historical repository or its outputs | `scripts/run_membrane_operating_region_study_v1.py`; post-ERV study family; `scripts/make_integrated_evidence_register_v1.py` |
 | Historical | Earlier model generations, decision packages, presentation builders, and the V9 delivery checker | retained for provenance; not current release gates |
-| Post-V10 handoff | Integrated sealed 500 mL-per-side vapour-cell sizing and current presentation | `scripts/design_eo_vapor_test_cell.py`; `npm run build:presentations` |
+| Post-V10 handoff | Integrated sealed 500 mL-per-side vapour-cell sizing, 20 mm bulk-depth sensitivity, and current presentation | `scripts/design_eo_vapor_test_cell.py`; `scripts/analyze_eo_vapor_test_cell_20mm.py`; `npm run build:presentations` |
 
 Exact prerequisites, commands, expected outputs, and platform assumptions are in
 [the handoff guide](docs/HANDOFF.md).

@@ -35,6 +35,14 @@ history only. The current handoff copies belong with the technical presentation 
 `deliverables/current/2026-09-03_handoff_v1/`. That supplement has its own
 inventory, checksums, source/build notes, and explicit V10 reference.
 
+`test_cell_20mm_channel_study_2026-09-04/` is a later, post-V10 geometry
+sensitivity. It interprets 20 mm as bulk cavity depth per side while retaining
+the 2 mm nominal local membrane gap. It rejects the literal 100 x 100 x 20 mm
+cavity for the original 5 s / 500 mL basis, evaluates a 165 x 165 x 20 mm
+alternative, and gives calculated starting values plus strengths, weaknesses
+and residual physical tests for all 13 fabrication gates. It does not modify
+the published handoff-v1 package.
+
 ## Historical reports
 
 The V8/V8.1 and V9 reports, the August atlases, weekly reports, workshop packs,

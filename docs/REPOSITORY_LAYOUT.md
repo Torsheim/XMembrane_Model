@@ -13,6 +13,7 @@ reports.
 | Direct-EO ERV membrane sensitivity | `scripts/run_direct_eo_erv_membrane_sensitivity_1v.py` | uses the direct-EO ERV configuration | covered by the direct-EO ERV tests |
 | Combined synthetic `t_w=50`, `D=1e-10 m2/s` replay | `scripts/run_direct_active_erv_tw50_d1e10.py` | derived from the direct-EO ERV configuration | covered by the direct-EO ERV tests and output audit |
 | EO vapour test-cell design | `scripts/design_eo_vapor_test_cell.py` | `config/eo_vapor_test_cell_design.json` | `tests/test_eo_vapor_test_cell_design.py` |
+| Post-V10 20 mm chamber-depth screen | `scripts/analyze_eo_vapor_test_cell_20mm.py` | `config/eo_vapor_test_cell_20mm_channel_study.json` | `tests/test_eo_vapor_test_cell_20mm_study.py` |
 | Capacitive-electrode transient screen | `scripts/run_capacitive_electrode_study_v1.py` and `src/heiq/wp1/electrodes/capacitive.py` | `config/capacitive_electrode_study_v1.json` | `tests/test_capacitive_electrode_study_v1.py` |
 | V10 model-phase closeout release | `scripts/package_final_closeout_v10.py` | hash-bound report/evidence inputs | live full suite plus `verification/V10_STATUS.json` |
 | Current-density policy | the three active receiver workflows | their native configurations | `tests/test_current_density_cap_policy.py` |

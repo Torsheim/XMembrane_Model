@@ -1,0 +1,46 @@
+{
+  "all_pass": true,
+  "calculation_status": "PASS",
+  "checks": {
+    "actual_fitting_tube_and_valve_volume_remains_unclaimed": true,
+    "all_thirteen_gates_are_assessed": true,
+    "alternate_20mm_local_gap_fails_on_header_alone": true,
+    "declared_outputs_exist_and_are_nonempty": true,
+    "frozen_v10_checksums_pass": true,
+    "handoff_v1_checksums_pass": true,
+    "idealized_header_tap_and_wall_bores_fit_budget_at_2mm": true,
+    "literal_100x100x20_volume_is_200ml": true,
+    "literal_geometry_exceeds_ten_rh_percentage_points": true,
+    "literal_geometry_fails_rh_volume_minimum": true,
+    "no_physical_gate_is_claimed_closed": true,
+    "plate_screens_are_finite_and_positive": true,
+    "primary_sources_are_https": true,
+    "recommended_geometry_has_pretrim_margin": true,
+    "recommended_geometry_is_544p5ml_gross": true,
+    "recommended_trim_returns_500ml": true,
+    "twenty_mm_is_bulk_depth_not_local_gap": true
+  },
+  "design_decision": {
+    "fabrication_release": "NOT READY; physical evidence remains required",
+    "literal_100x100x20_status": "REJECT for original 5 s / 500 mL basis",
+    "recommended_geometry": "165 x 165 x 20 mm clear cavity per side with measured trim to 500 +/- 5 mL"
+  },
+  "release_checksum_verification": {
+    "handoff_v1": {
+      "all_pass": true,
+      "checksum_file": "SHA256SUMS",
+      "entries_checked": 38,
+      "failures": [],
+      "path": "deliverables/current/2026-09-03_handoff_v1"
+    },
+    "v10": {
+      "all_pass": true,
+      "checksum_file": "SHA256SUMS",
+      "entries_checked": 430,
+      "failures": [],
+      "path": "deliverables/current/2026-09-02_v10"
+    }
+  },
+  "schema_version": 1,
+  "study_id": "eo-vapor-test-cell-20mm-bulk-depth-v1-2026-09-04"
+}

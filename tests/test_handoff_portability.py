@@ -51,6 +51,9 @@ def test_workflow_classification_covers_every_top_level_config() -> None:
         "current_v10_result_overlay"
     )
     assert by_path["config/eo_vapor_test_cell_design.json"] == "post_v10_handoff"
+    assert by_path["config/eo_vapor_test_cell_20mm_channel_study.json"] == (
+        "post_v10_handoff"
+    )
     for name, policy in classes.items():
         if policy["personal_absolute_paths_allowed"]:
             assert policy["authority"] == "historical"

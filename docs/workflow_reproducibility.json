@@ -56,6 +56,10 @@
       "class": "historical_external"
     },
     {
+      "path": "config/eo_vapor_test_cell_20mm_channel_study.json",
+      "class": "post_v10_handoff"
+    },
+    {
       "path": "config/eo_vapor_test_cell_design.json",
       "class": "post_v10_handoff"
     },
