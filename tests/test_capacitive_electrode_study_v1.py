@@ -22,6 +22,14 @@ from heiq.wp1.electrodes.capacitive import (
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG_PATH = ROOT / "config" / "capacitive_electrode_study_v1.json"
 RUNNER_PATH = ROOT / "scripts" / "run_capacitive_electrode_study_v1.py"
+V10_RESULT_OVERLAY = (
+    ROOT
+    / "deliverables"
+    / "current"
+    / "2026-09-02_v10"
+    / "results"
+    / "XMembrane_Trond_Study"
+)
 CONFIG = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
 
 
@@ -34,6 +42,15 @@ def load_runner():
     sys.modules[spec.name] = module
     spec.loader.exec_module(module)
     return module
+
+
+def frozen_replay_input(relative_path: str) -> Path:
+    """Resolve frozen replay evidence from the release before local scratch output."""
+    for base in (V10_RESULT_OVERLAY, ROOT):
+        candidate = base / relative_path
+        if candidate.is_file():
+            return candidate
+    pytest.skip(f"Frozen direct-ERV replay evidence is unavailable: {relative_path}")
 
 
 def membrane_kwargs(source: float = 0.5, receiver: float = 0.5):
@@ -229,10 +246,10 @@ def test_frozen_replay_contains_primary_and_optimistic_voltage_modes(
     config = runner.load_config(CONFIG_PATH)
     selected = config["frozen_erv_replay"]["cases"][0]
     cases = pd.read_csv(
-        ROOT / config["frozen_erv_replay"]["case_register_csv"]
+        frozen_replay_input(config["frozen_erv_replay"]["case_register_csv"])
     )
     segments = pd.read_csv(
-        ROOT / config["frozen_erv_replay"]["segment_register_csv"]
+        frozen_replay_input(config["frozen_erv_replay"]["segment_register_csv"])
     )
     case = cases.loc[cases["case_id"].eq(selected["case_id"])]
     segment = (

@@ -3,6 +3,9 @@ from __future__ import annotations
 import importlib.util
 import json
 from pathlib import Path
+import shutil
+
+import pytest
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -18,6 +21,10 @@ def load_packager():
     return module
 
 
+@pytest.mark.skipif(
+    shutil.which("pdftotext") is None or shutil.which("pdfinfo") is None,
+    reason="Poppler pdftotext/pdfinfo are required for full handoff claim verification",
+)
 def test_handoff_supplement_verifies_without_writes() -> None:
     module = load_packager()
     manifest_before = (RELEASE / "MANIFEST.json").read_bytes()
